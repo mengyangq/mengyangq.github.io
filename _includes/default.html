@@ -42,18 +42,13 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</button>
+			</button>-->
 			{% if site.author.github %}
 			<a type="button" class="navbar-toggle nav-link" href="http://github.com/{{ site.author.github }}">
 				<i class="fa fa-github"></i>
 			</a>
-			{% endif %}-->
-			
-			{% if site.author.github %}
-			<a type="button" class="navbar-toggle nav-link" href="https://{{ mengyang.dev }}">
-				<i class="fa fa-github"></i>
-			</a>
 			{% endif %}
+		
 			
 			{% if site.author.twitter %}
 			<a type="button" class="navbar-toggle nav-link" href="http://twitter.com/{{ site.author.twitter }}">
@@ -67,7 +62,8 @@
 			{% endif %}
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<img src="//www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />
-				{{ site.title }}
+				<!--{{ site.title }} -->
+				mengyang.dev
 			</a>
 		</div>
 
