@@ -1,13 +1,20 @@
-@import url(//fonts.googleapis.com/css?family=Ubuntu:500&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:500&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body{
 	color: #2c3e50;
 }
 
+.home_class{
+	padding-right: 10%;
+	padding-top: 5%;
+	padding-left: 5%;
+}
+
 .sidebar {
 	position: fixed;
 	top: 0px;
-	padding-top: 10%;
+	padding: 3%;
 	background-color: #2c3e50;
 	color: #fff;
 }
@@ -18,6 +25,7 @@ body{
 }
 .sidebar-header .title{
 	letter-spacing: 3px;
+	font-size: 35px;
 	text-transform: uppercase;
 }
 
@@ -38,7 +46,7 @@ a.nav-link:hover { color: #777; }
 
 #bio {
 	font-family: "Courier New", Courier, monospace;
-	font-size: 11px;
+	font-size: 13px;
 	margin: 0 auto;
 	margin-bottom: 10px;
 }
@@ -81,9 +89,13 @@ article .share .gplus:hover {
 	padding-bottom: 10px;
 }
 
-.page-header {
+h1 {
 	color: #e74c3c;
 	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+	border-bottom: 1px solid #eeeeee;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(238, 238, 238)
 }
 
 @media only screen and (min-width: 768px) {
@@ -139,6 +151,44 @@ article.home h4 a:hover {
 	color: #e74c3c;
 }
 
+p {
+	font-size:18px;
+	font-family: 'Roboto', sans-serif;
+}
+
+table {  
+    color: #333;
+    font-size:18px;
+	font-family: 'Roboto', sans-serif;
+    border-collapse: 
+    collapse; border-spacing: 0; 
+}
+
+td, th {  
+    border: 1px solid transparent; /* No more visible border */
+    height: 30px; 
+}
+
+th {  
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {  
+    background: #FAFAFA;
+    text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */        
+tr:nth-child(even) td { background: #F1F1F1; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
+tr:nth-child(odd) td { background: #FEFEFE; }  
+
+li {
+	font-size:18px;
+	font-family: 'Roboto', sans-serif;
+}
 .author .author-image {
   float: left;
   margin-right: 20px;
