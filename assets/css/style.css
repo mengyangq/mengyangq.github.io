@@ -21,7 +21,6 @@ body{
 
 .sidebar-header {
 	text-align: center;
-	margin: 0 auto;
 	margin-bottom: 10px;
 }
 .sidebar-header .title{
@@ -31,7 +30,6 @@ body{
 }
 
 .sidebar-header .title a{
-	font-size: 10vw;
 	text-decoration: none;
 	color: #fff;
 }
