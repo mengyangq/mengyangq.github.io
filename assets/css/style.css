@@ -25,10 +25,8 @@ body{
 }
 .sidebar-header .title{
 	letter-spacing: 2px;
-	font-size: 35px;
+	font-size: 34px;
 	text-transform: uppercase;
-	margin: 0 auto;
-	margin-bottom: 10px;
 }
 
 .sidebar-header .title a{
