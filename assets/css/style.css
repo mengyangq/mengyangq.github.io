@@ -21,11 +21,12 @@ body{
 
 .sidebar-header {
 	text-align: center;
+	margin: 0 auto;
 	margin-bottom: 10px;
 }
 .sidebar-header .title{
-	letter-spacing: 2px;
-	font-size: 34px;
+	letter-spacing: 3px;
+	font-size: 35px;
 	text-transform: uppercase;
 }
 
