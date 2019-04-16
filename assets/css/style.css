@@ -24,10 +24,11 @@ body{
 	margin-bottom: 10px;
 }
 .sidebar-header .title{
-	text-align: center;
 	letter-spacing: 2px;
 	font-size: 35px;
 	text-transform: uppercase;
+	margin: 0 auto;
+	margin-bottom: 10px;
 }
 
 .sidebar-header .title a{
