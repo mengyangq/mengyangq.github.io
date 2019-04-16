@@ -31,6 +31,7 @@ body{
 }
 
 .sidebar-header .title a{
+	font-size: 100%;
 	text-decoration: none;
 	color: #fff;
 }
