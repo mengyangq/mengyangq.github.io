@@ -24,8 +24,9 @@ body{
 	margin-bottom: 10px;
 }
 .sidebar-header .title{
+	text-align: center;
 	letter-spacing: 3px;
-	font-size: 10vw;
+	font-size: 35px;
 	text-transform: uppercase;
 }
 
