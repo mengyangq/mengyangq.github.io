@@ -24,6 +24,6 @@
 
 - Verb fluency may be useful in diagnosing different clinical populations (e.g., agrammatic vs. anomic aphasia) as they may exhibit different search patterns.
 
-![alt text](../pub/vf.png "Verb Fluency")
+<img src="../pub/vf.jpeg" width="500" height="500">
 
 **Qiu, M.** & Johns, B. T. (2018). [Memory searching pathway underlying verb fluency](../pub/Qiu_Johns_ASHA_2018.pdf). Poster presented at the *2018 ASHA Convention*.
