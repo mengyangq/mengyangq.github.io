@@ -8,7 +8,7 @@
 ## The Effects of Semantic Diversity on Paired-Associate Learning
 **Supervisor:** Brendan Johns, Ph.D.
 
-<img src="../pub/pal.jpeg" width="500" height="500">
+<img src="../pub/pal.jpeg" width="75%" height="75%">
 
 
 ## Memory Searching Pathway Underlying Verb Fluency
@@ -24,6 +24,6 @@
 
 - Verb fluency may be useful in diagnosing different clinical populations (e.g., agrammatic vs. anomic aphasia) as they may exhibit different search patterns.
 
-<img src="../pub/vf.png" width="500" height="500">
+<img src="../pub/vf.png" width="75%" height="75%">
 
 **Qiu, M.** & Johns, B. T. (2018). [Memory searching pathway underlying verb fluency](../pub/Qiu_Johns_ASHA_2018.pdf). Poster presented at the *2018 ASHA Convention*.
