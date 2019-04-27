@@ -1,17 +1,18 @@
 # Projects
 
 ## Grammatical Error Correction
-Supervisor: Jungyeul Park, Ph.D.
+**Supervisor:** Jungyeul Park, Ph.D.
 
-Collaborators: Xuejiao Chen, Maggie Liu, Krishna Parvathala, Apurva Patil
+**Collaborators:** Xuejiao Chen, Maggie Liu, Krishna Parvathala, Apurva Patil
 
 ## The Effects of Semantic Diversity on Paired-Associate Learning
-Supervisor: Brendan Johns, Ph.D.
+**Supervisor:** Brendan Johns, Ph.D.
 
 ![alt text](../pub/pal.jpeg "SD and PAL")
 
 ## Memory Searching Pathway Underlying Verb Fluency
-Supervisor: Brendan Johns, Ph.D.
+**Supervisor:** Brendan Johns, Ph.D.
+
 - Verbal fluency is one of the most widely used measures of cognitive functioning, in which subjects produce as many different words as possible from a given criterion (e.g., animal category) within 1 minute.
 
 - Compared to noun category fluency, there are fewer studies on verb fluency, even though verbs are thought to play a more prominent role in organizing mental lexicon and in describing events.
