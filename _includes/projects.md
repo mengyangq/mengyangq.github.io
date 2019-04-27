@@ -9,7 +9,7 @@
 **Supervisor:** Brendan Johns, Ph.D.
 
 <img src="pub/mengyang.jpeg" style='height: 75%; width: 75%; object-fit: contain' />
-![](../pub/pal.jpeg "SD and PAL")
+![ ](../pub/pal.jpeg "SD and PAL")
 
 ## Memory Searching Pathway Underlying Verb Fluency
 **Supervisor:** Brendan Johns, Ph.D.
