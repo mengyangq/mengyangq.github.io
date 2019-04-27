@@ -17,4 +17,11 @@ Supervisor: Brendan Johns, Ph.D.
 - Studying verb fluency may give us additional insights into mental lexicon organization and provide potentially different diagnostic information.
 
 - The current study compares memory search pathway underlying verb fluency to noun (animal category) fluency using a cognitive modeling approach.
-[Memory Search](../pub/Qiu_Johns_ASHA_2018.pdf)
+
+- The modeling results show that animal fluency and verb fluency have distinct memory search pathways. People dynamically use semantic and syntactic information to organize memory retrieval in verb fluency, which is in line with the claim that verbs encode both information in mental lexicon. 
+
+- Verb fluency may be useful in diagnosing different clinical populations (e.g., agrammatic vs. anomic aphasia) as they may exhibit different search patterns.
+
+![alt text](../pub/vf.png "Verb Fluency")
+
+**Qiu, M.** & Johns, B.T. (2018). [Memory searching pathway underlying verb fluency].Poster presented at the *2018 ASHA Convention*.(../pub/Qiu_Johns_ASHA_2018.pdf)
