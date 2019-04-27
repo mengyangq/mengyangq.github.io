@@ -8,6 +8,8 @@ Collaborators: Xuejiao Chen, Maggie Liu, Krishna Parvathala, Apurva Patil
 ## The Effects of Semantic Diversity on Paired-Associate Learning
 Supervisor: Brendan Johns, Ph.D.
 
+![alt text](../pub/pal.jpeg "SD and PAL")
+
 ## Memory Searching Pathway Underlying Verb Fluency
 Supervisor: Brendan Johns, Ph.D.
 - Verbal fluency is one of the most widely used measures of cognitive functioning, in which subjects produce as many different words as possible from a given criterion (e.g., animal category) within 1 minute.
