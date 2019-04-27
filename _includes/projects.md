@@ -1,17 +1,17 @@
 # Projects
 
-## Grammatical Error Correction
+### Grammatical Error Correction
 **Supervisor:** Jungyeul Park, Ph.D.
 
 **Collaborators:** Xuejiao Chen, Maggie Liu, Krishna Parvathala, Apurva Patil
 
-## The Effects of Semantic Diversity on Paired-Associate Learning
+### The Effects of Semantic Diversity on Paired-Associate Learning
 **Supervisor:** Brendan Johns, Ph.D.
 
 <img src="../pub/pal.jpeg" width="75%" height="75%">
 
 
-## Memory Searching Pathway Underlying Verb Fluency
+### Memory Searching Pathway Underlying Verb Fluency
 **Supervisor:** Brendan Johns, Ph.D.
 
 - Verbal fluency is one of the most widely used measures of cognitive functioning, in which subjects produce as many different words as possible from a given criterion (e.g., animal category) within 1 minute.
