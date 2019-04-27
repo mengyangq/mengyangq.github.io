@@ -7,8 +7,9 @@
 
 ## The Effects of Semantic Diversity on Paired-Associate Learning
 **Supervisor:** Brendan Johns, Ph.D.
+
 <img src="../pub/pal.jpeg" width="500" height="500">
-![alt text](../pub/pal.jpeg "SD and PAL")
+
 
 ## Memory Searching Pathway Underlying Verb Fluency
 **Supervisor:** Brendan Johns, Ph.D.
