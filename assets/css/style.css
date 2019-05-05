@@ -242,3 +242,17 @@ ul.dropdown-menu>li>a>i.fa {
     width: 1.3em;
 }
 
+.navbar {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
