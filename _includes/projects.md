@@ -16,6 +16,7 @@
 
 <img src="../pub/pal.jpeg" width="55%" height="55%">
 
+**Qiu, M.** & Johns, B. T. (in prep). The effects of semantic diversity on paired-associate learning: Continued evidence for the information accumulation perspective of cognitive aging.
 
 ### Memory Searching Pathway Underlying Verb Fluency
 **Supervisor:** Brendan Johns, Ph.D.
