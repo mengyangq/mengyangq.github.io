@@ -11,7 +11,7 @@ The quantity and quality of training data plays a crucial role in grammatical er
 
 **Qiu, M.** & Park, J. (accepted). Artificial error generation with fluency filtering. *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
-<ins>**Improving Precision of Grammatical Error Correction with Cheat Sheet**</ins>
+<ins>**Improving Precision of Grammatical Error Correction with a Cheat Sheet**</ins>
 
 In this paper, we explore two approaches of generating error-focused phrases and examine whether these phrases can lead to better performance in grammatical error correction for the restricted track of BEA 2019 Shared Task on GEC. Our results show that phrases directly extracted from GEC corpora outperform phrases from statistical machine translation phrase table by a large margin. Appending error+context phrases to the original GEC corpora yields comparably high precision. We also explore the generation of artificial syntactic error sentences using error+context phrases for the unrestricted track. The additional training data greatly facilitates syntactic error correction (e.g., verb form) and contributes to better overall performance.
 
