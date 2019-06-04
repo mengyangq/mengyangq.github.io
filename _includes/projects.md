@@ -9,7 +9,7 @@
 
 The quantity and quality of training data plays a crucial role in grammatical error correction (GEC). However, due to the fact that obtaining human-annotated GEC data is both time-consuming and expensive, several studies have focused on generating artificial error sentences to boost training data for grammatical error correction, and shown  significantly better performance. The present study explores how fluency filtering can affect the quality of artificial errors. By comparing artificial data filtered by different levels of fluency, we find that artificial error sentences with low fluency can greatly facilitate error correction, while high fluency errors introduce more noise.
 
-**Qiu, M.** & Park, J. (accepted). Artificial error generation with fluency filtering.*Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
+**Qiu, M.** & Park, J. (accepted). Artificial error generation with fluency filtering. *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
 <ins>**Improving Precision of Grammatical Error Correction with Cheat Sheet**</ins>
 
