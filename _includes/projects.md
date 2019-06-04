@@ -9,13 +9,13 @@
 
 The quantity and quality of training data plays a crucial role in grammatical error correction (GEC). However, due to the fact that obtaining human-annotated GEC data is both time-consuming and expensive, several studies have focused on generating artificial error sentences to boost training data for grammatical error correction, and shown  significantly better performance. The present study explores how fluency filtering can affect the quality of artificial errors. By comparing artificial data filtered by different levels of fluency, we find that artificial error sentences with low fluency can greatly facilitate error correction, while high fluency errors introduce more noise.
 
-**Qiu, M.** & Park, J. (under review). Artificial error generation with fluency filtering.
+**Qiu, M.** & Park, J. (accepted). Artificial error generation with fluency filtering.*Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
 <ins>**Improving Precision of Grammatical Error Correction with Cheat Sheet**</ins>
 
 In this paper, we explore two approaches of generating error-focused phrases and examine whether these phrases can lead to better performance in grammatical error correction for the restricted track of BEA 2019 Shared Task on GEC. Our results show that phrases directly extracted from GEC corpora outperform phrases from statistical machine translation phrase table by a large margin. Appending error+context phrases to the original GEC corpora yields comparably high precision. We also explore the generation of artificial syntactic error sentences using error+context phrases for the unrestricted track. The additional training data greatly facilitates syntactic error correction (e.g., verb form) and contributes to better overall performance.
 
-**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (under review). Improving precision of grammatical error correction with cheat sheet.
+**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (under review). Improving precision of grammatical error correction with a cheat sheet. *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
 <ins>**Correlation between Fluency and Accuracy in Learners Corpus**</ins>
 
