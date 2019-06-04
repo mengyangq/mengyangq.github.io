@@ -5,3 +5,4 @@ I am a Ph.D. student in the [Department of Communicative Disorders and Sciences]
 My research interests include using natural language processing techniques and computational models of memory to develop automated assessment procedures for detecting language and memory disorders (e.g., Specific Language Impairment, Mild Cognitive Impairment, Alzheimer’s disease and other forms of dementia), and using behavioral experiments and cognitive modeling to delineate the natural changes that occur as a consequence of increasing amounts of experience during aging from actual cognitive decline.
 
 Here is my [CV](../pub/CV.pdf) and [Resume](../pub/Resume.pdf).
+
