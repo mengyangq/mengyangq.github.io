@@ -17,11 +17,6 @@ In this paper, we explore two approaches of generating error-focused phrases and
 
 **Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (under review). Improving precision of grammatical error correction with a cheat sheet. *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
-<ins>**Correlation between Fluency and Accuracy in Learners Corpus**</ins>
-
-Developing proficiency levels for non-native speakers has always been a difficult task. In this study, we explore the NUS learners corpus and its annotated grammatical errors to automatically assign proficiency levels to individual participants by using fluency and accuracy of the learners' text. We determine the upper bound and lower bound of learners by using statistical measurement and classify learners into levels of accuracy and fluency. We conclude that perplexity for fluency is more correlate to accuracy compared to other fluency metrics in previous works. In addition, this perplexity fluency metric is more effective in predicting proficiency.
-
-Liu, M., Patil, A., Chawla, J. K. & Park, J. (under review). Correlation between fluency and accuracy in learners corpus.
 
 
 ### The Effects of Semantic Diversity on Paired-Associate Learning
@@ -36,6 +31,8 @@ Liu, M., Patil, A., Chawla, J. K. & Park, J. (under review). Correlation between
 <img src="../pub/pal.jpeg" width="55%" height="55%">
 
 **Qiu, M.** & Johns, B. T. (in prep). The effects of semantic diversity on paired-associate learning: Continued evidence for the information accumulation perspective of cognitive aging.
+
+
 
 ### Memory Searching Pathway Underlying Verb Fluency
 **Supervisor:** Brendan Johns, Ph.D.
@@ -53,6 +50,8 @@ Liu, M., Patil, A., Chawla, J. K. & Park, J. (under review). Correlation between
 <img src="../pub/vf.png" width="55%" height="55%">
 
 **Qiu, M.** & Johns, B. T. (2018). [Memory searching pathway underlying verb fluency](../pub/Qiu_Johns_ASHA_2018.pdf). Poster presented at the *2018 ASHA Convention*.
+
+
 
 ### Grammatical Aspect and the Activation of Location Information
 **Supervisor:** Jean-Pierre Koenig, Ph.D.
