@@ -201,6 +201,7 @@ footer {
   	bottom: 0px;
 	position:fixed;
 	font-family: 'Ubuntu';
+	font-size:12px;
 }
 
 /* nav-vertical-tabs component */
