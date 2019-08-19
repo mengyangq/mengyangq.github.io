@@ -15,7 +15,7 @@ The quantity and quality of training data plays a crucial role in grammatical er
 
 In this paper, we explore two approaches of generating error-focused phrases and examine whether these phrases can lead to better performance in grammatical error correction for the restricted track of BEA 2019 Shared Task on GEC. Our results show that phrases directly extracted from GEC corpora outperform phrases from statistical machine translation phrase table by a large margin. Appending error+context phrases to the original GEC corpora yields comparably high precision. We also explore the generation of artificial syntactic error sentences using error+context phrases for the unrestricted track. The additional training data greatly facilitates syntactic error correction (e.g., verb form) and contributes to better overall performance.
 
-**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (2019). [Improving precision of grammatical error correction with a cheat sheet](https://www.aclweb.org/anthology/W19-4408). *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
+**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (2019). [Improving precision of grammatical error correction with a cheat sheet](https://www.aclweb.org/anthology/W19-4425). *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
 
 
