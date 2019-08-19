@@ -54,8 +54,6 @@ a.nav-link:hover { color: #777; }
 #copy {
 	position: fixed;
 	bottom: 2px;
-	margin-left: auto;
-	margin-right: auto;
 	font-family: 'Ubuntu';
 	font-size: 12px;
 }
@@ -207,12 +205,15 @@ li {
   margin-right: 20px;
 }
 
-footer {
+/*footer {
   	bottom: 2px;
 	margin:0 auto;
 	position:fixed;
 	font-family: 'Ubuntu';
 	font-size:12px;
+}*/
+footer {
+	margin: 0 auto;
 }
 
 /* nav-vertical-tabs component */
