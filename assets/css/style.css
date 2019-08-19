@@ -25,7 +25,6 @@ body{
 	margin-bottom: 10px;
 }
 .sidebar-header .title{
-	letter-spacing: 3px;
 	font-size: 35px;
 	text-transform: uppercase;
 }
@@ -198,10 +197,9 @@ li {
   margin-right: 20px;
 }
 
-/* padding-top: 15px;*/
 footer {
-	padding-top: 25px;
   	bottom: 0px;
+	position:fixed;
 	font-family: 'Ubuntu';
 }
 
