@@ -53,8 +53,6 @@ a.nav-link:hover { color: #777; }
 
 #copy {
 	position: fixed;
-	left:0;
-    	right:0;
 	bottom: 2px;
 	margin-left: auto;
 	margin-right: auto;
