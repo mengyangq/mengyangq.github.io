@@ -52,9 +52,10 @@ a.nav-link:hover { color: #777; }
 }
 
 #copy {
-	margin:0 auto;
 	bottom: 2px;
 	position:fixed;
+	margin-left:auto;
+	margin-right:auto;
 	font-family: 'Ubuntu';
 	font-size:12px;
 }
