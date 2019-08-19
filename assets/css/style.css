@@ -198,10 +198,10 @@ li {
 }
 
 footer {
-  	bottom: 0px;
+  	bottom: 2px;
 	position:fixed;
 	font-family: 'Ubuntu';
-	font-size:12px;
+	font-size:14px;
 }
 
 /* nav-vertical-tabs component */
