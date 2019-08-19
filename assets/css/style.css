@@ -199,9 +199,10 @@ li {
 
 footer {
   	bottom: 2px;
+	margin:0 auto;
 	position:fixed;
 	font-family: 'Ubuntu';
-	font-size:14px;
+	font-size:12px;
 }
 
 /* nav-vertical-tabs component */
