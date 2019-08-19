@@ -200,6 +200,7 @@ li {
 
 /* padding-top: 15px;*/
 footer {
+	padding-top: 15px;
 	position: fixed;
   	bottom: 0px;
 	font-family: 'Ubuntu';
