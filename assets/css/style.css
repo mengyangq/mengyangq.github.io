@@ -51,6 +51,15 @@ a.nav-link:hover { color: #777; }
 	margin-bottom: 10px;
 }
 
+#copy {
+	margin:0 auto;
+	bottom: 2px;
+	position:fixed;
+	font-family: 'Ubuntu';
+	font-size:12px;
+}
+
+
 #contact-list li .fa,
 article .share .btn {
 	-o-transition:color .2s ease-out, background 1s ease-in;
