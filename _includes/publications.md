@@ -1,7 +1,7 @@
 # Publications
 
 <!---### Posters--->
-**Qiu, M.** & Johns, B. T. (in press). [Semantic diversity in paired-associate learning: Further evidence for the informartion accumulation perspective of cognitive aging](../pub/QJ_PBR_inpress.pdf). *Psychonomic Bulletin & Review*.
+**Qiu, M.** & Johns, B. T. (in press). [Semantic diversity in paired-associate learning: Further evidence for the information accumulation perspective of cognitive aging](../pub/QJ_PBR_inpress.pdf). *Psychonomic Bulletin & Review*.
 
 **Qiu, M.** & Park, J. (2019). [Artificial error generation with fluency filtering](https://www.aclweb.org/anthology/W19-4408). *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
