@@ -8,10 +8,10 @@
 
 # Conference Presentations and Posters
 
-**Qiu, M.** (2020, November). Natural language processing for language sample analysis. Proposal accepted at the * Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
+**Qiu, M.** (2020, November). Natural language processing for language sample analysis. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
 
-Sun, S. & **Qiu, M.** (2020, November).  Early production of animal vocabulary in Mandarin Chinese and American English. Proposal accepted at the * Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
+Sun, S. & **Qiu, M.** (2020, November).  Early production of animal vocabulary in Mandarin Chinese and American English. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
 
-**Qiu, M.** & Johns, B. T. (2018, November). Memory searching pathway underlying verb fluency. Poster presented at the * Annual Convention of the American Speech-Language-Hearing Association*, Boston, MA.
+**Qiu, M.** & Johns, B. T. (2018, November). Memory searching pathway underlying verb fluency. Poster presented at the *Annual Convention of the American Speech-Language-Hearing Association*, Boston, MA.
 
-Min, H., Guo, L., Higginbotham, D. J., & **Qiu, M.** (2018, November). How does writing medium influence the operation of writing processes and writing quality? Poster presented at the * Annual Convention of the American Speech-Language-Hearing Association*, Boston, MA.
+Min, H., Guo, L., Higginbotham, D. J., & **Qiu, M.** (2018, November). How does writing medium influence the operation of writing processes and writing quality? Poster presented at the *Annual Convention of the American Speech-Language-Hearing Association*, Boston, MA.
