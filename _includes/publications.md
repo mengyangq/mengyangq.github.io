@@ -8,7 +8,7 @@
 
 # Conference Presentations and Posters
 
-**Qiu, M.** (2020, November). Natural language processing for language sample analysis. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
+**Qiu, M.** (2020, November). Using natural language processing for language sample analysis. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
 
 Sun, S. & **Qiu, M.** (2020, November).  Early production of animal vocabulary in Mandarin Chinese and American English. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
 
