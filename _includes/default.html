@@ -67,7 +67,7 @@
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="/">Home</a></li>
 				<li><a href="pub/CV_Mengyang.pdf" target="_blank">CV</a></li>
@@ -75,8 +75,19 @@
 			</ul>
 
 
-		</div>
+		</div>-->
 		<!-- /.navbar-collapse -->
+		<div class="btn-group hidden-xs" id="nav-menu">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-bars"></i>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fa fa-folder"></i>Publications</a></li>
+				<li class="divider"></li>
+				<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li> 
+			</ul>
+		</div>
 	</nav>
 
 	<!--nav-menu-dropdown 
