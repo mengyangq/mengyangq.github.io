@@ -4,22 +4,23 @@
 		<!--<img src="pub/mengyang.jpeg" class="img-circle" width="250" height="250" />-->
 		<img src="pub/mengyang.jpeg" class="img-circle" style='height: 75%; width: 75%; object-fit: contain' />
 	</a>
-	
+
 </div>
 
 <!-- sidebar.html -->
 <div class="sidebar-header" role="banner">
-<h3 class="title">
-        <a href="{{ site.BASE_PATH }}/" style="font-size:2vw;">Mengyang Qiu</a>
-    </h3>
+	<h3 class="title">
+		<a href="{{ site.BASE_PATH }}/" style="font-size:2vw;">Mengyang Qiu</a>
+	</h3>
 </div>
 
 <div id="bio" class="text-center">
-	I study language and memory processing and impairments using behavioral experiments, cognitive modeling and NLP techniques.
+	I study language and memory processing and impairments using behavioral experiments, cognitive modeling and NLP
+	techniques.
 </div>
 
-<div id="contact-list" class="text-center">
-	<ul class="list-unstyled list-inline">
+<div id="contact-list">
+	<!--<ul class="list-unstyled list-inline">
 		<li>
 			<a class="btn btn-default btn-sm" href="https://github.com/mengyangq">
 				<i class="fa fa-github-alt fa-lg"></i>
@@ -35,6 +36,39 @@
 				<i class="fa fa-envelope fa-lg"></i>
 			</a>
 		</li>
+	</ul>-->
+
+	<ul>
+		{% if site.author.linkedin %}
+		<li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
+				<i class="fab fa-linkedin"></i> LinkedIn
+			</a>
+		</li>
+		{% endif %}
+		{% if site.author.github %}
+		<li><a href="https://github.com/{{ site.author.github }}">
+				<i class="fab fa-github"></i> GitHub
+			</a>
+		</li>
+		{% endif %}
+		{% if site.author.researchgate %}
+		<li><a href="https://www.researchgate.net/profile/{{ site.author.researchgate }}">
+				<i class="fab fa-researchgate"></i> ResearchGate
+			</a>
+		</li>
+		{% endif %}
+		{% if site.author.orcid %}
+		<li><a href="https://orcid.org/{{ site.author.orcid }}">
+				<i class="fab fa-orcid"></i> ORCID
+			</a>
+		</li>
+		{% endif %}
+		{% if site.author.email %}
+		<li><a href="mailto:{{ site.author.email }}">
+				<i class="fas fa-envelope"></i> Email
+			</a>
+		</li>
+		{% endif %}
 	</ul>
 </div>
 
