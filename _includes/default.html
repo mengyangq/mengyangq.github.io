@@ -45,27 +45,28 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>-->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-bars"></i>
+				</a></li>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
+					<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i
+								class="fa fa-folder"></i>Publications</a></li>
+				</ul>
 
-			<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-bars"></i>
-			</a>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fa fa-folder"></i>Publications</a></li>
+				{% if site.author.email %}
+				<li><a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
+					<i class="fa fa-envelope"></i>
+				</a></li>
+				{% endif %}
+
+				{% if site.author.github %}
+				<li><a type="button" class="navbar-toggle nav-link" href="https://github.com/{{ site.author.github }}">
+					<i class="fa fa-github"></i>
+				</a></li>
+				{% endif %}
 			</ul>
-
-			{% if site.author.email %}
-			<a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
-				<i class="fa fa-envelope"></i>
-			</a>
-			{% endif %}
-
-			{% if site.author.github %}
-			<a type="button" class="navbar-toggle nav-link" href="https://github.com/{{ site.author.github }}">
-				<i class="fa fa-github"></i>
-			</a>
-			{% endif %}
-
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<!--<img src="//www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />-->
 				<img src="pub/mengyang.jpeg" class="img-circle" width="32" height="32" />
