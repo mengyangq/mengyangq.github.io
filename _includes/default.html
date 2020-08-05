@@ -38,13 +38,23 @@
 	<nav class="navbar navbar-default navbar-fixed-top visible-xs" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
+			<!--<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
+			</button>-->
+
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-bars"></i>
 			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fa fa-folder"></i>Publications</a></li>
+				<li class="divider"></li>
+				<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li> 
+			</ul>
 
 			{% if site.author.email %}
 			<a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
@@ -76,18 +86,6 @@
 
 
 		</div>-->
-		<!-- /.navbar-collapse -->
-		<div class="btn-group" id="nav-menu">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-bars"></i>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fa fa-folder"></i>Publications</a></li>
-				<li class="divider"></li>
-				<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li> 
-			</ul>
-		</div>
 	</nav>
 
 	<!--nav-menu-dropdown 
