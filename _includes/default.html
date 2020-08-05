@@ -15,11 +15,9 @@
 	<!-- Le styles -->
 	<script src="https://kit.fontawesome.com/79357dcd9c.js" crossorigin="anonymous"></script>
 	<link href="{{ site.BASE_PATH }}/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<!--<link href="{{ site.BASE_PATH }}/assets/resources/font-awesome/css/fontawesome.min.css" rel="stylesheet">-->
 	<link href="{{ site.BASE_PATH }}/assets/resources/syntax/syntax.css" rel="stylesheet">
 	<link href="{{ site.BASE_PATH }}/assets/css/style.css" rel="stylesheet">
 
-	<!-- <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.BASE_PATH }}/feed.xml">-->
 </head>
 
 <body>
@@ -30,11 +28,17 @@
 				<i class="fa fa-bars"></i>
 			</a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="pub/CV_Mengyang.pdf" target="_blank"><i class="fa fa-file"></i>CV</a></li>
-				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i
-							class="fa fa-folder"></i>Publications</a></li>
+				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i> Home</a></li>
+				<li><a href="pub/CV_Mengyang.pdf" target="_blank"><i class="fa fa-file"></i> CV</a></li>
+				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fa fa-folder"></i>
+						Publications</a></li>
 				<li class="divider"></li>
+				{% if site.author.github %}
+				<li><a href="https://github.com/{{ site.author.github }}">
+						<i class="fab fa-github"></i> GitHub
+					</a>
+				</li>
+				{% endif %}
 				<div id="contact-list" class="text-center">
 					<ul class="list-unstyled list-inline">
 						{% if site.author.github %}
