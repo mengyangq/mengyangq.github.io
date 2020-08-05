@@ -4,4 +4,3 @@ I am a Ph.D. candidate in the [Department of Communicative Disorders and Science
 
 My current research focuses on obtaining a better understanding of how the amount and content of linguistic experience influences language representation and processing in healthy cognitive aging using computational modeling and behavioral experiments. I am also interested in using natural language processing techniques and cognitive modeling to develop automated assessment procedures for detecting language and memory disorders (e.g., Specific Language Impairment, Mild Cognitive Impairment, and Alzheimer’s disease).
 
-Here is my [CV](../pub/CV_Mengyang.pdf).
