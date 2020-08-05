@@ -9,6 +9,7 @@ body{
 	padding-right: 3%;
 	padding-top: 70px;
 	padding-left: 3%;
+	padding-bottom: 70px;
 }
 
 .sidebar {
@@ -208,11 +209,10 @@ li {
 footer {
   	bottom: 2px;
 	margin:0 auto;
-	position:fixed;
+	position:relative;
 	font-family: 'Ubuntu';
 	font-size:10px;
-	paddling-left:3%;
-	padding-top: 70px;
+	padding-left:3%;
 }
 
 
