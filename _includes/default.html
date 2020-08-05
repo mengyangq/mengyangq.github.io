@@ -52,14 +52,13 @@
 				<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
 				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i
 							class="fa fa-folder"></i>Publications</a></li>
+				<li class="divider"></li>
+				{% if site.author.email %}
+				<li><a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
+						<i class="fa fa-envelope"></i>
+					</a></li>
+				{% endif %}
 			</ul>
-
-			{% if site.author.email %}
-			<a type="button" class="navbar-toggle nav-link" href="mailto:{{ site.author.email }}">
-				<i class="fa fa-envelope"></i>
-			</a>
-			{% endif %}
-
 			{% if site.author.github %}
 			<a type="button" class="navbar-toggle nav-link" href="https://github.com/{{ site.author.github }}">
 				<i class="fa fa-github"></i>
