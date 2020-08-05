@@ -104,9 +104,10 @@ h1 {
 	color: #e73c48;
 	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
 	border-bottom: 1px solid #eeeeee;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(238, 238, 238)
+    	border-bottom-width: 1px;
+    	border-bottom-style: solid;
+    	border-bottom-color: rgb(238, 238, 238);
+	break-before: always;
 }
 
 @media only screen and (min-width: 768px) {
