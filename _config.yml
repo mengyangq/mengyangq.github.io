@@ -22,7 +22,7 @@ author:
   email: mengyang@buffalo.edu
   github: mengyangq
 
-
+publications_path: "#publications"
 BASE_PATH:
 
 plugins:
