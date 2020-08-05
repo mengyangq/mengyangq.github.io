@@ -107,7 +107,6 @@ h1 {
     	border-bottom-width: 1px;
     	border-bottom-style: solid;
     	border-bottom-color: rgb(238, 238, 238);
-	break-before: always;
 }
 
 @media only screen and (min-width: 768px) {
@@ -206,13 +205,13 @@ li {
   margin-right: 20px;
 }
 
-/*footer {
+footer {
   	bottom: 2px;
 	margin:0 auto;
 	position:fixed;
 	font-family: 'Ubuntu';
-	font-size:12px;
-}*/
+	font-size:10px;
+}
 
 
 /* nav-vertical-tabs component */
