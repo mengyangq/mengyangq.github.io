@@ -259,6 +259,6 @@ ul.dropdown-menu>li>a>i.fa {
 }
 
 .dropdown-menu {
-	position: absolute;
+	position: relative;
 	right: 0;
   }
