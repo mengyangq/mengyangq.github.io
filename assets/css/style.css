@@ -254,10 +254,12 @@ footer {
 }
 
 ul.dropdown-menu>li>a>i.fa {
-    width: 1.3em;
+	width: 1.3em;
+	position: relative;
+	right: 0px;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
 	position: absolute;
 	right: 0px;
-  }
+  }*/
