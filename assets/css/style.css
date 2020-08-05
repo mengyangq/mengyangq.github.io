@@ -250,13 +250,12 @@ footer {
 }
 #nav-menu .dropdown-menu {
     /*left: inherit;*/
-    right: 0px;
+	right: 0px;
+	position: absolute;
 }
 
 ul.dropdown-menu>li>a>i.fa {
 	width: 1.3em;
-	position: absolute;
-	right: 0px;
 }
 
 /*.dropdown-menu {
