@@ -38,13 +38,6 @@
 	<nav class="navbar navbar-default navbar-fixed-top visible-xs" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			<!--<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>-->
 			<a type="button" class="navbar-toggle dropdown-toggle" data-toggle="dropdown">
 				<i class="fa fa-bars"></i>
 			</a>
@@ -78,7 +71,19 @@
 							</a>
 						</li>
 						{% endif %}
-						<li>
+						{% if site.author.linkedin %}
+						<li><a class="btn btn-default btn-sm" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+						{% endif %}
+						{% if site.author.email %}
+						<li><a class="btn btn-default btn-sm" href="mailto:{{ site.author.email }}">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+						{% endif %}
+						<!--<li>
 							<a class="btn btn-default btn-sm" href="https://www.linkedin.com/in/mengyangqiu">
 								<i class="fa fa-linkedin"></i>
 							</a>
@@ -87,7 +92,7 @@
 							<a class="btn btn-default btn-sm" href="mailto:mengyang@buffalo.edu">
 								<i class="fa fa-envelope"></i>
 							</a>
-						</li>
+						</li>-->
 					</ul>
 				</div>
 			</ul>
