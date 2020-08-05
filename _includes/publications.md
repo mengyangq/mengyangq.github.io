@@ -1,4 +1,6 @@
-# Peer-Reviewed Publications
+# Publications
+
+## Peer-Reviewed Publications
 
 **Qiu, M.** & Johns, B. T. (2020). [Semantic diversity in paired-associate learning: Further evidence for the information accumulation perspective of cognitive aging](https://rdcu.be/bZaKR). *Psychonomic Bulletin & Review*, *27*(1), 114-121.
 
@@ -6,7 +8,7 @@
 
 **Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (2019). [Improving precision of grammatical error correction with a cheat sheet](https://www.aclweb.org/anthology/W19-4425). *Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications*.
 
-# Conference Presentations and Posters
+## Conference Presentations and Posters
 
 **Qiu, M.** (2020, November). Using natural language processing for language sample analysis. Proposal accepted at the *Annual Convention of the American Speech-Language-Hearing Association*, San Diego, CA (Convention canceled).
 
