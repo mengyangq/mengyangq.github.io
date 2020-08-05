@@ -250,7 +250,7 @@ footer {
 }
 #nav-menu .dropdown-menu {
     /*left: inherit;*/
-	right: 0px;
+	right: 0;
 	position: absolute;
 }
 
