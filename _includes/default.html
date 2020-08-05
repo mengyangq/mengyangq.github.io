@@ -58,12 +58,14 @@
 						<i class="fa fa-envelope"></i>
 					</a></li>
 				{% endif %}
+
+				{% if site.author.github %}
+				<li><a type="button" class="navbar-toggle nav-link" href="https://github.com/{{ site.author.github }}">
+					<i class="fa fa-github"></i>
+				</a></li>
+				{% endif %}
 			</ul>
-			{% if site.author.github %}
-			<a type="button" class="navbar-toggle nav-link" href="https://github.com/{{ site.author.github }}">
-				<i class="fa fa-github"></i>
-			</a>
-			{% endif %}
+
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<!--<img src="//www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />-->
 				<img src="pub/mengyang.jpeg" class="img-circle" width="32" height="32" />
