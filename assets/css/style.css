@@ -255,7 +255,7 @@ footer {
 
 ul.dropdown-menu>li>a>i.fa {
 	width: 1.3em;
-	position: relative;
+	position: absolute;
 	right: 0px;
 }
 
