@@ -248,17 +248,17 @@ footer {
     right: 45px;
     z-index: 2000;
 }
-#nav-menu .dropdown-menu {
+/*#nav-menu .dropdown-menu {
     left: auto;
 	right: 0;
 	position: absolute;
-}
+}*/
 
 ul.dropdown-menu>li>a>i.fa {
 	width: 1.3em;
 }
 
-/*.dropdown-menu {
+.dropdown-menu {
 	position: absolute;
-	right: 0px;
-  }*/
+	right: 0;
+  }
