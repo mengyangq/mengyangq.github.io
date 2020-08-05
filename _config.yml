@@ -1,0 +1,30 @@
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+
+paginate: 10 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: rouge
+markdown: kramdown
+#disqus: Mengyang Qiu
+#google_analytics: Mengyang Qiu
+title: Mengyang Qiu
+
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: Mengyang Qiu
+
+description: Mengyang Qiu Website
+author:
+  name: Mengyang Qiu
+  email: mengyang@buffalo.edu
+  github: mengyangq
+
+#publications_path: index.html#publications
+
+BASE_PATH:
+
+plugins:
+  - jekyll-paginate
