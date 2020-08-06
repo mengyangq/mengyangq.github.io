@@ -28,38 +28,38 @@
 				<i class="fa fa-bars"></i>
 			</a>
 			<ul class="dropdown-menu" role="menu">
-				<li><a class="btn btn-default btn-sm" href="{{ site.BASE_PATH}}/"><i class="fas fa-home"></i> Home</a></li>
-				<li><a class="btn btn-default btn-sm" href="pub/CV_Mengyang.pdf"><i class="fas fa-file"></i> CV</a></li>
-				<li><a class="btn btn-default btn-sm" href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fas fa-folder"></i>
+				<li><a href="{{ site.BASE_PATH}}/"><i class="fas fa-home"></i> Home</a></li>
+				<li><a href="pub/CV_Mengyang.pdf"><i class="fas fa-file"></i>  CV</a></li>
+				<li><a href="{{ site.BASE_PATH}}/{{ site.publications_path }}"><i class="fas fa-folder"></i>
 						Publications</a></li>
 				<li class="divider"></li>
 				{% if site.author.linkedin %}
-				<li><a class="btn btn-default btn-sm" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
+				<li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
 						<i class="fab fa-linkedin"></i> LinkedIn
 					</a>
 				</li>
 				{% endif %}
 				{% if site.author.github %}
-				<li><a class="btn btn-default btn-sm" href="https://github.com/{{ site.author.github }}">
+				<li><a href="https://github.com/{{ site.author.github }}">
 						<i class="fab fa-github"></i> GitHub
 					</a>
 				</li>
 				{% endif %}
 				{% if site.author.researchgate %}
-				<li><a class="btn btn-default btn-sm" href="https://www.researchgate.net/profile/{{ site.author.researchgate }}">
+				<li><a href="https://www.researchgate.net/profile/{{ site.author.researchgate }}">
 						<i class="fab fa-researchgate"></i> ResearchGate
 					</a>
 				</li>
 				{% endif %}
 				{% if site.author.orcid %}
-				<li><a class="btn btn-default btn-sm" href="https://orcid.org/{{ site.author.orcid }}">
+				<li><a href="https://orcid.org/{{ site.author.orcid }}">
 						<i class="fab fa-orcid"></i> ORCID
 					</a>
 				</li>
 				{% endif %}
 				<li class="divider"></li>
 				{% if site.author.email %}
-				<li><a class="btn btn-default btn-sm" href="mailto:{{ site.author.email }}">
+				<li><a href="mailto:{{ site.author.email }}">
 						<i class="fas fa-envelope"></i> Email
 					</a>
 				</li>
