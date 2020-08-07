@@ -62,7 +62,7 @@ article .share .btn {
   -webkit-transition:color .2s ease-out, background 1s ease-in;
   transition:color .2s ease-out, background 1s ease-in;
 }
-#contact-list li .fas .fab {
+#contact-list li .fas, #contact-list li .fab {
 	color: white;
 }
 #contact-list li:hover .fa-twitter,
