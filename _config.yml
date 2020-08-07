@@ -29,6 +29,8 @@ author:
   
 
 publications_path: "#publications"
+cv-pdf_path: pub/CV_Mengyang.pdf
+cv-html_path: cv.html
 BASE_PATH:
 
 plugins:
