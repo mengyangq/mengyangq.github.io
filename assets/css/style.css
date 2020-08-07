@@ -7,7 +7,7 @@ body{
 
 .home_class{
 	padding-right: 3%;
-	padding-top: 45px;
+	/*padding-top: 45px;*/
 	padding-left: 3%;
 	padding-bottom: 120px;
 }
@@ -99,7 +99,7 @@ article .share .gplus:hover {
 }
 
 h1 {
-	padding-top: 45px;
+	padding-top: 60px;
 	color: #e73c48;
 	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
 	border-bottom: 1px solid #eeeeee;
