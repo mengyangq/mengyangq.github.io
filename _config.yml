@@ -19,11 +19,14 @@ defaults:
 description: Mengyang Qiu Website
 author:
   name: Mengyang Qiu
+  avatar: pub/mengyang.jpeg
   email: mengyang@buffalo.edu
   github: mengyangq
   linkedin: mengyangqiu
   #researchgate: Mengyang_Qiu
   orcid: 0000-0002-9398-7080
+  bio: I study language and memory processing and impairments using behavioral experiments, cognitive modeling and NLP
+	techniques.
 
 publications_path: "#publications"
 BASE_PATH:
