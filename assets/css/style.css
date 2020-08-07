@@ -56,12 +56,14 @@ a.nav-link:hover { color: #777; }
 
 #contact-list li .fa,
 article .share .btn {
-	color: white;
   -o-transition:color .2s ease-out, background 1s ease-in;
   -ms-transition:color .2s ease-out, background 1s ease-in;
   -moz-transition:color .2s ease-out, background 1s ease-in;
   -webkit-transition:color .2s ease-out, background 1s ease-in;
   transition:color .2s ease-out, background 1s ease-in;
+}
+#contact-list li .fas {
+	color: white;
 }
 #contact-list li:hover .fa-twitter,
 article .share .twitter:hover {
