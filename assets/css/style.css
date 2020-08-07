@@ -54,13 +54,10 @@ a.nav-link:hover { color: #777; }
 	margin-bottom: 25px;
 }
 
-.fa {
-	color : white;
-  }
-
 #contact-list li .fa,
 article .share .btn {
-	-o-transition:color .2s ease-out, background 1s ease-in;
+	color: white;
+  -o-transition:color .2s ease-out, background 1s ease-in;
   -ms-transition:color .2s ease-out, background 1s ease-in;
   -moz-transition:color .2s ease-out, background 1s ease-in;
   -webkit-transition:color .2s ease-out, background 1s ease-in;
