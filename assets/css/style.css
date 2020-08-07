@@ -260,3 +260,7 @@ ul.dropdown-menu>li>a>i.fa {
 	right: 0;
 	left: 55%;
   }
+
+  #bs-example-navbar-collapse-1 {
+	  padding-right: 3%;
+  }
