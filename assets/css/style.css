@@ -61,7 +61,6 @@ article .share .btn {
   -moz-transition:color .2s ease-out, background 1s ease-in;
   -webkit-transition:color .2s ease-out, background 1s ease-in;
   transition:color .2s ease-out, background 1s ease-in;
-  max-width:100%;
 }
 #contact-list li:hover .fa-twitter,
 article .share .twitter:hover {
