@@ -205,9 +205,9 @@ li {
 }
 
 footer {
-  	bottom: 2px;
+  	bottom: 4px;
 	margin:0 auto;
-	position:relative;
+	position:fixed;
 	font-family: 'Ubuntu';
 	/*font-size:xx-small;*/
 	padding-left:3%;
