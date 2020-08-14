@@ -67,7 +67,14 @@
 
     <li>
       <a href="https://github.com/{{ site.author.github }}">
-        <!--<i class="fab fa-github fa-lg"></i>-->
+        <i class="fab fa-github fa-lg"></i>
+      </a>
+
+      {% endif %} {% if site.author.osf %}
+    </li>
+
+    <li>
+      <a href="https://osf.io/{{ site.author.osf }}">
         <i class="ai ai-osf ai-lg"></i>
       </a>
 

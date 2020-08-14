@@ -62,7 +62,7 @@ article .share .btn {
   -webkit-transition:color .2s ease-out, background 1s ease-in;
   transition:color .2s ease-out, background 1s ease-in;
 }
-#contact-list li .fas, #contact-list li .fab {
+#contact-list li .fas, #contact-list li .fab,  #contact-list li .ai{
 	color: white;
 }
 #contact-list li:hover .fa-twitter,
@@ -84,6 +84,9 @@ article .share .twitter:hover {
 }
 #contact-list li:hover .fa-rss {
 	color: #e74c3c;
+}
+#contact-list li:hover .ai-osf {
+	color: #42b9e9;
 }
 article .share .facebook:hover {
 	color: #43609C;

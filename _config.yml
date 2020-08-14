@@ -22,10 +22,11 @@ author:
   avatar: pub/mengyang.jpeg
   bio: I study language processing and impairments using behavioral experiments, cognitive modeling and NLP techniques.
   email: mengyang@buffalo.edu
-  github: mengyangq
+  #github: mengyangq
   linkedin: mengyangqiu
   #researchgate: Mengyang_Qiu
   orcid: 0000-0002-9398-7080
+  osf: 73xtm
   
 
 publications_path: "#publications"
