@@ -246,6 +246,11 @@ footer {
   color: #005bbb;
 }
 
+.navbar-default .navbar-toggle > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-toggle > .dropdown-menu > li > a:focus {
+  color: #ddd;
+  background-color: #005bbb;
+}
 /* nav-vertical-tabs component */
 .nav-tabs-vertical {
   border-right: 1px solid #ddd;
