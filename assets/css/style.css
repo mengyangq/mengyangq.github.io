@@ -306,3 +306,20 @@ ul.dropdown-menu > li > a > i.fa {
 #top-navbar-hidden-xs {
   padding-right: 3%;
 }
+
+/* A link that has not been visited */
+a:link {
+    color: #005bbb;
+}
+/* A link that has been visited */
+a:visited {
+    color: #2f9fd0;
+}
+/* A link that is hovered on */
+a:hover {
+    color: #002f56;
+}
+/* A link that is selected */
+a:active {
+    color: #005bbb;
+}
