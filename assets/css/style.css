@@ -248,7 +248,7 @@ footer {
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  color: #e73c48;
+  color: #ddd;
   background-color: #005bbb;
 }
 /* nav-vertical-tabs component */
