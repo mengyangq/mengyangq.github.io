@@ -313,7 +313,7 @@ a:link {
 }
 /* A link that has been visited */
 a:visited {
-    color: #2f9fd0;
+    color: #005bbb;
 }
 /* A link that is hovered on */
 a:hover {
