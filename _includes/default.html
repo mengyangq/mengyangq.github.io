@@ -27,6 +27,21 @@
       href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
     />
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-177286451-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-177286451-1");
+    </script>
+
     <!-- Le fav and touch icons -->
     <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
     <link
@@ -120,9 +135,7 @@
       </div>
     </nav>
 
-    <div class="col-sm-3 sidebar hidden-xs">
-      {% include sidebar.html %}
-    </div>
+    <div class="col-sm-3 sidebar hidden-xs">{% include sidebar.html %}</div>
 
     <div class="col-sm-9 col-sm-offset-3 hidden-xs">
       <nav class="navbar navbar-default navbar-fixed-top">
@@ -143,7 +156,7 @@
 
       <footer>
         <hr />
-        <p style="font-size: 85%;">
+        <p style="font-size: 85%">
           &copy; {{ site.time | date: '%Y' }} {{ site.author.name }} with
           <a href="http://jekyllrb.com/">Jekyll</a>. Theme:
           <a href="https://github.com/dbtek/dbyll">dbyll</a> by dbtek.
