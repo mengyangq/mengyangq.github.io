@@ -19,7 +19,7 @@ defaults:
 description: Mengyang Qiu Website
 author:
   name: Mengyang Qiu
-  avatar: pub/mengyang.jpeg
+  avatar: avatar/mengyang.jpeg
   bio: I study language processing and impairments using behavioral experiments, cognitive modeling and NLP techniques.
   email: mengyang@buffalo.edu
   #github: mengyangq
