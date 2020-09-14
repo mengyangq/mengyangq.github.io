@@ -1,57 +1,37 @@
-% Copyright 2019 Matthew Felix Yuan
-%
-% This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
-% of this license or (at your option) any later version.
-% The latest version of this license is in
-%   http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
-%
-% This work has the LPPL maintenance status `maintained'.
-% 
-% The Current Maintainer of this work is Matthew Felix Yuan.
-%
-% This work consists of the files blank-template.tex and sample-resume.tex.
-
-
-
 \documentclass[11pt]{article}
-% helpful packages.
+
 \usepackage{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{indentfirst}
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
+
 \usepackage[style=apa,backend=biber,language=american,natbib]{biblatex}
 \DeclareLanguageMapping{american}{american-apa}
 \addbibresource{publications.bib}
-%\usepackage{hanging}
-% global formatting tweaks.
+
 \pagestyle{empty}
 \geometry{margin=0.75in}
 \setlength\parindent{9pt}
 \setlist{nosep}
-\renewcommand\labelitemi{--}
-% new commands!
+
 \newcommand{\name}[1]{\begin{center}\section*{\Huge #1}\end{center}}
 \newcommand{\topinfo}[1]{\begin{center}\vspace{-0.2cm}#1\vspace{-0.2cm}\end{center}}
-\newcommand{\resumesection}[1]{\vspace{-0.2cm}\section*{#1}\vspace{-0.2cm}\hrule\vspace{0.2cm}}
+\newcommand{\cvsection}[1]{\vspace{-0.2cm}\section*{\Large #1}\vspace{-0.2cm}\hrule\vspace{0.2cm}}
 
 \renewcommand*{\mkbibnamegiven}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
 \renewcommand*{\mkbibnamefamily}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
 
 \begin{document}
 
-% \name is self-explanatory. \topinfo is for things like social media, email, phone number, address, etc.
 \name{Mengyang Qiu}
 \topinfo{122 Cary Hall, Buffalo, NY 14214}
 \topinfo{\href{mailto:mengyang@buffalo.edu}{mengyang@buffalo.edu}}
 \topinfo{\urlstyle{same}\url{https://mengyang.dev}}
 
-% name your resume sections whatever you want!
-\resumesection{Education}
-% things written after \hfill will be right-aligned, which is where i usually put dates.
+
+\cvsection{Education}
+
 \textbf{University at Buffalo, The State University of New York}
 
 \textbf{Ph.D., Communicative Disorders and Sciences} \hfill 2016--2021(Expected)
@@ -71,15 +51,10 @@
 \quad Advisor: Jean-Pierre Koenig, Ph.D.
 
 \textbf{B.A., Psychology \& Linguistics (Honors in Language and Cognition)} \hfill 2010--2013
-% each \item is a point you want to say about the thing.
-%\begin{itemize}
-%	\item Description of thing.
-%	\item More description of thing.
-%\end{itemize}
 
 
-% fill your resume with sections!
-\resumesection{Honors and Awards}
+\cvsection{Honors and Awards}
+
 \textbf{University at Buffalo, The State University of New York}
 
 Mark Diamond Research Fund, \$2964 \hfill 2020--2021
@@ -93,32 +68,33 @@ New York State Graduate Student Employees Union Award, \$2202.50 \hfill 2015
 Wolfgang W{\"o}lck Outstanding Graduating Senior Award, \$250 \hfill 2013
 
 
-\resumesection{Publications}
+\cvsection{Publications}
 
 \begin{itemize}[leftmargin=!,labelindent=!,itemindent=-15pt]
-\setlength\itemsep{0.3em}
+    \setlength\itemsep{0.3em}
 
-%\item[] \textbf{Qiu, M.} \& Johns, B. T. (under review). A distributional and sensorimotor analysis of noun and verb fluency.
-
-\item[] \fullcite{qiu-johns-2020-semantic}.
-\item[] \fullcite{qiu-park-2019-artificial}.
-\item[] \fullcite{qiu-etal-2019-improving}. 
- 
-\end{itemize}
-
-\resumesection{Conference Presentations and Posters}
-
-\begin{itemize}[leftmargin=!,labelindent=!,itemindent=-15pt]
-\setlength\itemsep{0.3em}
-
-\item[] \fullcite{qiu-2020-using}.
-\item[] \fullcite{sun-qiu-2020-early}.
-\item[] \fullcite{qiu-johns-2018-memory}.
-\item[] \fullcite{min-etal-2018-how}. 
+    \item[] \fullcite{qiu-johns-2020-semantic}.
+    \item[] \fullcite{qiu-park-2019-artificial}.
+    \item[] \fullcite{qiu-etal-2019-improving}.
 
 \end{itemize}
 
-\resumesection{Research Experience}
+
+\cvsection{Conference Presentations and Posters}
+
+\begin{itemize}[leftmargin=!,labelindent=!,itemindent=-15pt]
+    \setlength\itemsep{0.3em}
+
+    \item[] \fullcite{qiu-2020-using}.
+    \item[] \fullcite{sun-qiu-2020-early}.
+    \item[] \fullcite{qiu-johns-2018-memory}.
+    \item[] \fullcite{min-etal-2018-how}.
+
+\end{itemize}
+
+
+\cvsection{Research Experience}
+
 \textbf{University at Buffalo, The State University of New York}
 
 \textbf{Programmer} | PI: Thea Knowles, Ph.D. \hfill Spring 2020
@@ -153,7 +129,9 @@ Wolfgang W{\"o}lck Outstanding Graduating Senior Award, \$250 \hfill 2013
 
 \quad Child Language Development Project, Department of Linguistics
 
-\resumesection{Teaching Experience}
+
+\cvsection{Teaching Experience}
+
 \textbf{Teaching Assistant, University at Buffalo}
 
 \textbf{Department of Communicative Disorders and Sciences} \hfill 2016--Present
@@ -168,7 +146,8 @@ Wolfgang W{\"o}lck Outstanding Graduating Senior Award, \$250 \hfill 2013
 
 \quad CHI 101 \& 102: First-Year Chinese
 
-\resumesection{Professional Service}
+
+\cvsection{Professional Service}
 
 \textbf{Reviewer} | 15th Workshop on Innovative Use of NLP for Building Educational Applications \hfill 2020
 
@@ -176,7 +155,7 @@ Wolfgang W{\"o}lck Outstanding Graduating Senior Award, \$250 \hfill 2013
 
 \quad Under the supervision of Ling-Yu Guo, Ph.D.
 
-\resumesection{Technical Skills}
+\cvsection{Technical Skills}
 
 \textbf{Programming:} Python, Java, Javascript
 
@@ -188,7 +167,8 @@ Wolfgang W{\"o}lck Outstanding Graduating Senior Award, \$250 \hfill 2013
 
 \textbf{Others:} \LaTeX, Git, Prolog, Praat
 
-%\resumesection{Other Information}
+
+%\cvsection{Other Information}
 
 %\textbf{Citizenship:} China
 
