@@ -38,8 +38,23 @@
 \newcommand{\topinfo}[1]{\begin{center}\vspace{-0.2cm}#1\vspace{-0.2cm}\end{center}}
 \newcommand{\resumesection}[1]{\vspace{-0.2cm}\section*{#1}\vspace{-0.2cm}\hrule\vspace{0.2cm}}
 
-\renewcommand*{\mkbibnamegiven}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
-\renewcommand*{\mkbibnamefamily}[1]{\ifitemannotation{highlight}{\textbf{#1}}{#1}}
+\renewcommand*{\mkbibnamegiven}[1]{%
+
+\ifitemannotation{highlight}
+
+{\textbf{#1}}
+
+{#1}}
+
+
+
+\renewcommand*{\mkbibnamefamily}[1]{%
+
+\ifitemannotation{highlight}
+
+{\textbf{#1}}
+
+{#1}}
 
 \begin{document}
 
