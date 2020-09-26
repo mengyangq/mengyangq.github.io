@@ -9,7 +9,7 @@ body {
   padding-right: 3%;
   /*padding-top: 45px;*/
   padding-left: 3%;
-  padding-bottom: 25%;
+  padding-bottom: 15%;
 }
 
 .sidebar {
@@ -239,7 +239,7 @@ footer {
   font-family: "Ubuntu";
   /*font-size:xx-small;*/
   padding-left: 3%;
-  padding-top: 25%;
+  padding-top: 15%;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
