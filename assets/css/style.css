@@ -265,7 +265,7 @@ footer {
 .nav-tabs-vertical > li.active > a:hover,
 .nav-tabs-vertical > li.active > a:focus {
   /*color: #555;*/
-  color: #005bbb;
+  color: #e73c48;
   cursor: default;
   background-color: #fff;
   border: 1px solid #ddd;
