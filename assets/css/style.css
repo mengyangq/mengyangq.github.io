@@ -242,9 +242,11 @@ footer {
   padding-top: 12%;
 }
 
+
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #e73c48;
+  font-weight: bold;
 }
 
 .dropdown-menu > li > a:hover,
