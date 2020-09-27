@@ -244,6 +244,7 @@ footer {
 
 a.navbar-brand {
   font-family: "Ubuntu", sans-serif;
+  font-size: 20px;
 }
 
 .navbar-default .navbar-nav > li > a {
