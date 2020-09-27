@@ -247,6 +247,7 @@ footer {
 .navbar-default .navbar-nav > li > a:focus {
   color: #e73c48;
   font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
 }
 
 .dropdown-menu > li > a:hover,
