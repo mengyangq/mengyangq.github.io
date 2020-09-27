@@ -253,6 +253,10 @@ footer {
   text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
 }
 
+.dropdown-menu > li > a {
+  font-family: "Ubuntu", sans-serif;
+}
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   color: #FFFFFF;
