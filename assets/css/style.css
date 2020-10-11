@@ -12,6 +12,13 @@ body {
   padding-bottom: 12.5%;
 }
 
+.cv_page {
+  padding-right: 3%;
+  /*padding-top: 45px;*/
+  padding-left: 3%;
+  /*padding-bottom: 12.5%;*/
+}
+
 .sidebar {
   position: fixed;
   top: 0px;
