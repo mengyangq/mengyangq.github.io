@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ site.title }}</title>
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}" />
+    {% endif %}
+    <meta name="author" content="{{ site.author.name }}" />
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Le styles -->
+    <script
+      src="https://kit.fontawesome.com/79357dcd9c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="/assets/resources/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="/assets/resources/syntax/syntax.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+    />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-177286451-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-177286451-1");
+    </script>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/assets/ico/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/ico/apple-touch-icon-180x180.png"
+    />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-default navbar-fixed-top visible-xs"
+      role="navigation"
+    >
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a
+          type="button"
+          class="navbar-toggle dropdown-toggle"
+          data-toggle="dropdown"
+        >
+          <i class="fas fa-bars"></i>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="/"><i class="fas fa-home fa-fw"></i>Home</a>
+          </li>
+          <li>
+            <a href="/{{ site.publications_path }}"
+              ><i class="fas fa-folder fa-fw"></i>Publications</a
+            >
+          </li>
+          <li>
+            <a href="/{{ site.cv-html_path }}"
+              ><i class="fas fa-file fa-fw"></i>CV</a
+            >
+          </li>
+          <li class="divider"></li>
+          {% if site.author.linkedin %}
+          <li>
+            <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
+              <i class="fab fa-linkedin fa-fw"></i>LinkedIn
+            </a>
+          </li>
+          {% endif %} {% if site.author.github %}
+          <li>
+            <a href="https://github.com/{{ site.author.github }}">
+              <i class="fab fa-github fa-fw"></i>GitHub
+            </a>
+          </li>
+          {% endif %} {% if site.author.osf %}
+          <li>
+            <a href="https://osf.io/{{ site.author.osf }}">
+              <i class="ai ai-osf ai-fw"></i>OSF
+            </a>
+          </li>
+          {% endif %} {% if site.author.researchgate %}
+          <li>
+            <a
+              href="https://www.researchgate.net/profile/{{ site.author.researchgate }}"
+            >
+              <i class="fab fa-researchgate fa-fw"></i>ResearchGate
+            </a>
+          </li>
+          {% endif %} {% if site.author.orcid %}
+          <li>
+            <a href="https://orcid.org/{{ site.author.orcid }}">
+              <i class="fab fa-orcid fa-fw"></i>ORCID
+            </a>
+          </li>
+          {% endif %}
+          <li class="divider"></li>
+          {% if site.author.email %}
+          <li>
+            <a href="mailto:{{ site.author.email }}">
+              <i class="fas fa-envelope fa-fw"></i>Email
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <a class="navbar-brand" href="/">
+          <img
+            src="{{ site.author.avatar }}"
+            class="img-circle"
+            width="32"
+            height="32"
+          />
+          {{ site.author.name }}
+        </a>
+      </div>
+    </nav>
+
+    <div class="col-sm-3 col-md-3 col-lg-3 col-xl-2 sidebar hidden-xs">{% include sidebar.html %}</div>
+
+    <div class="col-sm-9 col-md-9 col-lg-9 col-xl-10 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xl-offset-2 hidden-xs">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="top-navbar-hidden-xs">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/{{ site.publications_path }}">Publications</a></li>
+              <li><a href="/{{ site.cv-html_path }}">CV</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="col-sm-9 col-md-9 col-lg-9 col-xl-10 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xl-0ffset-2" align="left">
+      {{ content }}
+
+      <footer>
+        <hr />
+        <p style="font-size: 75%">
+          &copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. Theme:
+          Adapted from
+          <a href="https://github.com/dbtek/dbyll">dbyll</a> for
+          <a href="http://jekyllrb.com/">Jekyll</a>.
+        </p>
+      </footer>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="/assets/resources/jquery/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/assets/resources/bootstrap/js/bootstrap.min.js"
+    ></script>
+    <script type="text/javascript" src="/assets/js/app.js"></script>
+  </body>
+</html>
