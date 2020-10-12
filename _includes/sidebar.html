@@ -62,14 +62,6 @@
         <i class="fab fa-linkedin fa-lg"></i>
       </a>
 
-      {% endif %} {% if site.author.github %}
-    </li>
-
-    <li>
-      <a href="https://github.com/{{ site.author.github }}">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-
       {% endif %} {% if site.author.osf %}
     </li>
 
@@ -97,6 +89,14 @@
         href="https://www.researchgate.net/profile/{{ site.author.researchgate }}"
       >
         <i class="fab fa-researchgate fa-lg"></i>
+      </a>
+
+      {% endif %} {% if site.author.github %}
+    </li>
+
+    <li>
+      <a href="https://github.com/{{ site.author.github }}">
+        <i class="fab fa-github fa-lg"></i>
       </a>
 
       {% endif %} {% if site.author.email %}
