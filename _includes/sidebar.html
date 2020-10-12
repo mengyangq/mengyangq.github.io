@@ -5,7 +5,7 @@
     <img
       src="{{ site.author.avatar }}"
       class="img-circle"
-      style="height: 75%; width: 75%; object-fit: contain;"
+      style="height: 75%; width: 75%; object-fit: contain"
     />
   </a>
 </div>
@@ -13,7 +13,7 @@
 <!-- sidebar.html -->
 <div class="sidebar-header" role="banner">
   <h3 class="title">
-    <a href="{{ site.BASE_PATH }}/" style="font-size: 2vw;">{{ site.title }}</a>
+    <a href="{{ site.BASE_PATH }}/" style="font-size: 2vw">{{ site.title }}</a>
   </h3>
 </div>
 
@@ -78,22 +78,25 @@
         <i class="ai ai-osf ai-lg"></i>
       </a>
 
-      {% endif %} {% if site.author.researchgate %}
-    </li>
-
-    <li>
-      <a
-        href="https://www.researchgate.net/profile/{{ site.author.researchgate }}"
-      >
-        <i class="fab fa-researchgate fa-lg"></i>
-      </a>
-
       {% endif %} {% if site.author.orcid %}
     </li>
 
     <li>
       <a href="https://orcid.org/{{ site.author.orcid }}">
         <i class="fab fa-orcid fa-lg"></i>
+      </a>
+
+      {% endif %}
+    </li>
+  </ul>
+  <ul id="contact-list-secondary" class="list-unstyled list-inline">
+    {% if site.author.researchgate %}
+
+    <li>
+      <a
+        href="https://www.researchgate.net/profile/{{ site.author.researchgate }}"
+      >
+        <i class="fab fa-researchgate fa-lg"></i>
       </a>
 
       {% endif %} {% if site.author.email %}
