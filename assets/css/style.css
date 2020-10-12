@@ -78,6 +78,10 @@ article .share .btn {
 #contact-list li .ai {
   color: white;
 }
+#contact-list li .fa-lg,
+#contact-list li .ai-lg {
+  font-size: 1.25vw;
+}
 #contact-list li:hover .fa-twitter,
 article .share .twitter:hover {
   color: #00acee;
