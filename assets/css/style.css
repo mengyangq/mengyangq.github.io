@@ -101,6 +101,9 @@ article .share .twitter:hover {
 #contact-list li:hover .ai-osf {
   color: #42b9e9;
 }
+#contact-list li:hover .ai-researchgate {
+  color: #00d0af;
+}
 article .share .facebook:hover {
   color: #43609c;
   border-color: #43609c;
