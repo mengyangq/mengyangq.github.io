@@ -2,11 +2,13 @@
 
 ## Peer-Reviewed Publications
 
+**Qiu, M.**, Castro, N., & Johns, B. T. (accepted). Structural comparisons of noun and verb networks in the mental lexicon. In *Proceedings of the 43rd Annual Conference of the Cognitive Science Society*.
+
 **Qiu, M.**, & Johns, B. T. (2020). [Semantic diversity in paired-associate learning: Further evidence for the information accumulation perspective of cognitive aging](https://rdcu.be/bZaKR). *Psychonomic Bulletin & Review*, *27*(1), 114-121.
 
 **Qiu, M.**, & Park, J. (2019). [Artificial error generation with fluency filtering](https://www.aclweb.org/anthology/W19-4408). In *Proceedings of the fourteenth workshop on innovative use of NLP for building educational applications* (pp. 87-91).
 
-**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A. & Park, J. (2019). [Improving precision of grammatical error correction with a cheat sheet](https://www.aclweb.org/anthology/W19-4425). In *Proceedings of the fourteenth workshop on innovative use of NLP for building educational applications* (pp. 240-245).
+**Qiu, M.**, Chen, X., Liu, M., Parvathala, K., Patil, A., & Park, J. (2019). [Improving precision of grammatical error correction with a cheat sheet](https://www.aclweb.org/anthology/W19-4425). In *Proceedings of the fourteenth workshop on innovative use of NLP for building educational applications* (pp. 240-245).
 
 ## Conference Presentations and Posters
 
