@@ -2,7 +2,7 @@
 
 ## Peer-Reviewed Publications
 
-**Qiu, M.**, Castro, N., & Johns, B. T. (2021). [Structural comparisons of noun and verb networks in the mental lexicon](/pubs/QCJ_CogSci_2021.pdf). In *Proceedings of the 43rd Annual Conference of the Cognitive Science Society* (pp. 1649-1655).
+**Qiu, M.**, Castro, N., & Johns, B. T. (2021). [Structural comparisons of noun and verb networks in the mental lexicon](https://escholarship.org/uc/item/4b20s6wp). In *Proceedings of the 43rd Annual Conference of the Cognitive Science Society* (pp. 1649-1655).
 
 **Qiu, M.**, & Johns, B. T. (2020). [Semantic diversity in paired-associate learning: Further evidence for the information accumulation perspective of cognitive aging](https://rdcu.be/bZaKR). *Psychonomic Bulletin & Review*, *27*(1), 114-121.
 
