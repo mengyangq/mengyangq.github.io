@@ -1,6 +1,6 @@
 # About Me
  
-I am a Ph.D. candidate in the [Department of Communicative Disorders and Sciences](http://arts-sciences.buffalo.edu/cds.html)  at the University at Buffalo, under the supervision of Dr. [Brendan T. Johns](http://btjohns.com). I received my M.S. in Computational Linguistics, M.A. in General Linguistics and B.A. in Psychology and Linguistics (Honors Track in Language and Cognition) from the University at Buffalo.
+I am currently an Assistant Professor (Limited Term) in the [Department of Psychology](https://www.trentu.ca/psychology/) at Trent University. I received my Ph.D. in Communicative Disorders and Sciences (Cognitive Science Track), M.S. in Computational Linguistics, M.A. in General Linguistics and B.A. in Psychology and Linguistics (Honors Track in Language and Cognition) from the University at Buffalo.
 
-My current research focuses on obtaining a better understanding of how the amount and content of linguistic experience influences language representation and processing in healthy cognitive aging using computational modeling and behavioral experiments. I am also interested in using natural language processing techniques and cognitive modeling to develop automated assessment procedures for detecting language and memory disorders (e.g., Specific Language Impairment, Mild Cognitive Impairment, and Alzheimer’s disease).
+My research intersects psychology, linguistics, speech-language pathology, and computer science, employing a big data approach to explore language and cognition. Through computational modeling (e.g., distributional semantics, network science) and empirical data collection, I investigate how linguistic experience influences language representation and processing across aging.
 
