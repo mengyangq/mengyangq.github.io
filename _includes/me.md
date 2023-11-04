@@ -8,7 +8,7 @@ I am currently an Assistant Professor (Limited Term) in the [Department of Psych
 
 **Ph.D., Communicative Disorders and Sciences (Cognitive Science Track)**  
 2016–2023  
-Dissertation: The Information Accumulation Perspective of Cognitive Aging: Further Evidence and New Measurement
+Dissertation: The Information Accumulation Perspective of Cognitive Aging: Further Evidence and New Measurement  
 Advisors: [Nichol Castro](https://sites.google.com/view/alnlab); [Brendan T. Johns](http://btjohns.com)
 
 **M.S., Computational Linguistics/Natural Language Processing**  
