@@ -68,12 +68,12 @@
         <i class="fab fa-linkedin fa-lg"></i>
       </a>
 
-      {% endif %} {% if site.author.osf %}
+      {% endif %} {% if site.author.google_scholar %}
     </li>
 
     <li>
-      <a href="https://osf.io/{{ site.author.osf }}">
-        <i class="ai ai-osf ai-lg"></i>
+      <a href="https://scholar.google.com/citations?user={{ site.author.google_scholar }}">
+        <i class="ai ai-google-scholar ai-lg"></i>
       </a>
 
       {% endif %} {% if site.author.orcid %}
