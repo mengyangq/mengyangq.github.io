@@ -26,3 +26,5 @@ I am currently an Assistant Professor (Limited Term) in the [Department of Psych
 - Honors Thesis: Personifications in Mandarin and English: A Comparative Perspective  
 - Advisor: [Jean-Pierre Koenig](https://www.jeanpierrekoenig.com)  
 - Summa Cum Laude; Minor in Sociology
+
+
