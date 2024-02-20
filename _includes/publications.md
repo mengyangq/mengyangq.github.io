@@ -6,7 +6,7 @@
 
 <p style="padding-left: 40px; text-indent: -40px;">Park, J., & <strong>Qiu, M.</strong> (accepted). Frustratingly simple prompting-based text denoising. <em>Proceedings of the Second Tiny Papers Track at the Twelfth International Conference on Learning Representations (ICLR 2024)</em>.</p>
 
-<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2021). <a href="https://escholarship.org/uc/item/4b20s6wp">Structural comparisons of noun and verb networks in the mental lexicon</a>. <em>Proceedings of the 43rd Annual Conference of the Cognitive Science Society</em>, 1649-1655.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2021). <a href="https://escholarship.org/uc/item/4b20s6wp">Structural comparisons of noun and verb networks in the mental lexicon</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>43</em>, 1649-1655.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Johns, B. T. (2020). <a href="https://rdcu.be/bZaKR">Semantic diversity in paired-associate learning: Further evidence for the information accumulation perspective of cognitive aging</a>. <em>Psychonomic Bulletin & Review</em>, <em>27</em>(1), 114-121.</p>
 
