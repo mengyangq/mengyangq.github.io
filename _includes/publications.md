@@ -2,6 +2,8 @@
 
 ## Peer-Reviewed Publications
 
+<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (accepted). Evaluating prompting strategies for grammatical error correction based on language proficiency. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>.</p>
+
 <p style="padding-left: 40px; text-indent: -40px;">Park, J., & <strong>Qiu, M.</strong> (accepted). Frustratingly simple prompting-based text denoising. <em>Proceedings of the Second Tiny Papers Track at the Twelfth International Conference on Learning Representations (ICLR 2024)</em>.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2021). <a href="https://escholarship.org/uc/item/4b20s6wp">Structural comparisons of noun and verb networks in the mental lexicon</a>. <em>Proceedings of the 43rd Annual Conference of the Cognitive Science Society</em>, 1649-1655.</p>
