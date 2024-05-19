@@ -4,9 +4,9 @@
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (accepted). <a href="/pubs/qiu_etal_cogsci_2024.pdf">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</p>
 
-<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (accepted). <a href="https://arxiv.org/abs/2402.15930">Evaluating prompting strategies for grammatical error correction based on language proficiency</a>. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>.</p>
+<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024). <a href="https://aclanthology.org/2024.lrec-main.569">Evaluating prompting strategies for grammatical error correction based on language proficiency</a>. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>, 6426-6430.</p>
 
-<p style="padding-left: 40px; text-indent: -40px;">Park, J., & <strong>Qiu, M.</strong> (accepted). <a href="https://arxiv.org/abs/2402.15931">Frustratingly simple prompting-based text denoising</a>. <em>Proceedings of the Second Tiny Papers Track at the Twelfth International Conference on Learning Representations (ICLR 2024)</em>.</p>
+<p style="padding-left: 40px; text-indent: -40px;">Park, J., & <strong>Qiu, M.</strong> (2024). <a href="https://arxiv.org/abs/2402.15931">Frustratingly simple prompting-based text denoising</a>. <em>Proceedings of the Second Tiny Papers Track at the Twelfth International Conference on Learning Representations (ICLR 2024)</em>.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2021). <a href="https://escholarship.org/uc/item/4b20s6wp">Structural comparisons of noun and verb networks in the mental lexicon</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>43</em>, 1649-1655.</p>
 
