@@ -18,7 +18,7 @@
 
 ## Conference Presentations and Posters
 
-<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024). <em>Evaluating prompting strategies for grammatical error correction based on language proficiency</em> [Poster presentation]. 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024), Torino, Italy.</p>
+<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024, May). <em>Evaluating prompting strategies for grammatical error correction based on language proficiency</em> [Poster presentation]. 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024), Torino, Italy.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024, February). <em>Clinically important change in speech intelligibility from different perspectives: A pilot study</em> [Oral presentation]. 2024 Conference on Motor Speech, San Diego, CA, United States.</p>
 
