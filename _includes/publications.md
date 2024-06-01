@@ -1,7 +1,5 @@
 # Publications
 
-## Peer-Reviewed Publications
-
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="/pubs/qiu_etal_2024_estimating_cogsci.pdf">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024). <a href="https://aclanthology.org/2024.lrec-main.569">Evaluating prompting strategies for grammatical error correction based on language proficiency</a>. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>, 6426-6430.</p>
@@ -16,13 +14,11 @@
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Chen, X., Liu, M., Parvathala, K., Patil, A., & Park, J. (2019). <a href="https://www.aclweb.org/anthology/W19-4425">Improving precision of grammatical error correction with a cheat sheet</a>. <em>Proceedings of the Fourteenth Workshop on Innovative Use of NLP for Building Educational Applications</em>, 240-245.</p>
 
-## Conference Presentations and Posters
+# Conference Presentations
 
 <p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024, May). <a href="/pubs/zeng_etal_2024_evaluating_poster.pdf"><em>Evaluating prompting strategies for grammatical error correction based on language proficiency</em></a> [Poster presentation]. 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024), Torino, Italy.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024, February). <a href="/pubs/stipancic_etal_2024_clinically_oral.pdf"><em>Clinically important change in speech intelligibility from different perspectives: A pilot study</em></a> [Oral presentation]. 2024 Conference on Motor Speech, San Diego, CA, United States.</p>
-
-<p style="padding-left: 40px; text-indent: -40px;">Li, Y., & <strong>Qiu, M.</strong> (2023, May). <em>The semantic evolution of ‘fruit’ and ‘stone’ in Sino-Tibetan languages</em> [Oral presentation]. 32nd Annual Meeting of the Southeast Asian Linguistics Society, Chiang Mai, Thailand.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2022, August). <a href="/pubs/stipancic_etal_2022_progress_poster.pdf"><em>Progress toward estimating the minimal clinically important difference of speech intelligibility: A crowdsourced perceptual experiment</em></a> [Poster presentation]. 8th International Conference on Speech Motor Control, Groningen, the Netherlands.</p>
 
