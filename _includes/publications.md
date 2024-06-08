@@ -1,6 +1,6 @@
 # Publications
 
-<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, 46, 1175-1181.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175-1181.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024). <a href="https://aclanthology.org/2024.lrec-main.569">Evaluating prompting strategies for grammatical error correction based on language proficiency</a>. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>, 6426-6430.</p>
 
