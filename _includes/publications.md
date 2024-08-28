@@ -1,5 +1,7 @@
 # Publications
 
+<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (in press). Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment. <em>Journal of Speech, Language, and Hearing Research</em>.</p>
+
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175-1181.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024). <a href="https://aclanthology.org/2024.lrec-main.569">Evaluating prompting strategies for grammatical error correction based on language proficiency</a>. <em>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</em>, 6426-6430.</p>
@@ -16,11 +18,7 @@
 
 # Conference Presentations
 
-<p style="padding-left: 40px; text-indent: -40px;">Zeng, M., Kuang, J., <strong>Qiu, M.</strong>, Song, J., & Park, J. (2024, May). <em>Evaluating prompting strategies for grammatical error correction based on language proficiency</em> [<a href="/pubs/zeng_etal_2024_evaluating_poster.pdf">Poster presentation</a>]. 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024), Torino, Italy.</p>
-
-<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024, February). <em>Clinically important change in speech intelligibility from different perspectives: A pilot study</em> [Oral presentation]. 2024 Conference on Motor Speech, San Diego, CA, United States.</p>
-
-<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2022, August). <em>Progress toward estimating the minimal clinically important difference of speech intelligibility: A crowdsourced perceptual experiment</em> [<a href="/pubs/stipancic_etal_2022_progress_poster.pdf">Poster presentation</a>]. 8th International Conference on Speech Motor Control, Groningen, the Netherlands.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024, July). <em>Estimating type of print exposure across aging through author production</em> [Oral presentation (remote)]. 46th Annual Meeting of the Cognitive Science Society, Rotterdam, The Netherlands.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Castro, N. (2022, May). <em>Developing a web-based stimulus selection hub for anomia treatment using R and Shiny</em> [<a href="/pubs/qiu_castro_2022_developing_poster.pdf">Poster presentation</a>]. 51st Clinical Aphasiology Conference, Wrightsville Beach, NC, United States.</p>
 
