@@ -22,7 +22,7 @@
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Castro, N. (2022, May). <em>Developing a web-based stimulus selection hub for anomia treatment using R and Shiny</em> [<a href="/pubs/qiu_castro_2022_developing_poster.pdf">Poster presentation</a>]. 51st Clinical Aphasiology Conference, Wrightsville Beach, NC, United States.</p>
 
-<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Castro, N. (2021, October). <em>Comparing semantic networks of early vocabulary across languages</em> [Oral presentation]. Complexity and Cognition: Satellite Symposium at the Conference on Complex Systems 2021.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Castro, N. (2021, October). <em>Comparing semantic networks of early vocabulary across languages</em> [Oral presentation]. Complexity and Cognition: Satellite Symposium at the Conference on Complex Systems.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2021, July). <em>Structural comparisons of noun and verb networks
 in the mental lexicon</em> [<a href="/pubs/qiu_etal_2021_structural_poster.pdf">Poster presentation</a>]. 43rd Annual Meeting of the Cognitive Science Society (Virtual).</p>
