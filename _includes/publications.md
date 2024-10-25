@@ -1,6 +1,6 @@
 # Publications
 
-<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (in press). Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment. <em>Journal of Speech, Language, and Hearing Research</em>.</p>
+<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024). <a href="https://doi.org/10.1044/2024_JSLHR-24-00354">Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment</a>. <em>Journal of Speech, Language, and Hearing Research</em>. Advance online publication.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175-1181.</p>
 
