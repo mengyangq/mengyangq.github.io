@@ -1,5 +1,9 @@
 # Publications
 
+<p style="padding-left: 40px; text-indent: -40px;">Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, & Park, J. (2025). Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology. <em>Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025)</em>.</p>
+
+<p style="padding-left: 40px; text-indent: -40px;">Wang, J., <strong>Qiu, M.</strong>, Gu, Y., Huang, Z., & Park, J. (2025). Refined evaluation for end-to-end grammatical error correction using an alignment-based approach. <em>Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025)</em>.</p>
+
 <p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024). <a href="https://doi.org/10.1044/2024_JSLHR-24-00354">Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment</a>. <em>Journal of Speech, Language, and Hearing Research</em>. Advance online publication.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175-1181.</p>
