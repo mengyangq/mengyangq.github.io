@@ -22,6 +22,10 @@
 
 # Conference Presentations
 
+<p style="padding-left: 40px; text-indent: -40px;">Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, & Park, J. (2025). <em>Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology</em> [Oral presentation]. 31st International Conference on Computational Linguistics (COLING 2025), Abu Dhabi, UAE.</p>
+
+<p style="padding-left: 40px; text-indent: -40px;">Wang, J., <strong>Qiu, M.</strong>, Gu, Y., Huang, Z., & Park, J. (2025). <em>Refined evaluation for end-to-end grammatical error correction using an alignment-based approach</em> [<a href="/pubs/wang_etal_2025_refined_poster.pdf">Poster presentation</a>]. 31st International Conference on Computational Linguistics (COLING 2025), Abu Dhabi, UAE.</p>
+
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024, July). <em>Estimating type of print exposure across aging through author production</em> [Oral presentation (remote)]. 46th Annual Meeting of the Cognitive Science Society, Rotterdam, The Netherlands.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, & Castro, N. (2022, May). <em>Developing a web-based stimulus selection hub for anomia treatment using R and Shiny</em> [<a href="/pubs/qiu_castro_2022_developing_poster.pdf">Poster presentation</a>]. 51st Clinical Aphasiology Conference, Wrightsville Beach, NC, United States.</p>
