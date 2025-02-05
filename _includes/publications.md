@@ -1,5 +1,8 @@
 # Publications
 
+<p style="padding-left: 40px; text-indent: -40px;">Li, Y., & <strong>Qiu, M.</strong> (in press). A network analysis of the semantic evolution of ‘fruit’ and ‘stone’ in
+Tibeto-Burman languages. <em>Poznan Studies in Contemporary Linguistics</em>.</p>
+
 <p style="padding-left: 40px; text-indent: -40px;">Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, & Park, J. (2025). <a href="https://aclanthology.org/2025.coling-main.189/">Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology</a>. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 2781–2798.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Wang, J., <strong>Qiu, M.</strong>, Gu, Y., Huang, Z., & Park, J. (2025). <a href="https://aclanthology.org/2025.coling-main.52/">Refined evaluation for end-to-end grammatical error correction using an alignment-based approach</a>. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 774–785.</p>
