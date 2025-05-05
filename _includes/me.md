@@ -1,6 +1,6 @@
 # About Me
  
-My research intersects psychology, linguistics, speech-language pathology, and computer science, employing a big data approach to explore language and cognition. Through computational modeling (e.g., distributional semantics, network science) and empirical data collection, I investigate how linguistic experience influences language representation and processing across aging.
+My research intersects cognitive psychology, computational linguistics, and speech-language pathology, employing a big data approach to explore language and cognition. Through computational modeling (e.g., distributional semantics, network science) and empirical data collection, I investigate how linguistic experience influences language representation and processing across aging.
 
 # Education
 
