@@ -27,7 +27,7 @@ Tibeto-Burman languages</a>. <em>Poznan Studies in Contemporary Linguistics</em>
 
 # Conference Presentations
 
-<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Nguyen, T. M., Huang, Z., Li, Z., Gu, Y., Gao, Q., Liu, S., & Park, J. (2025). <em>Multilingual grammatical error annotation: Combining language-agnostic framework with language-specific flexibility</em> [Poster presentation]. 20th Workshop on Innovative Use of NLP for Building Educational Applications (BEA 2025), Vienna, Austria.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Nguyen, T. M., Huang, Z., Li, Z., Gu, Y., Gao, Q., Liu, S., & Park, J. (2025, July). <em>Multilingual grammatical error annotation: Combining language-agnostic framework with language-specific flexibility</em> [Poster presentation]. 20th Workshop on Innovative Use of NLP for Building Educational Applications (BEA 2025), Vienna, Austria.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, & Park, J. (2025, January). <em>Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology</em> [Oral presentation]. 31st International Conference on Computational Linguistics (COLING 2025), Abu Dhabi, UAE.</p>
 
