@@ -1,6 +1,6 @@
 # Publications
 
-<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Nguyen, T. M., Huang, Z., Li, Z., Gu, Y., Gao, Q., Liu, S., & Park, J. (2025). Multilingual grammatical error annotation: Combining language-agnostic framework with language-specific flexibility. <em>Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications</em>.</p>
+<p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Nguyen, T. M., Huang, Z., Li, Z., Gu, Y., Gao, Q., Liu, S., & Park, J. (2025). <a href="https://aclanthology.org/anthology-files/pdf/bea/2025.bea-1.15.pdf">Multilingual grammatical error annotation: Combining language-agnostic framework with language-specific flexibility. <em>Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications</em>, 202-212.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;">Li, Y., & <strong>Qiu, M.</strong> (2025). <a href="https://doi.org/10.1515/psicl-2024-0024">A network analysis of the semantic evolution of ‘fruit’ and ‘stone’ in
 Tibeto-Burman languages</a>. <em>Poznan Studies in Contemporary Linguistics</em>, <em>61</em>(2), 121-172.</p>
