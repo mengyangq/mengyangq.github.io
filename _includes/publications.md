@@ -9,7 +9,7 @@ Tibeto-Burman languages</a>. <em>Poznan Studies in Contemporary Linguistics</em>
 
 <p style="padding-left: 40px; text-indent: -40px;">Wang, J., <strong>Qiu, M.</strong>, Gu, Y., Huang, Z., & Park, J. (2025). <a href="https://aclanthology.org/2025.coling-main.52/">Refined evaluation for end-to-end grammatical error correction using an alignment-based approach</a>. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 774–785.</p>
 
-<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2024). <a href="https://doi.org/10.1044/2024_JSLHR-24-00354">Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment</a>. <em>Journal of Speech, Language, and Hearing Research</em>. Advance online publication.</p>
+<p style="padding-left: 40px; text-indent: -40px;">Stipancic, K. L., van Brenk, F., <strong>Qiu, M.</strong>, & Tjaden, K. (2025). <a href="https://doi.org/10.1044/2024_JSLHR-24-00354">Progress toward estimating the minimal clinically important difference of intelligibility: A crowdsourced perceptual experiment</a>. <em>Journal of Speech, Language, and Hearing Research</em>. <em>68</em>(7S), 3480–3494.</p>
 
 <p style="padding-left: 40px; text-indent: -40px;"><strong>Qiu, M.</strong>, Castro, N., & Johns, B. T. (2024). <a href="https://escholarship.org/uc/item/41z38291">Estimating type of print exposure across aging through author production</a>. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175-1181.</p>
 
