@@ -1,0 +1,10 @@
+{
+	"name": "OOjs UI icon academic-progressive",
+	"icons": [
+		{
+			"src": "/images/apple-touch-icon-180x180.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		}
+	]
+}

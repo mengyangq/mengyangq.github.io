@@ -1,120 +1,25 @@
-<!-- sidebar.html -->
-<div class="sidebar-header" role="banner">
-  <a href="{{ site.BASE_PATH }}/">
-    <!--<img src="pub/mengyang.jpeg" class="img-circle" width="250" height="250" />-->
-    <img
-      src="{{ site.author.avatar }}"
-      class="img-circle"
-      style="height: 75%; width: 75%; object-fit: contain;"
-    />
-  </a>
-</div>
+{% include base_path %}
 
-<!-- sidebar.html -->
-<!--<div class="sidebar-header" role="banner">
-  <h3 class="title">
-    <a href="{{ site.BASE_PATH }}/" style="font-size: 65%">{{ site.title }}</a>
-  </h3>
-</div>-->
-
-<div class="sidebar-header" role="banner">
-  <svg viewBox="0 0 150 25" class="title">
-   <text x="50%" y="75%" text-anchor="middle" fill="white">{{ site.title }}</text>
-  </svg>
-</div>
-
-<div id="bio" class="text-center">
-  {% if site.author.bio %} {{ site.author.bio }} {% endif %}
-</div>
-
-<div id="contact-list" class="text-center">
-  <!--<ul class="list-unstyled list-inline">
-		{% if site.author.linkedin %}
-		<li><a class="btn btn-default btn-sm" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
-				<i class="fab fa-linkedin fa-lg"></i>
-			</a>
-		
-		{% endif %}
-		{% if site.author.github %}
-		<li><a class="btn btn-default btn-sm" href="https://github.com/{{ site.author.github }}">
-				<i class="fab fa-github fa-lg"></i>
-			</a>
-		
-		{% endif %}
-		{% if site.author.researchgate %}
-		<li><a class="btn btn-default btn-sm"
-				href="https://www.researchgate.net/profile/{{ site.author.researchgate }}">
-				<i class="fab fa-researchgate fa-lg"></i>
-			</a>
-		
-		{% endif %}
-		{% if site.author.orcid %}
-		<li><a class="btn btn-default btn-sm" href="https://orcid.org/{{ site.author.orcid }}">
-				<i class="fab fa-orcid fa-lg"></i>
-			</a>
-		
-		{% endif %}
-		{% if site.author.email %}
-		<li><a class="btn btn-default btn-sm" href="mailto:{{ site.author.email }}">
-				<i class="fas fa-envelope fa-lg"></i>
-			</a>
-		
-		{% endif %}
-	</ul>-->
-  <ul class="list-unstyled list-inline">
-    {% if site.author.linkedin %}
-    <li>
-      <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">
-        <i class="fab fa-linkedin fa-lg"></i>
-      </a>
-
-      {% endif %} {% if site.author.google_scholar %}
-    </li>
-
-    <li>
-      <a href="https://scholar.google.com/citations?user={{ site.author.google_scholar }}">
-        <i class="ai ai-google-scholar ai-lg"></i>
-      </a>
-
-      {% endif %} {% if site.author.orcid %}
-    </li>
-
-    <li>
-      <a href="https://orcid.org/{{ site.author.orcid }}">
-        <i class="fab fa-orcid fa-lg"></i>
-      </a>
-
+{% if page.author_profile or layout.author_profile or page.sidebar %}
+  <div class="sidebar sticky">
+  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
+  {% if page.sidebar %}
+    {% for s in page.sidebar %}
+      {% if s.image %}
+        <img src=
+        {% if s.image contains "://" %}
+          "{{ s.image }}"
+        {% else %}
+          "{{ s.image | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+        alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
       {% endif %}
-    </li>
-  </ul>
-  <ul id="contact-list-secondary" class="list-unstyled list-inline">
-    {% if site.author.researchgate %}
-    <li>
-      <a
-        href="https://www.researchgate.net/profile/{{ site.author.researchgate }}"
-      >
-        <i class="ai ai-researchgate ai-lg"></i>
-      </a>
-
-      {% endif %} {% if site.author.github %}
-    </li>
-
-    <li>
-      <a href="https://github.com/{{ site.author.github }}">
-        <i class="fab fa-github fa-lg"></i>
-      </a>
-
-      {% endif %} {% if site.author.email %}
-    </li>
-
-    <li>
-      <a href="mailto:{{ site.author.email }}">
-        <i class="fas fa-envelope fa-lg"></i>
-      </a>
-
-      {% endif %}
-    </li>
-  </ul>
-</div>
-
-<!-- sidebar.html end -->
+      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
+      {% if s.text %}{{ s.text | markdownify }}{% endif %}
+    {% endfor %}
+    {% if page.sidebar.nav %}
+      {% include nav_list nav=page.sidebar.nav %}
+    {% endif %}
+  {% endif %}
+  </div>
+{% endif %}
