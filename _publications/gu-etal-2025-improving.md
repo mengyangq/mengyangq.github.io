@@ -6,7 +6,7 @@ permalink: /publication/gu-etal-2025-improving
 excerpt: 'This paper introduces improvements to automatic grammatical error annotation for Chinese. Our refined framework addresses language-specific challenges that cause common spelling errors in Chinese, including pronunciation similarity, visual shape similarity, specialized participles, and word ordering.'
 date: 2025-01-19
 venue: 'Proceedings of the 31st International Conference on Computational Linguistics'
-paperurl: 'hhttps://mengyang.dev/files/gu-etal-2025-improving.pdf'
+paperurl: 'https://mengyang.dev/files/gu-etal-2025-improving.pdf'
 citation: 'Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, &amp; Park, J. (2025). Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 2781–2798. <a href="https://aclanthology.org/2025.coling-main.189/">https://aclanthology.org/2025.coling-main.189/</a>'
 ---
 
