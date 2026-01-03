@@ -5,7 +5,7 @@ category: conferences
 permalink: /publication/qiu-etal-2025-multilingual
 excerpt: 'In this paper, we introduce a standardized, modular framework for multilingual grammatical error annotation.'
 date: 2025-07-31
-venue: '20th Workshop on Innovative Use of NLP for Building Educational Applications'
+venue: 'Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications'
 paperurl: 'hhttps://mengyang.dev/files/qiu-etal-2025-multilingual.pdf'
 citation: '<strong>Qiu, M.</strong>, Nguyen, T. M., Huang, Z., Li, Z., Gu, Y., Gao, Q., Liu, S., &amp; Park, J. (2025). Multilingual grammatical error annotation: Combining language-agnostic framework with language-specific flexibility. <em>Proceedings of the 20th Workshop on Innovative Use of NLP for Building Educational Applications</em>, 202–212. <a href="https://doi.org/10.18653/v1/2025.bea-1.15">https://doi.org/10.18653/v1/2025.bea-1.15</a>'
 ---
