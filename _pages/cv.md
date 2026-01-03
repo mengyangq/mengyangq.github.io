@@ -10,6 +10,6 @@ author_profile: true
 <div class="cv_page">
   <iframe
     src="/assets/pdfjs/web/viewer.html?file=/files/mengyang_cv.pdf"
-    style="width: 100%; height: 80vh; border: none;"
+    style="width: 100%; height: 75vh; border: none;"
   ></iframe>
 </div>
