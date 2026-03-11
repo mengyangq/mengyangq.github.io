@@ -1,7 +1,7 @@
 ---
 title: "Estimating Type of Print Exposure Across Aging Through Author Production"
 collection: publications
-category: conferences
+category: manuscripts
 permalink: /publication/qiu-etal-2024-estimating
 excerpt: 'This study introduces a novel approach for quantifying individual differences in print exposure through the integration of distributional semantics with the Author Production Test (APT).'
 date: 2024-07-24

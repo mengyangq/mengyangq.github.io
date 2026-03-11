@@ -1,7 +1,7 @@
 ---
 title: "Structural Comparisons of Noun and Verb Networks in the Mental Lexicon"
 collection: publications
-category: conferences
+category: manuscripts
 permalink: /publication/qiu-etal-2021-structural
 excerpt: 'The current study uses network science tools to quantitatively investigate the structural differences of noun and verb categories.'
 date: 2021-07-26
