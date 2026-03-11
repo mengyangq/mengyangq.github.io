@@ -30,7 +30,7 @@ author:
   location         : "Morristown, NJ"
   employer         : "Saint Elizabeth University"
   uri              : # URL
-  email            : "mqiu@steu.edu" 
+  email            : #
 
   # Academic websites
   academia         : # URL
@@ -87,9 +87,9 @@ publication_category:
   books:
     title: 'Books'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Language and Cognition'    
   conferences:
-    title: 'Conference Papers'
+    title: 'Natural Language Processing'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
