@@ -11,6 +11,11 @@ Dr. Mengyang Qiu is an Assistant Professor in the [Department of Speech-Language
 
 Dr. Qiu’s research spans two main lines of work. The first investigates language and cognition, with a particular focus on cognitive aging. The second applies natural language processing to educational and clinical contexts, centering on grammatical error correction.
 
+<details>
+<summary>Read more</summary>
+
 In his research on language and cognition, Dr. Qiu uses computational modeling approaches such as distributional semantics and network science, together with behavioral experiments, to explore how differences in linguistic experience influence language and memory processing across aging. Core questions include how much variation in lexical performance, such as word recognition, can be explained by individual differences in language experience, and which types of test stimuli most accurately capture an individual’s linguistic knowledge. The long-term goal of this work is to delineate the natural changes that occur due to accumulated linguistic experience from actual cognitive decline in aging, supporting the development of more sensitive assessments for neurodegenerative disorders and their precursors, such as mild cognitive impairment.
 
 Dr. Qiu’s research on natural language processing for educational and clinical applications covers the full pipeline of grammatical error correction (GEC). This work includes developing linguistically informed frameworks for error annotation and evaluation in English, Chinese, and other typologically diverse languages, as well as exploring how large language models can be integrated into different stages of the GEC pipeline. Across this line of research, his goal is to develop scalable and interpretable methods that better support second language learning and instruction, and the diagnosis of language disorders.
+
+</details>
