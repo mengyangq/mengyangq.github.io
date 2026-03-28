@@ -25,10 +25,8 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 # News
 
 **Mar 2026**
-
-\- Paper accepted at CMCL 2026: "Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task."  
-\- Abstract accepted for poster presentation at the 55th Clinical Aphasiology Conference: "Bridging Disciplines in AI for Aphasia Research: A Network Analysis of Publication Abstracts Across CS and Non-CS Venues."
+- Paper accepted at CMCL 2026: "Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task."
+- Abstract accepted for poster presentation at the 55th Clinical Aphasiology Conference: "Bridging Disciplines in AI for Aphasia Research: A Network Analysis of Publication Abstracts Across CS and Non-CS Venues."
 
 **Jan 2026**
-
-\- Joined the Department of Speech-Language Pathology at Saint Elizabeth University as Assistant Professor.
+- Joined the Department of Speech-Language Pathology at Saint Elizabeth University as Assistant Professor.
