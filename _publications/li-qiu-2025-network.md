@@ -1,7 +1,7 @@
 ---
 title: "A Network Analysis of the Semantic Evolution of ‘Fruit’ and ‘Stone’ in Tibeto-Burman Languages"
 collection: publications
-category: manuscripts
+category: cogsci
 permalink: /publication/li-qiu-2025-network
 excerpt: 'The lexemes ‘fruit’ and ‘stone’ are known as the origins of the numeral classifiers for small round objects in many Tibeto-Burman languages. This paper employs a correlation-based network construction method to investigate the colexification networks of the two concepts in 58 + 68 Tibeto-Burman languages.'
 date: 2025-05-23

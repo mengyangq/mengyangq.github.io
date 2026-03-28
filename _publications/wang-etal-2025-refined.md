@@ -1,7 +1,7 @@
 ---
 title: "Refined Evaluation for End-to-End Grammatical Error Correction Using an Alignment-Based Approach"
 collection: publications
-category: conferences
+category: nlp
 permalink: /publication/wang-etal-2025-refined
 excerpt: 'We propose a refined alignment-based method to assess end-to-end grammatical error correction (GEC) systems, aiming to reproduce and improve results from existing evaluation tools, such as ERRANT, even when applied to raw text input—reflecting real-world language learners’ writing scenarios.'
 date: 2025-01-19

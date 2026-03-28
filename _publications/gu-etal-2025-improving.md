@@ -1,7 +1,7 @@
 ---
 title: "Improving Automatic Grammatical Error Annotation for Chinese Through Linguistically-Informed Error Typology"
 collection: publications
-category: conferences
+category: nlp
 permalink: /publication/gu-etal-2025-improving
 excerpt: 'This paper introduces improvements to automatic grammatical error annotation for Chinese. Our refined framework addresses language-specific challenges that cause common spelling errors in Chinese, including pronunciation similarity, visual shape similarity, specialized participles, and word ordering.'
 date: 2025-01-19

@@ -1,7 +1,7 @@
 ---
 title: "Progress Toward Estimating the Minimal Clinically Important Difference of Intelligibility: A Crowdsourced Perceptual Experiment"
 collection: publications
-category: manuscripts
+category: cogsci
 permalink: /publication/stipancic-etal-2025-progress
 excerpt: 'The purpose of the current study was to estimate the minimal clinically important difference (MCID) of sentence intelligibility in control speakers and in speakers with dysarthria due to multiple sclerosis (MS) and Parkinson&apos;s disease (PD).'
 date: 2025-07-29

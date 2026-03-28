@@ -1,7 +1,7 @@
 ---
 title: "Evaluating Prompting Strategies for Grammatical Error Correction Based on Language Proficiency"
 collection: publications
-category: conferences
+category: nlp
 permalink: /publication/zeng-etal-2024-evaluating
 excerpt: 'This paper proposes an analysis of prompting strategies for grammatical error correction (GEC) with selected large language models (LLM) based on language proficiency.'
 date: 2024-05-20

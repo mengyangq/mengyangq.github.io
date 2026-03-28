@@ -1,7 +1,7 @@
 ---
 title: "Artificial Error Generation with Fluency Filtering"
 collection: publications
-category: conferences
+category: nlp
 permalink: /publication/qiu-park-2019-artificial
 excerpt: 'The present study explores how fluency filtering can affect the quality of artificial errors.'
 date: 2019-08-02

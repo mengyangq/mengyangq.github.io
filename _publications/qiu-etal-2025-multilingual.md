@@ -1,7 +1,7 @@
 ---
 title: "Multilingual Grammatical Error Annotation: Combining Language-Agnostic Framework With Language-Specific Flexibility"
 collection: publications
-category: conferences
+category: nlp
 permalink: /publication/qiu-etal-2025-multilingual
 excerpt: 'In this paper, we introduce a standardized, modular framework for multilingual grammatical error annotation.'
 date: 2025-07-31

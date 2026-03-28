@@ -1,7 +1,7 @@
 ---
 title: "Semantic Diversity in Paired-Associate Learning: Further Evidence for the Information Accumulation Perspective of Cognitive Aging"
 collection: publications
-category: manuscripts
+category: cogsci
 permalink: /publication/qiu-johns-2020-semantic
 excerpt: 'The current study used a within-subject design in order to examine the influence of linguistic experience on paired associate learning in younger and older adults. Linguistic experience was modeled using a semantic diversity measure of word strength. When frequency is controlled for, high semantic diversity words are associated to a greater number of words and have a higher average strength of association. In the current study, PAL performance of older adults was significantly lower for word pairs involving high semantic diversity words, while their performance did not differ for low semantic diversity words, consistent with the information accumulation perspective of aging.'
 date: 2020-02-01

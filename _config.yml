@@ -86,9 +86,9 @@ author:
 publication_category:
   books:
     title: 'Books'
-  manuscripts:
+  cogsci:
     title: 'Language and Cognition'    
-  conferences:
+  nlp:
     title: 'Natural Language Processing'
 
 # Site Settings
