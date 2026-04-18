@@ -25,7 +25,7 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 # News
 
 **Apr 2026**
-- Presented at the 2026 NJSHA Convention: *How Is AI Being Used Across Communication Disorders? A Review of the Research*
+- Presented at the 2026 NJSHA Convention: *How Is AI Being Used Across Communication Disorders? A Review of the Research*.
 
 **Mar 2026**
 - Paper accepted at CMCL 2026: *Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task*.
