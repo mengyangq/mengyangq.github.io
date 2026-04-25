@@ -7,6 +7,7 @@ excerpt: 'The current study uses network science tools to quantitatively investi
 date: 2021-07-26
 venue: 'Proceedings of the Annual Meeting of the Cognitive Science Society'
 paperurl: 'https://mengyang.dev/files/qiu-etal-2021-structural.pdf'
+posterurl: 'https://mengyang.dev/files/qiu_etal_2021_structural_poster.pdf'
 citation: '<strong>Qiu, M.</strong>, Castro, N., &amp; Johns, B. T. (2021). Structural comparisons of noun and verb networks in the mental lexicon. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>43</em>, 1649-1655. <a href="https://escholarship.org/uc/item/4b20s6wp">https://escholarship.org/uc/item/4b20s6wp</a>'
 ---
 
