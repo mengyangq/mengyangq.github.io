@@ -3,7 +3,7 @@ title: "Bias in Large Language Models: Origin, Evaluation, and Mitigation"
 collection: publications
 category: nlp
 permalink: /publication/guo-etal-2026-bias
-excerpt: 'This comprehensive review examines the landscape of bias in LLMs, from its origins to current mitigation strategies.'
+excerpt: 'Large language models (LLMs) have revolutionized natural language processing, but their susceptibility to biases poses significant challenges. This comprehensive review examines the landscape of bias in LLMs, from its origins to current mitigation strategies. By synthesizing current knowledge on bias in LLMs, this review contributes to the ongoing effort to develop fair and responsible artificial intelligence (AI) systems.'
 date: 2026-04-24
 venue: 'Electronics'
 paperurl: 'https://mengyang.dev/files/guo-etal-2026-bias.pdf'
