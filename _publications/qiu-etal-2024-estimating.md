@@ -7,6 +7,7 @@ excerpt: 'This study introduces a novel approach for quantifying individual diff
 date: 2024-07-24
 venue: 'Proceedings of the Annual Meeting of the Cognitive Science Society'
 paperurl: 'https://mengyang.dev/files/qiu-etal-2024-estimating.pdf'
+slidesurl: 'https://mengyang.dev/files/qiu_etal_2024_estimating.pdf'
 citation: '<strong>Qiu, M.</strong>, Castro, N., &amp; Johns, B. T. (2024). Estimating type of print exposure across aging through author production. <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>, <em>46</em>, 1175–1181. <a href="https://escholarship.org/uc/item/41z38291">https://escholarship.org/uc/item/41z38291</a>'
 ---
 
