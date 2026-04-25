@@ -1,5 +1,5 @@
 ---
-title: "Improving Automatic Grammatical Error Annotation for Chinese Through Linguistically-Informed Error Typology"
+title: "Bias in Large Language Models: Origin, Evaluation, and Mitigation"
 collection: publications
 category: nlp
 permalink: /publication/guo-etal-2026-bias
