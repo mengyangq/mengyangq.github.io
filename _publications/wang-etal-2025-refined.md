@@ -7,6 +7,7 @@ excerpt: 'We propose a refined alignment-based method to assess end-to-end gramm
 date: 2025-01-19
 venue: 'Proceedings of the 31st International Conference on Computational Linguistics'
 paperurl: 'https://mengyang.dev/files/wang-etal-2025-refined.pdf'
+posterurl: 'https://mengyang.dev/files/wang_etal_2025_refined_poster.pdf'
 citation: 'Wang, J., <strong>Qiu, M.</strong>, Gu, Y., Huang, Z., &amp; Park, J. (2025). Refined evaluation for end-to-end grammatical error correction using an alignment-based approach. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 774–785. <a href="https://aclanthology.org/2025.coling-main.52/">https://aclanthology.org/2025.coling-main.52/</a>'
 ---
 

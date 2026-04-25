@@ -7,6 +7,7 @@ excerpt: 'This paper introduces improvements to automatic grammatical error anno
 date: 2025-01-19
 venue: 'Proceedings of the 31st International Conference on Computational Linguistics'
 paperurl: 'https://mengyang.dev/files/gu-etal-2025-improving.pdf'
+slidesurl: 'https://mengyang.dev/files/gu_etal_2025_improving_slides.pdf'
 citation: 'Gu, Y., Huang, Z., Zeng, M., <strong>Qiu, M.</strong>, &amp; Park, J. (2025). Improving automatic grammatical error annotation for Chinese through linguistically-informed error typology. <em>Proceedings of the 31st International Conference on Computational Linguistics</em>, 2781–2798. <a href="https://aclanthology.org/2025.coling-main.189/">https://aclanthology.org/2025.coling-main.189/</a>'
 ---
 
