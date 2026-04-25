@@ -7,6 +7,7 @@ excerpt: 'The present study explores how fluency filtering can affect the qualit
 date: 2019-08-02
 venue: 'Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications'
 paperurl: 'https://mengyang.dev/files/qiu-park-2019-artificial.pdf'
+posterurl: 'https://mengyang.dev/files/qiu_park_2019_artificial_poster.pdf'
 citation: '<strong>Qiu, M.</strong>, &amp; Park, J. (2019). Artificial error generation with fluency filtering. <em>Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications</em>, 87–91. <a href="https://doi.org/10.18653/v1/W19-4408">https://doi.org/10.18653/v1/W19-4408</a>'
 ---
 
