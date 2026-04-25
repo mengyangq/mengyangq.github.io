@@ -153,3 +153,15 @@
     font-size: $type-size-7;
   }
 }
+
+/*
+   Download buttons group (PDF, BibTeX, Slides, etc.)
+   ========================================================================== */
+
+.download-buttons {
+  margin-top: 0.5em;
+
+  .btn + .btn {
+    margin-left: 0.4em;
+  }
+}

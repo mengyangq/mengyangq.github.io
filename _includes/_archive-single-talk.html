@@ -36,15 +36,7 @@
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
     {% if post.date %}<p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}</p>{% endif %}
-    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description">{{post.type}}, {{ post.venue }},  {{post.location}}</p>{% endif %}
+    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description">{{post.type}}, {{ post.venue }},  {{post.location}} {% endif %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>{% endif %}
-
-    {% if post.posterurl or post.slidesurl or post.handouturl %}
-      <p class="download-buttons">
-        {% if post.posterurl %}<a href="{{ post.posterurl }}" class="btn btn--info btn--small"><i class="fa fa-picture-o" aria-hidden="true"></i> Poster</a>{% endif %}
-        {% if post.slidesurl %}<a href="{{ post.slidesurl }}" class="btn btn--info btn--small"><i class="fa fa-desktop" aria-hidden="true"></i> Slides</a>{% endif %}
-        {% if post.handouturl %}<a href="{{ post.handouturl }}" class="btn btn--info btn--small"><i class="fa fa-file-text-o" aria-hidden="true"></i> Handout</a>{% endif %}
-      </p>
-    {% endif %}
   </article>
 </div>

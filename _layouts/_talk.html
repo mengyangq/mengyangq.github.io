@@ -35,22 +35,13 @@ layout: default
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i>Date:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
         {% endif %}
-        {% if page.talk_type %}<p>{{page.talk_type}} at {{ page.venue }},  {{page.location}}</p>{% endif %}
+        {% if page.talk_type %}<p>{{page.talk_type}} at {{ page.venue }},  {{page.location}} {% endif %}
 
         </header>
       {% endunless %}
 
       <section class="page__content" itemprop="text">
         {{ content }}
-
-        {% if page.posterurl or page.slidesurl or page.handouturl %}
-          <p class="download-buttons">
-            {% if page.posterurl %}<a href="{{ page.posterurl }}" class="btn btn--info"><i class="fa fa-picture-o" aria-hidden="true"></i> Poster</a>{% endif %}
-            {% if page.slidesurl %}<a href="{{ page.slidesurl }}" class="btn btn--info"><i class="fa fa-desktop" aria-hidden="true"></i> Slides</a>{% endif %}
-            {% if page.handouturl %}<a href="{{ page.handouturl }}" class="btn btn--info"><i class="fa fa-file-text-o" aria-hidden="true"></i> Handout</a>{% endif %}
-          </p>
-        {% endif %}
-
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
