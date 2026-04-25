@@ -65,7 +65,7 @@ layout: default
 
         {% if page.paperurl or page.bibtexurl or page.supplementaryurl %}
         <p class="download-buttons">
-          {% if page.paperurl %}<a href="{{ page.paperurl }}" class="btn btn--info"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>{% endif %}
+          {% if page.paperurl %}<a href="{{ page.paperurl }}" class="btn btn--info"><i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}
           {% if page.bibtexurl %}<a href="{{ page.bibtexurl }}" class="btn btn--info"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>{% endif %}
           {% if page.supplementaryurl %}<a href="{{ page.supplementaryurl }}" class="btn btn--info"><i class="fa fa-paperclip" aria-hidden="true"></i> Supplementary</a>{% endif %}
         </p>

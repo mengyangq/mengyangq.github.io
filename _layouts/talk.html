@@ -45,9 +45,9 @@ layout: default
 
         {% if page.posterurl or page.slidesurl or page.handouturl %}
           <p class="download-buttons">
-            {% if page.posterurl %}<a href="{{ page.posterurl }}" class="btn btn--info"><i class="fa fa-picture-o" aria-hidden="true"></i> Poster</a>{% endif %}
+            {% if page.posterurl %}<a href="{{ page.posterurl }}" class="btn btn--info"><i class="fa fa-image" aria-hidden="true"></i> Poster</a>{% endif %}
             {% if page.slidesurl %}<a href="{{ page.slidesurl }}" class="btn btn--info"><i class="fa fa-desktop" aria-hidden="true"></i> Slides</a>{% endif %}
-            {% if page.handouturl %}<a href="{{ page.handouturl }}" class="btn btn--info"><i class="fa fa-file-text-o" aria-hidden="true"></i> Handout</a>{% endif %}
+            {% if page.handouturl %}<a href="{{ page.handouturl }}" class="btn btn--info"><i class="fa fa-file-alt" aria-hidden="true"></i> Handout</a>{% endif %}
           </p>
         {% endif %}
 

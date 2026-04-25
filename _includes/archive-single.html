@@ -58,7 +58,7 @@
 
     {% if post.paperurl or post.bibtexurl or post.supplementaryurl %}
       <p class="download-buttons">
-        {% if post.paperurl %}<a href="{{ post.paperurl }}" class="btn btn--info btn--small"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>{% endif %}
+        {% if post.paperurl %}<a href="{{ post.paperurl }}" class="btn btn--info btn--small"><i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}
         {% if post.bibtexurl %}<a href="{{ post.bibtexurl }}" class="btn btn--info btn--small"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>{% endif %}
         {% if post.supplementaryurl %}<a href="{{ post.supplementaryurl }}" class="btn btn--info btn--small"><i class="fa fa-paperclip" aria-hidden="true"></i> Supplementary</a>{% endif %}
       </p>
