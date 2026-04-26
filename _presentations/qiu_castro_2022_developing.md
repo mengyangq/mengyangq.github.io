@@ -5,7 +5,7 @@ type: "Poster presentation"
 permalink: /presentations/qiu_castro_2022_developing
 venue: "51st Clinical Aphasiology Conference"
 date: 2022-05-18
-location: "Wrightsville Beach, NC, United States"
+location: "Wrightsville Beach, NC"
 posterurl: 'https://mengyang.dev/files/qiu_castro_2022_developing_poster.pdf'
 excerpt: 'The aim of this study was to develop a web-based tool that could be used by clinicians and researchers to obtain a variety of commonly used psycholinguistic properties of words. This would provide a one-stop-shop approach for users, particularly those who may not have the coding and data scraping skills or the time available for data extraction and comparison.'
 ---
