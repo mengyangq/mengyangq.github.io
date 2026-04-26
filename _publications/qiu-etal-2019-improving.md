@@ -3,7 +3,7 @@ title: "Improving Precision of Grammatical Error Correction with a Cheat Sheet"
 collection: publications
 category: nlp
 permalink: /publication/qiu-etal-2019-improving
-excerpt: 'In this paper, we explore two approaches of generating error-focused phrases and examine whether these phrases can lead to better performance in grammatical error correction for the restricted track of BEA 2019 Shared Task.'
+excerpt: 'In this paper, we explore two approaches of generating error-focused phrases and examine whether these phrases can lead to better performance in grammatical error correction.'
 date: 2019-08-02
 venue: 'Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications'
 paperurl: 'https://mengyang.dev/files/qiu-etal-2019-improving.pdf'
