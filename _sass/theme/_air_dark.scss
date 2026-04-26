@@ -4,9 +4,9 @@
 
 /* Color codes used for the theme */
 $primary-color              : #4a8fdc;
-$dark-primary-color         : mix(#000, $primary-color, 40%);
-$darker-primary-color       : mix(#000, $primary-color, 60%);
-$light-primary-color        : mix(#000, $primary-color, 50%);
+$dark-primary-color         : mix(#fff, $primary-color, 40%);
+$darker-primary-color       : mix(#fff, $primary-color, 60%);
+$light-primary-color        : mix(#fff, $primary-color, 50%);
 
 $background                 : #252a34;
 $background-light           : mix(#fff, $background, 20%);
@@ -42,7 +42,7 @@ html[data-theme="dark"] {
     --global-footer-text-color          : #f5f5f5;
     --global-border-color               : #{$light-primary-color};
     --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
+    --global-code-background-color      : #2a2f3a;
     --global-code-text-color            : #{$darker-primary-color};
     --global-fig-caption-color          : #{$light-primary-color};
     --global-link-color                 : #{$link};
