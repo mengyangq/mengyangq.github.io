@@ -6,7 +6,7 @@ permalink: /presentations/sun_etal_2026_how
 venue: "New Jersey Speech-Language-Hearing Association Annual Convention (NJSHA 2026)"
 date: 2026-04-17
 location: "Iselin, NJ"
-handouturl: "https://mengyang.dev/files/sun_etal_2026_how_handout.pdf"
+slidesurl: "https://mengyang.dev/files/sun_etal_2026_how_slides.pdf"
 excerpt: "A scoping review mapping AI research across five areas of communication disorders, using network science to identify high-impact entry points for clinicians, researchers, and educators."
 ---
 
