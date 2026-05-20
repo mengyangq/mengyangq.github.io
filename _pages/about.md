@@ -26,6 +26,7 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 
 **May 2026**
 - Co-authored paper accepted for publication in *American Journal of Speech-Language Pathology*: "Paired comparison vs. cross-sectional approaches for assessing longitudinal speech change in Parkinson’s disease following STN-DBS".
+- Poster presented at *CMCL 2026*: "[Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task](https://mengyang.dev/publication/qiu-etal-2026-llm)".
 
 **Apr 2026**
 - Co-authored paper accepted for publication in *Electronics*: "[Bias in Large Language Models: Origin, Evaluation, and Mitigation](https://doi.org/10.3390/electronics15091824)".
