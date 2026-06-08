@@ -425,6 +425,24 @@ section.lesson:nth-of-type(even){background:transparent}
 .opt:hover{border-color:var(--blue-navy);background:#f4f0e6}
 .opt.correct{background:#e9f4ee;border-color:#2f7d57}
 .opt.wrong{background:#f9e9e4;border-color:#c0573f}
+/* paginated quiz cards (one question at a time) */
+.quizcard{background:#fff;border:1px solid var(--line);border-radius:13px;padding:clamp(16px,2.5vw,24px);box-shadow:0 12px 30px rgba(20,40,70,.05)}
+.quizhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.qprog{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+.qdots{display:flex;gap:6px}
+.qd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.qd.done{background:var(--muted-blue)}
+.qd.cur{background:var(--navy);transform:scale(1.25)}
+.quizq{font-family:var(--body);font-weight:650;color:var(--navy);font-size:1.07rem;margin:0 0 12px;outline:none}
+.quizcard .opt{margin:9px 0}
+.opt:disabled{opacity:1;cursor:default}
+.verdict{font-family:var(--disp);font-weight:600;font-size:1.06rem;margin-bottom:4px}
+.feedback.ok .verdict{color:#1E7A50}
+.feedback.no .verdict{color:#b23b2f}
+.btn.next{margin-top:12px}
+.quizdone{text-align:center}
+.qsmall{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+.qbig{font-family:var(--disp);font-weight:600;font-size:clamp(2.4rem,1.6rem + 3vw,3.4rem);color:var(--navy);line-height:1.05;margin:4px 0 6px}
 .chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy)}
 .seg button[aria-pressed=true]{background:var(--blue-navy)}
 .token{background:#eef4fb;border-color:#cde0f1;color:var(--navy)}
@@ -2037,8 +2055,8 @@ function distInfoText(key,term){
   let outTxt;
   if(!nOut){outTxt=`<strong>Outliers</strong> — values that sit unusually far above or below the rest. By the 1.5×IQR rule, this simulated distribution has <strong>none</strong>: a bar with just one case in the middle is a sparse value, not an outlier.`;}
   else{const parts=[]; if(o.high.length)parts.push(o.high.length+' unusually high'); if(o.low.length)parts.push(o.low.length+' unusually low');
-    outTxt=`<strong>Outliers</strong> — values far above or below the rest (past the dashed 1.5×IQR cutoffs), <em>not</em> simply any rare value. Here: ${parts.join(' and ')}. Investigate them — real clinical variation, or a data-entry slip — instead of deleting on sight.`;}
-  outTxt += ` <span class="muted">Other studies flag outliers with mean ± 2–3 SD; the IQR rule is used here because it isn’t thrown off by skew or by the outliers themselves.</span>`;
+    outTxt=`<strong>Outliers</strong> — values far above or below the rest (past the dashed 1.5×IQR cutoffs), <em>not</em> simply any rare value. Here: ${parts.join(' and ')}. Investigate them — real clinical variation, or a data-entry slip — instead of deleting on sight.`
+      + ` <span class="muted">Other studies flag outliers with mean ± 2–3 SD; the IQR rule is used here because it isn’t thrown off by skew or by the outliers themselves.</span>`;}
   const base={
     center:`<strong>Center</strong> — a typical value. Mean = ${d.mean}, median = ${d.median}. When they pull apart, the distribution is skewed and the median is often the more honest “typical.”`,
     spread:`<strong>Spread</strong> — how much scores vary. SD ≈ ${d.sd}. Wider spread means more variability between clients.`,
@@ -2258,27 +2276,39 @@ function h(html){const t=document.createElement('template');t.innerHTML=html.tri
 /* ---------- multiple-choice engine ---------- */
 function mcq(containerId, items, scoreId, opts){
   opts=opts||{}; const wrap=document.getElementById(containerId); if(!wrap)return;
-  const total=items.length; let score=0, answered=0;
-  const scoreEl=document.getElementById(scoreId), bar=opts.bar?document.getElementById(opts.bar):null;
-  function upd(){ if(scoreEl)scoreEl.textContent='Score: '+score+' / '+total+(answered<total?'  ('+answered+' answered)':' — done!'); if(bar)bar.style.width=(score/total*100)+'%'; }
-  items.forEach(it=>{
-    const card=h('<div class="card" style="margin:12px 0"><p style="font-weight:650;color:#0B2D4D">'+it.q+'</p><div class="opts"></div><div class="feedback" role="status"></div></div>');
-    const od=card.querySelector('.opts'), fb=card.querySelector('.feedback'); let done=false;
+  const scoreEl=scoreId?document.getElementById(scoreId):null; if(scoreEl)scoreEl.style.display='none';
+  if(opts.bar){const b=document.getElementById(opts.bar); if(b&&b.parentElement)b.parentElement.style.display='none';}
+  const total=items.length; let idx=0, score=0, answered=false;
+  function dots(){let s='';for(let k=0;k<total;k++){s+='<span class="qd'+(k<idx?' done':'')+(k===idx?' cur':'')+'"></span>';}return s;}
+  function render(advance){
+    wrap.innerHTML='';
+    if(idx>=total){
+      const pct=Math.round(score/total*100);
+      const msg=pct===100?'Perfect — you’ve got this.':pct>=70?'Strong work — review any you missed.':pct>=40?'Good start — another pass will lock it in.':'Worth another run-through; you’ll get there.';
+      const done=h('<div class="quizcard quizdone"><div class="qsmall">Your score</div><div class="qbig">'+score+' / '+total+'</div><p class="muted">'+msg+'</p><button class="btn sm" type="button">↺ Try again</button></div>');
+      const r=done.querySelector('button'); r.addEventListener('click',()=>{idx=0;score=0;render(true);});
+      wrap.appendChild(done); if(advance)r.focus(); return;
+    }
+    answered=false; const it=items[idx];
+    const card=h('<div class="quizcard" role="group" aria-label="Question '+(idx+1)+' of '+total+'"><div class="quizhead"><span class="qprog">Question '+(idx+1)+' of '+total+'</span><span class="qdots" aria-hidden="true">'+dots()+'</span></div><p class="quizq" tabindex="-1">'+it.q+'</p><div class="opts"></div><div class="feedback" role="status"></div></div>');
+    const od=card.querySelector('.opts'), fb=card.querySelector('.feedback');
     it.options.forEach((op,oi)=>{
-      const b=h('<button class="opt"><span class="mk">'+String.fromCharCode(65+oi)+'</span> '+op.t+'</button>');
+      const b=h('<button class="opt" type="button"><span class="mk">'+String.fromCharCode(65+oi)+'</span> '+op.t+'</button>');
       b.addEventListener('click',()=>{
-        fb.className='feedback '+(op.ok?'ok':'no')+' show';
-        fb.innerHTML=(op.ok?'<strong>Correct.</strong> ':'<strong>Not quite.</strong> ')+op.why;
-        od.querySelectorAll('.opt').forEach(x=>x.classList.remove('wrong'));
-        if(op.ok){b.classList.add('correct');}
+        if(answered)return; answered=true;
+        if(op.ok){b.classList.add('correct'); score++;}
         else{b.classList.add('wrong'); od.querySelectorAll('.opt').forEach((x,xi)=>{if(it.options[xi].ok)x.classList.add('correct');});}
-        if(!done){done=true;answered++;if(op.ok)score++;upd();}
+        od.querySelectorAll('.opt').forEach(x=>{x.disabled=true;});
+        fb.className='feedback '+(op.ok?'ok':'no')+' show';
+        fb.innerHTML='<div class="verdict">'+(op.ok?'Correct.':'Not quite.')+'</div><p>'+op.why+'</p><button class="btn sm next" type="button">'+(idx+1<total?'Next question →':'See results →')+'</button>';
+        const nx=fb.querySelector('.next'); nx.addEventListener('click',()=>{idx++;render(true);}); nx.focus();
       });
       od.appendChild(b);
     });
     wrap.appendChild(card);
-  });
-  upd();
+    if(advance){const q=card.querySelector('.quizq'); if(q)q.focus();}
+  }
+  render(false);
 }
 
 /* ---------- sorter: drag-and-drop (mouse + touch) with click/keyboard fallback ---------- */
@@ -2347,25 +2377,14 @@ function makeSorter(o){
   render();
 }
 
-/* ---------- true/false engine ---------- */
+/* ---------- true/false: mapped onto the paginated quiz engine ---------- */
 function trueFalse(wrapId, items, scoreId){
-  const wrap=document.getElementById(wrapId); if(!wrap)return;
-  let score=0,answered=0; const sc=document.getElementById(scoreId);
-  function upd(){if(sc)sc.textContent='Score: '+score+' / '+answered+(answered<items.length?'  (keep going)':' — nice work!');}
-  items.forEach(it=>{
-    const card=h('<div class="card" style="margin:12px 0"><p style="font-weight:650;color:#0B2D4D">'+it.s+'</p><div class="seg" role="group" aria-label="True or false"><button class="tt">True</button><button class="ff">False</button></div><div class="feedback" role="status"></div></div>');
-    const fb=card.querySelector('.feedback'); let done=false;
-    function handle(choice,btn){const correct=(choice===it.ans);
-      card.querySelectorAll('.seg button').forEach(b=>b.classList.remove('correct','wrong'));
-      btn.classList.add(correct?'correct':'wrong');
-      fb.className='feedback '+(correct?'ok':'no')+' show';
-      fb.innerHTML=(correct?'<strong>Correct.</strong> ':'<strong>Actually, that statement is '+(it.ans?'true':'false')+'.</strong> ')+it.why;
-      if(!done){done=true;answered++;if(correct)score++;upd();}}
-    card.querySelector('.tt').addEventListener('click',function(){handle(true,this);});
-    card.querySelector('.ff').addEventListener('click',function(){handle(false,this);});
-    wrap.appendChild(card);
-  });
-  upd();
+  mcq(wrapId, items.map(function(it){
+    return {q:it.s, options:[
+      {t:'True',  ok:it.ans===true,  why:it.why},
+      {t:'False', ok:it.ans===false, why:it.why}
+    ]};
+  }), scoreId);
 }
 
 /* ===================== wire up all interactions ===================== */
