@@ -1627,6 +1627,31 @@ tab &lt;- <span class="fn">matrix</span>(c(31, 9, 13, 27, 24, 16), nrow = 3, byr
       <div class="card"><h4>Expected counts</h4><p class="muted">Chi-square gets shaky when expected cell counts are very small (a common rule of thumb is &lt; 5).</p></div>
     </div>
 
+    <div class="callout c-key" style="padding:18px 20px">
+      <h4 style="margin-top:0">What if an assumption isn’t met?</h4>
+      <p>First, <em>look</em> — a plot or a quick check often shows the violation isn’t serious. If it is, these
+      beginner-friendly alternatives lean on <strong>ranks</strong> instead of raw values, so they don’t need
+      normality and they resist outliers:</p>
+      <div class="tablewrap" style="margin:12px 0">
+        <table class="data">
+          <caption>Common nonparametric (rank-based) alternatives.</caption>
+          <thead><tr><th>Instead of…</th><th>Try…</th><th>Helpful when…</th></tr></thead>
+          <tbody>
+            <tr><td>Paired t-test</td><td><strong>Wilcoxon signed-rank test</strong></td><td>pre/post differences are skewed or have outliers</td></tr>
+            <tr><td>Independent t-test</td><td><strong>Mann–Whitney U</strong> (Wilcoxon rank-sum)</td><td>two groups, non-normal or ordinal outcome</td></tr>
+            <tr><td>One-way ANOVA</td><td><strong>Kruskal–Wallis test</strong></td><td>three+ groups, non-normal outcome</td></tr>
+            <tr><td>Pearson correlation</td><td><strong>Spearman’s rank correlation (ρ)</strong></td><td>the relationship is monotonic but not straight, or has outliers</td></tr>
+            <tr><td>Chi-square</td><td><strong>Fisher’s exact test</strong></td><td>small expected cell counts (rule of thumb &lt; 5)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-bottom:0"><strong>Beyond this lesson:</strong> when the outcome isn’t continuous-and-normal
+      at all — counts, yes/no responses, rates — <strong>generalized linear models</strong> (e.g., logistic or
+      Poisson regression) are the principled tool. And switching tests isn’t automatic: each alternative carries
+      its own assumptions and answers a slightly different question (rank-based tests, for instance, trade away the
+      tidy mean difference), so always look at the data first.</p>
+    </div>
+
     <div class="widget" id="assumQuiz" aria-labelledby="aq-h">
       <span class="wlabel">Try it · Which assumption is at risk?</span>
       <h3 id="aq-h" style="margin-top:6px">Spot the condition to worry about</h3>
