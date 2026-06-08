@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inferential Statistics for SLP Research — A Beginner-Friendly Interactive Overview (SLP 680)</title>
+<meta name="description" content="A self-paced, beginner-friendly interactive lesson on inferential statistics for graduate Speech-Language Pathology students (SLP 680: Research Methods). All examples use simulated teaching data.">
+<!--
+  All statistical examples in this page use SIMULATED data generated for SLP 680 teaching purposes.
+  The simulated data are NOT real client, student, or patient data, and do not represent the
+  efficacy of any real treatment. Data and statistics were computed programmatically with a fixed
+  seed; student-facing "how to" notes are shown in R (with Excel companions) per course preference.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spline+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep-navy:#071A2F;
+    --navy:#0B2D4D;
+    --blue-navy:#145DA0;
+    --muted-blue:#2E6F9E;
+    --light-blue:#EAF4FB;
+    --page:#F5F8FC;
+    --white:#FFFFFF;
+    --ink:#1F2933;
+    --muted:#5B6775;
+    --warn:#FFF5D6;
+    --warn-border:#E6C200;
+    --success:#E8F6EF;
+    --success-border:#2E9E6B;
+    --line:#D9E3EE;
+    --focus:#F2A900;
+    --shadow:0 1px 2px rgba(7,26,47,.06),0 6px 18px rgba(7,26,47,.08);
+    --radius:14px;
+    --maxw:1160px;
+    --nav-h:60px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:18px;line-height:1.62;-webkit-text-size-adjust:100%;
+  }
+  h1,h2,h3,h4{line-height:1.2;color:var(--deep-navy);font-weight:750}
+  h2{font-size:clamp(1.7rem,1.1rem + 2.4vw,2.5rem);margin:0 0 .35em}
+  h3{font-size:clamp(1.25rem,1rem + 1vw,1.6rem);margin:1.4em 0 .4em}
+  h4{font-size:1.12rem;margin:1.1em 0 .35em}
+  p{margin:.6em 0}
+  a{color:var(--blue-navy)}
+  a:hover{color:var(--navy)}
+  strong{color:var(--navy)}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+  /* ---- skip link + focus ---- */
+  .skip{position:absolute;left:-999px;top:0;background:var(--deep-navy);color:#fff;
+    padding:10px 16px;border-radius:0 0 10px 0;z-index:200}
+  .skip:focus{left:0}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+  /* ---- header / nav ---- */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(7,26,47,.97);
+    color:#fff;box-shadow:var(--shadow);backdrop-filter:saturate(140%) blur(6px)}
+  .progress{height:4px;background:var(--blue-navy);width:0%;transition:width .15s ease}
+  .bar{display:flex;align-items:center;gap:12px;height:var(--nav-h);max-width:var(--maxw);
+    margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+  .brand{font-weight:800;font-size:1rem;color:#fff;text-decoration:none;letter-spacing:.2px;
+    display:flex;align-items:center;gap:9px;line-height:1.1}
+  .brand .dot{width:13px;height:13px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#7FC2F0,#145DA0);flex:none}
+  .brand small{display:block;font-weight:500;color:#A9C7E2;font-size:.72rem}
+  .nav-spacer{flex:1}
+  .nav-toggle{display:none;background:var(--blue-navy);color:#fff;border:0;border-radius:10px;
+    padding:9px 13px;font-size:.95rem;font-weight:600;cursor:pointer;min-height:42px}
+  nav.menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+  nav.menu a{color:#DCEBF8;text-decoration:none;font-size:.82rem;font-weight:600;
+    padding:7px 10px;border-radius:9px;white-space:nowrap}
+  nav.menu a:hover{background:rgba(255,255,255,.12);color:#fff}
+  nav.menu a.active{background:var(--blue-navy);color:#fff}
+  @media(max-width:980px){
+    .nav-toggle{display:inline-block}
+    nav.menu{position:absolute;top:calc(var(--nav-h) + 4px);left:0;right:0;
+      background:var(--deep-navy);max-height:0;overflow:hidden;transition:max-height .25s ease;
+      border-top:1px solid rgba(255,255,255,.08)}
+    nav.menu.open{max-height:75vh;overflow:auto;box-shadow:var(--shadow)}
+    nav.menu ul{flex-direction:column;padding:8px 12px 16px}
+    nav.menu a{display:block;padding:11px 12px;font-size:.95rem;min-height:44px}
+  }
+
+  /* ---- hero ---- */
+  .hero{background:
+      radial-gradient(1100px 400px at 80% -10%,rgba(20,93,160,.55),transparent),
+      linear-gradient(160deg,#071A2F 0%,#0B2D4D 60%,#10365C 100%);
+    color:#EAF4FB;padding:clamp(40px,7vw,84px) 0 clamp(36px,6vw,64px)}
+  .hero h1{color:#fff;font-size:clamp(2rem,1.2rem + 3.6vw,3.3rem);margin:0 0 .3em;max-width:18ch}
+  .hero .lede{font-size:clamp(1.05rem,1rem + .5vw,1.3rem);color:#CFE3F5;max-width:62ch}
+  .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    color:#EAF4FB;font-weight:600;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;margin-bottom:18px}
+  .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue-navy);color:#fff;
+    border:0;border-radius:11px;padding:12px 18px;font-size:1rem;font-weight:650;cursor:pointer;
+    text-decoration:none;min-height:46px;transition:background .15s,transform .05s}
+  .btn:hover{background:#1168b6;color:#fff}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .btn.sm{padding:8px 14px;min-height:40px;font-size:.92rem}
+  .btn.sec{background:var(--muted-blue)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+
+  /* ---- sections ---- */
+  main{display:block}
+  section.lesson{padding:clamp(34px,6vw,64px) 0;border-bottom:1px solid var(--line)}
+  section.lesson:nth-of-type(even){background:linear-gradient(180deg,#fff, #FAFCFE)}
+  .kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.7px;
+    text-transform:uppercase;color:var(--muted-blue);margin:0 0 6px;
+    border-left:4px solid var(--blue-navy);padding-left:9px}
+  .lead{font-size:1.12rem;color:#33414f;max-width:70ch}
+  .part-head{background:var(--light-blue);border:1px solid var(--line)}
+  .part-head .pill{display:inline-block;background:var(--navy);color:#fff;font-weight:700;
+    border-radius:999px;padding:5px 14px;font-size:.8rem;letter-spacing:.4px;margin-bottom:10px}
+
+  /* ---- cards & layout ---- */
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(16px,2.4vw,24px);box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .center{text-align:center}
+  .muted{color:var(--muted)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.3px;
+    padding:3px 9px;border-radius:999px;background:#E2ECF6;color:var(--navy);text-transform:uppercase}
+  .tag.sim{background:#EFE7FB;color:#5B2E9E}
+
+  /* ---- callouts ---- */
+  .callout{border-radius:13px;padding:15px 17px 15px 48px;position:relative;margin:18px 0;
+    border:1px solid var(--line);background:var(--white)}
+  .callout .ic{position:absolute;left:14px;top:15px;width:22px;height:22px;font-size:1.05rem;
+    line-height:22px;text-align:center}
+  .callout h4{margin:.1em 0 .3em;font-size:1rem;text-transform:uppercase;letter-spacing:.4px}
+  .callout p:last-child{margin-bottom:0}
+  .c-key{background:var(--light-blue);border-color:#BBD9F1}
+  .c-key h4{color:var(--navy)}
+  .c-slp{background:#EAF7F1;border-color:#BCE3CF}
+  .c-slp h4{color:#1E7A50}
+  .c-mistake{background:var(--warn);border-color:#EAD68A}
+  .c-mistake h4{color:#8A6D00}
+  .c-try{background:#FBEFE5;border-color:#F0CFB0}
+  .c-try h4{color:#9A571B}
+  .c-excel{background:#E9F5EC;border-color:#BFE3C7}
+  .c-excel h4{color:#1E6B3A}
+  .c-reminder{background:#EEF0FB;border-color:#C9CFF0}
+  .c-reminder h4{color:#3B3F9E}
+
+  /* ---- details / R code ---- */
+  details.rbox{margin:16px 0;border:1px solid #C9D6E4;border-radius:12px;background:#0B2D4D;overflow:hidden}
+  details.rbox>summary{cursor:pointer;list-style:none;padding:12px 16px;color:#DCEBF8;font-weight:650;
+    background:#0B2D4D;display:flex;align-items:center;gap:9px}
+  details.rbox>summary::-webkit-details-marker{display:none}
+  details.rbox>summary::before{content:"▸";color:#7FB2E0;transition:transform .15s}
+  details.rbox[open]>summary::before{transform:rotate(90deg)}
+  details.rbox .body{padding:0 14px 12px}
+  pre{margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  pre code{display:block;color:#E8F1FA;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.86rem;line-height:1.55;padding:6px 2px;white-space:pre}
+  .rbox .cmt{color:#8FB7DA}
+  .rbox .fn{color:#8FE0C0}
+  code.inline{background:#E7EFF8;color:var(--navy);padding:2px 6px;border-radius:6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;white-space:nowrap}
+
+  /* ---- tables ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0;-webkit-overflow-scrolling:touch}
+  table.data{border-collapse:collapse;width:100%;min-width:460px;font-size:.95rem;background:#fff}
+  table.data caption{text-align:left;padding:10px 12px;color:var(--muted);font-size:.85rem;caption-side:bottom}
+  table.data th,table.data td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+  table.data thead th{background:var(--navy);color:#fff;position:sticky;top:0;font-weight:650}
+  table.data tbody tr:nth-child(even){background:#F4F8FC}
+  table.data td.num,table.data th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+  /* ---- figures / charts ---- */
+  figure.fig{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:13px;
+    padding:14px 14px 6px;box-shadow:var(--shadow)}
+  figure.fig .fig-title{font-weight:700;color:var(--navy);font-size:1.02rem;margin:2px 2px 2px}
+  figure.fig figcaption{color:var(--muted);font-size:.86rem;padding:8px 4px 8px}
+  figure.fig .notice{font-size:.78rem;color:#6a5aa0;font-weight:600}
+  .chart{width:100%;height:auto;display:block}
+  .chart text{font-family:system-ui,sans-serif}
+  .axis line,.axis path{stroke:#9fb3c7}
+  .gridline{stroke:#E4ECF4;stroke-width:1}
+  .axis-label{fill:#33414f;font-size:13px;font-weight:600}
+  .tick{fill:#5B6775;font-size:12px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* ---- interactive widgets ---- */
+  .widget{background:linear-gradient(180deg,#fff,#F7FAFD);border:1.5px solid #CFE0F0;
+    border-radius:var(--radius);padding:clamp(16px,2.4vw,24px);margin:18px 0;box-shadow:var(--shadow)}
+  .widget .wlabel{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#9A571B;
+    background:#FBEFE5;border:1px solid #F0CFB0;border-radius:999px;padding:4px 12px;font-size:.8rem;
+    text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);
+    border-radius:11px;padding:13px 15px;margin:9px 0;font-size:1rem;cursor:pointer;color:var(--ink);
+    transition:border-color .12s,background .12s;min-height:46px}
+  .opt:hover{border-color:var(--blue-navy);background:#F3F8FD}
+  .opt.correct{border-color:var(--success-border);background:var(--success)}
+  .opt.wrong{border-color:#D98A8A;background:#FBEBEB}
+  .opt .mk{font-weight:800;margin-right:6px}
+  .feedback{margin-top:12px;padding:12px 14px;border-radius:11px;font-size:.96rem;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:var(--success);border:1px solid var(--success-border)}
+  .feedback.no{background:var(--warn);border:1px solid var(--warn-border)}
+  .feedback.info{background:var(--light-blue);border:1px solid #BBD9F1}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;
+    font-weight:600;cursor:pointer;font-size:.95rem;min-height:42px}
+  .chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .bins{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+  .bin{flex:1 1 200px;border:1.5px dashed #B9CDE0;border-radius:12px;padding:12px;min-height:90px;background:#fff}
+  .bin h5{margin:0 0 8px;color:var(--navy);font-size:.95rem}
+  .bin.drop-hot{border-color:var(--blue-navy);background:#EEF6FD}
+  .token{display:inline-block;background:#EAF4FB;border:1.5px solid #BBD9F1;border-radius:10px;
+    padding:8px 12px;margin:5px 6px 0 0;font-size:.92rem;cursor:pointer;color:var(--navy);font-weight:600}
+  .token.placed{opacity:.45}
+  .token.sel{outline:3px solid var(--focus);outline-offset:2px}
+  .slider-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0}
+  input[type=range]{width:min(420px,100%);accent-color:var(--blue-navy);height:30px}
+  .readout{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy);
+    background:#EAF4FB;border-radius:9px;padding:4px 10px;border:1px solid #BBD9F1}
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:11px;overflow:hidden}
+  .seg button{background:#fff;border:0;padding:9px 15px;font-weight:650;cursor:pointer;color:var(--navy);min-height:42px}
+  .seg button[aria-pressed=true]{background:var(--blue-navy);color:#fff}
+  .seg button + button{border-left:1px solid var(--line)}
+  .annot{line-height:2.1}
+  .lab{border:0;border-bottom:2px dotted var(--blue-navy);background:#EAF4FB;color:var(--navy);
+    border-radius:6px 6px 0 0;padding:2px 6px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95em}
+  .lab:hover{background:#d8ecfb}
+  .lab.on{background:var(--navy);color:#fff}
+  .checklist label{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .checklist input{margin-top:5px;width:20px;height:20px;accent-color:var(--blue-navy);flex:none}
+  .scorebar{height:12px;background:#E2ECF6;border-radius:999px;overflow:hidden;margin:8px 0}
+  .scorebar>span{display:block;height:100%;background:linear-gradient(90deg,#2E9E6B,#145DA0);width:0%}
+
+  /* ---- footer ---- */
+  footer.site{background:var(--deep-navy);color:#C7D8E8;padding:40px 0 56px}
+  footer.site a{color:#9FD0F2}
+  footer.site h4{color:#fff}
+  .refs{font-size:.9rem;color:#A9C2D8}
+  .refs li{margin:7px 0}
+  .backtop{position:fixed;right:18px;bottom:18px;z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
+  .backtop.show{opacity:1;pointer-events:auto}
+
+  /* ---- result statement boxes ---- */
+  .result{background:linear-gradient(160deg,#0B2D4D,#0e3a64);color:#EAF4FB;border-radius:13px;
+    padding:16px 18px;margin:16px 0;box-shadow:var(--shadow)}
+  .result h4{color:#fff;margin:.1em 0 .5em;font-size:.86rem;text-transform:uppercase;letter-spacing:.6px}
+  .result .stmt{font-size:1.04rem;line-height:1.62}
+  .result .v{background:rgba(255,255,255,.16);color:#fff;border-radius:6px;padding:1px 7px;
+    font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+  .statchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+  .statchips span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
+    border-radius:9px;padding:5px 11px;font-size:.85rem;font-variant-numeric:tabular-nums}
+  .statchips b{color:#9FE0C6;font-weight:700}
+  .recipe{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:6px 0 2px;align-items:start}
+  .recipe .step{background:var(--navy);color:#fff;border-radius:50%;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex:none}
+  .qcheck{border:1.5px solid #CFE0F0;border-radius:12px;padding:6px 16px;margin:16px 0;background:#F7FAFD}
+  .qcheck>summary{cursor:pointer;font-weight:700;color:var(--navy);padding:9px 0;list-style:none}
+  .qcheck>summary::-webkit-details-marker{display:none}
+  .qcheck>summary::before{content:"?";display:inline-flex;width:22px;height:22px;border-radius:50%;
+    background:var(--blue-navy);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:9px}
+  .qcheck .body{padding:0 0 12px}
+  .flipcard{cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px}
+  .flipcard .t{font-weight:800;color:var(--navy);font-size:1.08rem}
+  .flipcard .d{color:var(--muted);font-size:.92rem;display:none}
+  .flipcard[aria-pressed=true] .d{display:block}
+  .flipcard::after{content:"Tap to reveal";font-size:.72rem;color:var(--muted-blue);font-weight:700;
+    text-transform:uppercase;letter-spacing:.4px;margin-top:auto}
+  .flipcard[aria-pressed=true]::after{content:"Tap to hide"}
+  kbd{background:#eef2f7;border:1px solid #cdd7e2;border-bottom-width:2px;border-radius:5px;
+    padding:1px 6px;font-size:.8em;font-family:ui-monospace,monospace;color:#33414f}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  }
+</style>
+<style>
+/* ============================================================
+   EDITORIAL REDESIGN — navy anchor on warm paper, magazine feel
+   (loaded after the base sheet so these rules win the cascade)
+   ============================================================ */
+:root{
+  --paper:#F6F1E6; --paper-2:#EFE7D6; --line:#E2D9C5;
+  --ink:#1b2a3a; --muted:#5d6675;
+  --deep-navy:#08203a; --navy:#0B2D4D; --blue-navy:#16639f; --muted-blue:#2E6F9E;
+  --amber:#dc9329; --teal:#2f7077; --coral:#c0573f;
+  --focus:#dc9329;
+  --disp:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Spline Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --maxw:920px;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.7;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3,h4{font-family:var(--disp);color:var(--navy)}
+h2{font-weight:600;letter-spacing:-.015em}
+h3{font-weight:600}
+h4{font-weight:600}
+strong{color:var(--navy)}
+a{color:var(--blue-navy)}
+code.inline{background:#efe7d4;color:#7a4f12;border-radius:6px}
+kbd{background:#efe7d4;border-color:#d8c9a8}
+
+/* hide the old top header; new chrome below */
+.site-header{display:none !important}
+
+/* progress bar pinned to very top */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amber);z-index:400;transition:width .12s linear;border:0;margin:0}
+
+/* ---- app shell: sidebar + content ---- */
+.app{display:flex;align-items:flex-start}
+.sidebar{position:sticky;top:0;height:100vh;width:270px;flex:none;overflow-y:auto;z-index:160;
+  background:linear-gradient(180deg,#08203a,#0B2D4D 55%,#0e3a63);color:#cfe0f1;
+  padding:30px 20px 48px;border-right:1px solid rgba(255,255,255,.06)}
+.sidebar .brand{display:block;text-decoration:none;margin-bottom:8px}
+.sidebar .brand .crs{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.sidebar .brand .ttl{display:block;font-family:var(--disp);font-weight:600;font-size:1.5rem;line-height:1.05;color:#fff}
+.sidebar .brand .sub{display:block;font-size:.82rem;color:#9fbad6;margin-top:9px;line-height:1.45}
+.sidebar nav.menu{margin-top:20px;position:static;max-height:none;overflow:visible;background:none;border:0;box-shadow:none}
+.sidebar nav.menu ul{list-style:none;margin:0;padding:0;display:block;flex-direction:column}
+.sidebar nav.menu li{margin:0}
+.sidebar nav.menu a{display:block;color:#bcd2e8;text-decoration:none;font-size:.85rem;font-weight:500;
+  padding:6px 11px;border-radius:8px;border-left:2px solid transparent;white-space:normal;line-height:1.3;min-height:0}
+.sidebar nav.menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+.sidebar nav.menu a.active{background:rgba(220,147,41,.18);border-left-color:var(--amber);color:#fff}
+.content{flex:1;min-width:0}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,46px)}
+
+/* ---- mobile top bar ---- */
+.topbar{display:none}
+.sb-backdrop{display:none}
+@media(max-width:980px){
+  .app{display:block}
+  .topbar{display:flex;position:sticky;top:0;z-index:200;align-items:center;justify-content:space-between;
+    background:var(--deep-navy);color:#fff;padding:10px 16px;gap:12px}
+  .topbar .tb-brand{font-family:var(--disp);font-weight:600;font-size:1.06rem;color:#fff;text-decoration:none;line-height:1}
+  .topbar .tb-brand small{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-top:2px}
+  .nav-toggle{display:inline-flex;align-items:center;background:var(--blue-navy);color:#fff;border:0;border-radius:9px;padding:9px 14px;font-weight:600;font-size:.92rem;cursor:pointer;min-height:42px}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;height:100vh;width:min(84vw,310px);transform:translateX(-100%);transition:transform .25s ease;box-shadow:0 0 50px rgba(0,0,0,.45)}
+  .sidebar.open{transform:none}
+  .sb-backdrop{display:block;position:fixed;inset:0;background:rgba(7,18,33,.55);z-index:155;opacity:0;pointer-events:none;transition:opacity .25s}
+  .sb-backdrop.show{opacity:1;pointer-events:auto}
+}
+
+/* ---- hero ---- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#08203a,#0B2D4D 52%,#103a61);
+  color:#e9f2fb;padding:clamp(60px,12vh,128px) 0 clamp(50px,8vh,96px)}
+.hero::after{content:"";position:absolute;right:-6%;bottom:-14%;width:min(56vw,580px);height:min(56vw,580px);
+  background:radial-gradient(circle at 50% 50%,rgba(220,147,41,.20),transparent 62%);pointer-events:none}
+.hero .container{position:relative;z-index:1}
+.hero .eyebrow{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--amber);background:none;border:0;padding:0;margin:0 0 18px;animation:rise .7s .05s both}
+.hero h1{font-family:var(--disp);color:#fff;font-weight:600;font-size:clamp(2.5rem,1.4rem + 5.4vw,5rem);line-height:1.0;
+  letter-spacing:-.025em;max-width:17ch;margin:0 0 .35em;animation:rise .8s .16s both}
+.hero h1 .acc{color:var(--amber);font-style:italic;font-weight:400}
+.hero .lede{color:#cfe0f1;font-size:clamp(1.06rem,1rem + .55vw,1.34rem);max-width:60ch;animation:rise .8s .3s both}
+.hero .lede strong,.hero strong{color:#ffd49a;font-weight:600}
+.hero .muted{color:#a9c4de !important}
+.hero .hero-actions{animation:rise .8s .44s both}
+.hero p:last-child{animation:rise .8s .54s both}
+.hero .tag.sim{background:rgba(220,147,41,.20);color:#ffd79f;border:1px solid rgba(220,147,41,.45)}
+.hero .btn{border-radius:30px;background:var(--amber);color:#08203a;font-weight:700}
+.hero .btn:hover{background:#e9a23f;color:#08203a}
+.hero .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.12)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ---- editorial kicker ---- */
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);
+  border:0;padding:0;display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.kicker::before{content:"";width:30px;height:1px;background:var(--coral);flex:none}
+
+/* ---- part header: bold navy band ---- */
+.part-head{background:linear-gradient(150deg,#0B2D4D,#0e3a63);border:0}
+.part-head .pill{background:var(--amber);color:#08203a;font-family:var(--mono);font-weight:700;font-size:.66rem;letter-spacing:.14em}
+.part-head h2{color:#fff}
+.part-head .lead{color:#cfe0f1}
+
+/* ---- sections / type ---- */
+section.lesson{border-bottom:1px solid var(--line);padding:clamp(42px,6vw,80px) 0}
+section.lesson:nth-of-type(even){background:transparent}
+.lead{color:#33414f}
+
+/* ---- idea band ---- */
+.statband{background:var(--deep-navy);color:var(--paper);text-align:center;padding:clamp(58px,9vw,108px) 0}
+.statband .big{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,1.4rem + 5.2vw,4.4rem);line-height:1.06;
+  color:#fff;letter-spacing:-.02em;max-width:20ch;margin:0 auto}
+.statband .big .accent{color:var(--amber);font-style:italic}
+.statband .cap{max-width:560px;margin:22px auto 0;color:#bcd0e4;font-size:1.06rem}
+.statband strong{color:#fff}
+
+/* ---- cards / callouts re-skinned for paper ---- */
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(20,40,70,.05)}
+.callout{border-radius:12px}
+.c-key{background:#eaf3fb;border-color:#cde0f1}
+.c-slp{background:#e9f4ee;border-color:#c3dfce}
+.c-mistake{background:#fbeedb;border-color:#ecd2a0}
+.c-mistake h4{color:#9a6b1b}
+.c-try{background:#f8ebe1;border-color:#e9cab0}
+.c-excel{background:#edf4ea;border-color:#cfe0c6}
+.c-reminder{background:#eef0f8;border-color:#d2d6ee}
+.tag{font-family:var(--mono);font-weight:600;letter-spacing:.05em;border-radius:6px}
+.tag.sim{background:#efe5cf;color:#8a5a16}
+
+/* ---- widgets ---- */
+.widget{background:linear-gradient(180deg,#fff,#fbf6ec);border:1.5px solid #e6ddca;border-radius:14px}
+.wlabel{font-family:var(--mono);background:#f5ecd9;border-color:#e7d3ac;color:#8a5a16}
+.opt{border-radius:10px}
+.opt:hover{border-color:var(--blue-navy);background:#f4f0e6}
+.opt.correct{background:#e9f4ee;border-color:#2f7d57}
+.opt.wrong{background:#f9e9e4;border-color:#c0573f}
+.chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy)}
+.seg button[aria-pressed=true]{background:var(--blue-navy)}
+.token{background:#eef4fb;border-color:#cde0f1;color:var(--navy)}
+.chips .token{cursor:grab;touch-action:none}
+.token.ghost{opacity:.3}
+.token.dragging{cursor:grabbing;box-shadow:0 14px 34px rgba(8,32,58,.30);transform:scale(1.05);border-color:var(--blue-navy);background:#fff}
+.bin{background:#fff;transition:background .15s,border-color .15s,transform .15s}
+.bin.drop-hot{border-color:var(--blue-navy);background:#eaf2fb;border-style:solid;transform:translateY(-2px);box-shadow:0 10px 26px rgba(8,32,58,.12)}
+.bin .slot{min-height:30px;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+input[type=range]{accent-color:var(--blue-navy)}
+.readout{background:#eef4fb;border-color:#cde0f1;color:var(--navy)}
+
+/* ---- figures ---- */
+figure.fig{border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(20,40,70,.05)}
+figure.fig .fig-title{font-family:var(--body);color:var(--navy)}
+.chart text{font-family:var(--body)}
+
+/* ---- result statement keeps dark navy; ensure light strong ---- */
+.result strong{color:#fff}
+.qcheck{background:#fbf6ec;border-color:#e6ddca}
+
+/* ---- buttons ---- */
+.btn{border-radius:28px}
+.backtop{border-radius:28px;background:var(--navy)}
+
+/* ---- footer ---- */
+footer.site{background:var(--deep-navy)}
+footer.site strong{color:#fff}
+footer.site h4{font-family:var(--disp)}
+.ack{margin-top:20px;font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;color:#86a0bb}
+.ack a{color:#bcd9f2}
+
+/* ---- scroll reveal ---- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- flip cards (term preview) ---- */
+#termGrid{perspective:1500px}
+.flipcard{background:none;border:0;padding:0;margin:0;cursor:pointer;display:block;width:100%;
+  min-height:190px;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.flipcard .flip-inner{position:relative;display:block;width:100%;height:190px;
+  transition:transform .6s cubic-bezier(.2,.75,.2,1);transform-style:preserve-3d}
+.flipcard[aria-pressed=true] .flip-inner{transform:rotateY(180deg)}
+.flipcard .flip-face{position:absolute;inset:0;display:flex;flex-direction:column;text-align:left;
+  border-radius:13px;padding:20px;border:1px solid var(--line);overflow:auto;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.flipcard .flip-front{background:#fff;box-shadow:0 12px 30px rgba(20,40,70,.06)}
+.flipcard .flip-front::before{content:"Term";font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+.flipcard .flip-back{background:linear-gradient(155deg,#0B2D4D,#0e3a63);border-color:#0e3a63;transform:rotateY(180deg)}
+.flipcard .flip-back::before{content:"Meaning";font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.flipcard .t{font-family:var(--disp);font-weight:600;font-size:1.32rem;color:var(--navy);line-height:1.08}
+.flipcard .flip-hint{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-blue);margin-top:auto;padding-top:12px}
+.flipcard .d{display:block;color:#dbe7f5;font-size:.95rem;line-height:1.5;margin:0}
+.flipcard .d em{color:#fff}
+.flipcard::after{content:none !important}
+.flipcard:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:13px}
+
+@media(prefers-reduced-motion:reduce){
+  .hero *{animation:none !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .sidebar{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lesson content</a>
+
+<div class="progress" id="progress" role="presentation"></div>
+
+<header class="topbar">
+  <a class="tb-brand" href="#top">SLP 680<small>Inferential Statistics</small></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">☰ Contents</button>
+</header>
+<div class="sb-backdrop" id="sbBackdrop"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Lesson navigation">
+    <a class="brand" href="#top">
+      <span class="crs">SLP 680 · Research Methods</span>
+      <span class="ttl">Inferential Statistics</span>
+      <span class="sub">A beginner-friendly, interactive overview</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Lesson sections">
+      <ul id="menuList">
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 1 · Foundations</li>
+        <li><a href="#sec1">1.1 · Welcome</a></li>
+        <li><a href="#sec2">1.2 · Descriptive vs. inferential</a></li>
+        <li><a href="#sec3">1.3 · Variables &amp; data types</a></li>
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 2 · Sample → population</li>
+        <li><a href="#sec4">2.1 · Population &amp; sample</a></li>
+        <li><a href="#sec5">2.2 · Sampling variability</a></li>
+        <li><a href="#sec6">2.3 · Distributions</a></li>
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 3 · Logic of inference</li>
+        <li><a href="#sec7">3.1 · Hypothesis testing</a></li>
+        <li><a href="#sec8">3.2 · p-values &amp; errors</a></li>
+        <li><a href="#sec9">3.3 · Effect size</a></li>
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 4 · Choosing &amp; reading tests</li>
+        <li><a href="#sec10">4.1 · Choosing a test</a></li>
+        <li><a href="#sec11">4.2 · Paired t-test</a></li>
+        <li><a href="#sec12">4.3 · Independent t-test</a></li>
+        <li><a href="#sec13">4.4 · ANOVA</a></li>
+        <li><a href="#sec14">4.5 · Correlation</a></li>
+        <li><a href="#sec15">4.6 · Regression</a></li>
+        <li><a href="#sec16">4.7 · Chi-square</a></li>
+        <li><a href="#sec17">4.8 · Assumptions</a></li>
+        <li><a href="#sec18">4.9 · Reading results</a></li>
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 5 · Single-case</li>
+        <li><a href="#sec19">5.1 · Single-case &amp; Tau-U</a></li>
+        <li style="color:#7FA8CE;font-size:.68rem;text-transform:uppercase;letter-spacing:.6px;padding:10px 10px 2px;font-weight:800">Part 6 · Review</li>
+        <li><a href="#sec20">6.1 · Integration &amp; quiz</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="content">
+
+<main id="main" tabindex="-1">
+<span id="top"></span>
+<!-- ============================ HERO ============================ -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="container">
+    <span class="eyebrow">SLP 680 · Research Methods</span>
+    <h1 id="hero-h">Make peace with the <span class="acc">p-value</span>.</h1>
+    <p class="lede">A self-paced, plain-language tour of the ideas you need to read SLP research with
+      confidence — sampling, p-values, confidence intervals, effect size, the common tests, and single-case
+      analysis. <strong>Concepts and clinical meaning come first; formulas stay optional.</strong> Every chart
+      and number below comes from <strong>simulated teaching data</strong> — not real clients.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#sec1">Start the lesson →</a>
+      <a class="btn ghost" href="#sec10">Jump to “Which test do I use?”</a>
+    </div>
+    <p style="margin-top:22px"><span class="tag sim">Simulated data</span>
+      <span class="muted" style="font-size:.9rem"> &nbsp;Nothing here is real client data. Examples are built to teach interpretation, not to show that any treatment works.</span></p>
+  </div>
+</section>
+
+<!-- ===================== IDEA BAND ===================== -->
+<section class="statband" aria-label="Big idea">
+  <div class="container">
+    <p class="big">A p-value measures <span class="accent">surprise</span> — not <span class="accent">proof</span>.</p>
+    <p class="cap">By the end of this lesson you’ll read a results section and know exactly what it claims, what it doesn’t, and whether it matters for a client.</p>
+  </div>
+</section>
+
+<!-- ===================== PART 1 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 1 introduction">
+  <div class="container">
+    <span class="pill">Part 1 of 6</span>
+    <h2>Foundations &amp; mindset</h2>
+    <p class="lead">Before any test or p-value: what statistics are for, the difference between summarizing
+      and inferring, and why the <em>type</em> of data you collect quietly decides everything that follows.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 1 ===================== -->
+<section id="sec1" class="lesson" aria-labelledby="sec1-h">
+  <div class="container">
+    <p class="kicker">Part 1 · Foundations</p>
+    <h2 id="sec1-h">1.1 &nbsp;Welcome: statistics as careful reasoning</h2>
+    <p class="lead">If statistics has ever felt like a wall of symbols, you are in good company — and you are
+      in the right place. This lesson is about <strong>reasoning</strong>, not arithmetic. The goal is for you
+      to read a results section in a journal article and understand what it is really claiming (and what it is not).</p>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>Key idea</h4>
+      <p>Researchers almost never get to measure everyone. They study a <strong>sample</strong> and use
+      <strong>inferential statistics</strong> to make <em>cautious</em>, uncertainty-aware claims about the
+      larger group or process they care about. Statistics <strong>support</strong> clinical reasoning; they
+      never replace your judgment about an individual client.</p>
+    </div>
+
+    <h3>A 30-second preview of the words people throw around</h3>
+    <p class="muted">Tap any card to flip it over — then flip it back whenever you like. You’ll meet each term properly later; nothing to memorize now.</p>
+    <div class="grid g3" id="termGrid" style="margin-top:10px">
+      <button class="flipcard" aria-pressed="false" aria-label="p-value — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">p-value</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">How surprising the data would be <em>if</em> there were truly no effect. Small = surprising. Not “probability the treatment works.”</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Confidence interval — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Confidence interval</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">A range of plausible values for the real effect — it shows precision, not just yes/no.</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Effect size — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Effect size</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">How <em>big</em> the difference or relationship is — separate from whether it’s “significant.”</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Clinical significance — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Clinical significance</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">Whether a change actually matters for communication, participation, safety, or quality of life.</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Null hypothesis — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Null hypothesis</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">The “nothing special is going on” starting assumption a test tries to weigh evidence against.</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Tau-U — flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Tau-U</span><span class="flip-hint">Tap to flip ↻</span></span>
+          <span class="flip-face flip-back"><span class="d">One number used in single-case research to summarize change — a supplement to looking at the graph, never a replacement.</span></span>
+        </span>
+      </button>
+    </div>
+
+    <div class="widget" id="poll" aria-labelledby="poll-h">
+      <span class="wlabel">Try it · Confidence check</span>
+      <h3 id="poll-h" style="margin-top:6px">How confident do you feel right now about interpreting statistics in SLP articles?</h3>
+      <div role="group" aria-label="Confidence options">
+        <button class="opt" data-val="1">Honestly? It makes my eyes glaze over.</button>
+        <button class="opt" data-val="2">I recognize the words but couldn’t explain them.</button>
+        <button class="opt" data-val="3">I’m okay with the basics, shaky on the rest.</button>
+        <button class="opt" data-val="4">Pretty comfortable — I want the clinical nuance.</button>
+      </div>
+      <div class="feedback info" id="pollFb" role="status"></div>
+    </div>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">✔</span>
+      <h4>Take-home</h4>
+      <p>You do <strong>not</strong> need to memorize formulas to begin understanding results. Start with the
+      question and the picture; the notation will make sense later.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 2 ===================== -->
+<section id="sec2" class="lesson" aria-labelledby="sec2-h">
+  <div class="container">
+    <p class="kicker">Part 1 · Foundations</p>
+    <h2 id="sec2-h">1.2 &nbsp;Descriptive vs. inferential statistics</h2>
+    <p class="lead">Two jobs, two different questions. Getting them straight makes everything else easier.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <span class="tag">Describe</span>
+        <h3 style="margin-top:8px">“What happened in the data I have?”</h3>
+        <p><strong>Descriptive statistics</strong> summarize the sample in front of you — the mean, median,
+        standard deviation, a histogram. They make no claim beyond these specific people.</p>
+        <p class="muted">Example: in a class project, 30 children average <strong>72% consonants correct</strong>.
+        That number describes <em>those 30 children</em>, full stop.</p>
+      </div>
+      <div class="card">
+        <span class="tag" style="background:#EFE7FB;color:#5B2E9E">Infer</span>
+        <h3 style="margin-top:8px">“What might this say about the bigger picture?”</h3>
+        <p><strong>Inferential statistics</strong> use the sample to reason — with explicit uncertainty —
+        about a larger <em>population</em> or process you could not measure directly.</p>
+        <p class="muted">Example: could a result like this plausibly hold for the broader group of children
+        with speech sound disorder, or is it likely just the luck of who we sampled?</p>
+      </div>
+    </div>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p>Yes — descriptive statistics are Excel’s home turf:
+      <code class="inline">=AVERAGE(range)</code>, <code class="inline">=MEDIAN(range)</code>,
+      <code class="inline">=STDEV.S(range)</code>, <code class="inline">=COUNT(range)</code>,
+      <code class="inline">=MIN(range)</code>, <code class="inline">=MAX(range)</code>.
+      <em>Interpretation reminder:</em> these describe your sample. Reasoning beyond it is the inferential step that comes next.</p>
+    </div>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>Key idea</h4>
+      <p>Describe the sample first; infer second. Inferential statistics always carry uncertainty — that
+      uncertainty is the honest part, not a flaw.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3 ===================== -->
+<section id="sec3" class="lesson" aria-labelledby="sec3-h">
+  <div class="container">
+    <p class="kicker">Part 1 · Foundations</p>
+    <h2 id="sec3-h">1.3 &nbsp;Variables, measurement &amp; data types</h2>
+    <p class="lead">Here is the secret that makes “choosing a test” far less scary: the test you can use is
+      mostly decided by <strong>what kind of variables you have</strong>. Learn the types and you are halfway there.</p>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Simulated SLP examples of each variable type.</caption>
+        <thead><tr><th>Type</th><th>What it is</th><th>SLP example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Continuous</strong></td><td>Numbers on a scale; in-between values make sense</td><td>Naming score, intelligibility rating, vocabulary score</td></tr>
+          <tr><td><strong>Categorical</strong></td><td>Named groups, no order</td><td>Treatment group, diagnosis category, responder / non-responder</td></tr>
+          <tr><td><strong>Ordinal</strong></td><td>Ordered categories, uneven gaps</td><td>Severity rating (mild / moderate / severe)</td></tr>
+          <tr><td><strong>Count</strong></td><td>Whole-number tallies</td><td>Number of communicative initiations in a session</td></tr>
+          <tr><td><strong>Percentage</strong></td><td>Bounded 0–100%, often skewed near the edges</td><td>Percent consonants correct, percent syllables stuttered</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">➜</span>
+      <h4>How these map to the four levels of measurement</h4>
+      <p>If you learned the classic <strong>NOIR</strong> hierarchy — <strong>N</strong>ominal,
+      <strong>O</strong>rdinal, <strong>I</strong>nterval, <strong>R</strong>atio — the everyday data types
+      above sit right on top of it. The big split for <em>choosing a test</em> is categorical (nominal/ordinal)
+      vs. numeric (interval/ratio); the level just tells you what math is fair to do.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>The four levels of measurement (NOIR) and the data types they cover.</caption>
+        <thead><tr><th>Level</th><th>What it adds</th><th>Data type(s) here</th><th>Simulated SLP example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Nominal</strong></td><td>Named groups, no order</td><td>Categorical</td><td>Treatment group; responder / non-responder</td></tr>
+          <tr><td><strong>Ordinal</strong></td><td>Order, but unequal gaps</td><td>Ordinal</td><td>Severity rating (mild / moderate / severe)</td></tr>
+          <tr><td><strong>Interval</strong></td><td>Equal gaps, but no true zero</td><td>Continuous scores without a true zero</td><td>A standardized test standard score (mean = 100)</td></tr>
+          <tr><td><strong>Ratio</strong></td><td>Equal gaps <em>and</em> a true zero</td><td>Most continuous, plus counts &amp; percentages</td><td>Naming score, # initiations, % consonants correct</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.95rem">Two practical reminders: don’t treat <em>ordinal</em> ratings as if
+      the gaps were equal (mild→moderate may not equal moderate→severe), and only <em>ratio</em> scales let you
+      say “twice as much” (a true zero means “0 = none”). Counts and percentages are technically discrete, but
+      they behave as ratio-level for most analyses.</p>
+
+    <div class="widget" id="varSort" aria-labelledby="vs-h">
+      <span class="wlabel">Try it · Sort the variables</span>
+      <h3 id="vs-h" style="margin-top:6px">Which data type is each one?</h3>
+      <p class="muted"><strong>Drag</strong> each variable into the matching bin. Prefer the keyboard? Press <kbd>Enter</kbd> on a variable to pick it up, then <kbd>Enter</kbd> on a bin to drop it. Click a placed item to send it back.</p>
+      <div id="vsTokens" class="chips" aria-label="Variables to sort"></div>
+      <div class="bins" id="vsBins"></div>
+      <div class="slider-row" style="margin-top:12px">
+        <button class="btn sm" id="vsCheck">Check my answers</button>
+        <button class="btn sm sec" id="vsReset">Reset</button>
+      </div>
+      <div class="feedback info" id="vsFb" role="status"></div>
+    </div>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>Key idea</h4>
+      <p>Three questions drive almost every test choice: <strong>What type is my outcome? How many groups
+      or measurements? Are the same people measured more than once?</strong> Keep these in your back pocket.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 2 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 2 introduction">
+  <div class="container">
+    <span class="pill">Part 2 of 6</span>
+    <h2>From sample to population</h2>
+    <p class="lead">The single idea at the heart of inference: a sample is a blurry snapshot of something
+      bigger. Once you feel how samples wobble, p-values and confidence intervals stop being mysterious.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 4 ===================== -->
+<section id="sec4" class="lesson" aria-labelledby="sec4-h">
+  <div class="container">
+    <p class="kicker">Part 2 · Sample to population</p>
+    <h2 id="sec4-h">2.1 &nbsp;Population and sample</h2>
+    <p class="lead">Four words that get used loosely in conversation but precisely in research.</p>
+
+    <div class="grid g4">
+      <div class="card"><span class="tag">Population</span><p style="margin-bottom:0">Everyone you care about. <span class="muted">All preschoolers receiving speech-sound services in a district.</span></p></div>
+      <div class="card"><span class="tag">Sample</span><p style="margin-bottom:0">The few you actually measure. <span class="muted">30 children enrolled in a study.</span></p></div>
+      <div class="card"><span class="tag" style="background:#EFE7FB;color:#5B2E9E">Parameter</span><p style="margin-bottom:0">The true value in the population. <span class="muted">Usually unknown.</span></p></div>
+      <div class="card"><span class="tag" style="background:#EFE7FB;color:#5B2E9E">Statistic</span><p style="margin-bottom:0">The value from your sample. <span class="muted">Our best estimate of the parameter.</span></p></div>
+    </div>
+
+    <div class="widget" id="drawSample" aria-labelledby="ds-h">
+      <span class="wlabel">Try it · Draw a sample</span>
+      <h3 id="ds-h" style="margin-top:6px">Each draw is a new study. Watch the sample mean dance.</h3>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:10px 0">
+        <div class="fig-title">Simulated population of preschool speech-sound accuracy <span class="tag sim">Simulated</span></div>
+        <div id="popSvg" role="img" aria-label="A cloud of dots representing the simulated population of children's speech-sound accuracy scores. Drawing a sample highlights a handful of dots and reports their average."></div>
+      </figure>
+      <div class="slider-row">
+        <span class="seg" role="group" aria-label="Sample size">
+          <button data-n="10" aria-pressed="true">n = 10</button>
+          <button data-n="30" aria-pressed="false">n = 30</button>
+        </span>
+        <button class="btn sm" id="drawBtn">Draw a new sample</button>
+        <span class="readout" id="drawOut">Sample mean: —</span>
+      </div>
+      <p class="muted" id="drawLog" style="min-height:1.4em;font-size:.92rem"></p>
+      <div class="callout c-key" style="margin-bottom:0"><span class="ic" aria-hidden="true">★</span>
+        <h4>What to notice</h4>
+        <p>The population never changed, yet each sample mean is a little different. That wobble is
+        <strong>sampling variability</strong> — and it is exactly what inference has to account for. The true
+        population mean here is about <strong>70</strong>.</p>
+      </div>
+    </div>
+
+    <div class="callout c-slp"><span class="ic" aria-hidden="true">◆</span>
+      <h4>SLP translation</h4>
+      <p>When a study reports a sample mean, it is offering an <em>estimate</em> of a parameter you cannot see.
+      Two honest studies of the same population can land on different numbers — neither is “wrong.”</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 5 ===================== -->
+<section id="sec5" class="lesson" aria-labelledby="sec5-h">
+  <div class="container">
+    <p class="kicker">Part 2 · Sample to population</p>
+    <h2 id="sec5-h">2.2 &nbsp;Sampling variability and uncertainty</h2>
+    <p class="lead">If we repeated the same study many times, the sample means would form their own
+      distribution. Its width tells us how much to trust a single estimate.</p>
+
+    <div class="widget" id="sampSlider" aria-labelledby="ss-h">
+      <span class="wlabel">Try it · Sample-size slider</span>
+      <h3 id="ss-h" style="margin-top:6px">Bigger samples, steadier estimates</h3>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:10px 0">
+        <div class="fig-title">Distribution of 600 simulated sample means <span class="tag sim">Simulated</span></div>
+        <div id="sampSvg" role="img" aria-label="Histogram of sample means from many repeated samples. As sample size increases, the histogram becomes narrower and clusters more tightly around the population mean."></div>
+      </figure>
+      <div class="slider-row">
+        <label for="nRange"><strong>Sample size (n):</strong></label>
+        <input type="range" id="nRange" min="0" max="2" step="1" value="0" aria-valuetext="10" list="nticks">
+        <datalist id="nticks"><option value="0" label="10"></option><option value="1" label="30"></option><option value="2" label="100"></option></datalist>
+        <span class="readout" id="nOut">n = 10</span>
+      </div>
+      <p class="muted" id="seOut" style="font-size:.95rem"></p>
+      <div class="callout c-key" style="margin-bottom:0"><span class="ic" aria-hidden="true">★</span>
+        <h4>What to notice</h4>
+        <p>Larger samples usually produce <strong>less variable</strong> estimates (the spread of sample
+        means — the <em>standard error</em> — shrinks). But no single sample is ever perfect, and a big sample
+        of a biased process is still biased.</p>
+      </div>
+    </div>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Why this matters</h4>
+      <p>Inferential statistics ask: <em>is the difference we observed bigger than the wobble we’d expect from
+      sampling alone?</em> Everything from here builds on that one question.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 6 ===================== -->
+<section id="sec6" class="lesson" aria-labelledby="sec6-h">
+  <div class="container">
+    <p class="kicker">Part 2 · Sample to population</p>
+    <h2 id="sec6-h">2.3 &nbsp;Distributions: shape matters</h2>
+    <p class="lead">A distribution shows how values are spread out. Three features — <strong>center</strong>,
+      <strong>spread</strong>, and <strong>shape</strong> — tell you most of what you need, and they warn you
+      when a “mean” might be misleading.</p>
+
+    <div class="widget" id="distExp" aria-labelledby="de-h">
+      <span class="wlabel">Try it · Distribution explorer</span>
+      <h3 id="de-h" style="margin-top:6px">Real SLP outcomes are not always bell-shaped</h3>
+      <div class="seg" role="group" aria-label="Choose a simulated distribution" style="margin:4px 0 4px">
+        <button data-dist="aphasia" aria-pressed="true">Aphasia naming</button>
+        <button data-dist="stutter" aria-pressed="false">% syllables stuttered</button>
+        <button data-dist="artic" aria-pressed="false">Post-tx accuracy</button>
+      </div>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:8px 0">
+        <div class="fig-title" id="distTitle">Simulated aphasia naming scores <span class="tag sim">Simulated</span></div>
+        <div id="distSvg" role="img" aria-label="Histogram of the selected simulated distribution. Buttons below highlight its center, spread, skew, outliers, and floor or ceiling effects."></div>
+      </figure>
+      <p class="muted" style="margin:2px 0">Tap a feature to highlight it on the chart:</p>
+      <div class="chips" role="group" aria-label="Distribution features">
+        <button class="chip" data-term="center" aria-pressed="false">Center</button>
+        <button class="chip" data-term="spread" aria-pressed="false">Spread</button>
+        <button class="chip" data-term="skew" aria-pressed="false">Skew</button>
+        <button class="chip" data-term="outlier" aria-pressed="false">Outliers</button>
+        <button class="chip" data-term="ceiling" aria-pressed="false">Floor / ceiling</button>
+      </div>
+      <div class="feedback info show" id="distInfo" role="status" style="margin-top:12px"></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:6px">
+      <div class="card"><h4>Roughly normal</h4><p class="muted">Aphasia naming scores often spread fairly symmetrically around a center — the mean is a good summary.</p></div>
+      <div class="card"><h4>Right-skewed</h4><p class="muted">Percent syllables stuttered piles up near zero with a long right tail — the mean gets pulled upward, so the median may describe a “typical” client better.</p></div>
+      <div class="card"><h4>Ceiling effect</h4><p class="muted">After successful articulation treatment, many children score near 100% — the test can’t capture further gains, which can hide real differences.</p></div>
+    </div>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p>Yes. Make a quick histogram with <em>Insert → Chart → Histogram</em> (newer Excel) or the
+      <em>Analysis ToolPak → Histogram</em>. <em>Interpretation reminder:</em> always look at the shape before
+      trusting a mean — a skew or ceiling can change which summary is honest.</p>
+    </div>
+
+    <div class="callout c-key" style="margin-bottom:0"><span class="ic" aria-hidden="true">★</span>
+      <h4>Key idea</h4>
+      <p>Not all SLP outcomes are normally distributed. Percentages and counts are often bounded and skewed,
+      and outliers may be real clinical variability — or a data-entry slip worth checking.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 3 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 3 introduction">
+  <div class="container">
+    <span class="pill">Part 3 of 6</span>
+    <h2>The logic of inference</h2>
+    <p class="lead">Hypothesis testing, p-values, confidence intervals, errors, and effect size — the
+      reasoning toolkit, taught as ideas you can explain out loud, not symbols to memorize.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 7 ===================== -->
+<section id="sec7" class="lesson" aria-labelledby="sec7-h">
+  <div class="container">
+    <p class="kicker">Part 3 · Logic of inference</p>
+    <h2 id="sec7-h">3.1 &nbsp;Hypothesis testing basics</h2>
+    <p class="lead">Hypothesis testing is a structured way of asking, “could the wobble of random sampling
+      alone explain what we saw?”</p>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>The core question</h4>
+      <p>If the <strong>null hypothesis</strong> were a reasonable description of the world, <em>how surprising
+      would our sample result be?</em> A result that would be very unusual under the null gives us evidence
+      against it.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card"><h4>Null hypothesis (H₀)</h4><p>The “nothing special” baseline. <span class="muted">A naming treatment produces <strong>no average change</strong> in naming score.</span></p></div>
+      <div class="card"><h4>Alternative hypothesis (H₁)</h4><p>The “something is going on” claim. <span class="muted">The treatment <strong>is associated with a change</strong> in naming score.</span></p></div>
+    </div>
+
+    <div class="widget" id="predict" aria-labelledby="pr-h">
+      <span class="wlabel">Try it · Predict, then reveal</span>
+      <h3 id="pr-h" style="margin-top:6px">How surprising is this result under the null?</h3>
+      <p class="muted">The curve shows what sample results look like <em>if the null (no effect) were true</em>.
+      The marker shows what one study actually observed.</p>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:8px 0">
+        <div class="fig-title">“No-effect” world vs. the observed result <span class="tag" style="background:#E2ECF6;color:#0B2D4D">Conceptual</span></div>
+        <div id="nullSvg" role="img" aria-label="A bell-shaped curve centered at zero shows results expected if there were no real effect. A marker sits far out in the right tail, in a region that would rarely occur by chance alone."></div>
+      </figure>
+      <p><strong>Your call:</strong> would a result this far out be surprising if the treatment truly did nothing?</p>
+      <div role="group" aria-label="Predict">
+        <button class="opt" data-pred="surprising">Yes — it’s far in the tail, so it would be surprising.</button>
+        <button class="opt" data-pred="not">No — results like this happen all the time by chance.</button>
+      </div>
+      <div class="feedback info" id="prFb" role="status"></div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-bottom:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Take-home</h4>
+      <p>A test statistic just measures “how far out” the result sits; the p-value turns that distance into a
+      probability of seeing something at least this extreme <em>under the null</em>. That is all a p-value is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 8 ===================== -->
+<section id="sec8" class="lesson" aria-labelledby="sec8-h">
+  <div class="container">
+    <p class="kicker">Part 3 · Logic of inference</p>
+    <h2 id="sec8-h">3.2 &nbsp;p-values, confidence intervals &amp; errors</h2>
+    <p class="lead">This is where careful clinicians separate themselves from careless ones. Most statistical
+      mistakes in practice are misreadings of these three ideas.</p>
+
+    <h3>What a p-value <em>is</em> — and is not</h3>
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Common mistakes</h4>
+      <p>A p-value is <strong>not</strong> the probability that the null hypothesis is true.
+      <code class="inline">p &lt; .05</code> is <strong>not</strong> proof that a treatment works.
+      <code class="inline">p &gt; .05</code> is <strong>not</strong> proof that there is no effect — it may just mean
+      the study was small or noisy.</p>
+    </div>
+    <p>A more honest sentence: <em>“A p-value describes how unusual our data (or more extreme data) would be
+      if a specified no-effect model were true.”</em></p>
+
+    <h3>Confidence intervals show precision, not just yes/no</h3>
+    <p>A 95% confidence interval gives a <strong>range of plausible values</strong> for the real effect. A narrow
+      interval says “we’ve pinned this down”; a wide one says “we’re still quite unsure.” Two results can both be
+      “significant” while one is far more precise than the other.</p>
+
+    <div class="grid g2">
+      <div class="card"><span class="tag" style="background:#FBEBEB;color:#A23A3A">Type I error</span>
+        <h4 style="margin-top:8px">False positive</h4>
+        <p class="muted">Concluding a fluency intervention helps when the apparent effect is mostly sampling noise. You act on something that isn’t real.</p></div>
+      <div class="card"><span class="tag" style="background:#FBEBEB;color:#A23A3A">Type II error</span>
+        <h4 style="margin-top:8px">False negative</h4>
+        <p class="muted">Missing a genuine AAC intervention effect because the study was too small or too noisy to detect it. You overlook something that is real.</p></div>
+    </div>
+
+    <div class="widget" id="pquiz" aria-labelledby="pq-h">
+      <span class="wlabel">Try it · Spot the misconception</span>
+      <h3 id="pq-h" style="margin-top:6px">True or false?</h3>
+      <div id="pquizItems"></div>
+      <div class="feedback info show" id="pqScore" role="status" style="margin-top:12px">Answer each statement — you’ll get an explanation either way.</div>
+    </div>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p>Excel functions (e.g., <code class="inline">T.TEST</code>) will hand you a p-value, but a number is not
+      an interpretation. <em>Interpretation reminder:</em> always pair a p-value with the effect size, the
+      confidence interval, and clinical judgment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 9 ===================== -->
+<section id="sec9" class="lesson" aria-labelledby="sec9-h">
+  <div class="container">
+    <p class="kicker">Part 3 · Logic of inference</p>
+    <h2 id="sec9-h">3.3 &nbsp;Effect size &amp; clinical significance</h2>
+    <p class="lead">Three questions that sound alike but are not: <strong>Is there evidence of an effect?</strong>
+      (significance) <strong>How big is it?</strong> (effect size) <strong>Does it matter for this client?</strong>
+      (clinical significance)</p>
+
+    <div class="widget" id="esViz" aria-labelledby="ev-h">
+      <span class="wlabel">Try it · Feel an effect size</span>
+      <h3 id="ev-h" style="margin-top:6px">What does “Cohen’s d” actually look like?</h3>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:8px 0">
+        <div class="fig-title">Two group distributions, separated by d <span class="tag" style="background:#E2ECF6;color:#0B2D4D">Conceptual</span></div>
+        <div id="esSvg" role="img" aria-label="Two overlapping bell curves representing two groups. As Cohen's d increases, the curves pull apart and overlap less."></div>
+      </figure>
+      <div class="slider-row">
+        <label for="dRange"><strong>Cohen’s d:</strong></label>
+        <input type="range" id="dRange" min="0" max="1.5" step="0.05" value="0.5">
+        <span class="readout" id="dOut">d = 0.50</span>
+      </div>
+      <p class="muted" id="dInfo" style="font-size:.95rem"></p>
+    </div>
+
+    <h3>The effect size you’ll see for each test</h3>
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Common effect-size measures by analysis (rough conventions; context always wins).</caption>
+        <thead><tr><th>Analysis</th><th>Effect size</th><th>Reads as</th></tr></thead>
+        <tbody>
+          <tr><td>Paired t-test</td><td>Cohen’s d<sub>z</sub> (standardized mean change)</td><td>Change relative to its variability</td></tr>
+          <tr><td>Independent t-test</td><td>Cohen’s d</td><td>Group gap in standard-deviation units</td></tr>
+          <tr><td>ANOVA</td><td>eta-squared (η²)</td><td>Share of variance explained by group</td></tr>
+          <tr><td>Correlation</td><td>r and r²</td><td>Strength of association; variance shared</td></tr>
+          <tr><td>Regression</td><td>slope and R²</td><td>Change per unit; variance explained</td></tr>
+          <tr><td>Chi-square</td><td>Cramér’s V</td><td>Strength of categorical association</td></tr>
+          <tr><td>Single-case</td><td>Tau-U / nonoverlap</td><td>Supplement to visual analysis</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="widget" id="esSort" aria-labelledby="es-h">
+      <span class="wlabel">Try it · Statistical, large, or clinical?</span>
+      <h3 id="es-h" style="margin-top:6px">Sort each simulated result</h3>
+      <p class="muted"><strong>Drag</strong> each card into the bin that best describes it (or tap a card, then tap a bin).
+      These categories can overlap in real life — choose the <em>best fit</em> for the emphasis of each card.</p>
+      <div id="esTokens" class="chips" aria-label="Result cards"></div>
+      <div class="bins" id="esBins"></div>
+      <div class="slider-row" style="margin-top:12px">
+        <button class="btn sm" id="esCheck">Check</button>
+        <button class="btn sm sec" id="esReset">Reset</button>
+      </div>
+      <div class="feedback info" id="esFb" role="status"></div>
+    </div>
+
+    <div class="callout c-key" style="margin-bottom:0"><span class="ic" aria-hidden="true">★</span>
+      <h4>Take-home</h4>
+      <p>Statistical significance, effect size, and clinical importance answer <strong>different</strong>
+      questions. A tiny p-value can sit on a trivial effect; a meaningful change can occur in a single client
+      where no group p-value exists at all.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 4 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 4 introduction">
+  <div class="container">
+    <span class="pill">Part 4 of 6</span>
+    <h2>Choosing &amp; reading tests</h2>
+    <p class="lead">A friendly decision guide, then a tour of the six tests you’ll meet most often — each with a
+      simulated SLP example, a picture, a results sentence, and what it does (and doesn’t) tell you. We finish
+      with assumptions and how to decode a results paragraph.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 10 ===================== -->
+<section id="sec10" class="lesson" aria-labelledby="sec10-h">
+  <div class="container">
+    <p class="kicker">Part 4 · Choosing &amp; reading tests</p>
+    <h2 id="sec10-h">4.1 &nbsp;Choosing a common statistical test</h2>
+    <p class="lead">You rarely need to invent anything. Match your <strong>question</strong>, your
+      <strong>variable types</strong>, and your <strong>design</strong> to a familiar test.</p>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>A beginner-friendly starting point — not a rigid rulebook.</caption>
+        <thead><tr><th>Research situation</th><th>Common test</th><th>Simulated SLP example</th></tr></thead>
+        <tbody>
+          <tr><td>Same participants measured twice</td><td><strong>Paired t-test</strong></td><td>Aphasia naming before vs. after treatment</td></tr>
+          <tr><td>Two independent groups</td><td><strong>Independent t-test</strong></td><td>Two articulation treatment approaches</td></tr>
+          <tr><td>Three or more independent groups</td><td><strong>One-way ANOVA</strong></td><td>Low / moderate / high language-treatment dosage</td></tr>
+          <tr><td>Two continuous variables</td><td><strong>Correlation</strong></td><td>Therapy attendance and vocabulary gain</td></tr>
+          <tr><td>Predict a continuous outcome</td><td><strong>Regression</strong></td><td>Predict vocabulary gain from therapy hours + baseline</td></tr>
+          <tr><td>Two categorical variables</td><td><strong>Chi-square</strong></td><td>Service model and responder category</td></tr>
+          <tr><td>Repeated measures in one / a few cases</td><td><strong>Single-case visual analysis</strong> (+ optional Tau-U)</td><td>AAC initiations across baseline &amp; intervention</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="widget" id="testCards" aria-labelledby="tc-h">
+      <span class="wlabel">Try it · Match the scenario</span>
+      <h3 id="tc-h" style="margin-top:6px">Which test fits each study?</h3>
+      <p class="muted">Read the scenario, choose a test, and get instant feedback. There’s no penalty for guessing.</p>
+      <div id="tcItems"></div>
+      <div class="feedback info show" id="tcScore" role="status" style="margin-top:12px">Score: 0 / 0</div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-bottom:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Pattern to remember</h4>
+      <p><strong>Outcome type + number of groups + repeated or not</strong> → test. The six sections below all
+      follow the same shape so the pattern becomes second nature.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== SECTION 11 — PAIRED t ===================== -->
+<section id="sec11" class="lesson" aria-labelledby="sec11-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec11-h">4.2 &nbsp;Paired t-test</h2>
+    <p class="lead"><strong>Question:</strong> did the <em>same</em> people change? <strong>Population:</strong>
+      adults with aphasia. <strong>Design:</strong> one group, measured before and after naming treatment.</p>
+
+    <p><strong>Why this test:</strong> each person contributes a <em>pair</em> of scores (pre and post), so we
+      analyze each person’s <em>change</em>. Pairing removes a lot of person-to-person noise.</p>
+
+    <div class="grid g2">
+      <figure class="fig">
+        <div class="fig-title">Naming score: before → after <span class="tag sim">Simulated</span></div>
+        <div id="pairedSvg" role="img" aria-label="Connected dot plot. Most lines slope upward from a lower pre-treatment score to a higher post-treatment score, showing improvement for most simulated participants."></div>
+        <figcaption>Each line is one simulated participant. Most slope upward — but not all.</figcaption>
+      </figure>
+      <figure class="fig">
+        <div class="fig-title">Distribution of change scores <span class="tag sim">Simulated</span></div>
+        <div id="changeSvg" role="img" aria-label="Histogram of post-minus-pre change scores, centered above zero, indicating most participants improved."></div>
+        <figcaption>Post − pre for each person. Centered well above zero (the dashed line).</figcaption>
+      </figure>
+    </div>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">In 20 simulated adults with aphasia, mean naming score rose from
+        <span class="v">49.6</span> before treatment to <span class="v">58.3</span> after — an average gain of
+        <span class="v">8.7 points</span> (SD of change = 6.6). A paired-samples t-test indicated a change
+        larger than sampling noise alone would readily produce,
+        <span class="v">t(19) = 5.84</span>, <span class="v">p &lt; .001</span>,
+        95% CI for the mean change <span class="v">[5.6, 11.8]</span>, <span class="v">Cohen’s d<sub>z</sub> = 1.31</span>.</p>
+      <div class="statchips">
+        <span><b>M change</b> +8.7</span><span><b>95% CI</b> 5.6 to 11.8</span><span><b>t(19)</b> 5.84</span><span><b>p</b> &lt; .001</span><span><b>d<sub>z</sub></b> 1.31 (large)</span>
+      </div>
+    </div>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Plain-language interpretation</h4>
+      <p>On average, scores improved by about 9 points, and the confidence interval (5.6–11.8) stays well above
+      zero — so a real average gain in this simulated sample is plausible across that whole range. The effect is
+      large for these data (d<sub>z</sub> ≈ 1.3).</p>
+    </div>
+    <div class="callout c-mistake" style="margin-top:0"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Clinical caution</h4>
+      <p>A gain on a naming test is not the same as better everyday communication, and this is simulated data —
+      it says nothing about whether this treatment “works.” Also, a pre-post design alone can’t rule out
+      practice effects or natural recovery.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated aphasia naming data (n = 20); seed for reproducibility</span>
+set.seed(680)
+pre  &lt;- rnorm(20, mean = 48, sd = 9)
+post &lt;- pre + rnorm(20, mean = 10, sd = 7)
+
+<span class="cmt"># Paired-samples t-test (gives t, df, p, and the 95% CI)</span>
+<span class="fn">t.test</span>(post, pre, paired = TRUE)
+
+<span class="cmt"># Effect size: standardized mean change (Cohen's dz)</span>
+change &lt;- post - pre
+<span class="fn">mean</span>(change) / <span class="fn">sd</span>(change)</code></pre>
+      <p class="muted" style="font-size:.82rem;color:#9FB7DA;margin:8px 2px 2px">Method shown in R; the teaching values above come from this simulated dataset.</p></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p>Yes: <code class="inline">=T.TEST(pre_range, post_range, 2, 1)</code> &nbsp;(the <code class="inline">2</code> = two-tailed,
+      <code class="inline">1</code> = paired). <em>Interpretation reminder:</em> Excel returns only the p-value — you
+      still need the mean change, its confidence interval, and an effect size to interpret the result.</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>The CI for the mean change is [5.6, 11.8]. What does that tell a clinician?</strong></p>
+      <p class="muted">A plausible-value answer: across this interval the average improvement is positive, and even
+      the low end (≈5.6 points) is a meaningful-sized gain on this scale — though “meaningful for the client”
+      still depends on the measure and the person.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ===================== SECTION 12 — INDEPENDENT t ===================== -->
+<section id="sec12" class="lesson" aria-labelledby="sec12-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec12-h">4.3 &nbsp;Independent t-test</h2>
+    <p class="lead"><strong>Question:</strong> do two <em>separate</em> groups differ on average?
+      <strong>Population:</strong> children with speech sound disorder. <strong>Design:</strong> two independent
+      groups — traditional vs. motor-based articulation treatment.</p>
+
+    <p><strong>Why this test:</strong> different children are in each group (no pairing), so we compare two group
+      means and ask whether the gap is bigger than sampling variability would casually produce.</p>
+
+    <figure class="fig">
+      <div class="fig-title">Post-treatment accuracy by group <span class="tag sim">Simulated</span></div>
+      <div id="indepSvg" role="img" aria-label="Two columns of dots, one per group, with group means and 95% confidence interval bars. The group averages overlap considerably, with the motor-based group slightly higher."></div>
+      <figcaption>Dots are individual children; the heavy marker is each group mean with its 95% CI.</figcaption>
+    </figure>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">Post-treatment accuracy averaged <span class="v">72.2%</span> (traditional, n = 20) vs.
+        <span class="v">77.3%</span> (motor-based, n = 20) — a difference of <span class="v">5.1 points</span>.
+        A Welch independent-samples t-test gave <span class="v">t(37.5) = 2.01</span>,
+        <span class="v">p = .052</span>, 95% CI for the difference <span class="v">[−0.0, 10.3]</span>,
+        <span class="v">Cohen’s d = 0.64</span>.</p>
+      <div class="statchips">
+        <span><b>Difference</b> 5.1 pts</span><span><b>95% CI</b> −0.0 to 10.3</span><span><b>t(37.5)</b> 2.01</span><span><b>p</b> = .052</span><span><b>d</b> 0.64 (medium)</span>
+      </div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>The teaching moment: p = .052</h4>
+      <p>This p-value sits <em>just above</em> the usual .05 line. A careless reading says “no difference.” But
+      look closer: the effect is <strong>medium</strong> (d = 0.64), and the confidence interval runs from
+      essentially zero up to about 10 points. The honest summary is <em>“inconclusive — possibly a meaningful
+      difference, but this study can’t pin it down.”</em> <strong>.05 is a convention, not a wall</strong>, and
+      <code class="inline">p &gt; .05</code> is not proof of no effect.</p>
+    </div>
+    <div class="callout c-reminder" style="margin-top:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Effect size &amp; clinical note</h4>
+      <p>A medium effect that didn’t reach significance may suggest the study was underpowered or too imprecise. A larger
+      sample might clarify it, but interpretation still depends on the CI, design, and measurement quality.
+      Clinically, a ~5-point accuracy edge may or may not matter — that depends on the child, the goals, and the
+      cost of each approach.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated articulation data: two independent groups of 20</span>
+set.seed(680)
+trad  &lt;- rnorm(20, 70, 9)
+motor &lt;- rnorm(20, 78, 9)
+score &lt;- c(trad, motor)
+group &lt;- factor(rep(c("Traditional", "Motor"), each = 20))
+
+<span class="cmt"># Welch's t-test (unequal variances) is R's default — a safe beginner choice</span>
+<span class="fn">t.test</span>(score ~ group)</code></pre></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p><code class="inline">=T.TEST(group1_range, group2_range, 2, 3)</code> &nbsp;(the final <code class="inline">3</code> requests an
+      unequal-variance / Welch-style two-sample test). <em>Interpretation reminder:</em> a borderline p-value is a
+      cue to weigh the effect size and CI, not to declare “nothing here.”</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>A colleague says “p = .052, so the treatments are equally effective.” What’s wrong with that?</strong></p>
+      <p class="muted">It treats “not significant” as “no difference.” The medium effect (d = 0.64) and a CI reaching
+      to +10 points mean a real, useful difference is still quite plausible — the study just wasn’t precise enough to confirm it.</p>
+    </div></details>
+  </div>
+</section>
+<!-- ===================== SECTION 13 — ANOVA ===================== -->
+<section id="sec13" class="lesson" aria-labelledby="sec13-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec13-h">4.4 &nbsp;One-way ANOVA</h2>
+    <p class="lead"><strong>Question:</strong> do <em>three or more</em> groups differ? <strong>Population:</strong>
+      children in pediatric language intervention. <strong>Design:</strong> three independent dosage groups —
+      low, moderate, high.</p>
+
+    <p><strong>Why this test:</strong> with three groups, running several t-tests inflates the chance of a false
+      positive. ANOVA asks one combined question first: <em>is there any difference among the group means?</em></p>
+
+    <figure class="fig">
+      <div class="fig-title">Language improvement by treatment dosage <span class="tag sim">Simulated</span></div>
+      <div id="anovaSvg" role="img" aria-label="Three columns of dots for low, moderate, and high dosage, with group means and 95% confidence intervals. Means increase steadily from low to high dosage."></div>
+      <figcaption>Dots are individual children; markers show each group mean with its 95% CI. Note the upward step from low → high.</figcaption>
+    </figure>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">Mean improvement was <span class="v">5.5</span> (low), <span class="v">11.7</span>
+        (moderate), and <span class="v">16.5</span> (high), 15 children per group. A one-way ANOVA found
+        differences unlikely under a no-difference model, <span class="v">F(2, 42) = 23.18</span>,
+        <span class="v">p &lt; .001</span>, <span class="v">η² = 0.52</span>.</p>
+      <div class="statchips">
+        <span><b>Means</b> 5.5 / 11.7 / 16.5</span><span><b>F(2,42)</b> 23.18</span><span><b>p</b> &lt; .001</span><span><b>η²</b> 0.52 (large)</span>
+      </div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Common mistake</h4>
+      <p>A significant ANOVA tells you <strong>at least one</strong> group differs — <em>not which ones</em>. To
+      compare specific pairs (e.g., moderate vs. high), you need planned contrasts or post-hoc tests
+      (like Tukey’s HSD), which control for multiple comparisons.</p>
+    </div>
+    <div class="callout c-reminder" style="margin-top:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Effect size &amp; clinical note</h4>
+      <p>η² = 0.52 means about half the variability in improvement tracks with dosage group — a large effect
+      here. Clinically, “more is better” has limits: higher dosage costs time and money and can hit ceilings or
+      fatigue. Effect size informs the trade-off; it doesn’t settle it.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated dosage data: 15 children per group</span>
+set.seed(680)
+improve &lt;- c(rnorm(15, 8, 4.5), rnorm(15, 12, 4.5), rnorm(15, 16, 4.5))
+dose    &lt;- factor(rep(c("Low","Moderate","High"), each = 15),
+                  levels = c("Low","Moderate","High"))
+
+fit &lt;- <span class="fn">aov</span>(improve ~ dose)
+<span class="fn">summary</span>(fit)            <span class="cmt"># F, df, p</span>
+<span class="fn">TukeyHSD</span>(fit)           <span class="cmt"># which groups differ (post-hoc)</span></code></pre></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p><em>Data → Data Analysis → Anova: Single Factor</em> (enable the Analysis ToolPak first).
+      <em>Interpretation reminder:</em> the ToolPak gives the overall F and p, but won’t do post-hoc pairwise
+      comparisons for you — and ANOVA never tells you whether a difference is clinically important.</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>The ANOVA is significant. Can you conclude “high dosage beats moderate”?</strong></p>
+      <p class="muted">Not yet. ANOVA only says the groups aren’t all equal. You’d need a post-hoc comparison
+      (e.g., Tukey) to claim a specific high-vs-moderate difference.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ===================== SECTION 14 — CORRELATION ===================== -->
+<section id="sec14" class="lesson" aria-labelledby="sec14-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec14-h">4.5 &nbsp;Correlation</h2>
+    <p class="lead"><strong>Question:</strong> do two continuous things move together? <strong>Population:</strong>
+      children in a vocabulary program. <strong>Variables:</strong> therapy attendance (%) and vocabulary gain.</p>
+
+    <p><strong>Why this test:</strong> both variables are continuous and we’re asking about <em>association</em>
+      (direction and strength), not group differences. The correlation coefficient <em>r</em> ranges from −1 to +1.</p>
+
+    <figure class="fig">
+      <div class="fig-title">Attendance vs. vocabulary gain <span class="tag sim">Simulated</span></div>
+      <div id="corrSvg" role="img" aria-label="Scatterplot of attendance against vocabulary gain with an upward trend line, showing a moderate positive but scattered relationship."></div>
+      <figcaption>Each dot is a child. The line summarizes the trend; the scatter around it shows the relationship is far from perfect.</figcaption>
+    </figure>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">Across 40 simulated children, attendance and vocabulary gain were moderately and positively
+        associated, <span class="v">r = 0.47</span>, <span class="v">p = .002</span>,
+        95% CI <span class="v">[0.19, 0.68]</span>, <span class="v">r² = 0.22</span>.</p>
+      <div class="statchips">
+        <span><b>r</b> 0.47 (moderate)</span><span><b>95% CI</b> 0.19 to 0.68</span><span><b>p</b> = .002</span><span><b>r²</b> 0.22</span>
+      </div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Correlation is not causation</h4>
+      <p>Children who attend more might also have more home support, milder profiles, or higher motivation —
+      any of which could drive vocabulary gains. A correlation flags a pattern worth studying; it does not show
+      that attendance <em>causes</em> the gain. <strong>Always view the scatterplot</strong>: one outlier or a
+      curved pattern can masquerade as (or hide) a linear r.</p>
+    </div>
+    <div class="callout c-reminder" style="margin-top:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Effect size note</h4>
+      <p>Here r itself is the effect size. r² = 0.22 means about 22% of the variation in gain is shared with
+      attendance — leaving ~78% to everything else. Moderate, not destiny.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated attendance &amp; vocabulary-gain data (n = 40)</span>
+set.seed(680)
+attendance &lt;- rnorm(40, 70, 14)
+vocab_gain &lt;- 0.35 * attendance + rnorm(40, 0, 7)
+
+<span class="fn">cor.test</span>(attendance, vocab_gain)   <span class="cmt"># r, p, and 95% CI for r</span>
+<span class="fn">plot</span>(attendance, vocab_gain)       <span class="cmt"># always look at the scatterplot</span></code></pre></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p><code class="inline">=CORREL(x_range, y_range)</code> (or <code class="inline">=PEARSON(...)</code>) gives r.
+      <em>Interpretation reminder:</em> pair it with a scatterplot, and never read causation into r.</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>r = 0.47. A parent asks, “So therapy attendance causes vocabulary growth?”</strong></p>
+      <p class="muted">Careful answer: attendance and gain tend to rise together in these data, but a correlation
+      can’t establish cause — other factors may explain both. We’d need a controlled design to speak to causation.</p>
+    </div></details>
+  </div>
+</section>
+<!-- ===================== SECTION 15 — REGRESSION ===================== -->
+<section id="sec15" class="lesson" aria-labelledby="sec15-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec15-h">4.6 &nbsp;Regression</h2>
+    <p class="lead"><strong>Question:</strong> can we <em>predict</em> an outcome, and how much does a predictor
+      matter? <strong>Population:</strong> children in a vocabulary program. <strong>Outcome:</strong> vocabulary
+      gain, predicted from therapy hours (and baseline language).</p>
+
+    <p><strong>Why this test:</strong> regression draws the best-fit line through the data. Its <strong>slope</strong>
+      says how much the outcome changes per unit of the predictor; <strong>R²</strong> says how much of the
+      outcome’s variation the model explains.</p>
+
+    <div class="widget" id="regSlider" aria-labelledby="rs-h" style="background:#fff">
+      <span class="wlabel">Try it · Prediction slider</span>
+      <h3 id="rs-h" style="margin-top:6px">Slide therapy hours; read the model’s prediction</h3>
+      <figure class="fig" style="box-shadow:none;border:0;padding:0;margin:8px 0">
+        <div class="fig-title">Vocabulary gain vs. therapy hours <span class="tag sim">Simulated</span></div>
+        <div id="regSvg" role="img" aria-label="Scatterplot of therapy hours against vocabulary gain with a best-fit regression line. A moving marker shows the model's predicted gain for the selected number of hours."></div>
+      </figure>
+      <div class="slider-row">
+        <label for="hoursRange"><strong>Therapy hours:</strong></label>
+        <input type="range" id="hoursRange" min="5" max="40" step="1" value="20">
+        <span class="readout" id="hoursOut">20 hours</span>
+        <span class="readout" id="regPred" style="background:#E8F6EF;border-color:#2E9E6B">Predicted gain: —</span>
+      </div>
+      <p class="muted" style="font-size:.92rem">The marker rides the fitted line. Predictions far outside the
+        observed range (about 5–40 hours) are extrapolation — treat them with suspicion.</p>
+    </div>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">Simple model: <span class="v">gain = 11.72 + 0.41 × hours</span>. Each additional therapy
+        hour predicts about <span class="v">+0.41</span> points of gain, <span class="v">p &lt; .001</span>,
+        slope 95% CI <span class="v">[0.22, 0.59]</span>, <span class="v">R² = 0.29</span>. Adding baseline
+        language as a second predictor: each hour <span class="v">+0.34</span> (p &lt; .001), each baseline point
+        <span class="v">+0.25</span> (p = .002), <span class="v">R² = 0.43</span>.</p>
+      <div class="statchips">
+        <span><b>Slope (hours)</b> 0.41</span><span><b>95% CI</b> 0.22 to 0.59</span><span><b>p</b> &lt; .001</span><span><b>R²</b> 0.29 → 0.43 w/ baseline</span>
+      </div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Prediction ≠ proof of causation</h4>
+      <p>A significant slope means the predictor helps forecast the outcome <em>in these data</em>. It does not
+      prove that adding hours <em>causes</em> gains — unmeasured factors (severity, support) may drive both.
+      And R² = 0.43 still leaves most of the variation unexplained.</p>
+    </div>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>So where does “cause” come from? The design — not the test</h4>
+      <p>This trips up almost everyone, so let’s say it plainly: <strong>no statistical test proves causation on
+      its own.</strong> A t-test, ANOVA, and regression are all just tools for detecting differences or
+      associations in whatever data you hand them. What can support a causal interpretation is <strong>how the study
+      was run</strong> — especially whether participants were <strong>randomly assigned</strong> to conditions (a
+      true experiment). Random assignment is a major reason a design can support a causal interpretation because it
+      helps make groups comparable, assuming the study is otherwise well implemented.</p>
+      <p>That’s why the <em>same</em> regression can mean different things. Run it on a <strong>randomized</strong>
+      treatment and the slope estimates a causal effect; run it on <strong>observational</strong> predictors people
+      weren’t randomized to — therapy hours they chose, baseline severity they came in with — and it only describes
+      association, because confounders may drive both. So the question to ask isn’t “which test?” but
+      <strong>“were participants randomly assigned?”</strong> (The same caution applies to t-tests and ANOVA run on
+      groups that formed naturally rather than by randomization.)</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated data (n = 50)</span>
+set.seed(680)
+hours    &lt;- runif(50, 5, 40)
+baseline &lt;- rnorm(50, 60, 12)
+gain     &lt;- 2 + 0.45*hours + 0.15*baseline + rnorm(50, 0, 6)
+
+<span class="fn">summary</span>(<span class="fn">lm</span>(gain ~ hours))               <span class="cmt"># slope, p, R-squared</span>
+<span class="fn">summary</span>(<span class="fn">lm</span>(gain ~ hours + baseline))    <span class="cmt"># multiple regression</span>
+<span class="fn">confint</span>(<span class="fn">lm</span>(gain ~ hours))               <span class="cmt"># 95% CI for the slope</span></code></pre></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p><em>Data → Data Analysis → Regression</em>, or formulas <code class="inline">=SLOPE(y,x)</code>,
+      <code class="inline">=INTERCEPT(y,x)</code>, <code class="inline">=RSQ(y,x)</code>,
+      <code class="inline">=LINEST(y,x,TRUE,TRUE)</code>. <em>Interpretation reminder:</em> focus on the slope, its
+      CI and p-value, and R² — and remember: causation comes from the <em>study design</em> and how well it was implemented, not from the test.</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>The slope for hours is 0.41. What does that mean in words?</strong></p>
+      <p class="muted">For every extra therapy hour, the model predicts about 0.41 more points of vocabulary gain,
+      on average, within the observed range — a prediction, not a guarantee for any one child.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ===================== SECTION 16 — CHI-SQUARE ===================== -->
+<section id="sec16" class="lesson" aria-labelledby="sec16-h">
+  <div class="container">
+    <p class="kicker">Part 4 · The six tests</p>
+    <h2 id="sec16-h">4.7 &nbsp;Chi-square test</h2>
+    <p class="lead"><strong>Question:</strong> are two <em>categorical</em> variables associated?
+      <strong>Population:</strong> clients across service models. <strong>Variables:</strong> service model
+      (individual / group / hybrid) and response category (responder / non-responder).</p>
+
+    <p><strong>Why this test:</strong> both variables are categories, and we’re comparing <em>counts</em>. Chi-square
+      asks whether the observed counts differ from what we’d expect if the two variables were unrelated.</p>
+
+    <div class="grid g2">
+      <figure class="fig">
+        <div class="fig-title">Responder rate by service model <span class="tag sim">Simulated</span></div>
+        <div id="chiSvg" role="img" aria-label="Bar chart of the percentage of responders within each service model. The individual model has the highest responder rate, the group model the lowest, and hybrid in between."></div>
+        <figcaption>Bars show the % of responders within each model.</figcaption>
+      </figure>
+      <div>
+        <div class="tablewrap">
+          <table class="data">
+            <caption>Observed counts (expected counts ≈ 22.7 responders / 17.3 non-responders per row).</caption>
+            <thead><tr><th>Service model</th><th class="num">Responder</th><th class="num">Non-responder</th><th class="num">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Individual</td><td class="num">31</td><td class="num">9</td><td class="num">40</td></tr>
+              <tr><td>Group</td><td class="num">13</td><td class="num">27</td><td class="num">40</td></tr>
+              <tr><td>Hybrid</td><td class="num">24</td><td class="num">16</td><td class="num">40</td></tr>
+              <tr style="font-weight:700"><td>Total</td><td class="num">68</td><td class="num">52</td><td class="num">120</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:.9rem">Expected count for a cell = row&nbsp;total × column&nbsp;total ÷ grand&nbsp;total.</p>
+      </div>
+    </div>
+
+    <div class="result">
+      <h4>Simulated result</h4>
+      <p class="stmt">Response category was associated with service model,
+        <span class="v">χ²(2) = 16.76</span>, <span class="v">p &lt; .001</span>,
+        <span class="v">Cramér’s V = 0.37</span> (n = 120). Responder rates were 78% (individual), 33% (group),
+        and 60% (hybrid).</p>
+      <div class="statchips">
+        <span><b>χ²(2)</b> 16.76</span><span><b>p</b> &lt; .001</span><span><b>Cramér’s V</b> 0.37 (moderate)</span><span><b>n</b> 120</span>
+      </div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>What chi-square does and doesn’t say</h4>
+      <p>It tests whether observed counts differ from the counts expected if the two categorical variables were
+      independent — it is <strong>not</strong> a test of means, and it doesn’t tell you <em>why</em> or whether
+      the difference is clinically important. Self-selection (who ends up in each model) could explain a lot.
+      Cramér’s V (0.37) gives the strength of the association.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: how this is done in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Observed counts as a 3 x 2 table (rows = model, cols = response)</span>
+tab &lt;- <span class="fn">matrix</span>(c(31, 9, 13, 27, 24, 16), nrow = 3, byrow = TRUE,
+              dimnames = list(c("Individual","Group","Hybrid"),
+                              c("Responder","Non-responder")))
+<span class="fn">chisq.test</span>(tab)                 <span class="cmt"># chi-square, df, p</span>
+<span class="fn">chisq.test</span>(tab)$expected        <span class="cmt"># expected counts</span></code></pre></div>
+    </details>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p><code class="inline">=CHISQ.TEST(observed_range, expected_range)</code> returns the p-value — but you must
+      build the <em>expected</em> table first (row × column ÷ grand total). <em>Interpretation reminder:</em>
+      chi-square counts patterns; it doesn’t measure clinical importance.</p>
+    </div>
+
+    <details class="qcheck"><summary>Quick check</summary><div class="body">
+      <p><strong>Why can’t we conclude “individual therapy is the best model” from this test?</strong></p>
+      <p class="muted">Chi-square shows the variables are associated, not that the model <em>caused</em> better
+      response. Clients weren’t randomly assigned, so differences in who chose each model could drive the pattern.</p>
+    </div></details>
+  </div>
+</section>
+<!-- ===================== SECTION 17 — ASSUMPTIONS ===================== -->
+<section id="sec17" class="lesson" aria-labelledby="sec17-h">
+  <div class="container">
+    <p class="kicker">Part 4 · Choosing &amp; reading tests</p>
+    <h2 id="sec17-h">4.8 &nbsp;Assumptions, in plain language</h2>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">★</span>
+      <h4>Reframe</h4>
+      <p>Assumptions are not magic rules that make a test “legal” or “illegal.” They are
+      <strong>conditions that affect how much we can trust the result</strong>. When they’re badly violated, the
+      p-value and CI can mislead.</p>
+    </div>
+
+    <div class="grid g3">
+      <div class="card"><h4>Independence</h4><p class="muted">Observations don’t influence each other. Testing 10 kids from the same classroom twice is not 20 independent data points.</p></div>
+      <div class="card"><h4>Approximate normality</h4><p class="muted">For t-tests/ANOVA, the data (or residuals) are roughly bell-shaped. Matters most with small samples.</p></div>
+      <div class="card"><h4>Similar variability</h4><p class="muted">Groups have roughly comparable spread. Welch’s t-test relaxes this for two groups.</p></div>
+      <div class="card"><h4>Linearity</h4><p class="muted">For correlation/regression, the relationship is roughly a straight line — check the scatterplot.</p></div>
+      <div class="card"><h4>Outliers</h4><p class="muted">A few extreme points can swing means, r, and slopes. Investigate; don’t just delete.</p></div>
+      <div class="card"><h4>Expected counts</h4><p class="muted">Chi-square gets shaky when expected cell counts are very small (a common rule of thumb is &lt; 5).</p></div>
+    </div>
+
+    <div class="widget" id="assumQuiz" aria-labelledby="aq-h">
+      <span class="wlabel">Try it · Which assumption is at risk?</span>
+      <h3 id="aq-h" style="margin-top:6px">Spot the condition to worry about</h3>
+      <div id="aqItems"></div>
+      <div class="feedback info show" id="aqScore" role="status" style="margin-top:12px">Score: 0 / 0</div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-bottom:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Take-home</h4>
+      <p>You don’t need to memorize every assumption. Ask: <em>were the observations independent? does the picture
+      look reasonable? are there wild outliers?</em> Those three questions catch most real problems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 18 — READING RESULTS ===================== -->
+<section id="sec18" class="lesson" aria-labelledby="sec18-h">
+  <div class="container">
+    <p class="kicker">Part 4 · Choosing &amp; reading tests</p>
+    <h2 id="sec18-h">4.9 &nbsp;Reading a results paragraph</h2>
+    <p class="lead">Journal results sections are dense by design. Once you can name each symbol, they become
+      readable. Click any highlighted term below.</p>
+
+    <div class="widget" id="annot" aria-labelledby="an-h">
+      <span class="wlabel">Try it · Click to decode</span>
+      <h3 id="an-h" style="margin-top:6px">Two simulated results sentences</h3>
+      <p class="annot">“Naming improved from <button class="lab" data-term="M">M = 49.6</button>
+        (<button class="lab" data-term="SD">SD = 7.0</button>) to <button class="lab" data-term="M">M = 58.3</button>
+        (<button class="lab" data-term="SD">SD = 9.6</button>); the gain was significant, <button class="lab" data-term="t">t(19) = 5.84</button>,
+        <button class="lab" data-term="p">p &lt; .001</button>,
+        <button class="lab" data-term="CI">95% CI [5.6, 11.8]</button>,
+        <button class="lab" data-term="d">d_z = 1.31</button>.”</p>
+      <p class="annot">“Dosage groups differed, <button class="lab" data-term="F">F(2, 42) = 23.18</button>,
+        <button class="lab" data-term="p">p &lt; .001</button>,
+        <button class="lab" data-term="eta">η² = 0.52</button>. Attendance related to gain,
+        <button class="lab" data-term="r">r = 0.47</button>, and therapy hours explained
+        <button class="lab" data-term="R2">R² = 0.29</button> of the variance.”</p>
+      <div class="feedback info show" id="annotInfo" role="status">Tap a highlighted term to see what it means, what it tells you, and what it does <em>not</em> tell you on its own.</div>
+    </div>
+
+    <div class="callout c-slp" style="margin-bottom:0"><span class="ic" aria-hidden="true">◆</span>
+      <h4>Reading strategy</h4>
+      <p>Read results in this order: <strong>(1)</strong> what was compared, <strong>(2)</strong> the effect size
+      and confidence interval (how big, how precise), <strong>(3)</strong> the p-value, and <strong>(4)</strong>
+      whether the authors’ clinical claim is bigger than their data support.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 5 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 5 introduction">
+  <div class="container">
+    <span class="pill">Part 5 of 6</span>
+    <h2>Single-case research</h2>
+    <p class="lead">Much of SLP evidence comes from carefully studying one client at a time. The logic is
+      different from group statistics — and the graph is the star of the show.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 19 — SINGLE-CASE ===================== -->
+<section id="sec19" class="lesson" aria-labelledby="sec19-h">
+  <div class="container">
+    <p class="kicker">Part 5 · Single-case research</p>
+    <h2 id="sec19-h">5.1 &nbsp;Single-case design, visual analysis &amp; Tau-U</h2>
+    <p class="lead">Single-case experimental designs are <strong>not</strong> just “one person, before and after.”
+      They rely on <strong>repeated measurement over time</strong>, distinct <strong>baseline and intervention
+      phases</strong>, and <strong>replication</strong> (across behaviors, people, or settings) to build a
+      convincing case.</p>
+
+    <figure class="fig">
+      <div class="fig-title">AAC communicative initiations across sessions <span class="tag sim">Simulated</span></div>
+      <div id="scdSvg" role="img" aria-label="Line graph of communicative initiations per session. During the baseline phase the values are low and stable; after a phase-change line, during intervention, the values step up and trend upward across sessions."></div>
+      <figcaption>A vertical line separates the baseline phase from the intervention phase. Read the picture
+        before any number.</figcaption>
+    </figure>
+
+    <h3>The six things visual analysis looks for</h3>
+    <div class="widget" id="scdChecklist" aria-labelledby="sc-h">
+      <span class="wlabel">Try it · Visual-analysis checklist</span>
+      <h3 id="sc-h" style="margin-top:6px">Inspect the graph above, then check what you see</h3>
+      <div class="checklist" id="scList">
+        <label><input type="checkbox" data-k="level"> <span><strong>Level</strong> — did the average shift between phases? <em>(Compare baseline vs. intervention height.)</em></span></label>
+        <label><input type="checkbox" data-k="trend"> <span><strong>Trend</strong> — is there a slope within a phase? <em>(Flat in baseline, rising in intervention?)</em></span></label>
+        <label><input type="checkbox" data-k="variability"> <span><strong>Variability</strong> — how bouncy are the points around the trend?</span></label>
+        <label><input type="checkbox" data-k="immediacy"> <span><strong>Immediacy</strong> — how fast did behavior change right after the phase line?</span></label>
+        <label><input type="checkbox" data-k="overlap"> <span><strong>Overlap</strong> — do intervention points overlap with baseline values? <em>(Less overlap = stronger effect.)</em></span></label>
+        <label><input type="checkbox" data-k="consistency"> <span><strong>Consistency</strong> — would the pattern repeat across similar phases or cases?</span></label>
+      </div>
+      <button class="btn sm" id="scReveal" style="margin-top:12px">Reveal an instructor reading</button>
+      <div class="feedback info" id="scFb" role="status"></div>
+    </div>
+
+    <h3>Where Tau-U fits</h3>
+    <p>Once the graph is convincing, a <strong>quantitative index</strong> can summarize the change.
+      <strong>Tau-U</strong> (Parker et al., 2011) rolls two things you can already see on the graph into one
+      number: how little the intervention points <em>overlap</em> with baseline, and the <em>trend</em> across the
+      phases. Some versions also adjust for a trend that was already present <em>during</em> baseline.</p>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Why a flat baseline matters</h4>
+      <p>If a behavior is already climbing <em>during</em> the baseline — before treatment even starts — then part
+      of the later rise might have happened anyway, so we can’t fully credit the intervention. That “rising
+      baseline” is a classic threat to single-case studies. It’s why strong designs aim for a <strong>stable
+      baseline</strong> first, and why careful readers (and trend-aware indices like Tau-U) try not to reward a
+      treatment for a climb that was already underway. You don’t need the math behind that adjustment — just the
+      habit of asking, <em>“was the baseline flat before things changed?”</em></p>
+    </div>
+
+    <div class="result">
+      <h4>Simulated single-case indices</h4>
+      <p class="stmt">Baseline initiations averaged <span class="v">1.8</span>; intervention averaged
+        <span class="v">6.2</span>. Nonoverlap was high — <span class="v">NAP = 0.99</span>,
+        <span class="v">PND = 92%</span> — and the trend-aware <span class="v">Tau-U = 0.78</span>.</p>
+      <div class="statchips">
+        <span><b>M baseline</b> 1.8</span><span><b>M intervention</b> 6.2</span><span><b>NAP</b> 0.99</span><span><b>PND</b> 92%</span><span><b>Tau-U</b> 0.78</span>
+      </div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-top:0"><span class="ic" aria-hidden="true">➜</span>
+      <h4>Reporting note</h4>
+      <p>Tau-U here is a teaching value; in real reporting, specify the software/function and whether
+      baseline-trend correction was used.</p>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>One number never replaces the graph</h4>
+      <p>Quantitative indices such as Tau-U can <em>supplement</em> visual analysis, but they do not replace strong
+      design, repeated measurement, replication, and careful visual interpretation. Notice that near-perfect
+      nonoverlap (NAP = 0.99) and the trend-aware Tau-U (0.78) tell slightly different stories — that’s why we look
+      at several signals, and the picture, together.</p>
+    </div>
+
+    <div class="callout c-key" style="margin-top:0"><span class="ic" aria-hidden="true">★</span>
+      <h4>Other indices you may see</h4>
+      <p>Percentage of Nonoverlapping Data (<strong>PND</strong>), Percentage of Data Exceeding the Median
+      (<strong>PEM</strong>), Nonoverlap of All Pairs (<strong>NAP</strong>), <strong>Tau / Tau-U</strong>,
+      <strong>randomization tests</strong> (when the design allows), and standardized-mean-difference approaches.
+      Each has strengths and blind spots.</p>
+    </div>
+
+    <div class="callout c-excel"><span class="ic" aria-hidden="true">▦</span>
+      <h4>Can I do this in Excel?</h4>
+      <p>Excel is great for <em>plotting</em> session-by-session data (a line chart with a phase divider). But
+      Tau-U is <strong>not</strong> a built-in Excel function — use R or a dedicated calculator and treat the value
+      as a teaching figure. <em>Interpretation reminder:</em> graph first, index second.</p>
+    </div>
+
+    <details class="rbox"><summary>Optional: plotting &amp; indices in R</summary>
+      <div class="body"><pre><code><span class="cmt"># Simulated AAC initiations: 6 baseline + 12 intervention sessions</span>
+session &lt;- 1:18
+phase   &lt;- <span class="fn">rep</span>(c("Baseline","Intervention"), c(6, 12))
+y       &lt;- c(2,1,2,2,3,1, 4,3,5,4,4,5,7,7,9,7,8,11)
+
+<span class="fn">plot</span>(session, y, type = "b")          <span class="cmt"># line graph; add a phase divider</span>
+<span class="fn">abline</span>(v = 6.5, lty = 2)             <span class="cmt"># phase-change line</span>
+<span class="cmt"># Tau-U: use a verified package/calculator (e.g., the 'SingleCaseES' package)</span></code></pre>
+      <p class="muted" style="font-size:.82rem;color:#9FB7DA;margin:8px 2px 2px">Indices above were computed for this simulated dataset; Tau-U values can differ slightly across software variants.</p></div>
+    </details>
+  </div>
+</section>
+<!-- ===================== PART 6 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 6 introduction">
+  <div class="container">
+    <span class="pill">Part 6 of 6</span>
+    <h2>Integration &amp; review</h2>
+    <p class="lead">Pull it together: the reminders that keep you honest, the red flags to watch for, and a
+      low-stakes quiz to check your reasoning.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 20 — SUMMARY ===================== -->
+<section id="sec20" class="lesson" aria-labelledby="sec20-h">
+  <div class="container">
+    <p class="kicker">Part 6 · Integration &amp; review</p>
+    <h2 id="sec20-h">6.1 &nbsp;Bringing it all together</h2>
+
+    <h3>Six interpretation reminders</h3>
+    <div class="grid g3">
+      <div class="card"><h4>1 · Question first</h4><p class="muted">Outcome type + groups + repeated? decides the test — not the other way around.</p></div>
+      <div class="card"><h4>2 · p is not proof</h4><p class="muted">It’s “surprise under the null,” nothing more. Small ≠ important; large ≠ no effect.</p></div>
+      <div class="card"><h4>3 · Size &amp; precision</h4><p class="muted">Always read the effect size and the confidence interval, not just the p-value.</p></div>
+      <div class="card"><h4>4 · Statistical ≠ clinical</h4><p class="muted">Ask whether the change matters for communication, participation, safety, or quality of life.</p></div>
+      <div class="card"><h4>5 · Association ≠ cause</h4><p class="muted">Correlation and regression describe patterns; design earns causal claims.</p></div>
+      <div class="card"><h4>6 · Picture beats index</h4><p class="muted">Especially single-case: the graph leads, Tau-U supports.</p></div>
+    </div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">⚠</span>
+      <h4>Red-flag phrases to question</h4>
+      <p>“The p-value proves the treatment works.” · “p &gt; .05, so it doesn’t work.” · “A significant result means
+      a clinically important result.” · “The correlation shows X causes Y.” · “Tau-U = 0.8, so we don’t need the
+      graph.” · “The effect is large, so it must matter for every client.”</p>
+    </div>
+
+    <div class="widget" id="excelMatch" aria-labelledby="em-h">
+      <span class="wlabel">Try it · Match the Excel route</span>
+      <h3 id="em-h" style="margin-top:6px">Which Excel function or menu fits?</h3>
+      <p class="muted">A quick recap of the spreadsheet bridges — interpretation still happens in your head, not in the cell.</p>
+      <div id="emItems"></div>
+      <div class="feedback info show" id="emScore" role="status" style="margin-top:12px">Score: 0 / 0</div>
+    </div>
+
+    <div class="widget" id="finalQuiz" aria-labelledby="fq-h">
+      <span class="wlabel">Try it · Final low-stakes quiz</span>
+      <h3 id="fq-h" style="margin-top:6px">Five quick scenarios</h3>
+      <div id="fqItems"></div>
+      <div class="scorebar" aria-hidden="true"><span id="fqBar"></span></div>
+      <div class="feedback info show" id="fqScore" role="status">Score: 0 / 0 — answer the questions above.</div>
+    </div>
+
+    <details class="qcheck" id="cheat"><summary>Open the one-page cheat sheet</summary><div class="body">
+      <div class="tablewrap">
+        <table class="data">
+          <caption>Quick reference. All examples on this page use simulated data.</caption>
+          <thead><tr><th>If you want to…</th><th>Use</th><th>Effect size</th><th>Excel</th></tr></thead>
+          <tbody>
+            <tr><td>Compare the same people twice</td><td>Paired t-test</td><td>Cohen’s d<sub>z</sub></td><td><code class="inline">T.TEST(…,2,1)</code></td></tr>
+            <tr><td>Compare two separate groups</td><td>Independent t-test</td><td>Cohen’s d</td><td><code class="inline">T.TEST(…,2,3)</code></td></tr>
+            <tr><td>Compare 3+ groups</td><td>One-way ANOVA</td><td>η²</td><td>ToolPak › ANOVA</td></tr>
+            <tr><td>Relate two continuous variables</td><td>Correlation</td><td>r, r²</td><td><code class="inline">CORREL</code></td></tr>
+            <tr><td>Predict an outcome</td><td>Regression</td><td>slope, R²</td><td>ToolPak › Regression</td></tr>
+            <tr><td>Relate two categories</td><td>Chi-square</td><td>Cramér’s V</td><td><code class="inline">CHISQ.TEST</code></td></tr>
+            <tr><td>Track one client over time</td><td>Visual analysis (+ Tau-U)</td><td>Tau-U / nonoverlap</td><td>Plot only</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div></details>
+
+    <div class="callout c-slp" style="margin-bottom:0"><span class="ic" aria-hidden="true">◆</span>
+      <h4>You made it</h4>
+      <p>You don’t need to compute these by hand to be a sharp consumer of research. If you can name the question,
+      read the picture, and weigh size, precision, and clinical meaning, you can interpret most SLP studies with
+      confidence. Revisit any section any time — your progress isn’t stored, so explore freely.</p>
+    </div>
+  </div>
+</section>
+<!-- end lesson sections -->
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div style="max-width:760px">
+      <h4>About this lesson</h4>
+      <p class="refs">An interactive overview of inferential statistics for <strong>SLP 680: Research
+        Methods</strong>. Every dataset, figure, and statistic on this page is <strong>simulated for
+        teaching</strong>; the optional “how-to” notes are
+        shown in R, with Excel companions. Nothing here is real client data, and none of it is evidence about
+        whether any treatment works.</p>
+      <p class="refs">Your answers and
+        progress are never stored or sent anywhere. The displayed webpage uses fixed embedded simulated data; the R snippets show the analysis route.</p>
+    </div>
+    <p class="ack" style="margin-top:24px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px">Dr. Mengyang Qiu · Saint Elizabeth University · SLP 680</p>
+    <p class="ack">This webpage was created through vibe coding with Claude Opus 4.8 and ChatGPT 5.5 Pro.</p>
+  </div>
+</footer>
+    </div><!-- /content -->
+  </div><!-- /app -->
+
+<a href="#top" class="backtop btn sm" id="backtop" aria-label="Back to top">↑ Top</a>
+
+<script>
+/* =========================================================================
+   SIMULATED TEACHING DATA (computed programmatically with a fixed seed).
+   Not real client/patient data.
+   ========================================================================= */
+const SIM = {"population":{"values":[68,73,86,90,73,64,57,71,76,56,71,59,64,97,48,48,50,58,68,83,63,63,63,100,70,83,62,76,81,81,69,73,96,52,80,67,84,63,76,64,34,94,82,77,81,52,74,80,56,70,65,81,79,64,51,62,90,74,74,54,78,74,60,52,76,67,85,76,55,71,74,33,83,72,61,76,81,65,72,73,64,77,60,68,87,55,67,73,82,75,62,96,48,59,66,62,59,77,71,80,57,65,51,75,68,63,59,75,67,82,68,82,67,74,66,77,85,65,65,77,67,65,60,78,35,48,64,100,56,79,74,77,69,71,88,71,75,74,76,71,83,68,53,58,78,54,62,82,76,92,71,56,44,74,56,89,65,72,58,64,61,62,64,68,70,67,73,97,85,75,69,78,50,84,61,62,62,73,63,78,62,77,67,73,81,63,74,58,92,59,79,84,58,63,71,65,61,79,69,85,70,75,51,68,58,59,91,81,98,67,70,74,64,63,69,63,89,76,95,85,80,76,91,59,46,61,57,93,74,69,87,56,67,71,67,79,83,66,59,54,87,66,71,66,82,67,51,84,66,67,67,74,60,81,68,64,88,61,87,85,61,75,61,79,66,84,85,55,81,91,48,71,71,79,67,58,65,53,78,87,99,50,76,95,56,46,92,58,71,68,83,53,68,61,64,66,80,68,83,70,70,52,65,58,71,66,68,60,68,100,98,86,62,72,72,78,74,60,51,42,72,75,65,85,86,71,84,69,82,67,82,68,58,75,59,70,63,72,76,49,78,62,80,62,75,66,85,94,64,72,69,55,68,69,79,72,66,61,49,85,68,71,55,62,95,77,74,62,66,65,83,64,73,70,63,66,65,86,70,67,69,70,65,79,42,75,59,60,90,81,63,63,81,67,54,75,76,67,58,78,65,65,66,55,81,87,82,69,70,84,66,92,76,56,71,64,73,71,46,62,66,82,47,72,68,74,59,79,62,65,79,76,74,58,60,75,48,76,62,77,64,81,70,69,65,51,67,87,69,78,79,63,54,99,77,85,55,62,56,44,64,62,75,71,83,76,86,60,90,76,41,57,62,63,66,81,81,60,67,86,42,69,92,56,58,54,92,63,80,68,58,58,74,54,69,73,61,88,80,57,76,61,70,61,54,54,77,58,68,69,65,64,72,84,86,72,58,84,66,63,88,75,58,60,73,85,81,64,66,62,51,84,81,63,72,74,42,69,68,48,66,61,88,66,58,93,65,66,80,76,68,50,92,76,56,69,89,77,88,58,66,77,55,52,51,70,71,77,57,80,87,82,71,66,46,66,90,91,62,72,100,75,58,74,62,67,69,56,57,71,60,100,79,60,64,80,68,81,56,85,63,74,63,65,76,59,57,86,56,91,58,69,72,63,78,64,68,52,63,74,67,56,58,72,73,70,60,77,92,88,38,93,39,78,87,90,84,44,38,73,62,70,61,63,81,62,67,64,82,76,58,71,87,66,52,79,69,66,80,78,78,96,56,56,78,78,68,63,53,56,60,40,63,65,77,75,77,55,73,71,44,58,64,73,71,47,64,81,62,57,55,53,74,84,77,84,68,66,64,84,95,80,53,92,86,63,49,93,89,69,45,62,72,65,48,70,74,61,97,72,57,85,81,74,67,75,77,58,71,79,65,71,93,73,57,49,79,79,55,68,55,49,62,76,60,59,92,75,79,71,72,46,63,80,69,49,61,85,75,75,57,51,89,62,63,76,68,75,80,77,75,73,70,53,68,94,68,59,60,70,55,86,50,87,57,54,67,79,97,82,70,45,64,63,95,82,75,80,73,82,66,57,55,85,83,65,82,81,74,56,65,61,68,63,62,76,59,75,49,55,76,70,66,60,65,58,51,84,88,72,77,63,55,62,76,74,72,78,76,59,63,70,62,62,75,80,48,85,80,55,62,54,59,60,83,59,78,55,57,65,67,84,80,58,73,62,63,74,75,81,58,66,79,69,51,62,61,78,76,92,72,80,79,62,62,80,79,83,80,68,69,79,63,70,99,90,98,56,70,55,65,67,61,69,59,81,76,49,53,57,66,77,78,67,53,51,71,45,84,54,78,59,71,74,71,53,73,85,59,65,65,84,72,63,70,89,61,53,58,79,97,57,70,66,78,65,79,82,84,64,75,60,81,65,84,68,81,46,96,61,82,96,55,65,56,65,70,60,69,84,66,52,66,77,61,64,77,62,77,55,71,88,64,80,99,60,48,72,44,82,69,79,62,89,55,55,65,79,62,77,74,82,80,87,62,57,58,73,59,72,77,59,82,61,68,69,84,61,82,100,69,45,71,62,68,67,67,57,82,78,78,63,60,61,67,77,70,79,62,51,85,59,80,66,96,100,62,93,63,61,84,64,59,50,80,73,59,70,56,65,56,76,76,95,73,82,69,71,76,59,75,75,66,70,73,63,65,86,73,74,90,85,85,81,54,77,79,62,93,100,56,67,63,59,98,90,48,60,74,58,73,62,77,75,78,61,63,77,81,72,94,69,79,79,77,52,88,70,49,72,61,66,65,63,56,73,93,82,68,73,65,76,76,74,62,61,90,74,81,57,69,89,71,81,79,65,72,70,38,60,67,79,66,74,69,93,84,100,73,67,73,70,62,76,73,85,73,70,69,84,79,43,86,56,51,63,67,82,64,77,66,67,78,57,69,62,64,50,56,69,50,66,51,74,75,89,57,84,69,79,55,52,45,82,71,61,80,58,43,70,56,83,62,76,80,70,52,81,76,90,67,74,59,64,57,69,72,57,64,78,69,64,63,82,76,76,59,66,60,80,71,75,53,83,85,68,68,70,79,74,66,56,66,70,50,58,78,52,80,79,64,68,70,65,76,89,83,87,72,61,73,70,74,67,52,63,84,63,87,80,73,64,89,68,54,56,55,64,94,85,76,72,52,94,65,57,74,81,70,64,52,69,88,79,59,66,88,90,47,69,72,61,48,64,82,67,72,81,68,71,47,66,57,70,63,59,74,63,62,52,81,63,58,79,72,71,67,55,77,77,68,75,65,68,73,74,63,62,88,60,74,80,42,73,100,62,72,67,98,74,78,66,61,75,81,59,71,78,80,67,83,53,81,88,71,73,68,68,72,82,39,79,74,87,88,39,58,56,67,68,80,100,69,75,70,71,76,76,75,83,72,65,90,61,67,84,65,57,50,79,84,65,80,50,81,80,71,78,83,62,57,55,81,78,68,68,67,81,65,73,65,61,81,65,57,77,69,62,58,63,80,82,47,92,57,66,66,85,100,65,54,64,58,57,71,62,73,61,72,61,56,98,58,59,72,35,72,67,69,67,91,73,83,83,68,76,58,75,75,56,80,56,78,65,96,67,80,48,78,82,80,75,77,75,81,92,68,57,69,80,83,81,79,65,74,44,92,64,67,50,71,73,54,56,66,63,59,56,59,91,68,82,58,75,94,74,62,87,84,71,73,84,85,73,59,76,70,57,69,66,67,49,96,52,64,62,66,71,57,73,62,64,86,76,71,73,59,58,53,96,67,86,85,73,78,54,72,84,78,100,78,64,87,48,61,65,92,70,69,66,70,66,71,43,63,76,83,42,71,84,67,62,78,66,77,91,66,79,57,95,71,63,81,88,64,79,85,79,50,71,63,95,55,94,42,63,60,79,68,86,79,84,85,67,87,70,84,82,77,84,85,62,86,70,65,77,63,54,65,77,58,59,67,62,83,68,68,41,67,66,68,63,63,76,59,70,84,50,73,63,74,61,73,67,82,85,49,81,71,69,81,50,79,42,43,89,100,79,74,80,76,69,79,79,57,75,71,69,74,71,73,77,72,73,47,59,65,70,46,65,70,73,68,59,67,67,65,61,54,58,78,53,56,63,88,46,37,87,67,75,56,77,93,44,85,78,88,59,62,59,60,62,66,68,84,60,100,62,62,62,83,62,38,62,69,85,59,70,85,60,61,63,73,74,78,61,79,58,79,64,71,82,73,75,86,76,72,80,86,85,78,63,60,67,64,96,54,85,79,60,55,81,56,96,78,56,79,85,69,63,66,98,85,82,53,75,78,60,69,40,66,75,79,57,77,51,81,84,49,68,67,76,100,69,83,83,39,71,60,55,80,49,45,57,78,61,31,63,60,63,74,88,76,84,89,100,68,79,59,56,61,65,65,61,63,73,67,81,91,82,68,58,82,73,68,83,76,59,61,69,85,65,71,54,47,66,79,90,61,57,52,76,56,72,60,61,70,45,69,73,59,66,69,65,65,66,41,58,62,70,54,74,86,68,62,92,48,82,70,51,84,75,67,79,70,73,68,60,65,58,86,67,62,74,70,68,69,90,80,79,82,74,57,81,75,65,75,65,61,72,78,65,67,48,84,74,87,90,66,79,66,65,86,80,49,76,82,63,74,87,59,68,67,73,69,63,91,69,73,75,71,69,66,66,71,76,78,70,78,73,59,80,69,69,100,51,38,90,72,50,77,76,67,43,50,95,74,76,68,68,57,45,72,66,81,76,78,72,56,70,95,73,83,71,73,64,82,68,84,58,90,76,59,48,77,70,90,69,63,60,65,91,76,72,82,60,66,70,78,77,67,74,95,66,70,77,60,83,56,78,81,72,76,65,56,84,73,80,59,75,71,75,48,59,75,68,67,87,80,53,70,74,68,70,76,100,78,47,73,49,69,71,60,61,74,66,66,54,53,49,59,42,85,90,53,77,92,85,71,76,78,53,77,74,73,69,83,70,69,65,83,72,73,60,79,83,72,63,75,68,86,70,70,61,47,74,43,66,61,92,84,65,68,59,66,88,96,49,68,75,72,92,66,60,83,70,91,70,68,64,60,77,73,68,65,82,61,73,77,75,69,61,82,75,63,79,57,59,65,78,78,62,66,85,53,88,70,82,73,86,76,67,59,59,59,78,64,86,86,64,75,62,79,77,98,80,75,66,74,71,72,54,69,62,80,76,64,64,79,78,84,60,86,65,79,67,75,71,41,79,67,59,72,79,40,72,52,82,65,76,76,70,84,68,98,64,71,53,71,83,83,64,63,56,55,66,65,81,68,72,66,84,64,87,65,71,90,76,79,65,68,66,70,69,73,86,63,64,54,65,78,84,66,68,76,44,93,79,48,75,63,90,62,79,84,65,72,58,75,60,67,42,59,82,59,64,75,79,48,68,61,65,73,80,87,63,89,68,68,62,79,70,70,70,88,55,53,61,77,69,81,75,66,92,70,58,80,51,70,49,76,74,50,54,64,66,53,81,84,81,55,75,76,67,68,74,89,82,63,52,72,85,71,91,75,66,71,68,68,72,65,70,66,50,84,68,73,58,74,59,85,54,64,71,65,77,63,53,74,75,68,77,70,71,70,88,66,83,79,85,64,76,80,52,79,76,70,90,83,70,59,68,52,74,68,45,62,49,83,70,66,91,72,60,72,62,57,68,73,77,58,92,72,46,70,46,54,75,81,72,75,53,65,73,57,74,78,54,65,69,71,79,91,83,73,61,67,74,70,79,77,61,84,73,81,87,78,82,72,70,58,66,87,69,83,76,74,65,63,84,95,82,63,57,77,65,61,69,66,58,61,74,44,66,88,56,93,90,72,68,65,75,95,68,75,69,65,87,90,73,71,54,83,96,57,54,71,69,72,55,60,68,68,85,52,68,67,60,58,73,51,58,75,59,70,74,59,83,88,61,80,92,63,86,68,66,75,48,63,71,67,72,82,75,54,74,64,78,64,66,75,61,70,82,71,60,61,54,61,83,43,84,72,65,93,71,77,58,89,58,82,87,63,74,95,68,80,74,89,80,55,75,66,80,45,70,60,60,90,66,71,67,53,69,60,78,68,84,64,71,82,67,69,72,63,79,58,72,70,86,91,73,74,70,73,55,80,41,61,76,71,89,71,69,80,76,78,46,78,80,59,56,71,58,45,72,80,69,75,73,89,58,57,89,69,67,66,68,73,61,78,72,76,62,72,67,83,57,70,60,74,85,70,83,82,100,70,50,84,77,78,87,63,73,73,69,68,81,58,83,48,70,81,50,66,72,58,81,79,74,79,69,85,64,67,84,60,70,58,73,70,89,58,68,72,65,89,74,68,54,69,58,64,81,62,65,84,62,75,65,73,56,70,38,50,76,63,65,72,84,37,77,81,83,62,81,58,77,76,57,89,74,50,67,66,81,58,91,73,75,66,88,85,65,67,58,58,87,65,85,62,61,68,69,69,37,84,65,66,76,60,81,88,89,70,72,62,78,78,54,50,74,72,68,52,65,68,82,78,82,59,65,73,87,57,81,78,87,65,82,90,63,69,85,66,77,67,87,81,76,56,42,62,56,60,83,67,63,56,86,64,76,70,78,90,61,71,56,76,45,83,75,78,77,69,51,89,69,66,61,72,71,95,65,94,45,51,89,64,82,82,57,80,60,87,64,80,67,68,84,61,58,72,71,45,78,79,83,75,89,78,74,61,69,61,62,97,74,64,62,66,60,86,59,78,58,58,70,59,82,64,89,86,76,64,94,78,72,68,69,73,74,80,62,79,74,84,63,75,66,84,61,89,100,68,83,73,70,86,88,63,84,73,65,75,69,65,86,75,88,45,64,60,65,71,75,69,76,93,80,59,62,64,68,71,64,52,44,78,91,68,77,73,82,69,70,82,77,59,73,64,71,74,66,67,77,68,65,64,60,72,81,84,85,65,64,67,64,74,85,67,67,73,69,79,49,66,74,89,77,76,58,46,74,58,73,80,62,67,62,64,76,85,59,76,79,67,72,81,67,66,74,78,84,72,57,89,79,61,69,62,35,74,72,84,69,64,66,75,79,87,100,54,79,51,63,79,76,73,69,83,67,77,81,71,67,65,69,79,66,82,67,74,81,62,54,61,81,63,76,100,82,70,65,71,62,72,77,81,80,74,63,80,82,68,64,68,72,69,65,64,65,58,77,64,85,68,66,45,75,62,67,56,51,72,82,71,66,56,76,68,72,86,79,65,52,72,73,78,80,62,77,43,66,98,69,73,59,80,70,46,71,68,67,77,42,72,75,63,57,73,75,77,59,57,52,75,77,54,73,68,70,54,69,58,65,54,63,50,67,72,60,76,59,72,86,80,71,69,65,63,75,48,56,75,53,60,84,81,63,70,81,63,50,69,78,82,64,70,65,51,84,63,70,64,94,80,55,58,55,65,90,73,93,87,60,62,55,73,66,63,51,44,76,64,54,59,57,51,80,55,74,76,69,69,76,53,65,57,54,72,63,77,64,75,87,73,71,53,55,81,71,64,80,60,78,66,73,71,71,72,85,64,62,73,57,77,53,78,52,76,63,60,67,77,70,93,60,77,82,65,46,73,55,77,54,75,61,79,87,71,60,64,60,51,66,79,71,80,37,52,83,58,88,69,55,56,76,72,59,87,57,64,67,67,78,79,55,86,83,80,82,77,68,80,60,64,44,80,86,80,72,54,71,60,73,58,84,74,83,69,71,70,75,52,90,83,51,67,71,75,72,64,54,64,67,73,59,80,84,65,85,93,89,53,79,68,70,56,89,71,72,67,72,80,71,79,67,40,65,72,52,86,69,92,73,77,60,38,60,67,53,70,71,51,65,60,48,81,61,83,57,63,79,48,71,88,47,43,58,59,74,73,65,68,84,59,77,72,56,59,97,61,73,63,84,75,77,76,76,81,80,94,58,85,77,79,73,69,75,68,81,78,78,82,80,84,60,94,86,59,85,74,82,64,78,53,85,94,65,51,71,70,78,44,48,81,67,50,54,92,77,53,75,100,60,59,81,73,80,59,71,61,75,73,61,61,74,71,67,84,71,59,74,78,57,67,64,97,73,75,80,61,88,74,92,78,72,72,95,74,81,55,83,78,77,65,91,63,77,81,79,68,90,59,69,73,60,49,62,52,79,85,67,44,76,66,87,63,69,75,44,58,62,71,82,80,76,70,66,61,80,65,67,56,58,71,66,83,64,57,67,85,61,56,83,79,74,66,61,51,69,57,68,67,71,67,74,76,60,67,80,75,74,65,90,44,85,41,67,63,92,71,63,57,85,84,78,76,68,73,78,68,76,67,78,78,88,59,76,81,94,75,68,84,37,71,58,64,100,87,82,55,65,54,84,72,73,77,61,71,65,69,76,58,58,77,49,56,54,83,69,68,75,87,78,59,56,85,61,95,77,64,90,84,61,53,88,55,82,62,52,58,98,62,78,67,91,59,87,61,81,47,78,65,84,56,66,83,66,78,80,98,73,78,74,78,60,83,74,84,67,55,91,79,84,67,55,67,69,48,71,73,64,80,46,81,84,52,53,52,78,71,74,65,69,72,61,89,61,65,86,65,63,96,82,85,83,81,82,66,55,49,70,74,66,78,73,74,73,50,72,67,64,71,75,63,62,83,72,83,66,50,75,83,57,51,64,81,64,63,72,71,57,72,73,58,94,63,68,90,73,72,85,68,87,72,32,46,41,68,88,71,42,60,66,59,72,57,91,81,55,56,60,67,77,59,83,76,67,65,71,77,88,73,75,71,78,80,70,69,66,79,80,56,68,77,68,89,59,63,74,73,74,55,54,78,54,78,75,96,65,68,74,61,50,62,72,71,62,64,71,80,63,68,82,62,74,69,88,74,83,79,62,76,49,87,54,90,85,85,71,72,70,79,65,74,77,52,77,62,78,39,79,73,72,69,89,66,83,83,79,79,83,61,91,65,71,77,78,74,76,76,69,100,63,63,59,64,69,88,55,55,71,52,53,77,73,69,71,73,69,52,60,79,77,77,57,59,68,61,74,61,82,48,47,75,59,76,60,65,60,64,67,51,60,73,83,66,51,68,66,73,72,66,91,61,78,95,100,75,70,90,74,75,73,81,66,100,51,58,61,68,53,66,71,53,96,89,84,60,56,56,77,62,91,72,72,85,59,84,63,57,63,61,57,64,75,81,61,100,76,64,70,63,75,75,68,75,55,59,64,77,65,53,98,57,85,60,74,65,52,77,67,74,76,54,86,78,70,100,68,69,82,88,73,72,55,85,82,65,69,82,74,63,69,71,47,47,87,71,64,82,64,69,80,77,77,71,70,96,75,88,54,60,86,73,50,77,80,79,52,57,74,75,63,65,54,98,60,76,59,53,72,51,85,70,66,94,58,61,80,84,58,73,57,84,78,83,81,80,73,71,95,55,61,60,46,54,66,60,77,64,65,81,69,72,59,80,48,68,78,81,42,85,58,71,89,63,73,67,64,70,80,63,71,80,70,74,82,74,93,50,74,91,60,97,91,80,62,48,72,83,52,63,71,48,76,44,76,80,95,64,67,92,55,68,61,68,63,99,46,79,66,69,67,53,57,73,53,66,83,73,62,68,64,79,86,67,58,72,80,70,98,47,75,62,86,65,76,54,66,80,69,81,57,69,63,64,60,91,73,77,82,82,87,83,60,74,77,83,89,75,49,69,47,71,94,66,71,49,56,92,78,67,56,63,72,70,67,70,52,93,77,48,86,70,65,87,82,72,95,57,66,57,67,71,70,58,64,70,57,81,78,100,57,70,37,68,84,59,88,84,53,80,43,64,82,67,58,46,73,67,78,92,72,78,75,87,59,85,75,89,78,69,87,100,78,71,81,59,69,85,82,55,59,57,85,47,78,82,67,34,95,53,71,82,70,84,80,71,65,63,71,67,81,72,57,90,64,76,76,50,90,69,78,79,91,44,80,87,55,54,71,80,77,92,69,77,61,73,70,52,91,76,70,48,55,100,76,67,82,72,74,100,59,60,66,72,76,66,69,100,77,68,65,68,68,46,49,70,63,79,78,63,83,63,51,62,91,66,78,55,58,63,75,56,85,80,76,50,56,66,53,66,66,80,87,78,89,62,72,67,70,74,79,74,57,60,79,63,59,56,90,49,75,74,82,78,58,94,79,76,54,57,79,88,70,70,72,58,66,82,73,62,71,68,59,75,69,84,72,74,74,80,57,58,56,71,61,75,62,84,76,74,89,84,71,65,65,68,73,67,75,88,66,71,72,65,71,65,69,63,77,60,87,60,56,67,89,55,85,75,51,100,67,88,54,79,66,67,67,80,86,67,77,66,74,66,81,73,75,69,84,73,73,65,73,61,58,61,94,68,56,61,86,75,100,63,73,59,62,71,53,74,83,61,66,100,55,97,65,63,72,56,60,77,76,55,54,64,61,81,62,89,83,63,76,48,45,63,62,61,75,65,76,67,63,69,80,72,73,75,73,71,64,65,82,61,75,59,86,83,71,46,82,84,80,94,53,76,62,60,62,75,80,59,50,87,70,82,80,65,86,88,62,52,69,65,63,90,66,65,65,71,87,92,69,71,62,65,84,95,72,67,84,68,50,69,46,88,70,76,56,56,70,84,83,68,75,59,83,62,59,78,70,90,76,75,82,90,78,75,71,59,53,57,49,76,54,96,46,71,68,65,52,84,66,78,50,76,62,67,75,80,66,60,77,81,68,83,77,91,69,60,82,54,76,66,65,71,100,76,70,60,68,94,64,76,49,74,44,94,76,66,74,78,54,60,75,82,67,76,86,76,70,63,65,89,61,71,72,81,81,68,72,72,71,68,75,71,98,55,83,99,94,77,80,84,77,58,49,82,68,68,65,55,73,54,72,87,90,80,76,69,56,79,93,70,68,73,87,53,55,57,74,74,56,69,63,64,84,60,84,82,66,78,77,79,64,84,95,74,79,69,42,64,80,75,58,62,63,63,69,72,84,56,83,65,87,70,87,67,52,67,90,68,100,80,47,88,72,77,44,93,79,67,92,77,79,67,77,78,83,81,64,62,76,70,65,80,59,84,66,84,69,40,59,54,90,48,76,74,87,66,67,77,63,70,77,82,93,69,81,56,70,80,77,99,82,35,89,80,78,84,66,84,80,61,70,100,89,80,59,59,58,83,55,79,66,56,67,62,44,73,71,46,70,71,71,70,56,58,79,62,56,47,63,66,51,75,58,76,90,73,43,87,80,64,76,80,66,55,68,71,52,86,62,73,96,69,92,82,66,61,62,82,75,63,68,80,80,79,96,63,54,61,64,62,77,69,71,69,100,100,69,72,87,71,78,59,70,78,74,74,71,87,40,70,77,86,55,62,63,74,67,67,82,60,64,69,63,62,100,81,62,45,79,93,65,71,67,66,56,62,74,74,68,52,93,92,66,81,64,66,62,69,79,63,87,72,85,57,73,66,50,75,83,74,61,80,49,77,95,88,70,52,70,65,60,66,87,73,93,69,59,60,83,66,70,71,80,59,74,59,58,97,60,72,61],"mean":70.2,"sd":12.0,"n":5000},"sampling":{"se":{"10":3.79,"30":2.19,"100":1.2}},"dist":{"aphasia":{"values":[53,52,72,55,45,36,42,43,57,31,39,45,61,70,67,50,40,38,39,38,39,51,58,51,57,46,40,61,34,44,53,59,44,69,59,58,65,75,58,56,66,36,40,45,32,60,37,34,34,56,33,34,54,54,59,33,44,53,42,52,60,52,26,54,54,40,76,51,52,47,56,44,47,47,44,43,53,57,29,39],"mean":49.0,"median":50.5,"sd":11.3,"skew":0.24,"min":26.0,"max":76.0},"stutter":{"values":[1.6,2.6,1.0,2.1,2.2,0.9,2.5,3.6,12.5,7.2,3.6,3.6,2.2,3.8,4.5,2.2,11.1,4.0,11.0,6.1,6.6,2.3,0.3,10.0,2.3,6.7,3.4,2.2,2.7,9.8,1.0,9.6,3.6,5.3,4.5,2.7,7.1,2.0,4.6,6.4,7.4,1.3,5.5,3.9,5.4,4.5,1.5,5.8,1.5,1.1,12.8,8.7,3.5,2.1,5.1,1.7,0.7,7.7,1.5,2.2,3.4,3.2,1.8,6.8,2.4,1.3,1.4,7.8,4.3,18.9,7.3,3.6,4.8,4.3,2.4,0.2,5.2,5.7,6.2,3.8],"mean":4.5,"median":3.6,"sd":3.3,"skew":1.57,"min":0.2,"max":18.9},"artic":{"values":[84,93,94,92,85,96,98,93,99,98,98,84,86,97,100,99,86,96,100,99,96,84,99,100,86,99,90,96,75,87,95,97,96,97,93,99,99,97,92,92,97,96,94,82,88,81,83,98,94,97,98,96,97,94,96,99,93,82,96,98,96,90,99,95,99,98,89,94,93,94,94,90,99,96,94,100,91,91,87,87],"mean":93.5,"median":95.5,"sd":5.5,"skew":-1.07,"min":75.0,"max":100.0}},"paired":{"pre":[39.1,44.8,55.8,58.0,49.9,52.0,50.3,60.7,50.9,48.9,55.3,56.0,50.4,50.2,42.0,45.8,57.8,48.6,45.0,31.5],"post":[52.8,54.7,67.8,74.5,58.7,70.4,63.8,77.2,56.0,52.0,59.9,59.8,57.6,50.0,59.1,59.4,62.5,41.2,48.6,40.6],"m_pre":49.6,"m_post":58.3,"m_change":8.7,"sd_change":6.6,"sd_pre":7.0,"sd_post":9.6,"t":5.84,"df":19,"p":1.2559229188529708e-05,"p_disp":"< .001","ci":[5.6,11.8],"dz":1.31,"n":20},"indep":{"g1":[68.4,64.4,78.2,85.9,79.3,87.1,67.2,79.1,63.5,67.9,58.6,70.8,84.4,63.8,73.1,65.8,82.0,63.4,68.0,72.8],"g2":[76.6,82.8,72.6,78.2,64.8,94.4,78.1,72.1,80.3,76.4,80.5,83.8,76.9,72.7,74.5,75.0,59.9,74.9,84.6,86.9],"m1":72.2,"m2":77.3,"sd1":8.5,"sd2":7.5,"diff":5.1,"t":2.01,"df":37.5,"p":0.05156695763086587,"p_disp":"= .052","ci":[-0.0,10.3],"d":0.64,"n_each":20},"anova":{"low":[6.7,10.0,4.9,8.8,4.0,5.2,6.1,10.6,6.1,9.3,5.1,5.1,3.7,-7.1,4.6],"mod":[12.5,10.0,4.0,9.5,14.2,16.9,11.8,15.0,15.1,5.2,13.0,14.2,9.2,12.9,11.6],"high":[13.0,27.2,22.5,21.9,18.5,10.3,18.6,19.6,18.8,10.9,10.0,9.5,12.1,18.6,16.1],"m_low":5.5,"m_mod":11.7,"m_high":16.5,"ci_low":[3.2,7.8],"ci_mod":[9.7,13.7],"ci_high":[13.5,19.5],"F":23.18,"dfb":2,"dfw":42,"p":1.6483032667693173e-07,"p_disp":"< .001","eta2":0.52,"n_each":15},"corr":{"x":[75.3,46.6,67.3,55.4,100.0,62.1,57.8,73.9,64.4,60.6,65.0,60.8,83.5,53.6,73.5,86.3,39.2,79.8,91.3,64.7,77.1,71.8,42.5,89.7,88.6,64.5,63.0,69.2,64.4,66.7,61.4,73.1,89.7,72.1,47.1,79.5,76.7,71.0,73.6,63.9],"y":[16.6,31.0,22.0,14.8,34.9,22.1,30.3,28.1,16.0,18.5,12.6,13.3,19.6,5.8,21.7,20.8,9.7,31.0,30.0,13.0,31.9,28.4,17.2,34.8,36.3,32.9,17.3,8.7,22.6,27.4,26.9,23.6,31.2,38.7,25.1,31.8,17.9,23.4,17.1,32.2],"r":0.47,"p":0.002047198292962124,"p_disp":"= .002","ci":[0.19,0.68],"r2":0.22,"n":40},"reg":{"hours":[25.7,26.6,10.6,15.6,36.6,13.9,25.7,29.0,27.9,38.2,31.9,39.0,15.5,20.4,24.0,17.8,28.0,31.0,32.4,33.5,37.6,36.2,27.5,14.4,5.7,17.7,12.6,24.6,25.2,31.2,24.0,35.2,24.0,23.4,17.1,33.3,9.2,18.8,32.3,30.0,18.9,31.2,19.8,9.7,31.6,33.4,13.5,8.6,9.1,9.4],"baseline":[55.7,75.9,54.7,64.3,71.1,74.0,55.6,69.9,52.0,60.2,74.2,60.6,47.3,55.4,65.3,56.5,67.5,46.3,72.1,74.6,74.0,53.1,47.8,41.2,45.2,78.2,63.7,54.8,72.0,57.6,58.1,55.3,35.5,56.8,59.3,64.6,57.7,72.8,53.4,71.0,43.2,60.6,70.3,76.5,58.5,70.3,53.0,59.4,45.2,52.2],"gain":[21.2,21.9,9.1,24.7,40.2,19.6,13.9,39.0,30.3,18.5,32.4,22.6,18.9,22.6,26.0,21.6,19.3,17.5,36.7,26.5,26.1,20.4,25.9,9.6,18.3,20.1,19.9,17.8,19.4,22.5,25.9,24.7,13.9,18.4,12.7,27.7,8.0,24.6,24.9,25.2,15.7,14.4,14.1,24.5,25.6,23.6,16.5,19.7,13.7,12.5],"slope":0.41,"intercept":11.72,"r":0.54,"r2":0.29,"p":4.791596508206401e-05,"p_disp":"< .001","slope_se":0.091,"slope_ci":[0.223,0.589],"mean_baseline":60.3,"x_min":5.7,"x_max":39.0,"mult":{"b0":-1.81,"b_hours":0.34,"b_base":0.25,"p_hours":0.0002550015208745955,"p_hours_disp":"< .001","p_base":0.0016222541362706697,"p_base_disp":"= .002","R2":0.43}},"chi":{"rows":["Individual","Group","Hybrid"],"cols":["Responder","Non-responder"],"observed":[[31,9],[13,27],[24,16]],"expected":[[22.7,17.3],[22.7,17.3],[22.7,17.3]],"row_tot":[40,40,40],"col_tot":[68,52],"chi2":16.76,"df":2,"p":0.00022887079189558792,"p_disp":"< .001","V":0.37,"n":120},"scd":{"base_sessions":[1,2,3,4,5,6],"int_sessions":[7,8,9,10,11,12,13,14,15,16,17,18],"A":[2,1,2,2,3,1],"B":[4,3,5,4,4,5,7,7,9,7,8,11],"m_base":1.8,"m_int":6.2,"maxA":3,"nap":0.99,"pnd":92.0,"tau_ab":0.99,"tauU":0.78},"overlap":{"0.2":92.0,"0.5":80.0,"0.8":69.0,"1.2":55.0}};
+
+(function(){
+'use strict';
+const NS="http://www.w3.org/2000/svg";
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;
+const sd=a=>{const m=mean(a);return Math.sqrt(a.reduce((s,x)=>s+(x-m)*(x-m),0)/(a.length-1));};
+
+/* ---------- SVG helpers ---------- */
+function E(tag,attrs,text){const e=document.createElementNS(NS,tag);
+  if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);
+  if(text!=null)e.textContent=text;return e;}
+function frame(vw,vh){return E("svg",{viewBox:`0 0 ${vw} ${vh}`,class:"chart",
+  preserveAspectRatio:"xMidYMid meet",focusable:"false","aria-hidden":"true"});}
+function mount(id,svg){const c=document.getElementById(id);if(!c)return;c.innerHTML="";c.appendChild(svg);}
+function ncdf(z){const t=1/(1+0.2316419*Math.abs(z));const d=0.3989423*Math.exp(-z*z/2);
+  let p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p;}
+function npdf(x){return Math.exp(-x*x/2)/Math.sqrt(2*Math.PI);}
+
+const VW=720, VH=360, M={l:56,r:18,t:18,b:48};
+const PW=VW-M.l-M.r, PH=VH-M.t-M.b;
+
+function axes(svg,xs,ys,opt){
+  opt=opt||{};
+  // gridlines + y ticks
+  const yt=opt.yticks||4;
+  for(let i=0;i<=yt;i++){const cy=M.t+PH-(i/yt)*PH;const val=ys.min+(i/yt)*(ys.max-ys.min);
+    svg.appendChild(E("line",{x1:M.l,y1:cy,x2:M.l+PW,y2:cy,class:"gridline"}));
+    svg.appendChild(E("text",{x:M.l-8,y:cy+4,class:"tick","text-anchor":"end"},opt.yfmt?opt.yfmt(val):Math.round(val)));}
+  // x ticks
+  const xt=opt.xticks||6;
+  for(let i=0;i<=xt;i++){const xv=xs.min+(i/xt)*(xs.max-xs.min);const cx=M.l+(i/xt)*PW;
+    svg.appendChild(E("text",{x:cx,y:M.t+PH+20,class:"tick","text-anchor":"middle"},opt.xfmt?opt.xfmt(xv):Math.round(xv)));}
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:"#9fb3c7"}));
+  svg.appendChild(E("line",{x1:M.l,y1:M.t,x2:M.l,y2:M.t+PH,stroke:"#9fb3c7"}));
+  if(opt.xlabel)svg.appendChild(E("text",{x:M.l+PW/2,y:VH-6,class:"axis-label","text-anchor":"middle"},opt.xlabel));
+  if(opt.ylabel)svg.appendChild(E("text",{x:16,y:M.t+PH/2,class:"axis-label","text-anchor":"middle",
+    transform:`rotate(-90 16 ${M.t+PH/2})`},opt.ylabel));
+}
+
+/* ---------- histogram (returns context for overlays) ---------- */
+function histogram(values,opt){
+  opt=opt||{};
+  const xmin=opt.xmin!=null?opt.xmin:Math.min(...values);
+  const xmax=opt.xmax!=null?opt.xmax:Math.max(...values);
+  const nb=opt.bins||14, bw=(xmax-xmin)/nb;
+  const counts=new Array(nb).fill(0);
+  values.forEach(v=>{let i=Math.floor((v-xmin)/bw);i=clamp(i,0,nb-1);counts[i]++;});
+  const ymax=(Math.max(...counts)||1)*1.12;
+  const X=v=>M.l+(v-xmin)/(xmax-xmin)*PW;
+  const Y=c=>M.t+PH-(c/ymax)*PH;
+  const svg=frame(VW,VH);
+  axes(svg,{min:xmin,max:xmax},{min:0,max:ymax},{xlabel:opt.xlabel,ylabel:opt.ylabel||"Number of cases",
+    xfmt:opt.xfmt,yticks:4});
+  const bars=[];
+  for(let i=0;i<nb;i++){const bx=X(xmin+i*bw),bx2=X(xmin+(i+1)*bw);
+    const r=E("rect",{x:bx+1,y:Y(counts[i]),width:Math.max(1,bx2-bx-2),
+      height:M.t+PH-Y(counts[i]),fill:opt.color||"#2E6F9E",rx:2});
+    bars.push(r);svg.appendChild(r);}
+  return {svg,X,Y,xmin,xmax,bw,nb,counts,ymax,bars};
+}
+
+/* =========================================================================
+   DATA-GROUNDED FIGURES  (all values from SIM = simulated, fixed-seed)
+   ========================================================================= */
+
+/* --- population dots + draw-a-sample (interactive) --- */
+let POP={pool:[],cols:30};
+function drawPopulation(highlight){
+  highlight=highlight||new Set();
+  const pool=POP.pool, cols=POP.cols, rows=Math.ceil(pool.length/cols);
+  const w=720, gap=2, cell=(w-20)/cols, r=Math.max(2.6,cell/2-gap);
+  const h=rows*cell+16;
+  const svg=E("svg",{viewBox:`0 0 ${w} ${h}`,class:"chart",preserveAspectRatio:"xMidYMid meet","aria-hidden":"true"});
+  pool.forEach((v,i)=>{
+    const cx=10+(i%cols)*cell+cell/2, cy=8+Math.floor(i/cols)*cell+cell/2;
+    const hot=highlight.has(i);
+    // shade by value (light->navy)
+    const t=clamp((v-40)/55,0,1), col=`rgb(${Math.round(190-150*t)},${Math.round(214-150*t)},${Math.round(236-120*t)})`;
+    svg.appendChild(E("circle",{cx,cy,r:hot?r+1.4:r,fill:hot?"#F2A900":col,
+      stroke:hot?"#7a5400":"none","stroke-width":hot?1:0}));
+  });
+  mount("popSvg",svg);
+}
+
+/* --- sampling distribution of means (interactive via slider) --- */
+const N_OPTIONS=[10,30,100];
+function drawSampling(idx){
+  const n=N_OPTIONS[idx], pop=SIM.population.values, reps=600, means=[];
+  for(let r=0;r<reps;r++){let s=0;for(let k=0;k<n;k++)s+=pop[(Math.random()*pop.length)|0];means.push(s/n);}
+  const ctx=histogram(means,{xmin:55,xmax:85,bins:26,color:"#145DA0",
+    xlabel:"Sample mean speech-sound accuracy (%)",ylabel:"How often"});
+  // population mean line
+  const mx=ctx.X(SIM.population.mean);
+  ctx.svg.appendChild(E("line",{x1:mx,y1:M.t,x2:mx,y2:M.t+PH,stroke:"#0B2D4D","stroke-width":2,"stroke-dasharray":"5 4"}));
+  ctx.svg.appendChild(E("text",{x:mx,y:M.t+12,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},"pop. mean ≈ 70"));
+  mount("sampSvg",ctx.svg);
+  const se=SIM.sampling.se[String(n)];
+  const o=$("#seOut");if(o)o.innerHTML=`At <strong>n = ${n}</strong>, the spread of sample means (standard error) is about <strong>${se}</strong>. Watch it shrink as n grows — bigger samples, steadier estimates.`;
+}
+
+/* --- distribution explorer (interactive) --- */
+const DIST_META={
+  aphasia:{label:"aphasia naming scores",xlabel:"Naming score",color:"#2E6F9E"},
+  stutter:{label:"percent syllables stuttered",xlabel:"% syllables stuttered",color:"#3a7a52"},
+  artic:{label:"post-treatment accuracy (%)",xlabel:"Speech-sound accuracy (%)",color:"#7a5aa0"}
+};
+let DIST_STATE={key:"aphasia",term:null};
+function iqrOutliers(values){
+  const s=[...values].sort((a,b)=>a-b), n=s.length;
+  const q=p=>{const pos=(n-1)*p,b=Math.floor(pos),r=pos-b;return s[b+1]!==undefined?s[b]+r*(s[b+1]-s[b]):s[b];};
+  const q1=q(.25),q3=q(.75),iqr=q3-q1,lo=q1-1.5*iqr,hi=q3+1.5*iqr;
+  return {q1,q3,iqr,lo,hi,low:values.filter(v=>v<lo),high:values.filter(v=>v>hi)};
+}
+function drawDist(key,term){
+  DIST_STATE.key=key;DIST_STATE.term=term;
+  const d=SIM.dist[key], meta=DIST_META[key];
+  const ctx=histogram(d.values,{bins:16,color:meta.color,xlabel:meta.xlabel,ylabel:"Number of cases"});
+  const mx=ctx.X(d.mean);
+  if(term==="center"){
+    ctx.svg.appendChild(E("line",{x1:mx,y1:M.t,x2:mx,y2:M.t+PH,stroke:"#0B2D4D","stroke-width":2.5}));
+    ctx.svg.appendChild(E("text",{x:mx,y:M.t+12,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},`mean ${d.mean}`));
+    const md=ctx.X(d.median);
+    ctx.svg.appendChild(E("line",{x1:md,y1:M.t,x2:md,y2:M.t+PH,stroke:"#9A571B","stroke-width":2,"stroke-dasharray":"4 4"}));
+    ctx.svg.appendChild(E("text",{x:md,y:M.t+PH-6,class:"tick","text-anchor":"middle",fill:"#9A571B"},`median ${d.median}`));
+  }else if(term==="spread"){
+    const x1=ctx.X(d.mean-d.sd),x2=ctx.X(d.mean+d.sd),yy=M.t+18;
+    ctx.svg.appendChild(E("line",{x1,y1:yy,x2,y2:yy,stroke:"#0B2D4D","stroke-width":2.5,"marker-start":"","marker-end":""}));
+    [x1,x2].forEach(xx=>ctx.svg.appendChild(E("line",{x1:xx,y1:yy-5,x2:xx,y2:yy+5,stroke:"#0B2D4D","stroke-width":2.5})));
+    ctx.svg.appendChild(E("text",{x:(x1+x2)/2,y:yy-8,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},`±1 SD (${d.sd})`));
+  }else if(term==="skew"){
+    // highlight the long tail side
+    const right=d.skew>0;
+    ctx.bars.forEach((b,i)=>{const frac=i/ctx.nb; if(right? frac>0.55 : frac<0.45) b.setAttribute("fill","#F2A900");});
+    ctx.svg.appendChild(E("text",{x:right?M.l+PW-6:M.l+6,y:M.t+16,class:"tick","text-anchor":right?"end":"start",fill:"#9a6b00"},right?"long right tail →":"← long left tail"));
+  }else if(term==="outlier"){
+    const o=iqrOutliers(d.values); let nOut=0;
+    d.values.forEach(v=>{ if(v<o.lo||v>o.hi){nOut++; let bi=Math.floor((v-ctx.xmin)/ctx.bw); bi=Math.max(0,Math.min(ctx.nb-1,bi)); ctx.bars[bi].setAttribute("fill","#C0392B");}});
+    if(o.lo>ctx.xmin){const lx=ctx.X(o.lo); ctx.svg.appendChild(E("line",{x1:lx,y1:M.t,x2:lx,y2:M.t+PH,stroke:"#C0392B","stroke-width":1.5,"stroke-dasharray":"4 4"}));}
+    if(o.hi<ctx.xmax){const hx=ctx.X(o.hi); ctx.svg.appendChild(E("line",{x1:hx,y1:M.t,x2:hx,y2:M.t+PH,stroke:"#C0392B","stroke-width":1.5,"stroke-dasharray":"4 4"}));}
+    ctx.svg.appendChild(E("text",{x:M.l+PW-6,y:M.t+15,class:"tick","text-anchor":"end",fill:"#C0392B"},"dashed line = 1.5×IQR cutoff"));
+    ctx.svg.appendChild(E("text",{x:M.l+PW-6,y:M.t+31,class:"tick","text-anchor":"end",fill:"#C0392B"}, nOut? (nOut+" outlier"+(nOut>1?"s":"")+" — far from the rest") : "no outliers by this rule"));
+  }else if(term==="ceiling"){
+    if(d.skew<-0.5){            // ceiling effect: scores pile up near the top
+      ctx.bars.forEach((b,i)=>{if(i>=ctx.nb-2)b.setAttribute("fill","#F2A900");});
+      ctx.svg.appendChild(E("text",{x:M.l+PW-6,y:M.t+16,class:"tick","text-anchor":"end",fill:"#9a6b00"},"pile-up at ceiling"));
+    }else if(d.skew>0.5){       // floor effect: scores pile up near the bottom
+      ctx.bars.forEach((b,i)=>{if(i<=1)b.setAttribute("fill","#F2A900");});
+      ctx.svg.appendChild(E("text",{x:M.l+6,y:M.t+16,class:"tick","text-anchor":"start",fill:"#9a6b00"},"pile-up at floor"));
+    }else{                      // roughly symmetric: no floor/ceiling pile-up to highlight
+      ctx.svg.appendChild(E("text",{x:M.l+PW/2,y:M.t+16,class:"tick","text-anchor":"middle",fill:"#5B6775"},"no strong floor or ceiling here"));
+    }
+  }
+  mount("distSvg",ctx.svg);
+  const tt=$("#distTitle");if(tt)tt.innerHTML=`Simulated ${meta.label} <span class="tag sim">Simulated</span>`;
+}
+function distInfoText(key,term){
+  const d=SIM.dist[key];
+  const o=iqrOutliers(d.values), nOut=o.low.length+o.high.length;
+  let outTxt;
+  if(!nOut){outTxt=`<strong>Outliers</strong> — values that sit unusually far above or below the rest. By the 1.5×IQR rule, this simulated distribution has <strong>none</strong>: a bar with just one case in the middle is a sparse value, not an outlier.`;}
+  else{const parts=[]; if(o.high.length)parts.push(o.high.length+' unusually high'); if(o.low.length)parts.push(o.low.length+' unusually low');
+    outTxt=`<strong>Outliers</strong> — values far above or below the rest (past the dashed 1.5×IQR cutoffs), <em>not</em> simply any rare value. Here: ${parts.join(' and ')}. Investigate them — real clinical variation, or a data-entry slip — instead of deleting on sight.`;}
+  outTxt += ` <span class="muted">Other studies flag outliers with mean ± 2–3 SD; the IQR rule is used here because it isn’t thrown off by skew or by the outliers themselves.</span>`;
+  const base={
+    center:`<strong>Center</strong> — a typical value. Mean = ${d.mean}, median = ${d.median}. When they pull apart, the distribution is skewed and the median is often the more honest “typical.”`,
+    spread:`<strong>Spread</strong> — how much scores vary. SD ≈ ${d.sd}. Wider spread means more variability between clients.`,
+    skew:`<strong>Skew</strong> — a lopsided tail (skew = ${d.skew}). ${d.skew>0.5?"This right skew pulls the mean above the median.":d.skew<-0.5?"This left skew (a ceiling) pulls the mean below the median.":"This distribution is fairly symmetric."}`,
+    outlier:outTxt,
+    ceiling:`<strong>Floor / ceiling</strong> — values piling up at a boundary. ${d.skew<-0.5?"Here many scores sit near the top (a ceiling effect), which can hide real gains.":d.skew>0.5?"Here many scores sit near the bottom (a floor effect).":"This distribution shows little floor or ceiling piling."}`
+  };
+  return term? base[term] : `Showing simulated ${DIST_META[key].label}. Tap a feature above to highlight it.`;
+}
+
+/* --- paired pre/post connected plot + change histogram --- */
+function drawPaired(){
+  const pre=SIM.paired.pre, post=SIM.paired.post;
+  const all=pre.concat(post), ymin=Math.min(...all)-4, ymax=Math.max(...all)+4;
+  const svg=frame(VW,VH);
+  const xPre=M.l+PW*0.30, xPost=M.l+PW*0.70;
+  const Y=v=>M.t+PH-(v-ymin)/(ymax-ymin)*PH;
+  // y ticks
+  for(let i=0;i<=4;i++){const val=ymin+i/4*(ymax-ymin),cy=Y(val);
+    svg.appendChild(E("line",{x1:M.l,y1:cy,x2:M.l+PW,y2:cy,class:"gridline"}));
+    svg.appendChild(E("text",{x:M.l-8,y:cy+4,class:"tick","text-anchor":"end"},Math.round(val)));}
+  pre.forEach((p,i)=>{
+    const up=post[i]>=p;
+    svg.appendChild(E("line",{x1:xPre,y1:Y(p),x2:xPost,y2:Y(post[i]),
+      stroke:up?"#2E9E6B":"#C0392B","stroke-width":1.6,opacity:.65}));});
+  pre.forEach((p,i)=>{svg.appendChild(E("circle",{cx:xPre,cy:Y(p),r:4.5,fill:"#5B6775"}));
+    svg.appendChild(E("circle",{cx:xPost,cy:Y(post[i]),r:4.5,fill:"#145DA0"}));});
+  // means
+  svg.appendChild(E("circle",{cx:xPre,cy:Y(SIM.paired.m_pre),r:7,fill:"#0B2D4D",stroke:"#fff","stroke-width":2}));
+  svg.appendChild(E("circle",{cx:xPost,cy:Y(SIM.paired.m_post),r:7,fill:"#0B2D4D",stroke:"#fff","stroke-width":2}));
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:xPre,y:M.t+PH+22,class:"axis-label","text-anchor":"middle"},`Pre (M=${SIM.paired.m_pre})`));
+  svg.appendChild(E("text",{x:xPost,y:M.t+PH+22,class:"axis-label","text-anchor":"middle"},`Post (M=${SIM.paired.m_post})`));
+  svg.appendChild(E("text",{x:16,y:M.t+PH/2,class:"axis-label","text-anchor":"middle",transform:`rotate(-90 16 ${M.t+PH/2})`},"Naming score"));
+  mount("pairedSvg",svg);
+
+  const change=post.map((p,i)=>+(p-pre[i]).toFixed(1));
+  const ctx=histogram(change,{bins:10,color:"#2E9E6B",xlabel:"Change (post − pre)",ylabel:"Number of cases",xmin:Math.min(0,Math.min(...change))-2,xmax:Math.max(...change)+2});
+  const zx=ctx.X(0);
+  ctx.svg.appendChild(E("line",{x1:zx,y1:M.t,x2:zx,y2:M.t+PH,stroke:"#C0392B","stroke-width":2,"stroke-dasharray":"5 4"}));
+  ctx.svg.appendChild(E("text",{x:zx,y:M.t+12,class:"tick","text-anchor":"middle",fill:"#C0392B"},"no change"));
+  mount("changeSvg",ctx.svg);
+}
+
+/* --- group plot (independent t & ANOVA) --- */
+function groupPlot(id,groups,opt){
+  opt=opt||{};
+  const all=[].concat(...groups.map(g=>g.values));
+  const ymin=opt.ymin!=null?opt.ymin:Math.min(...all)-3, ymax=opt.ymax!=null?opt.ymax:Math.max(...all)+3;
+  const svg=frame(VW,VH);
+  const Y=v=>M.t+PH-(v-ymin)/(ymax-ymin)*PH;
+  for(let i=0;i<=4;i++){const val=ymin+i/4*(ymax-ymin),cy=Y(val);
+    svg.appendChild(E("line",{x1:M.l,y1:cy,x2:M.l+PW,y2:cy,class:"gridline"}));
+    svg.appendChild(E("text",{x:M.l-8,y:cy+4,class:"tick","text-anchor":"end"},Math.round(val)));}
+  const band=PW/groups.length;
+  groups.forEach((g,gi)=>{
+    const cx=M.l+band*(gi+0.5);
+    g.values.forEach((v,k)=>{const jx=cx+((k%5)-2)*7;
+      svg.appendChild(E("circle",{cx:jx,cy:Y(v),r:4,fill:opt.colors?opt.colors[gi]:"#2E6F9E",opacity:.6}));});
+    // CI line + mean
+    if(g.ci){svg.appendChild(E("line",{x1:cx,y1:Y(g.ci[0]),x2:cx,y2:Y(g.ci[1]),stroke:"#0B2D4D","stroke-width":3}));
+      [g.ci[0],g.ci[1]].forEach(c=>svg.appendChild(E("line",{x1:cx-9,y1:Y(c),x2:cx+9,y2:Y(c),stroke:"#0B2D4D","stroke-width":3})));}
+    svg.appendChild(E("circle",{cx,cy:Y(g.mean),r:8,fill:"#F2A900",stroke:"#7a5400","stroke-width":1.5}));
+    svg.appendChild(E("text",{x:cx,y:M.t+PH+22,class:"axis-label","text-anchor":"middle"},g.label));
+    svg.appendChild(E("text",{x:cx,y:Y(g.mean)-13,class:"tick","text-anchor":"middle",fill:"#7a5400"},"M="+g.mean));
+  });
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:16,y:M.t+PH/2,class:"axis-label","text-anchor":"middle",transform:`rotate(-90 16 ${M.t+PH/2})`},opt.ylabel||"Score"));
+  mount(id,svg);
+}
+
+/* --- scatter (correlation) --- */
+function scatter(id,xs,ys,opt){
+  opt=opt||{};
+  const xmin=Math.min(...xs)-2,xmax=Math.max(...xs)+2,ymin=Math.min(...ys)-2,ymax=Math.max(...ys)+2;
+  const X=v=>M.l+(v-xmin)/(xmax-xmin)*PW, Y=v=>M.t+PH-(v-ymin)/(ymax-ymin)*PH;
+  const svg=frame(VW,VH);
+  axes(svg,{min:xmin,max:xmax},{min:ymin,max:ymax},{xlabel:opt.xlabel,ylabel:opt.ylabel});
+  if(opt.line){const x1=opt.line.xmin!=null?opt.line.xmin:xmin,x2=opt.line.xmax!=null?opt.line.xmax:xmax;
+    svg.appendChild(E("line",{x1:X(x1),y1:Y(opt.line.intercept+opt.line.slope*x1),
+      x2:X(x2),y2:Y(opt.line.intercept+opt.line.slope*x2),stroke:"#C0392B","stroke-width":2.5}));}
+  xs.forEach((v,i)=>svg.appendChild(E("circle",{cx:X(v),cy:Y(ys[i]),r:4.5,fill:"#2E6F9E",opacity:.7})));
+  mount(id,svg);
+  return {svg,X,Y,xmin,xmax,ymin,ymax};
+}
+
+/* --- regression scatter + line + prediction marker (interactive) --- */
+let REG={};
+function drawReg(hours){
+  const r=SIM.reg;
+  const ctx=scatter("regSvg",r.hours,r.gain,{xlabel:"Therapy hours",ylabel:"Vocabulary gain",
+    line:{slope:r.slope,intercept:r.intercept,xmin:r.x_min,xmax:r.x_max}});
+  REG=ctx;
+  const pred=r.intercept+r.slope*hours;
+  ctx.svg.appendChild(E("line",{x1:ctx.X(hours),y1:M.t+PH,x2:ctx.X(hours),y2:ctx.Y(pred),
+    stroke:"#2E9E6B","stroke-width":1.5,"stroke-dasharray":"4 3"}));
+  ctx.svg.appendChild(E("circle",{cx:ctx.X(hours),cy:ctx.Y(pred),r:8,fill:"#2E9E6B",stroke:"#fff","stroke-width":2}));
+  mount("regSvg",ctx.svg);
+  return pred;
+}
+
+/* --- chi-square responder-rate bars --- */
+function drawChi(){
+  const c=SIM.chi, obs=c.observed, rates=obs.map(r=>r[0]/(r[0]+r[1])*100);
+  const svg=frame(VW,VH);
+  const ymax=100, Y=v=>M.t+PH-(v/ymax)*PH;
+  for(let i=0;i<=4;i++){const val=i/4*ymax,cy=Y(val);
+    svg.appendChild(E("line",{x1:M.l,y1:cy,x2:M.l+PW,y2:cy,class:"gridline"}));
+    svg.appendChild(E("text",{x:M.l-8,y:cy+4,class:"tick","text-anchor":"end"},val+"%"));}
+  const band=PW/obs.length, cols=["#145DA0","#2E6F9E","#5a8fbf"];
+  obs.forEach((row,i)=>{const cx=M.l+band*(i+0.5),bw=band*0.5;
+    svg.appendChild(E("rect",{x:cx-bw/2,y:Y(rates[i]),width:bw,height:M.t+PH-Y(rates[i]),fill:cols[i],rx:3}));
+    svg.appendChild(E("text",{x:cx,y:Y(rates[i])-8,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},Math.round(rates[i])+"%"));
+    svg.appendChild(E("text",{x:cx,y:M.t+PH+22,class:"axis-label","text-anchor":"middle"},c.rows[i]));});
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:16,y:M.t+PH/2,class:"axis-label","text-anchor":"middle",transform:`rotate(-90 16 ${M.t+PH/2})`},"% responders"));
+  mount("chiSvg",svg);
+}
+
+/* --- single-case line graph --- */
+function drawSCD(){
+  const A=SIM.scd.A, B=SIM.scd.B, all=A.concat(B);
+  const n=all.length, ymax=Math.max(...all)+2;
+  const svg=frame(VW,VH);
+  const X=i=>M.l+(i/(n-1))*PW, Y=v=>M.t+PH-(v/ymax)*PH;
+  for(let i=0;i<=4;i++){const val=i/4*ymax,cy=Y(val);
+    svg.appendChild(E("line",{x1:M.l,y1:cy,x2:M.l+PW,y2:cy,class:"gridline"}));
+    svg.appendChild(E("text",{x:M.l-8,y:cy+4,class:"tick","text-anchor":"end"},Math.round(val)));}
+  // phase divider between index 5 and 6 (after 6 baseline points)
+  const px=(X(5)+X(6))/2;
+  svg.appendChild(E("rect",{x:M.l,y:M.t,width:px-M.l,height:PH,fill:"#EAF4FB",opacity:.6}));
+  svg.appendChild(E("line",{x1:px,y1:M.t,x2:px,y2:M.t+PH,stroke:"#0B2D4D","stroke-width":2,"stroke-dasharray":"6 4"}));
+  svg.appendChild(E("text",{x:(M.l+px)/2,y:M.t+16,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},"Baseline"));
+  svg.appendChild(E("text",{x:(px+M.l+PW)/2,y:M.t+16,class:"tick","text-anchor":"middle",fill:"#0B2D4D"},"Intervention"));
+  // connect within phase
+  function poly(idxs,color){let d="";idxs.forEach((i,k)=>{d+=(k?"L":"M")+X(i)+" "+Y(all[i]);});
+    svg.appendChild(E("path",{d,fill:"none",stroke:color,"stroke-width":2}));}
+  poly(A.map((_,i)=>i),"#5B6775");
+  poly(B.map((_,i)=>i+6),"#145DA0");
+  all.forEach((v,i)=>svg.appendChild(E("circle",{cx:X(i),cy:Y(v),r:4.5,fill:i<6?"#5B6775":"#145DA0"})));
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:M.l+PW/2,y:VH-6,class:"axis-label","text-anchor":"middle"},"Session"));
+  svg.appendChild(E("text",{x:16,y:M.t+PH/2,class:"axis-label","text-anchor":"middle",transform:`rotate(-90 16 ${M.t+PH/2})`},"Initiations"));
+  mount("scdSvg",svg);
+}
+
+/* --- effect-size overlap curves (interactive) --- */
+function drawES(d){
+  const svg=frame(VW,300);
+  const xmin=-4, xmax=4+1.5, ph=300-M.t-40;
+  const X=x=>M.l+(x-xmin)/(xmax-xmin)*PW, Y=y=>M.t+ph-(y/0.42)*ph;
+  function path(mu,color,fill){let dd="M"+X(xmin)+" "+Y(0);
+    for(let x=xmin;x<=xmax;x+=0.1)dd+="L"+X(x)+" "+Y(npdf(x-mu));
+    dd+="L"+X(xmax)+" "+Y(0);
+    svg.appendChild(E("path",{d:dd,fill:fill,stroke:color,"stroke-width":2,opacity:.55}));}
+  path(0,"#145DA0","rgba(20,93,160,.22)");
+  path(d,"#9A571B","rgba(154,87,27,.20)");
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+ph,x2:M.l+PW,y2:M.t+ph,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:X(0),y:M.t+ph+20,class:"tick","text-anchor":"middle",fill:"#145DA0"},"Group A"));
+  svg.appendChild(E("text",{x:X(d),y:M.t+ph+34,class:"tick","text-anchor":"middle",fill:"#9A571B"},"Group B"));
+  mount("esSvg",svg);
+}
+
+/* --- null distribution (predict-then-reveal) --- */
+function drawNull(){
+  const svg=frame(VW,300);
+  const xmin=-4,xmax=4,ph=300-M.t-40, obs=2.4;
+  const X=x=>M.l+(x-xmin)/(xmax-xmin)*PW, Y=y=>M.t+ph-(y/0.42)*ph;
+  // shaded tail beyond obs
+  let tail="M"+X(obs)+" "+Y(0);
+  for(let x=obs;x<=xmax;x+=0.08)tail+="L"+X(x)+" "+Y(npdf(x));
+  tail+="L"+X(xmax)+" "+Y(0);
+  svg.appendChild(E("path",{d:tail,fill:"rgba(242,169,0,.45)",stroke:"none"}));
+  let cv="M"+X(xmin)+" "+Y(0);
+  for(let x=xmin;x<=xmax;x+=0.08)cv+="L"+X(x)+" "+Y(npdf(x));
+  svg.appendChild(E("path",{d:cv,fill:"none",stroke:"#145DA0","stroke-width":2.5}));
+  svg.appendChild(E("line",{x1:X(obs),y1:Y(npdf(obs)),x2:X(obs),y2:M.t+ph,stroke:"#9A571B","stroke-width":2.5}));
+  svg.appendChild(E("circle",{cx:X(obs),cy:Y(npdf(obs)),r:6,fill:"#9A571B"}));
+  svg.appendChild(E("text",{x:X(obs),y:Y(npdf(obs))-10,class:"tick","text-anchor":"middle",fill:"#9A571B"},"observed result"));
+  svg.appendChild(E("line",{x1:M.l,y1:M.t+ph,x2:M.l+PW,y2:M.t+ph,stroke:"#9fb3c7"}));
+  svg.appendChild(E("text",{x:X(0),y:M.t+ph+20,class:"tick","text-anchor":"middle",fill:"#5B6775"},"results expected if there were NO effect"));
+  mount("nullSvg",svg);
+}
+
+/* ---------- initial render of all visuals ---------- */
+function initVisuals(){
+  // population display pool: a representative 600 from the simulated population
+  const v=SIM.population.values.slice();
+  for(let i=v.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[v[i],v[j]]=[v[j],v[i]];}
+  POP.pool=v.slice(0,600);
+  if($("#popSvg"))drawPopulation(new Set());
+  if($("#sampSvg"))drawSampling(0);
+  if($("#distSvg")){drawDist("aphasia",null);const di=$("#distInfo");if(di)di.innerHTML=distInfoText("aphasia",null);}
+  if($("#pairedSvg"))drawPaired();
+  if($("#indepSvg"))groupPlot("indepSvg",[
+    {label:"Traditional",values:SIM.indep.g1,mean:SIM.indep.m1,ci:[SIM.indep.m1-1.96*SIM.indep.sd1/Math.sqrt(20),SIM.indep.m1+1.96*SIM.indep.sd1/Math.sqrt(20)]},
+    {label:"Motor-based",values:SIM.indep.g2,mean:SIM.indep.m2,ci:[SIM.indep.m2-1.96*SIM.indep.sd2/Math.sqrt(20),SIM.indep.m2+1.96*SIM.indep.sd2/Math.sqrt(20)]}
+  ],{ylabel:"Accuracy (%)",colors:["#5a8fbf","#2E6F9E"]});
+  if($("#anovaSvg"))groupPlot("anovaSvg",[
+    {label:"Low",values:SIM.anova.low,mean:SIM.anova.m_low,ci:SIM.anova.ci_low},
+    {label:"Moderate",values:SIM.anova.mod,mean:SIM.anova.m_mod,ci:SIM.anova.ci_mod},
+    {label:"High",values:SIM.anova.high,mean:SIM.anova.m_high,ci:SIM.anova.ci_high}
+  ],{ylabel:"Improvement",colors:["#7faed8","#2E6F9E","#145DA0"]});
+  if($("#corrSvg"))scatter("corrSvg",SIM.corr.x,SIM.corr.y,{xlabel:"Attendance (%)",ylabel:"Vocabulary gain",
+    line:(function(){const x=SIM.corr.x,y=SIM.corr.y,mx=mean(x),my=mean(y);
+      let num=0,den=0;for(let i=0;i<x.length;i++){num+=(x[i]-mx)*(y[i]-my);den+=(x[i]-mx)**2;}
+      const s=num/den;return{slope:s,intercept:my-s*mx};})()});
+  if($("#regSvg"))drawReg(20);
+  if($("#chiSvg"))drawChi();
+  if($("#scdSvg"))drawSCD();
+  if($("#esSvg"))drawES(0.5);
+  if($("#nullSvg"))drawNull();
+}
+/* ---------- small DOM helper ---------- */
+function h(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild;}
+
+/* ---------- multiple-choice engine ---------- */
+function mcq(containerId, items, scoreId, opts){
+  opts=opts||{}; const wrap=document.getElementById(containerId); if(!wrap)return;
+  const total=items.length; let score=0, answered=0;
+  const scoreEl=document.getElementById(scoreId), bar=opts.bar?document.getElementById(opts.bar):null;
+  function upd(){ if(scoreEl)scoreEl.textContent='Score: '+score+' / '+total+(answered<total?'  ('+answered+' answered)':' — done!'); if(bar)bar.style.width=(score/total*100)+'%'; }
+  items.forEach(it=>{
+    const card=h('<div class="card" style="margin:12px 0"><p style="font-weight:650;color:#0B2D4D">'+it.q+'</p><div class="opts"></div><div class="feedback" role="status"></div></div>');
+    const od=card.querySelector('.opts'), fb=card.querySelector('.feedback'); let done=false;
+    it.options.forEach((op,oi)=>{
+      const b=h('<button class="opt"><span class="mk">'+String.fromCharCode(65+oi)+'</span> '+op.t+'</button>');
+      b.addEventListener('click',()=>{
+        fb.className='feedback '+(op.ok?'ok':'no')+' show';
+        fb.innerHTML=(op.ok?'<strong>Correct.</strong> ':'<strong>Not quite.</strong> ')+op.why;
+        od.querySelectorAll('.opt').forEach(x=>x.classList.remove('wrong'));
+        if(op.ok){b.classList.add('correct');}
+        else{b.classList.add('wrong'); od.querySelectorAll('.opt').forEach((x,xi)=>{if(it.options[xi].ok)x.classList.add('correct');});}
+        if(!done){done=true;answered++;if(op.ok)score++;upd();}
+      });
+      od.appendChild(b);
+    });
+    wrap.appendChild(card);
+  });
+  upd();
+}
+
+/* ---------- sorter: drag-and-drop (mouse + touch) with click/keyboard fallback ---------- */
+function makeSorter(o){
+  const tok=document.getElementById(o.tokensId), bins=document.getElementById(o.binsId);
+  if(!tok)return; let sel=null, placement={};
+  function updateSel(){tok.querySelectorAll('.token').forEach(b=>b.classList.toggle('sel',b.dataset.id===sel));}
+  function place(id,bn){placement[id]=bn;sel=null;render();}
+  function clearHot(){bins.querySelectorAll('.bin').forEach(b=>b.classList.remove('drop-hot'));}
+  function binAt(x,y){const el=document.elementFromPoint(x,y);return el&&el.closest?el.closest('.bin'):null;}
+  function attachDrag(elm,id){
+    elm.addEventListener('pointerdown',ev=>{
+      if(ev.pointerType==='mouse'&&ev.button!==0)return;
+      const sx=ev.clientX, sy=ev.clientY; let active=false, clone=null; elm._dragged=false;
+      try{elm.setPointerCapture(ev.pointerId);}catch(e){}
+      const move=e=>{
+        const dx=e.clientX-sx, dy=e.clientY-sy;
+        if(!active && Math.hypot(dx,dy)>6){active=true; elm._dragged=true; elm.classList.add('ghost');
+          clone=elm.cloneNode(true); clone.className='token dragging';
+          clone.style.cssText='position:fixed;pointer-events:none;z-index:9999;margin:0;width:'+elm.offsetWidth+'px';
+          document.body.appendChild(clone);}
+        if(active){clone.style.left=(e.clientX-clone.offsetWidth/2)+'px'; clone.style.top=(e.clientY-20)+'px';
+          const b=binAt(e.clientX,e.clientY); clearHot(); if(b)b.classList.add('drop-hot');}
+      };
+      const up=e=>{
+        elm.removeEventListener('pointermove',move); elm.removeEventListener('pointerup',up); elm.removeEventListener('pointercancel',up);
+        try{elm.releasePointerCapture(ev.pointerId);}catch(e){}
+        if(active){const b=binAt(e.clientX,e.clientY); if(clone)clone.remove(); clearHot();
+          if(b){place(elm.dataset.id,b.dataset.bin);} else {elm.classList.remove('ghost');}
+          setTimeout(()=>{elm._dragged=false;},0);}
+      };
+      elm.addEventListener('pointermove',move); elm.addEventListener('pointerup',up); elm.addEventListener('pointercancel',up);
+    });
+  }
+  function render(){
+    tok.innerHTML='';
+    o.items.forEach(it=>{ if(placement[it.id])return;
+      const b=h('<button class="token" data-id="'+it.id+'" aria-label="'+it.t.replace(/"/g,'')+' — drag to a bin, or tap to select">'+it.t+'</button>');
+      b.addEventListener('click',()=>{ if(b._dragged)return; sel=(sel===b.dataset.id?null:b.dataset.id); updateSel(); });
+      attachDrag(b,it.id);
+      tok.appendChild(b);});
+    bins.innerHTML='';
+    o.bins.forEach(bn=>{
+      const bin=h('<div class="bin" role="button" tabindex="0" data-bin="'+bn+'" aria-label="'+bn+': drop a variable here, or place the selected one"><h5>'+bn+'</h5><div class="slot"></div></div>');
+      const doPlace=()=>{if(sel!=null)place(sel,bn);};
+      bin.addEventListener('click',doPlace);
+      bin.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();doPlace();}});
+      const slot=bin.querySelector('.slot');
+      o.items.forEach(it=>{ if(placement[it.id]===bn){
+        const chip=h('<span class="token placed" title="Click to remove" role="button" tabindex="0">'+it.t+'</span>');
+        const rm=()=>{delete placement[it.id];render();};
+        chip.addEventListener('click',rm);
+        chip.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();rm();}});
+        slot.appendChild(chip);}});
+      bins.appendChild(bin);});
+    updateSel();
+  }
+  document.getElementById(o.checkId).addEventListener('click',()=>{
+    let ok=0,unplaced=0;const tot=o.items.length;
+    o.items.forEach(it=>{ if(!placement[it.id])unplaced++; else if(placement[it.id]===it.answer)ok++;});
+    const fb=document.getElementById(o.fbId);
+    fb.className='feedback '+(ok===tot&&!unplaced?'ok':'no')+' show';
+    fb.innerHTML=unplaced?('Place all items first — '+unplaced+' to go.'):(ok===tot?('<strong>All correct!</strong> '+(o.win||'')):('<strong>'+ok+' / '+tot+' correct.</strong> '+(o.hint||'')));
+  });
+  document.getElementById(o.resetId).addEventListener('click',()=>{placement={};sel=null;render();document.getElementById(o.fbId).className='feedback';});
+  render();
+}
+
+/* ---------- true/false engine ---------- */
+function trueFalse(wrapId, items, scoreId){
+  const wrap=document.getElementById(wrapId); if(!wrap)return;
+  let score=0,answered=0; const sc=document.getElementById(scoreId);
+  function upd(){if(sc)sc.textContent='Score: '+score+' / '+answered+(answered<items.length?'  (keep going)':' — nice work!');}
+  items.forEach(it=>{
+    const card=h('<div class="card" style="margin:12px 0"><p style="font-weight:650;color:#0B2D4D">'+it.s+'</p><div class="seg" role="group" aria-label="True or false"><button class="tt">True</button><button class="ff">False</button></div><div class="feedback" role="status"></div></div>');
+    const fb=card.querySelector('.feedback'); let done=false;
+    function handle(choice,btn){const correct=(choice===it.ans);
+      card.querySelectorAll('.seg button').forEach(b=>b.classList.remove('correct','wrong'));
+      btn.classList.add(correct?'correct':'wrong');
+      fb.className='feedback '+(correct?'ok':'no')+' show';
+      fb.innerHTML=(correct?'<strong>Correct.</strong> ':'<strong>Actually, that statement is '+(it.ans?'true':'false')+'.</strong> ')+it.why;
+      if(!done){done=true;answered++;if(correct)score++;upd();}}
+    card.querySelector('.tt').addEventListener('click',function(){handle(true,this);});
+    card.querySelector('.ff').addEventListener('click',function(){handle(false,this);});
+    wrap.appendChild(card);
+  });
+  upd();
+}
+
+/* ===================== wire up all interactions ===================== */
+function initInteractions(){
+  /* flip cards */
+  $$('.flipcard').forEach(c=>c.addEventListener('click',()=>c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true')));
+
+  /* confidence poll */
+  const pollFb=$('#pollFb');
+  $$('#poll .opt').forEach(b=>b.addEventListener('click',()=>{
+    $$('#poll .opt').forEach(x=>x.classList.remove('correct'));b.classList.add('correct');
+    pollFb.className='feedback info show';
+    pollFb.innerHTML='Wherever you’re starting is okay — this lesson is about interpretation and reasoning, not memorizing formulas. Nothing you click here is saved.';}));
+
+  /* variable-type sorter */
+  makeSorter({tokensId:'vsTokens',binsId:'vsBins',checkId:'vsCheck',resetId:'vsReset',fbId:'vsFb',
+    items:[{id:1,t:'Naming score (0–100)',answer:'Continuous'},{id:2,t:'Treatment group',answer:'Categorical'},
+      {id:3,t:'Severity (mild/mod/severe)',answer:'Ordinal'},{id:4,t:'# of initiations',answer:'Count'},
+      {id:5,t:'% consonants correct',answer:'Percentage'},{id:6,t:'Responder / non-responder',answer:'Categorical'}],
+    bins:['Continuous','Categorical','Ordinal','Count','Percentage'],
+    win:'Variable type really does drive which test you can use.',
+    hint:'Tips: ordered labels (mild/mod/severe) are ordinal; bounded 0–100 measures are usually percentages; group labels are categorical. Adjust and re-check.'});
+
+  /* draw-a-sample */
+  let dsN=10;
+  $$('#drawSample .seg button').forEach(b=>b.addEventListener('click',()=>{
+    $$('#drawSample .seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');dsN=+b.dataset.n;}));
+  const drawBtn=$('#drawBtn');
+  if(drawBtn)drawBtn.addEventListener('click',()=>{
+    const pool=POP.pool,idx=new Set();while(idx.size<dsN)idx.add((Math.random()*pool.length)|0);
+    drawPopulation(idx);
+    const vals=[...idx].map(i=>pool[i]),m=mean(vals);
+    $('#drawOut').textContent='Sample mean: '+m.toFixed(1);
+    const log=$('#drawLog');const prev=log.dataset.list?JSON.parse(log.dataset.list):[];
+    prev.unshift(m.toFixed(1));if(prev.length>6)prev.pop();log.dataset.list=JSON.stringify(prev);
+    log.innerHTML='Recent sample means (n = '+dsN+'): <strong>'+prev.join('</strong>, <strong>')+'</strong> — all wobbling around the true mean of ≈70.';});
+
+  /* sampling-size slider */
+  const nRange=$('#nRange');
+  if(nRange)nRange.addEventListener('input',()=>{const i=+nRange.value;
+    $('#nOut').textContent='n = '+N_OPTIONS[i];nRange.setAttribute('aria-valuetext',String(N_OPTIONS[i]));drawSampling(i);});
+
+  /* distribution explorer */
+  $$('#distExp .seg button').forEach(b=>b.addEventListener('click',()=>{
+    $$('#distExp .seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');const key=b.dataset.dist;
+    $$('#distExp .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+    drawDist(key,null);$('#distInfo').innerHTML=distInfoText(key,null);}));
+  $$('#distExp .chip').forEach(c=>c.addEventListener('click',()=>{
+    const term=c.dataset.term,on=c.getAttribute('aria-pressed')==='true',key=DIST_STATE.key;
+    $$('#distExp .chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+    if(on){drawDist(key,null);$('#distInfo').innerHTML=distInfoText(key,null);}
+    else{c.setAttribute('aria-pressed','true');drawDist(key,term);$('#distInfo').innerHTML=distInfoText(key,term);}}));
+
+  /* predict-then-reveal */
+  $$('#predict .opt').forEach(b=>b.addEventListener('click',()=>{
+    $$('#predict .opt').forEach(x=>x.classList.remove('correct','wrong'));const fb=$('#prFb');
+    if(b.dataset.pred==='surprising'){b.classList.add('correct');fb.className='feedback ok show';
+      fb.innerHTML='<strong>Right.</strong> The result sits far in the tail — the kind of value that would rarely occur if the treatment truly did nothing. That “rareness under the null” is what a small p-value captures. It still doesn’t tell us the effect is large or clinically important.';}
+    else{b.classList.add('wrong');fb.className='feedback no show';
+      fb.innerHTML='Look again at where the marker sits — out in the tail, where “no-effect” results almost never land. A result this extreme would be surprising under the null, which is evidence against it.';
+      $$('#predict .opt').forEach(x=>{if(x.dataset.pred==='surprising')x.classList.add('correct');});}}));
+
+  /* p-value misconception quiz */
+  trueFalse('pquizItems',[
+    {s:'A p-value is the probability that the null hypothesis is true.',ans:false,why:'It assumes the null is true and asks how surprising the data would be — not the probability the null itself is true.'},
+    {s:'If p > .05, there is definitely no effect.',ans:false,why:'“Not significant” can also mean the study was too small or noisy. Absence of evidence is not evidence of absence.'},
+    {s:'A small p-value tells us the result is clinically important.',ans:false,why:'Significance is about evidence against the null — not about whether the change matters for a client.'},
+    {s:'A 95% confidence interval shows a range of plausible values for the effect.',ans:true,why:'Yes — that’s a fair beginner reading, and the interval’s width signals how precise the estimate is.'}
+  ],'pqScore');
+
+  /* effect-size / clinical sorter */
+  makeSorter({tokensId:'esTokens',binsId:'esBins',checkId:'esCheck',resetId:'esReset',fbId:'esFb',
+    items:[{id:1,t:'p = .002, r = 0.47',answer:'Statistically significant'},
+      {id:2,t:'d = 1.3 — large standardized difference, but individuals still overlap',answer:'Large effect'},
+      {id:3,t:'A child went from 0 to 8 functional requests/session',answer:'Clinically meaningful'},
+      {id:4,t:'p = .052, d = 0.64, wide CI, n = 40',answer:'Needs more context'}],
+    bins:['Statistically significant','Large effect','Clinically meaningful','Needs more context'],
+    win:'Significance, size, and clinical meaning are three different questions.',
+    hint:'Hint: a clear p-value = evidence; a big d = size; a real-world functional change = clinical meaning; a borderline, imprecise result = needs more context.'});
+
+  /* test-selection cards */
+  mcq('tcItems',[
+    {q:'Same adults with aphasia are tested on naming before and after treatment.',options:[
+      {t:'Paired t-test',ok:true,why:'The same people are measured twice, so we analyze each person’s change.'},
+      {t:'Independent t-test',ok:false,why:'That’s for two separate groups; here it’s one group measured twice.'},
+      {t:'Chi-square',ok:false,why:'Chi-square is for categorical counts, not pre/post scores.'}]},
+    {q:'Two separate groups receive different articulation treatments; compare post-treatment accuracy.',options:[
+      {t:'Independent t-test',ok:true,why:'Two independent groups, one continuous outcome.'},
+      {t:'Paired t-test',ok:false,why:'Paired is for the same people measured twice, not two groups.'},
+      {t:'Correlation',ok:false,why:'Correlation relates two continuous variables, not group means.'}]},
+    {q:'Three fluency-treatment dosage groups are compared on improvement.',options:[
+      {t:'One-way ANOVA',ok:true,why:'Three+ independent groups on one continuous outcome → ANOVA.'},
+      {t:'Independent t-test',ok:false,why:'A t-test handles two groups; running several inflates false positives.'},
+      {t:'Regression',ok:false,why:'Possible, but ANOVA is the standard beginner choice for comparing group means.'}]},
+    {q:'Is therapy attendance related to vocabulary gain (both continuous)?',options:[
+      {t:'Correlation',ok:true,why:'Two continuous variables, asking about association.'},
+      {t:'Chi-square',ok:false,why:'Chi-square is for categories, not continuous variables.'},
+      {t:'ANOVA',ok:false,why:'ANOVA compares group means; here there are no groups.'}]},
+    {q:'Predict vocabulary gain from therapy hours and baseline score.',options:[
+      {t:'Regression',ok:true,why:'Prediction of a continuous outcome from one or more predictors.'},
+      {t:'Correlation',ok:false,why:'Correlation describes a pair; regression models/predicts an outcome.'},
+      {t:'Paired t-test',ok:false,why:'No pre/post pairing here — it’s prediction.'}]},
+    {q:'Is service model (3 categories) associated with responder category (yes/no)?',options:[
+      {t:'Chi-square',ok:true,why:'Two categorical variables → chi-square on the counts.'},
+      {t:'ANOVA',ok:false,why:'ANOVA needs a continuous outcome; both variables here are categorical.'},
+      {t:'Regression',ok:false,why:'Standard regression expects a continuous outcome.'}]},
+    {q:'AAC initiations are tracked across baseline and intervention sessions for one client.',options:[
+      {t:'Single-case visual analysis (+ optional Tau-U)',ok:true,why:'Repeated measurement in one case → visual analysis, with Tau-U as a supplement.'},
+      {t:'Independent t-test',ok:false,why:'There aren’t two independent groups; it’s one client over time.'},
+      {t:'ANOVA',ok:false,why:'ANOVA compares group means, not phases within a single case.'}]}
+  ],'tcScore');
+
+  /* assumptions quiz */
+  mcq('aqItems',[
+    {q:'A study tests 10 children three times each and treats all 30 scores as independent. Biggest concern?',options:[
+      {t:'Independence',ok:true,why:'Repeated scores from the same children are not independent observations.'},
+      {t:'Normality',ok:false,why:'Possible, but the clear violation here is independence.'},
+      {t:'Expected counts',ok:false,why:'That’s a chi-square concern; this isn’t a count table.'}]},
+    {q:'A correlation is reported, but the scatterplot shows a clear curve. Concern?',options:[
+      {t:'Linearity',ok:true,why:'Pearson’s r assumes a straight-line relationship; a curve breaks that.'},
+      {t:'Independence',ok:false,why:'Nothing here suggests linked observations.'},
+      {t:'Equal variance',ok:false,why:'The issue shown is the curved (non-linear) shape.'}]},
+    {q:'A chi-square table has an expected cell count of about 2. Concern?',options:[
+      {t:'Small expected counts',ok:true,why:'Chi-square gets unreliable when expected counts are very small (rule of thumb < 5).'},
+      {t:'Linearity',ok:false,why:'Linearity applies to correlation/regression, not chi-square.'},
+      {t:'Normality',ok:false,why:'Chi-square works on counts, not a normal outcome.'}]},
+    {q:'A t-test with n = 8 per group has one extreme outlier. Concern?',options:[
+      {t:'Outliers (and normality) with a tiny sample',ok:true,why:'With small n, one outlier can swing the mean and the result; investigate it.'},
+      {t:'Expected counts',ok:false,why:'That’s a chi-square idea, not a t-test one.'},
+      {t:'Nothing to worry about',ok:false,why:'Small samples are especially sensitive to outliers.'}]}
+  ],'aqScore');
+
+  /* annotate */
+  const GLOSS={
+    M:['Mean (M)','the average value.','It doesn’t show spread — read it alongside the SD.'],
+    SD:['Standard deviation (SD)','the typical distance of scores from the mean.','A bigger SD means more variability; it says nothing about sample size.'],
+    t:['t statistic (with df)','how large a difference is relative to its standard error (df ≈ sample size − groups).','A large t alone doesn’t give the effect size in real-world units.'],
+    p:['p-value','how surprising the data would be if the null model were true.','Not the probability the null is true, not proof, and not clinical importance.'],
+    CI:['95% confidence interval','a range of plausible values for the true effect.','A wide interval means low precision, even when the result is “significant.”'],
+    d:['Cohen’s d / d_z','the effect size in standard-deviation units.','“Large” statistically is not automatically “large” clinically.'],
+    F:['F statistic (ANOVA)','the ratio of between-group to within-group variability.','A significant F says at least one group differs — not which ones.'],
+    eta:['eta-squared (η²)','the share of outcome variance explained by group.','It’s a magnitude, not a clinical verdict.'],
+    r:['Correlation (r)','the strength and direction of a linear association (−1 to +1).','Association is not causation — check the scatterplot.'],
+    R2:['R-squared (R²)','the proportion of outcome variance the model explains.','A high R² doesn’t prove the model is causal or complete.']
+  };
+  $$('#annot .lab').forEach(b=>b.addEventListener('click',()=>{
+    $$('#annot .lab').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    const g=GLOSS[b.dataset.term],inf=$('#annotInfo');inf.className='feedback info show';
+    inf.innerHTML='<strong>'+g[0]+'</strong> is '+g[1]+' <em>What it does not tell you on its own:</em> '+g[2];}));
+
+  /* regression prediction slider */
+  const hoursRange=$('#hoursRange');
+  function updReg(){const hrs=+hoursRange.value;$('#hoursOut').textContent=hrs+' hours';
+    const pred=drawReg(hrs);$('#regPred').textContent='Predicted gain: '+pred.toFixed(1);}
+  if(hoursRange){hoursRange.addEventListener('input',updReg);updReg();}
+
+  /* effect-size overlap slider */
+  const dRange=$('#dRange');
+  function updES(){const d=+dRange.value;$('#dOut').textContent='d = '+d.toFixed(2);drawES(d);
+    const ov=Math.round(2*ncdf(-d/2)*100);
+    let lab=d<0.2?'negligible':d<0.5?'small':d<0.8?'medium':'large';
+    $('#dInfo').innerHTML='At d = '+d.toFixed(2)+' ('+lab+'), the two groups overlap about <strong>'+ov+'%</strong>. Even a “large” effect leaves plenty of individual overlap — group differences don’t predict any single client.';}
+  if(dRange){dRange.addEventListener('input',updES);updES();}
+
+  /* single-case reveal */
+  const scReveal=$('#scReveal');
+  if(scReveal)scReveal.addEventListener('click',()=>{const fb=$('#scFb');fb.className='feedback info show';
+    fb.innerHTML='<strong>Instructor reading:</strong> baseline is low and fairly stable (level ≈ 1.8, little trend). After the phase line the <strong>level jumps</strong> (intervention ≈ 6.2) with a clear <strong>upward trend</strong>; the change is reasonably <strong>immediate</strong>; there is <strong>almost no overlap</strong> with baseline (NAP = 0.99, PND = 92%); and the pattern is fairly <strong>consistent</strong>. The trend-aware Tau-U (0.78) sits a bit below the raw nonoverlap — a reminder to read the graph, not just one index.';});
+
+  /* Excel-route match */
+  mcq('emItems',[
+    {q:'Pre/post scores for the same participants.',options:[
+      {t:'=T.TEST(pre, post, 2, 1)',ok:true,why:'Two-tailed (2), paired (1).'},
+      {t:'=CORREL(x, y)',ok:false,why:'That’s for association between two continuous variables.'},
+      {t:'ToolPak › ANOVA',ok:false,why:'ANOVA is for 3+ groups.'}]},
+    {q:'Two independent groups.',options:[
+      {t:'=T.TEST(g1, g2, 2, 3)',ok:true,why:'Two-tailed (2), unequal-variance / Welch (3).'},
+      {t:'=T.TEST(g1, g2, 2, 1)',ok:false,why:'The “1” requests a paired test — wrong for independent groups.'},
+      {t:'=CHISQ.TEST(...)',ok:false,why:'Chi-square is for categorical counts.'}]},
+    {q:'Three independent groups.',options:[
+      {t:'ToolPak › Anova: Single Factor',ok:true,why:'The standard route for comparing 3+ group means.'},
+      {t:'=CORREL(x, y)',ok:false,why:'Correlation relates two continuous variables.'},
+      {t:'=T.TEST(...)',ok:false,why:'A t-test compares only two groups.'}]},
+    {q:'Two continuous variables.',options:[
+      {t:'=CORREL(x, y)',ok:true,why:'Returns Pearson’s r; pair it with a scatterplot.'},
+      {t:'ToolPak › ANOVA',ok:false,why:'ANOVA compares group means.'},
+      {t:'=CHISQ.TEST(...)',ok:false,why:'Chi-square is for categories.'}]},
+    {q:'Predict / model a continuous outcome.',options:[
+      {t:'ToolPak › Regression (or =LINEST)',ok:true,why:'Gives slope, R², and significance.'},
+      {t:'=CORREL(x, y)',ok:false,why:'Correlation describes a pair but doesn’t build a predictive model.'},
+      {t:'=T.TEST(...)',ok:false,why:'A t-test compares means, not a predictive model.'}]},
+    {q:'Two categorical variables.',options:[
+      {t:'=CHISQ.TEST(observed, expected)',ok:true,why:'Compares observed vs. expected counts; build the expected table first.'},
+      {t:'=CORREL(x, y)',ok:false,why:'Correlation is for continuous variables.'},
+      {t:'ToolPak › Regression',ok:false,why:'Standard regression expects a continuous outcome.'}]}
+  ],'emScore');
+
+  /* final quiz */
+  mcq('fqItems',[
+    {q:'A study reports p = .04 and Cohen’s d = 0.1. Best one-line summary?',options:[
+      {t:'Statistically significant, but the effect is tiny.',ok:true,why:'A small p with a tiny d = real signal, trivial magnitude. Ask if it matters clinically.'},
+      {t:'Strong evidence of a clinically important effect.',ok:false,why:'d = 0.1 is very small; significance ≠ importance.'},
+      {t:'Proof the treatment causes change.',ok:false,why:'A p-value never proves causation.'}]},
+    {q:'p = .08, d = 0.7, n = 18. Best summary?',options:[
+      {t:'Possibly a real, medium effect — the estimate is too imprecise to be conclusive.',ok:true,why:'This may suggest the study was underpowered or too noisy; check the CI, design, and measurement quality.'},
+      {t:'Proven: there is no effect.',ok:false,why:'p > .05 is not proof of no effect.'},
+      {t:'A large, well-established effect.',ok:false,why:'It’s medium and not yet statistically supported.'}]},
+    {q:'r = 0.6 between screen time and stuttering severity. Valid conclusion?',options:[
+      {t:'They are associated; the cause is unknown.',ok:true,why:'Correlation shows association, not causation.'},
+      {t:'Screen time causes stuttering.',ok:false,why:'Correlation can’t establish cause; other factors may drive both.'},
+      {t:'There is no relationship.',ok:false,why:'r = 0.6 is a fairly strong association.'}]},
+    {q:'Single-case: Tau-U = 0.85, but the baseline was already rising steeply. Best practice?',options:[
+      {t:'Interpret with the graph — a rising baseline weakens the claim.',ok:true,why:'A baseline trend can inflate apparent change; the picture and design matter.'},
+      {t:'Report Tau-U alone; the graph is unnecessary.',ok:false,why:'No single index replaces visual analysis.'},
+      {t:'Ignore the baseline trend.',ok:false,why:'Baseline trend is central to single-case interpretation.'}]},
+    {q:'A one-way ANOVA across three groups is p < .001. Can you name which groups differ?',options:[
+      {t:'No — you need post-hoc comparisons.',ok:true,why:'ANOVA only says “not all equal”; post-hoc tests locate the differences.'},
+      {t:'Yes — the highest mean is significantly best.',ok:false,why:'ANOVA doesn’t test specific pairs.'},
+      {t:'Yes — all three differ from each other.',ok:false,why:'That requires pairwise testing, not the overall F.'}]}
+  ],'fqScore',{bar:'fqBar'});
+}
+
+/* ===================== navigation / chrome ===================== */
+function initNav(){
+  const toggle=$('#navToggle'), sb=$('#sidebar'), bd=$('#sbBackdrop');
+  function closeSB(){if(sb)sb.classList.remove('open');if(bd)bd.classList.remove('show');if(toggle)toggle.setAttribute('aria-expanded','false');}
+  function openSB(){if(sb)sb.classList.add('open');if(bd)bd.classList.add('show');if(toggle)toggle.setAttribute('aria-expanded','true');}
+  if(toggle&&sb)toggle.addEventListener('click',()=>{sb.classList.contains('open')?closeSB():openSB();});
+  if(bd)bd.addEventListener('click',closeSB);
+  $$('#menu a').forEach(a=>a.addEventListener('click',closeSB));
+  const prog=$('#progress'), backtop=$('#backtop');
+  function onScroll(){const el=document.documentElement,sc=el.scrollTop||document.body.scrollTop,max=el.scrollHeight-el.clientHeight;
+    if(prog)prog.style.width=(max>0?sc/max*100:0)+'%';if(backtop)backtop.classList.toggle('show',sc>700);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const links={};$$('#menu a').forEach(a=>{links[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+      Object.values(links).forEach(l=>l.classList.remove('active'));
+      const l=links[e.target.id];if(l)l.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+    $$('main section[id]').forEach(s=>io.observe(s));}
+}
+
+/* ===================== scroll reveal ===================== */
+function initReveal(){
+  if(!('IntersectionObserver' in window))return;
+  const targets=$$('main section.lesson .container, .statband .container');
+  targets.forEach(t=>t.classList.add('reveal'));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+  targets.forEach(t=>io.observe(t));
+}
+
+/* ===================== boot ===================== */
+function ready(fn){if(document.readyState!=='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+ready(function(){ try{initVisuals();}catch(e){console.error('visuals',e);} initInteractions(); initNav(); initReveal(); });
+})();
+
+</script>
+</body>
+</html>
