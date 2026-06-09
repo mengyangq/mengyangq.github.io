@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Principles of Assessment — SLP 680: Research Methods</title>
+<meta name="description" content="An interactive, self-paced lesson for graduate Speech-Language Pathology students (SLP 680: Research Methods): reliability vs. validity, sensitivity &amp; specificity (with recall &amp; precision), and standardized test scores (normal curve, z-scores, standard scores, interpretation and reporting). Client scenarios and diagnostic-count examples are illustrative; published norm-table values are used where identified.">
+<!-- SLP 680: Research Methods — Principles of Assessment. Reuses the visual system of the course's Inferential Statistics page.
+     Client scenarios and diagnostic-count examples are illustrative teaching values, not real client data; SPELT-P2 norm-table values are used where identified. -->
+<style>
+  :root{
+    --deep-navy:#071A2F;
+    --navy:#0B2D4D;
+    --blue-navy:#145DA0;
+    --muted-blue:#2E6F9E;
+    --light-blue:#EAF4FB;
+    --page:#F5F8FC;
+    --white:#FFFFFF;
+    --ink:#1F2933;
+    --muted:#5B6775;
+    --warn:#FFF5D6;
+    --warn-border:#E6C200;
+    --success:#E8F6EF;
+    --success-border:#2E9E6B;
+    --line:#D9E3EE;
+    --focus:#F2A900;
+    --shadow:0 1px 2px rgba(7,26,47,.06),0 6px 18px rgba(7,26,47,.08);
+    --radius:14px;
+    --maxw:1160px;
+    --nav-h:60px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--page);color:var(--ink);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:18px;line-height:1.62;-webkit-text-size-adjust:100%;
+  }
+  h1,h2,h3,h4{line-height:1.2;color:var(--deep-navy);font-weight:750}
+  h2{font-size:clamp(1.7rem,1.1rem + 2.4vw,2.5rem);margin:0 0 .35em}
+  h3{font-size:clamp(1.25rem,1rem + 1vw,1.6rem);margin:1.4em 0 .4em}
+  h4{font-size:1.12rem;margin:1.1em 0 .35em}
+  p{margin:.6em 0}
+  a{color:var(--blue-navy)}
+  a:hover{color:var(--navy)}
+  strong{color:var(--navy)}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+  /* ---- skip link + focus ---- */
+  .skip{position:absolute;left:-999px;top:0;background:var(--deep-navy);color:#fff;
+    padding:10px 16px;border-radius:0 0 10px 0;z-index:200}
+  .skip:focus{left:0}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+  /* ---- header / nav ---- */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(7,26,47,.97);
+    color:#fff;box-shadow:var(--shadow);backdrop-filter:saturate(140%) blur(6px)}
+  .progress{height:4px;background:var(--blue-navy);width:0%;transition:width .15s ease}
+  .bar{display:flex;align-items:center;gap:12px;height:var(--nav-h);max-width:var(--maxw);
+    margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+  .brand{font-weight:800;font-size:1rem;color:#fff;text-decoration:none;letter-spacing:.2px;
+    display:flex;align-items:center;gap:9px;line-height:1.1}
+  .brand .dot{width:13px;height:13px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#7FC2F0,#145DA0);flex:none}
+  .brand small{display:block;font-weight:500;color:#A9C7E2;font-size:.72rem}
+  .nav-spacer{flex:1}
+  .nav-toggle{display:none;background:var(--blue-navy);color:#fff;border:0;border-radius:10px;
+    padding:9px 13px;font-size:.95rem;font-weight:600;cursor:pointer;min-height:42px}
+  nav.menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+  nav.menu a{color:#DCEBF8;text-decoration:none;font-size:.82rem;font-weight:600;
+    padding:7px 10px;border-radius:9px;white-space:nowrap}
+  nav.menu a:hover{background:rgba(255,255,255,.12);color:#fff}
+  nav.menu a.active{background:var(--blue-navy);color:#fff}
+  @media(max-width:980px){
+    .nav-toggle{display:inline-block}
+    nav.menu{position:absolute;top:calc(var(--nav-h) + 4px);left:0;right:0;
+      background:var(--deep-navy);max-height:0;overflow:hidden;transition:max-height .25s ease;
+      border-top:1px solid rgba(255,255,255,.08)}
+    nav.menu.open{max-height:75vh;overflow:auto;box-shadow:var(--shadow)}
+    nav.menu ul{flex-direction:column;padding:8px 12px 16px}
+    nav.menu a{display:block;padding:11px 12px;font-size:.95rem;min-height:44px}
+  }
+
+  /* ---- hero ---- */
+  .hero{background:
+      radial-gradient(1100px 400px at 80% -10%,rgba(20,93,160,.55),transparent),
+      linear-gradient(160deg,#071A2F 0%,#0B2D4D 60%,#10365C 100%);
+    color:#EAF4FB;padding:clamp(40px,7vw,84px) 0 clamp(36px,6vw,64px)}
+  .hero h1{color:#fff;font-size:clamp(2rem,1.2rem + 3.6vw,3.3rem);margin:0 0 .3em;max-width:18ch}
+  .hero .lede{font-size:clamp(1.05rem,1rem + .5vw,1.3rem);color:#CFE3F5;max-width:62ch}
+  .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    color:#EAF4FB;font-weight:600;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;margin-bottom:18px}
+  .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue-navy);color:#fff;
+    border:0;border-radius:11px;padding:12px 18px;font-size:1rem;font-weight:650;cursor:pointer;
+    text-decoration:none;min-height:46px;transition:background .15s,transform .05s}
+  .btn:hover{background:#1168b6;color:#fff}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .btn.sm{padding:8px 14px;min-height:40px;font-size:.92rem}
+  .btn.sec{background:var(--muted-blue)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+
+  /* ---- sections ---- */
+  main{display:block}
+  section.lesson{padding:clamp(34px,6vw,64px) 0;border-bottom:1px solid var(--line)}
+  section.lesson:nth-of-type(even){background:linear-gradient(180deg,#fff, #FAFCFE)}
+  .kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.7px;
+    text-transform:uppercase;color:var(--muted-blue);margin:0 0 6px;
+    border-left:4px solid var(--blue-navy);padding-left:9px}
+  .lead{font-size:1.12rem;color:#33414f;max-width:70ch}
+  .part-head{background:var(--light-blue);border:1px solid var(--line)}
+  .part-head .pill{display:inline-block;background:var(--navy);color:#fff;font-weight:700;
+    border-radius:999px;padding:5px 14px;font-size:.8rem;letter-spacing:.4px;margin-bottom:10px}
+
+  /* ---- cards & layout ---- */
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(16px,2.4vw,24px);box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .center{text-align:center}
+  .muted{color:var(--muted)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.3px;
+    padding:3px 9px;border-radius:999px;background:#E2ECF6;color:var(--navy);text-transform:uppercase}
+  .tag.sim{background:#EFE7FB;color:#5B2E9E}
+
+  /* ---- callouts ---- */
+  .callout{border-radius:13px;padding:15px 17px 15px 48px;position:relative;margin:18px 0;
+    border:1px solid var(--line);background:var(--white)}
+  .callout .ic{position:absolute;left:14px;top:15px;width:22px;height:22px;font-size:1.05rem;
+    line-height:22px;text-align:center}
+  .callout h4{margin:.1em 0 .3em;font-size:1rem;text-transform:uppercase;letter-spacing:.4px}
+  .callout p:last-child{margin-bottom:0}
+  .c-key{background:var(--light-blue);border-color:#BBD9F1}
+  .c-key h4{color:var(--navy)}
+  .c-slp{background:#EAF7F1;border-color:#BCE3CF}
+  .c-slp h4{color:#1E7A50}
+  .c-mistake{background:var(--warn);border-color:#EAD68A}
+  .c-mistake h4{color:#8A6D00}
+  .c-try{background:#FBEFE5;border-color:#F0CFB0}
+  .c-try h4{color:#9A571B}
+  .c-excel{background:#E9F5EC;border-color:#BFE3C7}
+  .c-excel h4{color:#1E6B3A}
+  .c-reminder{background:#EEF0FB;border-color:#C9CFF0}
+  .c-reminder h4{color:#3B3F9E}
+
+  /* ---- details / R code ---- */
+  details.rbox{margin:16px 0;border:1px solid #C9D6E4;border-radius:12px;background:#0B2D4D;overflow:hidden}
+  details.rbox>summary{cursor:pointer;list-style:none;padding:12px 16px;color:#DCEBF8;font-weight:650;
+    background:#0B2D4D;display:flex;align-items:center;gap:9px}
+  details.rbox>summary::-webkit-details-marker{display:none}
+  details.rbox>summary::before{content:"▸";color:#7FB2E0;transition:transform .15s}
+  details.rbox[open]>summary::before{transform:rotate(90deg)}
+  details.rbox .body{padding:0 14px 12px}
+  pre{margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  pre code{display:block;color:#E8F1FA;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.86rem;line-height:1.55;padding:6px 2px;white-space:pre}
+  .rbox .cmt{color:#8FB7DA}
+  .rbox .fn{color:#8FE0C0}
+  code.inline{background:#E7EFF8;color:var(--navy);padding:2px 6px;border-radius:6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;white-space:nowrap}
+
+  /* ---- tables ---- */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0;-webkit-overflow-scrolling:touch}
+  table.data{border-collapse:collapse;width:100%;min-width:460px;font-size:.95rem;background:#fff}
+  table.data caption{text-align:left;padding:10px 12px;color:var(--muted);font-size:.85rem;caption-side:bottom}
+  table.data th,table.data td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+  table.data thead th{background:var(--navy);color:#fff;position:sticky;top:0;font-weight:650}
+  table.data tbody tr:nth-child(even){background:#F4F8FC}
+  table.data td.num,table.data th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+  /* ---- figures / charts ---- */
+  figure.fig{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:13px;
+    padding:14px 14px 6px;box-shadow:var(--shadow)}
+  figure.fig .fig-title{font-weight:700;color:var(--navy);font-size:1.02rem;margin:2px 2px 2px}
+  figure.fig figcaption{color:var(--muted);font-size:.86rem;padding:8px 4px 8px}
+  figure.fig .notice{font-size:.78rem;color:#6a5aa0;font-weight:600}
+  .chart{width:100%;height:auto;display:block}
+  .chart text{font-family:system-ui,sans-serif}
+  .axis line,.axis path{stroke:#9fb3c7}
+  .gridline{stroke:#E4ECF4;stroke-width:1}
+  .axis-label{fill:#33414f;font-size:13px;font-weight:600}
+  .tick{fill:#5B6775;font-size:12px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* ---- interactive widgets ---- */
+  .widget{background:linear-gradient(180deg,#fff,#F7FAFD);border:1.5px solid #CFE0F0;
+    border-radius:var(--radius);padding:clamp(16px,2.4vw,24px);margin:18px 0;box-shadow:var(--shadow)}
+  .widget .wlabel{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:#9A571B;
+    background:#FBEFE5;border:1px solid #F0CFB0;border-radius:999px;padding:4px 12px;font-size:.8rem;
+    text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);
+    border-radius:11px;padding:13px 15px;margin:9px 0;font-size:1rem;cursor:pointer;color:var(--ink);
+    transition:border-color .12s,background .12s;min-height:46px}
+  .opt:hover{border-color:var(--blue-navy);background:#F3F8FD}
+  .opt.correct{border-color:var(--success-border);background:var(--success)}
+  .opt.wrong{border-color:#D98A8A;background:#FBEBEB}
+  .opt .mk{font-weight:800;margin-right:6px}
+  .feedback{margin-top:12px;padding:12px 14px;border-radius:11px;font-size:.96rem;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:var(--success);border:1px solid var(--success-border)}
+  .feedback.no{background:var(--warn);border:1px solid var(--warn-border)}
+  .feedback.info{background:var(--light-blue);border:1px solid #BBD9F1}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;
+    font-weight:600;cursor:pointer;font-size:.95rem;min-height:42px}
+  .chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .bins{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+  .bin{flex:1 1 200px;border:1.5px dashed #B9CDE0;border-radius:12px;padding:12px;min-height:90px;background:#fff}
+  .bin h5{margin:0 0 8px;color:var(--navy);font-size:.95rem}
+  .bin.drop-hot{border-color:var(--blue-navy);background:#EEF6FD}
+  .token{display:inline-block;background:#EAF4FB;border:1.5px solid #BBD9F1;border-radius:10px;
+    padding:8px 12px;margin:5px 6px 0 0;font-size:.92rem;cursor:pointer;color:var(--navy);font-weight:600}
+  .token.placed{opacity:.45}
+  .token.sel{outline:3px solid var(--focus);outline-offset:2px}
+  .slider-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0}
+  input[type=range]{width:min(420px,100%);accent-color:var(--blue-navy);height:30px}
+  .readout{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy);
+    background:#EAF4FB;border-radius:9px;padding:4px 10px;border:1px solid #BBD9F1}
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:11px;overflow:hidden}
+  .seg button{background:#fff;border:0;padding:9px 15px;font-weight:650;cursor:pointer;color:var(--navy);min-height:42px}
+  .seg button[aria-pressed=true]{background:var(--blue-navy);color:#fff}
+  .seg button + button{border-left:1px solid var(--line)}
+  .annot{line-height:2.1}
+  .lab{border:0;border-bottom:2px dotted var(--blue-navy);background:#EAF4FB;color:var(--navy);
+    border-radius:6px 6px 0 0;padding:2px 6px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95em}
+  .lab:hover{background:#d8ecfb}
+  .lab.on{background:var(--navy);color:#fff}
+  .checklist label{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .checklist input{margin-top:5px;width:20px;height:20px;accent-color:var(--blue-navy);flex:none}
+  .scorebar{height:12px;background:#E2ECF6;border-radius:999px;overflow:hidden;margin:8px 0}
+  .scorebar>span{display:block;height:100%;background:linear-gradient(90deg,#2E9E6B,#145DA0);width:0%}
+
+  /* ---- footer ---- */
+  footer.site{background:var(--deep-navy);color:#C7D8E8;padding:40px 0 56px}
+  footer.site a{color:#9FD0F2}
+  footer.site h4{color:#fff}
+  .refs{font-size:.9rem;color:#A9C2D8}
+  .refs li{margin:7px 0}
+  .backtop{position:fixed;right:18px;bottom:18px;z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
+  .backtop.show{opacity:1;pointer-events:auto}
+
+  /* ---- result statement boxes ---- */
+  .result{background:linear-gradient(160deg,#0B2D4D,#0e3a64);color:#EAF4FB;border-radius:13px;
+    padding:16px 18px;margin:16px 0;box-shadow:var(--shadow)}
+  .result h4{color:#fff;margin:.1em 0 .5em;font-size:.86rem;text-transform:uppercase;letter-spacing:.6px}
+  .result .stmt{font-size:1.04rem;line-height:1.62}
+  .result .v{background:rgba(255,255,255,.16);color:#fff;border-radius:6px;padding:1px 7px;
+    font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+  .statchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+  .statchips span{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
+    border-radius:9px;padding:5px 11px;font-size:.85rem;font-variant-numeric:tabular-nums}
+  .statchips b{color:#9FE0C6;font-weight:700}
+  .recipe{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:6px 0 2px;align-items:start}
+  .recipe .step{background:var(--navy);color:#fff;border-radius:50%;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex:none}
+  .qcheck{border:1.5px solid #CFE0F0;border-radius:12px;padding:6px 16px;margin:16px 0;background:#F7FAFD}
+  .qcheck>summary{cursor:pointer;font-weight:700;color:var(--navy);padding:9px 0;list-style:none}
+  .qcheck>summary::-webkit-details-marker{display:none}
+  .qcheck>summary::before{content:"?";display:inline-flex;width:22px;height:22px;border-radius:50%;
+    background:var(--blue-navy);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:9px}
+  .qcheck .body{padding:0 0 12px}
+  .flipcard{cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px}
+  .flipcard .t{font-weight:800;color:var(--navy);font-size:1.08rem}
+  .flipcard .d{color:var(--muted);font-size:.92rem;display:none}
+  .flipcard[aria-pressed=true] .d{display:block}
+  .flipcard::after{content:"Tap to reveal";font-size:.72rem;color:var(--muted-blue);font-weight:700;
+    text-transform:uppercase;letter-spacing:.4px;margin-top:auto}
+  .flipcard[aria-pressed=true]::after{content:"Tap to hide"}
+  kbd{background:#eef2f7;border:1px solid #cdd7e2;border-bottom-width:2px;border-radius:5px;
+    padding:1px 6px;font-size:.8em;font-family:ui-monospace,monospace;color:#33414f}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  }
+</style>
+<style>
+/* ============================================================
+   EDITORIAL REDESIGN — navy anchor on warm paper, magazine feel
+   (loaded after the base sheet so these rules win the cascade)
+   ============================================================ */
+:root{
+  --paper:#F6F1E6; --paper-2:#EFE7D6; --line:#E2D9C5;
+  --ink:#1b2a3a; --muted:#5d6675;
+  --deep-navy:#08203a; --navy:#0B2D4D; --blue-navy:#16639f; --muted-blue:#2E6F9E;
+  --amber:#dc9329; --teal:#2f7077; --coral:#c0573f;
+  --focus:#dc9329;
+  --disp:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Cascadia Code","Segoe UI Mono",Menlo,Consolas,monospace;
+  --maxw:920px;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.7;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3,h4{font-family:var(--disp);color:var(--navy)}
+h2{font-weight:600;letter-spacing:-.015em}
+h3{font-weight:600}
+h4{font-weight:600}
+strong{color:var(--navy)}
+a{color:var(--blue-navy)}
+code.inline{background:#efe7d4;color:#7a4f12;border-radius:6px}
+kbd{background:#efe7d4;border-color:#d8c9a8}
+
+/* hide the old top header; new chrome below */
+.site-header{display:none !important}
+
+/* progress bar pinned to very top */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amber);z-index:400;transition:width .12s linear;border:0;margin:0}
+
+/* ---- app shell: sidebar + content ---- */
+.app{display:flex;align-items:flex-start}
+.sidebar{position:sticky;top:0;height:100vh;width:270px;flex:none;overflow-y:auto;z-index:160;
+  background:linear-gradient(180deg,#08203a,#0B2D4D 55%,#0e3a63);color:#cfe0f1;
+  padding:30px 20px 48px;border-right:1px solid rgba(255,255,255,.06)}
+.sidebar .brand{display:block;text-decoration:none;margin-bottom:8px}
+.sidebar .brand .crs{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.sidebar .brand .ttl{display:block;font-family:var(--disp);font-weight:600;font-size:1.5rem;line-height:1.05;color:#fff}
+.sidebar .brand .sub{display:block;font-size:.82rem;color:#9fbad6;margin-top:9px;line-height:1.45}
+.sidebar nav.menu{margin-top:20px;position:static;max-height:none;overflow:visible;background:none;border:0;box-shadow:none}
+.sidebar nav.menu ul{list-style:none;margin:0;padding:0;display:block;flex-direction:column}
+.sidebar nav.menu li{margin:0}
+.sidebar nav.menu a{display:block;color:#bcd2e8;text-decoration:none;font-size:.85rem;font-weight:500;
+  padding:6px 11px;border-radius:8px;border-left:2px solid transparent;white-space:normal;line-height:1.3;min-height:0}
+.sidebar nav.menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+.sidebar nav.menu a.active{background:rgba(220,147,41,.18);border-left-color:var(--amber);color:#fff}
+.content{flex:1;min-width:0}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,46px)}
+
+/* ---- mobile top bar ---- */
+.topbar{display:none}
+.sb-backdrop{display:none}
+@media(max-width:980px){
+  .app{display:block}
+  .topbar{display:flex;position:sticky;top:0;z-index:200;align-items:center;justify-content:space-between;
+    background:var(--deep-navy);color:#fff;padding:10px 16px;gap:12px}
+  .topbar .tb-brand{font-family:var(--disp);font-weight:600;font-size:1.06rem;color:#fff;text-decoration:none;line-height:1}
+  .topbar .tb-brand small{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-top:2px}
+  .nav-toggle{display:inline-flex;align-items:center;background:var(--blue-navy);color:#fff;border:0;border-radius:9px;padding:9px 14px;font-weight:600;font-size:.92rem;cursor:pointer;min-height:42px}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;height:100vh;width:min(84vw,310px);transform:translateX(-100%);transition:transform .25s ease;box-shadow:0 0 50px rgba(0,0,0,.45)}
+  .sidebar.open{transform:none}
+  .sb-backdrop{display:block;position:fixed;inset:0;background:rgba(7,18,33,.55);z-index:155;opacity:0;pointer-events:none;transition:opacity .25s}
+  .sb-backdrop.show{opacity:1;pointer-events:auto}
+}
+
+/* ---- hero ---- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#08203a,#0B2D4D 52%,#103a61);
+  color:#e9f2fb;padding:clamp(60px,12vh,128px) 0 clamp(50px,8vh,96px)}
+.hero::after{content:"";position:absolute;right:-6%;bottom:-14%;width:min(56vw,580px);height:min(56vw,580px);
+  background:radial-gradient(circle at 50% 50%,rgba(220,147,41,.20),transparent 62%);pointer-events:none}
+.hero .container{position:relative;z-index:1}
+.hero .eyebrow{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--amber);background:none;border:0;padding:0;margin:0 0 18px;animation:rise .7s .05s both}
+.hero h1{font-family:var(--disp);color:#fff;font-weight:600;font-size:clamp(2.5rem,1.4rem + 5.4vw,5rem);line-height:1.0;
+  letter-spacing:-.025em;max-width:17ch;margin:0 0 .35em;animation:rise .8s .16s both}
+.hero h1 .acc{color:var(--amber);font-style:italic;font-weight:400}
+.hero .lede{color:#cfe0f1;font-size:clamp(1.06rem,1rem + .55vw,1.34rem);max-width:60ch;animation:rise .8s .3s both}
+.hero .lede strong,.hero strong{color:#ffd49a;font-weight:600}
+.hero .muted{color:#a9c4de !important}
+.hero .hero-actions{animation:rise .8s .44s both}
+.hero p:last-child{animation:rise .8s .54s both}
+.hero .tag.sim{background:rgba(220,147,41,.20);color:#ffd79f;border:1px solid rgba(220,147,41,.45)}
+.hero .btn{border-radius:30px;background:var(--amber);color:#08203a;font-weight:700}
+.hero .btn:hover{background:#e9a23f;color:#08203a}
+.hero .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.12)}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ---- editorial kicker ---- */
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);
+  border:0;padding:0;display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.kicker::before{content:"";width:30px;height:1px;background:var(--coral);flex:none}
+
+/* ---- part header: bold navy band ---- */
+.part-head{background:linear-gradient(150deg,#0B2D4D,#0e3a63);border:0}
+.part-head .pill{background:var(--amber);color:#08203a;font-family:var(--mono);font-weight:700;font-size:.66rem;letter-spacing:.14em}
+.part-head h2{color:#fff}
+.part-head .lead{color:#cfe0f1}
+
+/* ---- sections / type ---- */
+section.lesson{border-bottom:1px solid var(--line);padding:clamp(42px,6vw,80px) 0}
+section.lesson:nth-of-type(even){background:transparent}
+.lead{color:#33414f}
+
+/* ---- idea band ---- */
+.statband{background:var(--deep-navy);color:var(--paper);text-align:center;padding:clamp(58px,9vw,108px) 0}
+.statband .big{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,1.4rem + 5.2vw,4.4rem);line-height:1.06;
+  color:#fff;letter-spacing:-.02em;max-width:20ch;margin:0 auto}
+.statband .big .accent{color:var(--amber);font-style:italic}
+.statband .cap{max-width:560px;margin:22px auto 0;color:#bcd0e4;font-size:1.06rem}
+.statband strong{color:#fff}
+
+/* ---- cards / callouts re-skinned for paper ---- */
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(20,40,70,.05)}
+.callout{border-radius:12px}
+.c-key{background:#eaf3fb;border-color:#cde0f1}
+.c-slp{background:#e9f4ee;border-color:#c3dfce}
+.c-mistake{background:#fbeedb;border-color:#ecd2a0}
+.c-mistake h4{color:#9a6b1b}
+.c-try{background:#f8ebe1;border-color:#e9cab0}
+.c-excel{background:#edf4ea;border-color:#cfe0c6}
+.c-reminder{background:#eef0f8;border-color:#d2d6ee}
+.tag{font-family:var(--mono);font-weight:600;letter-spacing:.05em;border-radius:6px}
+.tag.sim{background:#efe5cf;color:#8a5a16}
+
+/* ---- widgets ---- */
+.widget{background:linear-gradient(180deg,#fff,#fbf6ec);border:1.5px solid #e6ddca;border-radius:14px}
+.wlabel{font-family:var(--mono);background:#f5ecd9;border-color:#e7d3ac;color:#8a5a16}
+.opt{border-radius:10px}
+.opt:hover{border-color:var(--blue-navy);background:#f4f0e6}
+.opt.correct{background:#e9f4ee;border-color:#2f7d57}
+.opt.wrong{background:#f9e9e4;border-color:#c0573f}
+/* paginated quiz cards (one question at a time) */
+.quizcard{background:#fff;border:1px solid var(--line);border-radius:13px;padding:clamp(16px,2.5vw,24px);box-shadow:0 12px 30px rgba(20,40,70,.05)}
+.quizhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.qprog{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+.qdots{display:flex;gap:6px}
+.qd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.qd.done{background:var(--muted-blue)}
+.qd.cur{background:var(--navy);transform:scale(1.25)}
+.quizq{font-family:var(--body);font-weight:650;color:var(--navy);font-size:1.07rem;margin:0 0 12px;outline:none}
+.quizcard .opt{margin:9px 0}
+.opt:disabled{opacity:1;cursor:default}
+.verdict{font-family:var(--disp);font-weight:600;font-size:1.06rem;margin-bottom:4px}
+.feedback.ok .verdict{color:#1E7A50}
+.feedback.no .verdict{color:#b23b2f}
+.btn.next{margin-top:12px}
+.quizdone{text-align:center}
+.qsmall{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+.qbig{font-family:var(--disp);font-weight:600;font-size:clamp(2.4rem,1.6rem + 3vw,3.4rem);color:var(--navy);line-height:1.05;margin:4px 0 6px}
+.chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy)}
+.seg button[aria-pressed=true]{background:var(--blue-navy)}
+.token{background:#eef4fb;border-color:#cde0f1;color:var(--navy)}
+.chips .token{cursor:grab;touch-action:none}
+.token.ghost{opacity:.3}
+.token.dragging{cursor:grabbing;box-shadow:0 14px 34px rgba(8,32,58,.30);transform:scale(1.05);border-color:var(--blue-navy);background:#fff}
+.bin{background:#fff;transition:background .15s,border-color .15s,transform .15s}
+.bin.drop-hot{border-color:var(--blue-navy);background:#eaf2fb;border-style:solid;transform:translateY(-2px);box-shadow:0 10px 26px rgba(8,32,58,.12)}
+.bin .slot{min-height:30px;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+input[type=range]{accent-color:var(--blue-navy)}
+.readout{background:#eef4fb;border-color:#cde0f1;color:var(--navy)}
+
+/* ---- figures ---- */
+figure.fig{border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(20,40,70,.05)}
+figure.fig .fig-title{font-family:var(--body);color:var(--navy)}
+.chart text{font-family:var(--body)}
+
+/* ---- result statement keeps dark navy; ensure light strong ---- */
+.result strong{color:#fff}
+.qcheck{background:#fbf6ec;border-color:#e6ddca}
+
+/* ---- buttons ---- */
+.btn{border-radius:28px}
+.backtop{border-radius:28px;background:var(--navy)}
+
+/* ---- footer ---- */
+footer.site{background:var(--deep-navy)}
+footer.site strong{color:#fff}
+footer.site h4{font-family:var(--disp)}
+.ack{margin-top:20px;font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;color:#86a0bb}
+.ack a{color:#bcd9f2}
+
+/* ---- scroll reveal ---- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- flip cards (term preview) ---- */
+#termGrid{perspective:1500px}
+.flipcard{background:none;border:0;padding:0;margin:0;cursor:pointer;display:block;width:100%;
+  min-height:190px;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.flipcard .flip-inner{position:relative;display:block;width:100%;height:190px;
+  transition:transform .6s cubic-bezier(.2,.75,.2,1);transform-style:preserve-3d}
+.flipcard[aria-pressed=true] .flip-inner{transform:rotateY(180deg)}
+.flipcard .flip-face{position:absolute;inset:0;display:flex;flex-direction:column;text-align:left;
+  border-radius:13px;padding:20px;border:1px solid var(--line);overflow:auto;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden}
+.flipcard .flip-front{background:#fff;box-shadow:0 12px 30px rgba(20,40,70,.06)}
+.flipcard .flip-front::before{content:"Term";font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+.flipcard .flip-back{background:linear-gradient(155deg,#0B2D4D,#0e3a63);border-color:#0e3a63;transform:rotateY(180deg)}
+.flipcard .flip-back::before{content:"Meaning";font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.flipcard .t{font-family:var(--disp);font-weight:600;font-size:1.32rem;color:var(--navy);line-height:1.08}
+.flipcard .flip-hint{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted-blue);margin-top:auto;padding-top:12px}
+.flipcard .d{display:block;color:#dbe7f5;font-size:.95rem;line-height:1.5;margin:0}
+.flipcard .d em{color:#fff}
+.flipcard::after{content:none !important}
+.flipcard:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:13px}
+
+@media(prefers-reduced-motion:reduce){
+  .hero *{animation:none !important}
+  .reveal{opacity:1 !important;transform:none !important}
+  .sidebar{transition:none}
+}
+</style>
+<style>
+/* ============================================================
+   SUPPLEMENTAL STYLES — assessment lesson add-ons
+   (loaded after the inferential base + editorial sheets)
+   ============================================================ */
+:root{
+  --green:#2f7d57; --green-soft:#e9f4ee;
+  /* Apple-style native fonts: SF Pro on Apple, Segoe UI on Windows, Roboto on Android, then safe fallbacks */
+  --disp:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --body:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Cascadia Code","Segoe UI Mono",Menlo,Consolas,monospace;
+}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.hero h1,h2,h3{letter-spacing:-0.021em}
+
+/* part dividers must keep their navy band (beats section.lesson:nth-of-type(even)) */
+section.lesson.part-head{background:linear-gradient(150deg,#0B2D4D,#0e3a63)}
+.part-head h2{color:#fff}
+.part-head .lead{color:#cfe0f1}
+.part-head .lead strong{color:#fff}
+.part-head .pill{background:var(--amber);color:#08203a}
+
+/* ghost buttons readable on light widgets (keep the hero's light-on-dark version) */
+.btn.ghost{background:#fff;border:1.6px solid var(--line);color:var(--navy)}
+.btn.ghost:hover{background:#f4f0e6}
+.hero .btn.ghost{background:transparent;border-color:rgba(255,255,255,.5);color:#fff}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* compact data table for the reliability demonstration */
+.gtab{border-collapse:collapse;width:100%;font-size:.85rem;font-family:var(--mono)}
+.gtab th,.gtab td{border:1px solid var(--line);padding:4px 9px;text-align:center}
+.gtab thead th{background:var(--navy);color:#fff;font-weight:600;font-size:.76rem}
+.gtab tbody tr:nth-child(even){background:#faf6ec}
+.gtab .hl{background:#fdf4e2;font-weight:700}
+.statchip{display:inline-block;font-family:var(--mono);font-weight:700;background:#eef6fd;border:1px solid #cde0f1;
+  color:var(--navy);border-radius:8px;padding:5px 13px;font-size:.95rem}
+.statchip.good{background:var(--green-soft);border-color:#bfe0cb;color:#1f6b46}
+.mpaper .dots{font-family:var(--disp);font-size:1.3rem;color:var(--muted);text-align:center;letter-spacing:.2em;padding:2px 0}
+
+/* horizontal test paper (top of the Mandarin demo) */
+.mpaper-h{min-height:0}
+.mitems{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:9px;align-items:baseline}
+.mitem{font-size:.98rem;color:var(--navy);white-space:nowrap}
+.mitem b{color:var(--muted-blue);margin-right:4px}
+.mitem .han{font-family:var(--disp);font-size:1.18rem;margin-right:3px}
+.mpaper-h .dots{display:inline;font-size:1.2rem;color:var(--muted);letter-spacing:.16em;padding:0}
+
+/* card stepper (Mandarin reliability evidence) */
+.stepper{margin-top:12px}
+.stepdots{display:flex;gap:7px;justify-content:center;margin-bottom:12px}
+.stepdots .d{width:9px;height:9px;border-radius:50%;background:var(--line);transition:transform .15s,background .15s}
+.stepdots .d.done{background:var(--muted-blue)}
+.stepdots .d.cur{background:var(--navy);transform:scale(1.35)}
+.mcard{display:none}
+.mcard.on{display:block;animation:fadeUp .4s ease both}
+.mcard>h4{font-family:var(--disp);font-size:1.18rem;color:var(--navy);margin:0 0 .4em}
+.stepnav{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px}
+
+/* draggable 2x2 grid */
+.tt.draggrid td{padding:8px}
+.tt.draggrid td .numchip{margin:0 auto}
+
+/* cut-off dot-plot legend */
+.kidlegend{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;color:var(--ink);margin:6px 0 2px}
+.kidlegend span{display:inline-flex;align-items:center;gap:6px}
+.kidlegend .sw{width:14px;height:14px;display:inline-block;flex:none}
+.kidlegend .sw.li{background:#3b6fb6;border-radius:50%}
+.kidlegend .sw.td{background:#3f9d6b;border-radius:3px}
+/* full-width slider row: end labels pin to the two edges at any width */
+.sliderrow2{display:flex;align-items:center;gap:14px;margin:10px 0 2px}
+.sliderrow2 input[type=range]{flex:1;width:auto;min-width:0;accent-color:var(--blue-navy);height:30px}
+.sliderrow2 .end{font-size:.8rem;color:var(--muted);flex:none;white-space:nowrap}
+/* figure flip cards: light back showing a demo chart */
+.figflip .flip-back{background:#fff;border-color:var(--line)}
+.figflip .flip-back::before{content:"Example";color:var(--coral)}
+.figflip .flip-back .d{color:var(--ink)}
+.figflip .flip-front .use{display:block;color:var(--muted);font-size:.86rem;margin-top:6px}
+.figflip .flip-back{padding:14px}
+/* demo chart sized by HEIGHT so it always fits the card (mobile was overflowing on width) */
+.figdemo{display:block;margin:2px auto 0;width:auto;height:140px;max-width:100%}
+/* a little more card height (keeps the long Mode example visible on desktop) */
+.flipcard{min-height:220px}
+.flipcard .flip-inner{height:220px}
+.flipcard .flip-back .d{font-size:.9rem;line-height:1.48}
+/* emphasis on the dark flip-back must be light (was navy-on-navy) */
+.flipcard .flip-back strong{color:#ffd49a}
+.figflip .flip-back strong{color:var(--navy)}
+/* convert exercises: hide each chip's role until Check */
+.numtray.rolehide .numchip .k{visibility:hidden}
+.numtray.rolehide.revealed .numchip .k{visibility:visible}
+/* standard-deviation worked-calculation steps */
+.sdsteps{margin-top:9px;font-size:.84rem;line-height:1.75;font-family:var(--mono);color:var(--muted)}
+.sdsteps strong{color:var(--navy)}
+
+/* ---- generic step reveal ---- */
+.reveal-block{display:none;margin-top:14px}
+.reveal-block.show{display:block;animation:fadeUp .45s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.stepbtn{margin-top:6px}
+.muted-mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+
+/* ---- gauges (reliability / validity) ---- */
+.gauge-row{display:flex;align-items:center;gap:12px;margin:9px 0}
+.gauge-row .glab{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);width:92px;flex:none}
+.gauge{flex:1;height:18px;background:#ece3d0;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.gauge>span{display:block;height:100%;width:0;border-radius:999px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.gauge.good>span{background:linear-gradient(90deg,#2f7d57,#16639f)}
+.gauge.bad>span{background:linear-gradient(90deg,#c0573f,#e0a13a)}
+.gval{font-family:var(--disp);font-weight:600;font-size:1.25rem;width:56px;text-align:right}
+.gval.teal{color:var(--teal)} .gval.coral{color:var(--coral)}
+
+/* ---- mock Mandarin test paper ---- */
+.mpaper{position:relative;background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:230px;box-shadow:var(--shadow)}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--line);padding:7px 0}
+.mrow:last-child{border-bottom:0}
+.mrow .han{font-family:var(--disp);font-size:1.3rem;color:var(--navy)}
+.mans{color:var(--coral);font-weight:700;font-family:var(--mono)}
+.mstamp{position:absolute;right:18px;bottom:14px;transform:rotate(-11deg);opacity:0;transition:opacity .4s;
+  border:3px solid var(--coral);color:var(--coral);font-family:var(--disp);font-weight:600;font-size:1.5rem;border-radius:8px;padding:2px 12px}
+.mstamp.show{opacity:1}
+.mstep{opacity:.32;transition:opacity .4s}
+.mstep.on{opacity:1}
+
+/* ---- 2x2 contingency table ---- */
+.tt{border-collapse:separate;border-spacing:0;width:100%;font-size:.96rem;margin:6px 0}
+.tt th,.tt td{border:1px solid var(--line);padding:9px 8px;text-align:center;background:#fff}
+.tt thead th{background:var(--navy);color:#fff;font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;font-weight:600}
+.tt .rh{background:var(--paper-2);font-family:var(--mono);font-size:.76rem;color:var(--navy);font-weight:700}
+.tt .cell{font-family:var(--disp);font-weight:600;font-size:1.7rem;color:var(--navy);transition:background .25s,box-shadow .25s;position:relative}
+.tt .cell small{display:block;font-family:var(--mono);font-size:.5rem;font-weight:600;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+.tt .cell.tp,.tt .cell.tn{color:#1f6b46}
+.tt .cell.fp,.tt .cell.fn{color:#a23b29}
+.tt .cell.lit{box-shadow:inset 0 0 0 3px var(--amber);background:#fdf4e2}
+.tt .cell.dim{opacity:.32}
+.tag.li{background:#f6e2dd;color:#a23b29}
+.tag.td{background:#dfeee5;color:#1f6b46}
+
+/* ---- draggable number chips + formula slots ---- */
+.numtray{display:flex;flex-wrap:wrap;gap:9px;margin:10px 0 4px}
+.numtray .hint{width:100%;font-size:.82rem;color:var(--muted);margin:0 0 2px}
+.numchip{display:inline-flex;flex-direction:column;align-items:center;gap:1px;background:#fff;border:1.6px solid var(--line);
+  border-radius:11px;padding:7px 14px;cursor:grab;touch-action:none;box-shadow:0 2px 5px rgba(20,40,70,.05);user-select:none}
+.numchip .v{font-family:var(--mono);font-weight:700;font-size:1.12rem;color:var(--navy);line-height:1}
+.numchip .k{font-family:var(--mono);font-weight:600;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-blue)}
+.numchip:hover{border-color:var(--blue-navy);background:#f5f0e6}
+.numchip.sel{outline:3px solid var(--focus);outline-offset:2px}
+.numchip.dragclone{position:fixed;pointer-events:none;z-index:9999;margin:0;box-shadow:0 16px 36px rgba(8,32,58,.32);
+  transform:scale(1.07);border-color:var(--blue-navy);background:#fff}
+
+.fx{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--disp);color:var(--navy);margin:10px 0}
+.fx .lbl{font-family:var(--body);font-weight:700;font-size:1.02rem;color:var(--navy)}
+.frac2{display:inline-flex;flex-direction:column;align-items:center;text-align:center;gap:3px}
+.frac2 .nu,.frac2 .de{display:inline-flex;align-items:center;gap:6px;padding:1px 6px}
+.frac2 .de{border-top:2.5px solid var(--navy);padding-top:5px}
+.fslot{display:inline-flex;align-items:center;justify-content:center;min-width:60px;height:46px;border:2px dashed #b9a98a;
+  border-radius:11px;background:#fffdf6;font-family:var(--mono);font-weight:700;font-size:1.05rem;color:var(--navy);padding:0 8px}
+.fslot.drop-hot{border-color:var(--blue-navy);background:#eaf2fb;border-style:solid;transform:translateY(-1px)}
+.fslot.filled{border-style:solid;border-color:var(--blue-navy);background:#eef6fd;cursor:pointer}
+.fslot.good{border-color:var(--green);background:var(--green-soft)}
+.fslot.bad{border-color:var(--coral);background:#f9e9e4}
+.fblank{width:62px;height:46px;border:2px solid #cbb89a;border-radius:11px;background:#fffdf6;text-align:center;
+  font-family:var(--mono);font-weight:700;font-size:1.05rem;color:var(--navy)}
+.fblank::placeholder{color:#b9a98a;font-weight:400}
+.fblank.good{border-color:var(--green);background:var(--green-soft)}
+.fblank.bad{border-color:var(--coral);background:#f9e9e4}
+.fop{font-family:var(--disp);font-size:1.5rem;color:var(--muted-blue);font-weight:500}
+.feq{font-family:var(--disp);font-size:1.5rem;color:var(--muted)}
+.fres{font-family:var(--disp);font-weight:600;font-size:1.3rem;background:var(--navy);color:#fff;border-radius:9px;padding:4px 14px;min-width:70px;text-align:center}
+.fres.bad{background:var(--coral)} .fres.ok{background:var(--green)}
+.fxbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+
+/* ---- cloze (clinical report builder) ---- */
+.cloze{line-height:2.3;font-size:1.05rem;color:var(--ink)}
+.cz{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:34px;border:2px dashed #b9a98a;border-radius:8px;
+  background:#fffdf6;font-family:var(--mono);font-weight:700;color:var(--navy);padding:0 7px;vertical-align:middle;margin:0 2px}
+.cz.filled{border-style:solid;border-color:var(--blue-navy);background:#eef6fd;cursor:pointer}
+.cz.good{border-color:var(--green);background:var(--green-soft)}
+.cz.bad{border-color:var(--coral);background:#f9e9e4}
+
+/* ---- case stepper (misuse vignettes) ---- */
+.casebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.casetab{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;font-weight:700;border:1.5px solid var(--line);
+  background:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--muted-blue);min-height:40px}
+.casetab[aria-selected=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.casetab .num{opacity:.7;margin-right:5px}
+.casenav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+.casecount{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;color:var(--muted)}
+
+/* ---- charts ---- */
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .axis{stroke:#b9ad94;stroke-width:1}
+.glab{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.glab-b{font-family:var(--body);font-size:13px;fill:#33414f;font-weight:600}
+
+/* ---- big stat readout ---- */
+.bigstat{font-family:var(--disp);font-weight:600;line-height:1;color:var(--navy)}
+.statbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:center;box-shadow:var(--shadow)}
+.statbox .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.statrow{display:flex;gap:12px;flex-wrap:wrap}
+.statrow>.statbox{flex:1;min-width:96px}
+
+/* ---- mini norm table ---- */
+.normtable{font-size:.9rem}
+.normtable td.pick{cursor:default}
+.numchip.inline{padding:5px 11px}
+.numchip .v.sm{font-size:1rem}
+
+/* keep SVG text crisp on paper */
+figure.fig{background:#fff}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lesson content</a>
+<div class="progress" id="progress" role="presentation"></div>
+
+<header class="topbar">
+  <a class="tb-brand" href="#top">SLP 680<small>Principles of Assessment</small></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">☰ Contents</button>
+</header>
+<div class="sb-backdrop" id="sbBackdrop"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Lesson navigation">
+    <a class="brand" href="#top">
+      <span class="crs">SLP 680 · Research Methods</span>
+      <span class="ttl">Principles of Assessment</span>
+      <span class="sub">Reliability, validity, diagnostic accuracy &amp; standardized scores — a hands-on lesson</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Lesson sections">
+      <ul id="menuList">
+        <li class="navlabel">Part 1 · Reliability &amp; Validity</li>
+        <li><a href="#s-why">1.1 · Why scrutinize a score?</a></li>
+        <li><a href="#s-relval">1.2 · Reliability vs. validity</a></li>
+        <li><a href="#s-types">1.3 · The types you’ll meet</a></li>
+        <li><a href="#s-mandarin">1.4 · Reliable ≠ valid (demo)</a></li>
+        <li><a href="#s-rvcheck">1.5 · Check yourself</a></li>
+        <li class="navlabel">Part 2 · Diagnostic Accuracy</li>
+        <li><a href="#s-ss">2.1 · Sensitivity &amp; specificity</a></li>
+        <li><a href="#s-ssbuild">2.2 · Build the formula</a></li>
+        <li><a href="#s-cutoff">2.3 · The cut-off trade-off</a></li>
+        <li><a href="#s-recall">2.4 · Recall &amp; precision (AI)</a></li>
+        <li><a href="#s-sscheck">2.5 · Check yourself</a></li>
+        <li class="navlabel">Part 3 · Basic Statistics</li>
+        <li><a href="#s-center">3.1 · Measures of center</a></li>
+        <li><a href="#s-spread">3.2 · Spread (SD)</a></li>
+        <li><a href="#s-position">3.3 · Position: percentile &amp; quartiles</a></li>
+        <li><a href="#s-figures">3.4 · Pictures of data</a></li>
+        <li><a href="#s-hist">3.5 · Histogram → normal curve</a></li>
+        <li class="navlabel">Part 4 · Standardized Scores</li>
+        <li><a href="#s-std">4.1 · Standardized, norm-referenced</a></li>
+        <li><a href="#s-z">4.2 · The z-score</a></li>
+        <li><a href="#s-ssscore">4.3 · The standard score</a></li>
+        <li><a href="#s-curve">4.4 · One curve, three scales</a></li>
+        <li><a href="#s-convert">4.5 · Convert it yourself</a></li>
+        <li><a href="#s-sem">4.6 · Every score is an estimate</a></li>
+        <li><a href="#s-profile">4.7 · Read a full profile</a></li>
+        <li><a href="#s-report">4.8 · Write it in a report</a></li>
+        <li><a href="#s-ae">4.9 · Age equivalents</a></li>
+        <li><a href="#s-norm">4.10 · Norm- vs criterion-referenced</a></li>
+        <li><a href="#s-misuse">4.11 · How scores get misused</a></li>
+        <li class="navlabel">Wrap-up</li>
+        <li><a href="#s-wrap">Key takeaways</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="content">
+
+<main id="main" tabindex="-1">
+<span id="top"></span>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="container">
+    <span class="eyebrow">SLP 680 · Research Methods</span>
+    <h1 id="hero-h">Principles of <span class="acc">Assessment</span></h1>
+    <p class="lede"><strong style="color:#fff">Can you trust the number?</strong> A test score is only useful once you know what kind of number it is. This lesson builds the reasoning — and the arithmetic — behind <strong>reliability &amp; validity</strong>, <strong>sensitivity &amp; specificity</strong>, and <strong>standardized scores</strong>, with hands-on practice at every step.</p>
+  </div>
+</section>
+
+<!-- ===================== PART 1 HEADER ===================== -->
+<section class="lesson part-head" id="part1" aria-labelledby="p1h">
+  <div class="container">
+    <span class="pill">Part One · Recap &amp; foundation</span>
+    <h2 id="p1h">Reliability &amp; Validity</h2>
+    <p class="lead">Two different promises a test makes — and the surprising fact that a test can keep one while completely breaking the other.</p>
+  </div>
+</section>
+
+<!-- ===================== 1.1 WHY ===================== -->
+<section class="lesson" id="s-why" aria-labelledby="why-h">
+  <div class="container">
+    <span class="kicker">1.1 · Why scrutinize a score?</span>
+    <h2 id="why-h">A test is a sample, so error is built in</h2>
+    <p class="lead">We can never directly observe “language ability.” A test only <strong>samples</strong> a behavior to estimate the construct underneath. Because it’s a sample, some measurement error is unavoidable — which is exactly why we judge every test on two questions.</p>
+    <div class="grid g2">
+      <div class="callout c-key"><h4>Key idea</h4><p>A score is an <strong>estimate of a true ability</strong>, not the ability itself. Test developers run studies to shrink the error — and they report two things so you can judge the test: how <em>consistent</em> the scores are, and whether the intended <em>interpretation and use</em> are supported.</p></div>
+      <div class="callout c-slp"><h4>Why it matters clinically</h4><p>Eligibility, diagnosis, and progress decisions ride on these numbers. Knowing how to read them — and where they mislead — is a core clinical skill, not just a stats exercise.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1.2 RELIABILITY vs VALIDITY ===================== -->
+<section class="lesson" id="s-relval" aria-labelledby="rv-h">
+  <div class="container">
+    <span class="kicker">1.2 · The core distinction</span>
+    <h2 id="rv-h">Supported interpretation is not the same as consistency</h2>
+    <div class="grid g2">
+      <div class="card" style="border-top:4px solid var(--coral)">
+        <span class="tag li">Validity = supported interpretation</span>
+        <h3 style="margin:.3em 0 .2em">Are we justified in using the score this way?</h3>
+        <p>Does the evidence support interpreting this score as the construct — and using it for the decision we care about?</p>
+      </div>
+      <div class="card" style="border-top:4px solid var(--teal)">
+        <span class="tag td">Reliability = consistency</span>
+        <h3 style="margin:.3em 0 .2em">Does it give the same result?</h3>
+        <p>Repeat it — same child, a different rater, another week — do we land near the same value?</p>
+      </div>
+    </div>
+    <figure class="fig" style="margin-top:18px">
+      <div class="fig-title">The dartboard picture</div>
+      <div class="grid g3" style="margin-top:6px">
+        <div class="center"><svg viewBox="0 0 100 100" style="width:120px;height:120px" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#d9cdb4"/><circle cx="50" cy="50" r="33" fill="#eef4fb" stroke="#cbdcef"/><circle cx="50" cy="50" r="19" fill="#fbe6d7" stroke="#ecc89b"/><circle cx="50" cy="50" r="8" fill="#c0573f"/><g fill="#0B2D4D" stroke="#fff" stroke-width="1.4"><circle cx="28" cy="26" r="4"/><circle cx="70" cy="38" r="4"/><circle cx="44" cy="74" r="4"/><circle cx="74" cy="66" r="4"/><circle cx="22" cy="58" r="4"/></g></svg><p class="muted" style="font-size:.85rem"><strong style="color:var(--coral)">Neither</strong><br>scattered &amp; off-target</p></div>
+        <div class="center"><svg viewBox="0 0 100 100" style="width:120px;height:120px" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#d9cdb4"/><circle cx="50" cy="50" r="33" fill="#eef4fb" stroke="#cbdcef"/><circle cx="50" cy="50" r="19" fill="#fbe6d7" stroke="#ecc89b"/><circle cx="50" cy="50" r="8" fill="#c0573f"/><g fill="#0B2D4D" stroke="#fff" stroke-width="1.4"><circle cx="28" cy="28" r="4"/><circle cx="33" cy="26" r="4"/><circle cx="30" cy="33" r="4"/><circle cx="35" cy="32" r="4"/><circle cx="26" cy="31" r="4"/></g></svg><p class="muted" style="font-size:.85rem"><strong style="color:var(--teal)">Reliable, not valid</strong><br>tight cluster, wrong spot</p></div>
+        <div class="center"><svg viewBox="0 0 100 100" style="width:120px;height:120px" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#d9cdb4"/><circle cx="50" cy="50" r="33" fill="#eef4fb" stroke="#cbdcef"/><circle cx="50" cy="50" r="19" fill="#fbe6d7" stroke="#ecc89b"/><circle cx="50" cy="50" r="8" fill="#c0573f"/><g fill="#0B2D4D" stroke="#fff" stroke-width="1.4"><circle cx="48" cy="50" r="4"/><circle cx="52" cy="48" r="4"/><circle cx="50" cy="53" r="4"/><circle cx="53" cy="52" r="4"/><circle cx="47" cy="49" r="4"/></g></svg><p class="muted" style="font-size:.85rem"><strong style="color:var(--green)">Reliable &amp; valid</strong><br>tight cluster, on target</p></div>
+      </div>
+      <figcaption>Consistency clusters the shots; validity asks whether the cluster supports the target interpretation. You can have consistency without a defensible interpretation — that middle target is today’s whole point.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== 1.3 TYPES ===================== -->
+<section class="lesson" id="s-types" aria-labelledby="ty-h">
+  <div class="container">
+    <span class="kicker">1.3 · Vocabulary you’ll meet in manuals</span>
+    <h2 id="ty-h">The flavors of each</h2>
+    <p class="lead">Tap a card to flip it. You don’t need to memorize every term today — just recognize that <strong>reliability</strong> words describe consistency, and <strong>validity</strong> words describe evidence for the intended interpretation and use of a score.</p>
+    <h3 style="color:var(--teal)">Reliability — consistency</h3>
+    <div class="grid g4" id="relCards"></div>
+    <h3 style="color:var(--coral);margin-top:1.2em">Validity — interpretation</h3>
+    <div class="grid g4" id="valCards"></div>
+    <div class="callout c-slp" style="margin-top:16px"><h4>One-line translation</h4><p>Reliability is a property of the <strong>scores</strong>; validity is about the <strong>interpretation</strong> you give them. A reliability number alone never proves you picked the right tool.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 1.4 MANDARIN DEMO ===================== -->
+<section class="lesson" id="s-mandarin" aria-labelledby="mand-h">
+  <div class="container">
+    <span class="kicker">1.4 · The punch line · live demo</span>
+    <h2 id="mand-h">A perfectly reliable test of the wrong thing</h2>
+    <p class="lead">Goal: measure competency as an <strong>English-speaking SLP</strong>. Our instrument: a <strong>100-item Mandarin Chinese vocabulary test</strong>. Our examinees don’t read Chinese. We’ll check <strong>two different kinds of reliability</strong> — and both come back excellent.</p>
+    <div class="widget">
+      <span class="wlabel">Try it</span>
+      <div class="mpaper mpaper-h">
+        <div class="muted-mono">中文词汇测验 · 100-item Mandarin Vocabulary Test · the 10 examinees don’t read Chinese</div>
+        <div class="mitems">
+          <span class="mitem"><b>1.</b><span class="han">语言</span>= ?</span>
+          <span class="mitem"><b>2.</b><span class="han">沟通</span>= ?</span>
+          <span class="mitem"><b>3.</b><span class="han">吞咽</span>= ?</span>
+          <span class="mitem"><b>4.</b><span class="han">嗓音</span>= ?</span>
+          <span class="dots">⋯</span>
+          <span class="mitem"><b>100.</b><span class="han">治疗</span>= ?</span>
+        </div>
+      </div>
+      <p style="margin:14px 0 0">Ten English-speaking SLPs take it <strong>twice</strong> (a week apart); two raters score every paper. Step through the evidence — you can move back and forward:</p>
+      <div class="stepper" id="mStepper">
+        <div class="stepdots" id="mDots" aria-hidden="true"></div>
+
+        <div class="mcard" data-step="0">
+          <h4>1 · Test–retest reliability</h4>
+          <div class="grid g2" style="align-items:center;gap:14px">
+            <table class="gtab" aria-label="Test-retest scores for 10 examinees">
+              <thead><tr><th>SLP</th><th>Time 1</th><th>Time 2</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>0</td><td>0</td></tr>
+                <tr><td>3</td><td>2</td><td>2</td></tr><tr><td>4</td><td>0</td><td>1</td></tr>
+                <tr><td>5</td><td>3</td><td>3</td></tr><tr><td>6</td><td>1</td><td>1</td></tr>
+                <tr><td>7</td><td>0</td><td>0</td></tr><tr><td>8</td><td>2</td><td>2</td></tr>
+                <tr><td>9</td><td>1</td><td>1</td></tr><tr><td>10</td><td>4</td><td>3</td></tr>
+              </tbody>
+            </table>
+            <svg id="mScatter" class="chart" viewBox="0 0 230 190" role="img" aria-label="Scatterplot of Time 1 vs Time 2 scores hugging the diagonal"></svg>
+          </div>
+          <p style="margin-top:8px">Each SLP scores about the same a week later — near-zero, and the dots hug the diagonal. <span class="statchip good">Test–retest r = .95</span> <span class="muted">(very consistent over time)</span></p>
+        </div>
+
+        <div class="mcard" data-step="1">
+          <h4>2 · Inter-rater reliability</h4>
+          <table class="gtab" aria-label="Two raters' scores for the same 10 papers" style="max-width:380px">
+            <thead><tr><th>SLP</th><th>Rater A</th><th>Rater B</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>0</td><td>0</td></tr>
+              <tr><td>3</td><td>2</td><td>2</td></tr><tr class="hl"><td>4</td><td>0</td><td>1</td></tr>
+              <tr><td>5</td><td>3</td><td>3</td></tr><tr><td>6</td><td>1</td><td>1</td></tr>
+              <tr><td>7</td><td>0</td><td>0</td></tr><tr><td>8</td><td>2</td><td>2</td></tr>
+              <tr><td>9</td><td>1</td><td>1</td></tr><tr><td>10</td><td>4</td><td>4</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:8px">Two raters give identical scores on 9 of 10 papers; the one disagreement (SLP 4) is a single point. <span class="statchip good">Inter-rater agreement = 90% (r = .97)</span></p>
+        </div>
+
+        <div class="mcard" data-step="2">
+          <h4>3 · Pause &amp; predict</h4>
+          <p>Both reliability checks pass with flying colors. <strong>So — is this a valid measure of someone’s competence as an English-speaking SLP?</strong></p>
+          <button class="opt" data-v="yes" type="button"><span class="mk">A</span> Yes — it’s clearly reliable</button>
+          <button class="opt" data-v="no" type="button"><span class="mk">B</span> No — reliable isn’t the same as valid</button>
+          <div class="feedback" id="mPollFb"></div>
+        </div>
+
+        <div class="mcard" data-step="3">
+          <h4>4 · Verdict</h4>
+          <div class="callout c-mistake"><p>Two <em>different</em> kinds of reliability — both excellent — yet the test measures <strong>Chinese vocabulary</strong>, not English-SLP competence. Its validity for that purpose is essentially <strong>zero</strong>. <strong>Reliable, but not valid.</strong></p></div>
+        </div>
+
+        <div class="stepnav">
+          <button class="btn ghost sm" id="mPrev" type="button">‹ Back</button>
+          <span class="casecount" id="mCount"></span>
+          <button class="btn sm" id="mNext" type="button">Next ›</button>
+        </div>
+      </div>
+    </div>
+    <div class="callout c-key"><h4>Key idea</h4><p>Reliability comes in several forms (test–retest, inter-rater, internal consistency), and a test can ace <em>all</em> of them while still being <strong>invalid</strong> — consistently measuring the wrong thing. Treat reliability as necessary but never sufficient: always ask the validity question first: what interpretation and use are supported?</p></div>
+  </div>
+</section>
+
+<!-- ===================== 1.5 CHECK ===================== -->
+<section class="lesson" id="s-rvcheck" aria-labelledby="rvc-h">
+  <div class="container">
+    <span class="kicker">1.5 · Check yourself</span>
+    <h2 id="rvc-h">Two quick questions</h2>
+    <div class="widget"><span class="wlabel">Quiz</span><div id="rvQuiz"></div></div>
+  </div>
+</section>
+
+<!-- ===================== PART 2 HEADER ===================== -->
+<section class="lesson part-head" id="part2" aria-labelledby="p2h">
+  <div class="container">
+    <span class="pill">Part Two · New material</span>
+    <h2 id="p2h">Diagnostic Accuracy</h2>
+    <p class="lead">When a test decides “impaired” vs. “typical,” how often is it right? Two numbers carry the weight — and we’ll build their formulas by hand.</p>
+  </div>
+</section>
+
+<!-- ===================== 2.1 SENS & SPEC ===================== -->
+<section class="lesson" id="s-ss" aria-labelledby="ss-h">
+  <div class="container">
+    <span class="kicker">2.1 · Two questions, one table</span>
+    <h2 id="ss-h">Sensitivity catches; specificity clears</h2>
+    <div class="grid g2">
+      <div class="callout c-slp"><h4>Sensitivity</h4><p>Of the children who <strong>truly have</strong> the disorder, what fraction does the test <strong>catch?</strong> <span class="muted">(impaired → impaired)</span></p></div>
+      <div class="callout c-key"><h4>Specificity</h4><p>Of the children who are <strong>truly typical</strong>, what fraction does the test correctly <strong>clear?</strong> <span class="muted">(typical → typical)</span></p></div>
+    </div>
+    <p class="lead">Both compare the test against a <strong>reference standard</strong> — the best available basis for deciding who really has the disorder. In SLP, that standard is rarely perfect, so always check how the comparison group was defined. Every result lands in one of four cells:</p>
+    <div style="max-width:560px">
+      <table class="tt" id="ssTable" aria-label="2 by 2 table with worked counts">
+        <thead><tr><th></th><th><span class="tag li">Has LI</span></th><th><span class="tag td">Typical</span></th></tr></thead>
+        <tbody>
+          <tr><td class="rh">Test +</td><td class="cell tp" id="c_tp">82<small>TP · true positive ✔</small></td><td class="cell fp" id="c_fp">30<small>FP · false alarm ✘</small></td></tr>
+          <tr><td class="rh">Test −</td><td class="cell fn" id="c_fn">18<small>FN · miss ✘</small></td><td class="cell tn" id="c_tn">70<small>TN · true negative ✔</small></td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="font-size:.86rem">Teaching scenario: 100 children truly have language impairment (LI), 100 are typically developing (TD).</p>
+    </div>
+    <div class="widget" style="margin-top:14px">
+      <span class="wlabel">Worked example · step by step</span>
+      <p style="margin-top:2px">Click a measure to light up the column it uses and watch the arithmetic build:</p>
+      <div class="fxbtns">
+        <button class="btn sm" id="ssSens" type="button">Sensitivity ▸</button>
+        <button class="btn sm" id="ssSpec" type="button" style="background:var(--teal)">Specificity ▸</button>
+        <button class="btn ghost sm" id="ssClear" type="button">Clear</button>
+      </div>
+      <div id="ssCalc" style="margin-top:12px;min-height:3.6em"><p class="muted">Pick <strong>Sensitivity</strong> or <strong>Specificity</strong> above.</p></div>
+      <div class="feedback" id="ssInterp"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.2 BUILD THE FORMULA (DRAG) ===================== -->
+<section class="lesson" id="s-ssbuild" aria-labelledby="ssb-h">
+  <div class="container">
+    <span class="kicker">2.2 · Your turn · drag &amp; drop</span>
+    <h2 id="ssb-h">Build the formulas yourself</h2>
+    <p class="lead">A new test, with new numbers. Drag each count from the 2×2 table into the right slot — a number can be used more than once (dragging <strong>copies</strong> it). Click a filled slot to clear it.</p>
+    <div class="widget">
+      <span class="wlabel">Drag the numbers from the table</span>
+      <div class="grid g2" style="align-items:center">
+        <table class="tt draggrid" id="ssbTray" aria-label="2 by 2 counts — drag the numbers into the formulas">
+          <thead><tr><th></th><th><span class="tag li">Has LI</span></th><th><span class="tag td">Typical</span></th></tr></thead>
+          <tbody>
+            <tr><td class="rh">Test +</td>
+              <td><button class="numchip" type="button" data-val="90" aria-label="TP equals 90"><span class="v">90</span><span class="k">TP</span></button></td>
+              <td><button class="numchip" type="button" data-val="20" aria-label="FP equals 20"><span class="v">20</span><span class="k">FP</span></button></td></tr>
+            <tr><td class="rh">Test −</td>
+              <td><button class="numchip" type="button" data-val="10" aria-label="FN equals 10"><span class="v">10</span><span class="k">FN</span></button></td>
+              <td><button class="numchip" type="button" data-val="80" aria-label="TN equals 80"><span class="v">80</span><span class="k">TN</span></button></td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="font-size:.86rem">Teaching scenario: 100 children truly have LI, 100 are typically developing.</p>
+      </div>
+      <div id="ssbFx" style="margin-top:6px">
+        <div class="fx"><span class="lbl">Sensitivity =</span>
+          <span class="frac2">
+            <span class="nu"><span class="fslot" data-slot="sn_n" role="button" tabindex="0" aria-label="numerator"></span></span>
+            <span class="de"><span class="fslot" data-slot="sn_d1" role="button" tabindex="0" aria-label="first denominator term"></span><span class="fop">+</span><span class="fslot" data-slot="sn_d2" role="button" tabindex="0" aria-label="second denominator term"></span></span>
+          </span>
+          <span class="feq">=</span><span class="fres" id="snRes">?</span>
+        </div>
+        <div class="fx"><span class="lbl">Specificity =</span>
+          <span class="frac2">
+            <span class="nu"><span class="fslot" data-slot="sp_n" role="button" tabindex="0" aria-label="numerator"></span></span>
+            <span class="de"><span class="fslot" data-slot="sp_d1" role="button" tabindex="0" aria-label="first denominator term"></span><span class="fop">+</span><span class="fslot" data-slot="sp_d2" role="button" tabindex="0" aria-label="second denominator term"></span></span>
+          </span>
+          <span class="feq">=</span><span class="fres" id="spRes">?</span>
+        </div>
+      </div>
+      <div class="fxbtns">
+        <button class="btn sm" id="ssbCheck" type="button">Check my formulas</button>
+        <button class="btn ghost sm" id="ssbReset" type="button">Reset</button>
+      </div>
+      <div class="feedback" id="ssbFb"></div>
+    </div>
+    <div class="callout c-mistake"><h4>The trick to remember</h4><p>The column you’re working in <em>is</em> the column you divide within. <strong>Sensitivity</strong> lives entirely in the “Has LI” column (TP, FN); <strong>specificity</strong> lives in the “Typical” column (TN, FP).</p></div>
+  </div>
+</section>
+
+<!-- ===================== 2.3 CUT-OFF ===================== -->
+<section class="lesson" id="s-cutoff" aria-labelledby="cut-h">
+  <div class="container">
+    <span class="kicker">2.3 · Standards &amp; trade-offs · drag the line</span>
+    <h2 id="cut-h">Move the cut-off, move both numbers</h2>
+    <p class="lead">Line the children up by screening score, low to high. Children with language impairment (LI) tend to score lower; typically developing (TD) children tend to score higher — but they <strong>overlap</strong> in the middle. The <strong>cut-off</strong> flags everyone at or below it as “at risk.” Drag it and watch both numbers change.</p>
+    <figure class="fig">
+      <div class="fig-title">10 LI children &amp; 10 TD children, by screening score</div>
+      <svg id="cutChart" class="chart" viewBox="0 0 620 180" role="img" aria-label="Dot plot of 10 language-impaired and 10 typically developing children across screening scores, with a movable cut-off"></svg>
+      <div class="kidlegend">
+        <span><span class="sw li"></span> LI child</span>
+        <span><span class="sw td"></span> TD child</span>
+        <span><span class="sw" style="background:#efe7d4;border-radius:3px"></span> flagged “at risk”</span>
+      </div>
+      <div class="sliderrow2">
+        <span class="end">flag fewer</span>
+        <input type="range" id="cutRange" min="0" max="10" value="5" step="1" aria-label="Cut-off score">
+        <span class="end">flag more</span>
+      </div>
+      <figcaption>Everyone at or to the left of the dashed line is flagged. Raise the line and you flag more children — of both kinds.</figcaption>
+    </figure>
+    <div class="statrow" style="margin-top:16px">
+      <div class="statbox"><div class="k" style="color:#3b6fb6">Sensitivity</div><div class="bigstat" id="cutSens" style="font-size:2.3rem;color:#3b6fb6">—</div><div class="muted" id="cutSensN" style="font-size:.78rem">—</div></div>
+      <div class="statbox"><div class="k" style="color:#3f9d6b">Specificity</div><div class="bigstat" id="cutSpec" style="font-size:2.3rem;color:#3f9d6b">—</div><div class="muted" id="cutSpecN" style="font-size:.78rem">—</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <div class="muted-mono">How good is good enough? <span class="muted" style="text-transform:none">(Plante &amp; Vance)</span></div>
+        <table style="width:100%;font-size:.9rem;margin-top:6px;border-collapse:collapse">
+          <tr><td>● ≥ 90%</td><td style="text-align:right;color:var(--green);font-weight:600">good / preferred</td></tr>
+          <tr><td>● 80–89%</td><td style="text-align:right;color:#9a6b1b;font-weight:600">fair / acceptable</td></tr>
+          <tr><td>● &lt; 80%</td><td style="text-align:right;color:var(--coral);font-weight:600">unacceptable</td></tr>
+        </table>
+      </div>
+      <div class="callout c-mistake" style="margin:0"><h4>The trade-off</h4><p><strong>Raise</strong> the cut-off → catch more true cases <strong>(↑ sensitivity)</strong> but flag more TD children <strong>(↓ specificity)</strong>. <strong>Lower</strong> it → correctly clear more TD children <strong>(↑ specificity)</strong> but miss some true cases <strong>(↓ sensitivity)</strong>. Sensitivity and specificity belong to a <strong>particular cut-off</strong> in a particular validation sample; these values often live in <strong>research, not the manual.</strong></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.4 RECALL & PRECISION ===================== -->
+<section class="lesson" id="s-recall" aria-labelledby="rc-h">
+  <div class="container">
+    <span class="kicker">2.4 · Same table, different field</span>
+    <h2 id="rc-h">In AI papers, the words change</h2>
+    <p class="lead">AI &amp; NLP work on communication disorders — at venues like <strong>ACL, EMNLP, Interspeech</strong> — describes the same 2×2 with different names. If you read that literature, you’ll meet these:</p>
+    <div class="grid g2">
+      <div>
+        <div class="recipe"><span class="step">=</span><div><strong>Recall</strong> = TP / (TP + FN) — <em>identical to sensitivity.</em> “Of the real cases, how many did we find?”</div></div>
+        <div class="recipe"><span class="step">≠</span><div><strong>Precision</strong> = TP / (TP + FP) — a <em>new</em> question. “Of the cases we flagged, how many were truly positive?”</div></div>
+        <div class="recipe"><span class="step">~</span><div><strong>F1</strong> = harmonic mean of precision &amp; recall — one balanced number.</div></div>
+        <div class="callout c-reminder" style="margin-top:10px"><h4>The intuition</h4><p>A model can have <strong>high recall but low precision</strong> by flagging almost everyone — exactly like a screener that is sensitive but not specific.</p></div>
+      </div>
+      <div class="widget">
+        <span class="wlabel">Build precision · drag</span>
+        <p style="margin-top:2px">Precision keeps TP on top but swaps FN for FP in the denominator. Drag the right counts in:</p>
+        <div class="numtray" id="prTray"></div>
+        <div class="fx" style="margin-top:4px"><span class="lbl">Precision =</span>
+          <span class="frac2">
+            <span class="nu"><span class="fslot" data-slot="pr_n" role="button" tabindex="0" aria-label="numerator"></span></span>
+            <span class="de"><span class="fslot" data-slot="pr_d1" role="button" tabindex="0" aria-label="first denominator term"></span><span class="fop">+</span><span class="fslot" data-slot="pr_d2" role="button" tabindex="0" aria-label="second denominator term"></span></span>
+          </span>
+          <span class="feq">=</span><span class="fres" id="prRes">?</span>
+        </div>
+        <div class="fxbtns"><button class="btn sm" id="prCheck" type="button">Check</button><button class="btn ghost sm" id="prReset" type="button">Reset</button></div>
+        <div class="feedback" id="prFb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.5 CHECK ===================== -->
+<section class="lesson" id="s-sscheck" aria-labelledby="ssc-h">
+  <div class="container">
+    <span class="kicker">2.5 · Check yourself</span>
+    <h2 id="ssc-h">Can you compute on the fly?</h2>
+    <div class="widget"><span class="wlabel">Quiz</span><div id="ssQuiz"></div></div>
+  </div>
+</section>
+
+<!-- ===================== PART 3 HEADER ===================== -->
+<section class="lesson part-head" id="part3" aria-labelledby="p3h">
+  <div class="container">
+    <span class="pill">Part Three · The foundation</span>
+    <h2 id="p3h">Basic Statistics</h2>
+    <p class="lead">Before we can read a test score, we need a few statistics: where a group of scores <strong>centers</strong>, how <strong>spread out</strong> they are, <strong>where</strong> one score sits, and the <strong>shape</strong> they make — which leads straight to the normal curve.</p>
+  </div>
+</section>
+
+<!-- ===================== 3.1 MEASURES OF CENTER ===================== -->
+<section class="lesson" id="s-center" aria-labelledby="cen-h">
+  <div class="container">
+    <span class="kicker">3.1 · Statistics warm-up</span>
+    <h2 id="cen-h">Measures of center: one typical score</h2>
+    <p class="lead">You previewed these — here’s the quick recap. A set of scores is hard to hold in your head; a measure of <strong>central tendency</strong> gives you one number that best represents the group. Tap each card to flip it.</p>
+    <div class="grid g3" id="centerCards"></div>
+    <div class="callout c-mistake"><h4>One outlier moves the mean</h4><p>Add a single very low score and the <strong>mean</strong> drops, while the <strong>median</strong> barely moves. For skewed data or outliers, the median is the more honest “typical” value.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.2 SPREAD & POSITION ===================== -->
+<section class="lesson" id="s-spread" aria-labelledby="sp-h">
+  <div class="container">
+    <span class="kicker">3.2 · Statistics warm-up</span>
+    <h2 id="sp-h">Spread: the standard deviation</h2>
+    <p class="lead">The center isn’t the whole story. Two groups can share the <strong>same mean</strong> yet look completely different — one bunched tight, one widely scattered. The <strong>standard deviation (SD)</strong> is the single number that captures that spread: the <em>typical distance</em> of a score from the mean.</p>
+    <figure class="fig">
+      <div class="fig-title">Same mean (50), different spread</div>
+      <svg id="spreadFig" class="chart" viewBox="0 0 620 200" role="img" aria-label="Two groups of scores with the same mean of 50: group A clustered with SD 2, group B spread with SD 4"></svg>
+      <figcaption>Both groups average 50 — but group A hugs the mean while group B is far more spread. Let’s compute each SD by hand and see the difference.</figcaption>
+    </figure>
+    <div class="callout c-reminder"><h4>The recipe</h4><p>① subtract the mean from each score → ② square each result → ③ average those squares (that’s the <em>variance</em>) → ④ take the square root. For this teaching example, we treat the five scores as the whole group, so we divide by <strong>N = 5</strong>. Run it on both groups:</p></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="muted-mono">Group A · clustered · mean = 50</div>
+        <table class="gtab" style="margin-top:6px">
+          <thead><tr><th>Score</th><th>Deviation<br>(score − 50)</th><th>Squared</th></tr></thead>
+          <tbody>
+            <tr><td>47</td><td>−3</td><td>9</td></tr>
+            <tr><td>49</td><td>−1</td><td>1</td></tr>
+            <tr><td>50</td><td>0</td><td>0</td></tr>
+            <tr><td>51</td><td>+1</td><td>1</td></tr>
+            <tr><td>53</td><td>+3</td><td>9</td></tr>
+          </tbody>
+        </table>
+        <div class="sdsteps">sum of squares = <strong>20</strong> → variance = 20 ÷ 5 = <strong>4</strong> → SD = √4 = <strong style="color:var(--amber)">2</strong></div>
+      </div>
+      <div class="card">
+        <div class="muted-mono">Group B · spread · mean = 50</div>
+        <table class="gtab" style="margin-top:6px">
+          <thead><tr><th>Score</th><th>Deviation<br>(score − 50)</th><th>Squared</th></tr></thead>
+          <tbody>
+            <tr><td>44</td><td>−6</td><td>36</td></tr>
+            <tr><td>48</td><td>−2</td><td>4</td></tr>
+            <tr><td>50</td><td>0</td><td>0</td></tr>
+            <tr><td>52</td><td>+2</td><td>4</td></tr>
+            <tr><td>56</td><td>+6</td><td>36</td></tr>
+          </tbody>
+        </table>
+        <div class="sdsteps">sum of squares = <strong>80</strong> → variance = 80 ÷ 5 = <strong>16</strong> → SD = √16 = <strong style="color:var(--amber)">4</strong></div>
+      </div>
+    </div>
+    <div class="callout c-reminder"><h4>Population vs. sample SD</h4><p>Because we are treating these five scores as the complete group, the example divides by <strong>N</strong>. In research software, you will usually see the <strong>sample SD</strong>, which divides by <strong>n − 1</strong>. The concept is the same, but the exact number changes.</p></div>
+    <div class="callout c-key"><h4>What the SD tells you</h4><p>Same mean (50), but SD = 2 vs SD = 4 — group B’s scores sit, on average, <strong>twice as far</strong> from the mean. That single number is the whole point of the SD. <span class="muted">In practice software computes it for you — but now you know exactly what it’s doing, and why a bigger SD means more spread.</span></p></div>
+    <div class="callout c-slp"><h4>Why it matters next</h4><p>Standardized scores are built directly from the SD. “One SD below the mean” becomes a z-score of −1 — the standardized-score sections rest on this one number.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.3 POSITION ===================== -->
+<section class="lesson" id="s-position" aria-labelledby="pos-h">
+  <div class="container">
+    <span class="kicker">3.3 · Statistics warm-up</span>
+    <h2 id="pos-h">Position: percentile rank &amp; quartiles</h2>
+    <p class="lead">Besides spread, we often want a score’s <strong>position</strong> — where it sits among the rest. Good news: this builds straight on the <strong>median</strong> you already know.</p>
+    <div class="callout c-key"><h4>Start from the median</h4><p>The median splits the data in half — <strong>50% of scores fall below it, 50% above</strong>. That is exactly the <strong>50th percentile</strong>. Percentile rank and quartiles simply extend that one idea to any cut-point.</p></div>
+    <figure class="fig">
+      <div class="fig-title">Quartiles split the ordered scores into four equal groups</div>
+      <svg id="positionFig" class="chart" viewBox="0 0 620 150" role="img" aria-label="Eight ordered scores split into quarters by Q1, the median, and Q3"></svg>
+      <figcaption>Q1, the median (Q2), and Q3 cut the data at the 25th, 50th, and 75th percentiles — three “medians” in disguise.</figcaption>
+    </figure>
+    <div class="grid g2">
+      <div class="callout c-slp"><h4>Percentile rank</h4><p>The <strong>percent of peers who scored below</strong> a child. The median is the 50th percentile; the 75th percentile means the child scored higher than 75% of peers.</p></div>
+      <div class="callout c-reminder"><h4>Quartiles</h4><p>Three cut-points that split the data into four equal parts: <strong>Q1</strong> (25th), <strong>Q2 = the median</strong> (50th), <strong>Q3</strong> (75th).</p></div>
+    </div>
+    <details class="qcheck"><summary>Optional · how to compute percentile rank &amp; quartiles</summary>
+      <div class="body">
+        <p><strong>Percentile rank</strong> = (number of peers who scored below ÷ total) × 100.</p>
+        <p class="sdsteps" style="color:var(--ink)">Example — in a class of 20, 15 children scored below Maria → 15 ÷ 20 × 100 = <strong style="color:var(--amber)">75th percentile</strong>.</p>
+        <p style="margin-top:12px"><strong>Quartiles</strong> — order the scores, then take three medians:</p>
+        <ul class="tick"><li><strong>Q2</strong> = the median (the middle of all the scores)</li><li><strong>Q1</strong> = the median of the lower half</li><li><strong>Q3</strong> = the median of the upper half</li></ul>
+        <p class="sdsteps" style="color:var(--ink)">Example — 2, 4, 5, 7 │ 8, 10, 12, 15 → Q2 = (7 + 8) / 2 = <strong>7.5</strong>; lower half {2, 4, 5, 7} → Q1 = (4 + 5) / 2 = <strong>4.5</strong>; upper half {8, 10, 12, 15} → Q3 = (10 + 12) / 2 = <strong>11</strong>.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== 3.4 PICTURES OF DATA ===================== -->
+<section class="lesson" id="s-figures" aria-labelledby="fig-h">
+  <div class="container">
+    <span class="kicker">3.4 · Statistics warm-up</span>
+    <h2 id="fig-h">Pictures of data: five workhorse graphs</h2>
+    <p class="lead">You previewed these five. Tap each card to flip from the graph’s job to a quick example of what it looks like.</p>
+    <div class="grid g3" id="figCards"></div>
+    <div class="callout c-key"><h4>Where we’re headed</h4><p>One of these — the <strong>histogram</strong> — is the bridge to everything that follows. It shows the <em>shape</em> of a single variable, and that shape is the key to standardized scores.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.4 HISTOGRAM -> NORMAL CURVE ===================== -->
+<section class="lesson" id="s-hist" aria-labelledby="hist-h">
+  <div class="container">
+    <span class="kicker">3.5 · Statistics warm-up</span>
+    <h2 id="hist-h">From a histogram to the normal curve</h2>
+    <p class="lead">A <strong>histogram</strong> groups one variable into bins and shows how many scores land in each. Measure a few children and it looks ragged; measure more and more, and the histogram becomes a more stable picture of the underlying distribution. <strong>If</strong> the underlying scores are approximately normal, the bars begin to resemble a smooth, symmetric <strong>bell</strong>.</p>
+    <figure class="fig">
+      <div class="fig-title">Histogram of a language score as the sample grows</div>
+      <svg id="histChart" class="chart" viewBox="0 0 600 240" role="img" aria-label="A histogram of language scores that becomes more stable as the sample size increases, and bell-shaped when the underlying scores are approximately normal"></svg>
+      <div class="sliderrow2">
+        <span class="end">few children</span>
+        <input type="range" id="histN" min="25" max="2000" value="60" step="5" aria-label="Number of children measured">
+        <span class="end">many children</span>
+      </div>
+      <div class="fxbtns" style="justify-content:center"><button class="btn ghost sm" id="histOverlay" type="button" aria-pressed="false">Overlay the smooth curve</button> <span class="muted" id="histOut" style="align-self:center;font-family:var(--mono);font-size:.8rem"></span></div>
+      <figcaption>Drag to measure more children; overlay the curve to see the bell-shaped pattern when the underlying scores are approximately normal.</figcaption>
+    </figure>
+    <div class="callout c-key"><h4>68 – 95 – 99.7</h4><p>In a normal distribution, about <strong>68%</strong> of scores fall within <strong>1 SD</strong> of the mean, <strong>95%</strong> within 2 SD, and <strong>99.7%</strong> within 3 SD. That regularity makes <strong>normal-curve interpretations</strong> convenient. Z-scores can be computed for many distributions, but mapping them to normal-curve percentiles assumes scores are approximately normal.</p></div>
+  </div>
+</section>
+
+<!-- ===================== PART 4 HEADER ===================== -->
+<section class="lesson part-head" id="part4" aria-labelledby="p4h">
+  <div class="container">
+    <span class="pill">Part Four · The everyday skill</span>
+    <h2 id="p4h">Standardized Scores</h2>
+    <p class="lead">A raw score of “22 correct” means nothing on its own. Now we build the shared ruler — the normal curve, z-scores, standard scores, and percentiles — to say where a child stands, how to read the number, and how it gets misused.</p>
+  </div>
+</section>
+
+<!-- ===================== 4.1 STANDARDIZED, NORM-REFERENCED ===================== -->
+<section class="lesson" id="s-std" aria-labelledby="std-h">
+  <div class="container">
+    <span class="kicker">4.1 · The shared ruler</span>
+    <h2 id="std-h">Standardized, norm-referenced tests</h2>
+    <p class="lead">Many major clinical language tests are both <strong>standardized</strong> and <strong>norm-referenced</strong> — and together those two ideas are what turn a raw number into a meaningful score when the child is represented by the test’s norming and validation evidence.</p>
+    <div class="grid g2">
+      <div class="callout c-key"><h4>Standardized</h4><p>Given and scored by <strong>fixed, uniform rules</strong>, so scores are less dependent on the individual clinician or testing session.</p></div>
+      <div class="callout c-slp"><h4>Norm-referenced</h4><p>The score is interpreted <strong>against a normative sample</strong> of peers (matched on age — sometimes grade or region). It answers: <em>where does this child stand relative to peers?</em> When a child differs substantially from the norm sample in language, dialect, culture, or other key characteristics, treat the standardized score as one piece of evidence, not the whole answer.</p></div>
+    </div>
+    <p class="lead">Because the score is read against peers, a raw “22 correct” only becomes meaningful once we convert it. <strong>Z-scores</strong> and <strong>standard scores</strong> are built from the norm group’s mean and SD. <strong>Percentile ranks</strong> come from the child’s position in the ordered norm distribution, often reported directly in the manual. The next sections build each one.</p>
+  </div>
+</section>
+
+<!-- ===================== 3.3 Z-SCORE SLOWLY ===================== -->
+<section class="lesson" id="s-z" aria-labelledby="z-h">
+  <div class="container">
+    <span class="kicker">4.2 · How far from the mean?</span>
+    <h2 id="z-h">The z-score</h2>
+    <p class="lead">A <strong>z-score</strong> answers one question: <em>how many standard deviations is this score from the mean?</em> On the z-scale the mean is 0 and one SD is 1.</p>
+    <div class="result"><h4>The formula</h4><p class="stmt" style="font-size:1.2rem">z = <span class="frac2" style="vertical-align:middle"><span class="nu">score − mean</span><span class="de" style="border-color:#fff">SD</span></span></p></div>
+    <div class="widget">
+      <span class="wlabel">Walk through one</span>
+      <p>A child scores <strong>85</strong> on a test with <strong>mean 100</strong> and <strong>SD 15</strong>. Predict: is that above or below average, and by how much?</p>
+      <button class="btn sm stepbtn" id="zStep1" type="button">Show step 1 ▸</button>
+      <div class="reveal-block" id="zR1">
+        <p><strong>Step 1 — subtract the mean.</strong> 85 − 100 = <strong>−15</strong>. The score is 15 points below the mean.</p>
+        <button class="btn sm stepbtn" id="zStep2" type="button">Show step 2 ▸</button>
+      </div>
+      <div class="reveal-block" id="zR2">
+        <p><strong>Step 2 — divide by the SD.</strong> −15 ÷ 15 = <strong>−1.0</strong>. So the child is exactly <strong>one SD below the mean</strong>.</p>
+        <div class="callout c-key" style="margin-top:8px"><h4>Read it</h4><p>z = −1.0 means “one standard deviation below average.” On the normal curve that’s about the <strong>16th percentile</strong> (50% − 34%). Depending on the test manual, that may be described as low-average, borderline, or mildly below average. It is not, by itself, a diagnosis.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.4 STANDARD SCORE ===================== -->
+<section class="lesson" id="s-ssscore" aria-labelledby="sss-h">
+  <div class="container">
+    <span class="kicker">4.3 · Friendlier numbers</span>
+    <h2 id="sss-h">The standard-score scale</h2>
+    <p class="lead">z-scores have decimals and negatives, which are awkward to report. Many language-test <strong>composite or index standard scores</strong> use a familiar scale with <strong>mean 100, SD 15</strong>, the same metric used by many IQ composites. Some subtests use other scales, such as scaled scores with mean 10 and SD 3, so always check the manual.</p>
+    <div class="result"><h4>Convert between them</h4><p class="stmt" style="font-size:1.15rem">z = (SS − 100) / 15 &nbsp;&nbsp;•&nbsp;&nbsp; SS = 100 + z × 15</p></div>
+    <div class="widget">
+      <span class="wlabel">Explore · drag the score</span>
+      <div class="grid g2">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="muted-mono">Try a standard score</span><span class="readout" id="zSSout">130</span></div>
+          <input type="range" id="zRange" min="55" max="145" value="130" step="1" aria-label="Standard score" style="width:100%;margin:8px 0">
+          <svg id="zMini" class="chart" viewBox="0 0 360 140" role="img" aria-label="Bell curve with a marker at the chosen standard score and the area below it shaded">
+            <path id="zFill" fill="rgba(220,147,41,.30)"/>
+            <path id="zCurve" fill="none" stroke="#16639f" stroke-width="2"/>
+            <line class="axis" x1="20" y1="116" x2="340" y2="116"/>
+            <line id="zMark" x1="180" y1="22" x2="180" y2="124" stroke="#dc9329" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="statrow" style="align-content:center">
+          <div class="statbox"><div class="k">z-score</div><div class="bigstat" id="zZ" style="font-size:2rem">+2.0</div></div>
+          <div class="statbox"><div class="k">Percentile</div><div class="bigstat" id="zPct" style="font-size:2rem;color:var(--amber)">98th</div></div>
+          <div class="statbox" style="flex-basis:100%"><div class="k">Reads as</div><div class="bigstat" id="zDesc" style="font-size:1.15rem;color:var(--teal)">well above average</div></div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.85rem;margin-top:6px">Anchor: SS 130 → z = +2.0 → ~98th percentile (top 2%). SS 70 → z = −2.0 → ~2nd percentile.</p>
+    </div>
+    <div class="callout c-slp"><h4>Check the scale</h4><p>The <strong>mean 100, SD 15</strong> metric is common for composite/index scores on major language tests (e.g., CELF-5, PLS-5). A standard score of 115 means “+1 SD” only when that test uses the 100/15 scale.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.8 ONE CURVE, THREE SCALES ===================== -->
+<section class="lesson" id="s-curve" aria-labelledby="cv-h">
+  <div class="container">
+    <span class="kicker">4.4 · The same spot, three names</span>
+    <h2 id="cv-h">One curve, three scales</h2>
+    <p class="lead">When the norm distribution is approximately normal, z-score, standard score, and percentile can name the <em>same place</em> on the normal curve. Reveal each scale to see the idealized alignment.</p>
+    <figure class="fig">
+      <div class="fig-title">Reveal the scales to see how they align on an ideal normal curve</div>
+      <svg id="ndChart" class="chart" viewBox="0 0 640 300" role="img" aria-label="Normal distribution with z-score, standard-score, and percentile scales aligned under one bell curve">
+        <path id="ndFill1" fill="rgba(20,93,160,.16)"/>
+        <path id="ndFill2" fill="rgba(20,93,160,.09)"/>
+        <path id="ndCurve" fill="none" stroke="#16639f" stroke-width="2.5"/>
+        <g id="ndGrid"></g>
+        <text class="glab" x="280" y="150" text-anchor="middle" fill="#0B2D4D" font-weight="700">34%</text>
+        <text class="glab" x="360" y="150" text-anchor="middle" fill="#0B2D4D" font-weight="700">34%</text>
+        <text class="glab" x="202" y="205" text-anchor="middle" fill="#2E6F9E">13.6%</text>
+        <text class="glab" x="438" y="205" text-anchor="middle" fill="#2E6F9E">13.6%</text>
+        <g id="ndRowZ"></g>
+        <g id="ndRowSS" style="opacity:0;transition:opacity .4s"></g>
+        <g id="ndRowPct" style="opacity:0;transition:opacity .4s"></g>
+      </svg>
+      <div class="fxbtns" style="justify-content:center">
+        <button class="btn ghost sm" id="ndToggleSS" type="button" aria-pressed="false">Show standard scores</button>
+        <button class="btn ghost sm" id="ndTogglePct" type="button" aria-pressed="false">Show percentiles</button>
+      </div>
+      <figcaption>On the ideal normal curve, a z of +1, a standard score of 115, and the 84th percentile all point to the <em>same place</em>. Manuals may use empirical percentile tables, so trust the manual when it differs from the idealized curve.</figcaption>
+    </figure>
+    <div class="widget">
+      <span class="wlabel">Predict, then reveal</span>
+      <p>A child is at <strong>z = +1.0</strong> (one SD above the mean). Roughly what percentile is that?</p>
+      <div id="pctPredict">
+        <button class="opt" data-pred="a" type="button"><span class="mk">A</span> About the 50th percentile</button>
+        <button class="opt" data-pred="b" type="button"><span class="mk">B</span> About the 84th percentile</button>
+        <button class="opt" data-pred="c" type="button"><span class="mk">C</span> About the 98th percentile</button>
+      </div>
+      <div class="feedback" id="pctFb"></div>
+    </div>
+    <div class="callout c-mistake"><h4>Watch the spacing</h4><p>Percentiles are <strong>not evenly spaced</strong> in score points. Near the middle, a few points move you many percentiles; out in the tails, big score gaps barely change the percentile. That’s the bell curve at work.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.9 CONVERT IT YOURSELF ===================== -->
+<section class="lesson" id="s-convert" aria-labelledby="conv-h">
+  <div class="container">
+    <span class="kicker">4.5 · Practice · drag &amp; drop</span>
+    <h2 id="conv-h">Convert it yourself</h2>
+    <p class="lead">Three short builds. <strong>Every number is a chip</strong> — drag the right one into each slot. Some chips are distractors you won’t need, and the chips don’t say what they are: press <strong>Check</strong> to reveal each one’s role.</p>
+
+    <div class="widget">
+      <span class="wlabel">Exercise A · standard score → z</span>
+      <p>Scenario: on the CELF-5, a child earns a <strong>standard score of 85</strong>. Find the z-score.</p>
+      <div class="numtray rolehide" id="cvaTray">
+        <button class="numchip" data-val="85" type="button"><span class="v">85</span><span class="k">SS</span></button>
+        <button class="numchip" data-val="100" type="button"><span class="v">100</span><span class="k">Mean</span></button>
+        <button class="numchip" data-val="15" type="button"><span class="v">15</span><span class="k">SD</span></button>
+        <button class="numchip" data-val="70" type="button"><span class="v">70</span><span class="k">not used</span></button>
+        <button class="numchip" data-val="50" type="button"><span class="v">50</span><span class="k">not used</span></button>
+      </div>
+      <div class="fx" id="cvaFx"><span class="lbl">z =</span>
+        <span class="frac2">
+          <span class="nu"><span class="fslot" data-slot="ss" data-expect="85" role="button" tabindex="0" aria-label="score"></span><span class="fop">−</span><span class="fslot" data-slot="m" data-expect="100" role="button" tabindex="0" aria-label="mean"></span></span>
+          <span class="de"><span class="fslot" data-slot="sd" data-expect="15" role="button" tabindex="0" aria-label="standard deviation"></span></span>
+        </span>
+        <span class="feq">=</span><span class="fres" id="cvaRes">?</span>
+      </div>
+      <div class="fxbtns"><button class="btn sm" id="cvaCheck" type="button">Check</button><button class="btn ghost sm" id="cvaReset" type="button">Reset</button></div>
+      <div class="feedback" id="cvaFb"></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Exercise B · z → standard score</span>
+      <p>Scenario: a child’s performance is <strong>z = +2</strong>. What standard score is that?</p>
+      <div class="numtray rolehide" id="cvbTray">
+        <button class="numchip" data-val="2" type="button"><span class="v">+2</span><span class="k">z</span></button>
+        <button class="numchip" data-val="100" type="button"><span class="v">100</span><span class="k">Mean</span></button>
+        <button class="numchip" data-val="15" type="button"><span class="v">15</span><span class="k">SD</span></button>
+        <button class="numchip" data-val="-2" type="button"><span class="v">−2</span><span class="k">not used</span></button>
+        <button class="numchip" data-val="30" type="button"><span class="v">30</span><span class="k">not used</span></button>
+      </div>
+      <div class="fx" id="cvbFx"><span class="lbl">SS =</span>
+        <span class="fslot" data-slot="m" data-expect="100" role="button" tabindex="0" aria-label="mean"></span>
+        <span class="fop">+</span>
+        <span class="fslot" data-slot="z" data-expect="2" role="button" tabindex="0" aria-label="z score"></span>
+        <span class="fop">×</span>
+        <span class="fslot" data-slot="sd" data-expect="15" role="button" tabindex="0" aria-label="standard deviation"></span>
+        <span class="feq">=</span><span class="fres" id="cvbRes">?</span>
+      </div>
+      <div class="fxbtns"><button class="btn sm" id="cvbCheck" type="button">Check</button><button class="btn ghost sm" id="cvbReset" type="button">Reset</button></div>
+      <div class="feedback" id="cvbFb"></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Exercise C · raw → standard score → z</span>
+      <p>Johnny’s <strong>raw score is 22</strong> on the SPELT-P2. First read his standard score from the norm table, then drag it into the z formula.</p>
+      <table class="tt normtable" style="max-width:420px" aria-label="Norm table: raw score to standard score">
+        <thead><tr><th>Raw score</th><th>Standard score</th></tr></thead>
+        <tbody>
+          <tr><td>20</td><td>89</td></tr>
+          <tr><td>21</td><td>91</td></tr>
+          <tr><td style="background:#fdf4e2;font-weight:700">22</td><td style="background:#fdf4e2;font-weight:700">94</td></tr>
+          <tr><td>23</td><td>97</td></tr>
+        </tbody>
+      </table>
+      <div class="numtray rolehide" id="cvcTray">
+        <button class="numchip" data-val="94" type="button"><span class="v">94</span><span class="k">SS (raw 22)</span></button>
+        <button class="numchip" data-val="100" type="button"><span class="v">100</span><span class="k">Mean</span></button>
+        <button class="numchip" data-val="15" type="button"><span class="v">15</span><span class="k">SD</span></button>
+        <button class="numchip" data-val="91" type="button"><span class="v">91</span><span class="k">not used</span></button>
+        <button class="numchip" data-val="97" type="button"><span class="v">97</span><span class="k">not used</span></button>
+      </div>
+      <div class="fx" id="cvcFx"><span class="lbl">z =</span>
+        <span class="frac2">
+          <span class="nu"><span class="fslot" data-slot="ss" data-expect="94" role="button" tabindex="0" aria-label="score"></span><span class="fop">−</span><span class="fslot" data-slot="m" data-expect="100" role="button" tabindex="0" aria-label="mean"></span></span>
+          <span class="de"><span class="fslot" data-slot="sd" data-expect="15" role="button" tabindex="0" aria-label="standard deviation"></span></span>
+        </span>
+        <span class="feq">=</span><span class="fres" id="cvcRes">?</span>
+      </div>
+      <div class="fxbtns"><button class="btn sm" id="cvcCheck" type="button">Check</button><button class="btn ghost sm" id="cvcReset" type="button">Reset</button></div>
+      <div class="feedback" id="cvcFb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.10 SEM / CI ===================== -->
+<section class="lesson" id="s-sem" aria-labelledby="sem-h">
+  <div class="container">
+    <span class="kicker">4.6 · The honest part</span>
+    <h2 id="sem-h">Every score is an estimate</h2>
+    <p class="lead">Measurement error is unavoidable — think how your own typing speed varies test to test. So a score is really a <strong>band</strong>, not a point. A <strong>confidence interval</strong> is built from the observed score and the standard error of measurement (SEM): observed score ± a confidence-level multiplier × SEM. Good manuals usually print the completed band for you.</p>
+    <figure class="fig">
+      <div class="fig-title">SPELT-P2 manual — raw → standard score, 90% confidence interval &amp; percentile (ages 4-0 to 4-5)</div>
+      <div class="tablewrap">
+        <table class="gtab" aria-label="Excerpt from the SPELT-P2 manual: raw score, standard score, 90 percent confidence interval, percentile">
+          <thead><tr><th>Raw</th><th>Std score</th><th>90% CI</th><th>%ile</th></tr></thead>
+          <tbody>
+            <tr><td>25</td><td>101</td><td>91–110</td><td>52</td></tr>
+            <tr><td>24</td><td>98</td><td>88–108</td><td>46</td></tr>
+            <tr><td>23</td><td>96</td><td>86–106</td><td>41</td></tr>
+            <tr class="hl"><td>22</td><td>94</td><td>84–104</td><td>38</td></tr>
+            <tr><td>21</td><td>92</td><td>82–102</td><td>30</td></tr>
+            <tr><td>20</td><td>89</td><td>79–99</td><td>25</td></tr>
+            <tr><td>19</td><td>87</td><td>77–97</td><td>21</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figcaption>Johnny’s raw 22 → standard score 94, with a 90% confidence interval of <strong>84–104</strong>. The printed interval already includes the confidence-level multiplier; his score estimate is a band, not exactly 94.</figcaption>
+    </figure>
+    <div class="widget">
+      <span class="wlabel">Why the band matters</span>
+      <p>Now suppose Johnny is tested before and after treatment on the same test. Did he really improve? (Both readings come straight from the manual.)</p>
+      <div class="statrow">
+        <div class="statbox"><div class="k">Time 1</div><div class="bigstat" style="font-size:1.6rem">SS 78</div><div class="muted" style="font-size:.8rem">90% CI: 68–88</div></div>
+        <div class="statbox"><div class="k">Time 2</div><div class="bigstat" style="font-size:1.6rem">SS 87</div><div class="muted" style="font-size:.8rem">90% CI: 77–97</div></div>
+      </div>
+      <button class="btn sm stepbtn" id="semStep" type="button" style="margin-top:10px">What can we conclude? ▸</button>
+      <div class="reveal-block" id="semR">
+        <div class="callout c-mistake"><h4>The bands overlap</h4><p>68–88 and 77–97 share a lot of ground (77–88), so the 9-point rise could be <strong>real improvement — or just measurement noise</strong>. These two scores alone can’t tell us which. To actually demonstrate progress, don’t rely on a re-given standardized test; supplement it with <strong>criterion-referenced probes</strong> on the child’s goals, <strong>language-sample measures</strong> (e.g., MLU, % of targets correct in conversation), or a <strong>single-case design</strong> with repeated measurement over time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.8 FULL PROFILE ===================== -->
+<section class="lesson" id="s-profile" aria-labelledby="prof-h">
+  <div class="container">
+    <span class="kicker">4.7 · Put it together</span>
+    <h2 id="prof-h">Read a full profile: Johnny, age 4;1</h2>
+    <div class="grid g2">
+      <div class="card">
+        <div class="muted-mono">SPELT-P2 score report</div>
+        <div style="display:flex;gap:8px;margin:8px 0;flex-wrap:wrap"><span class="tag">raw = 22</span><span class="tag">SS = 94</span><span class="tag">%ile = 38</span></div>
+        <p style="margin:0"><span class="muted-mono">z</span> = (94 − 100) / 15 = <strong>−0.40</strong> — just under half an SD below the mean.</p>
+        <p style="margin:.5em 0 0"><strong>Percentile 38</strong> = higher than ~38% of same-age peers → <strong style="color:var(--green)">within the average range</strong> for this manual, and not diagnostic by itself.</p>
+      </div>
+      <div class="callout c-reminder"><h4>Honesty note</h4><p>A pure normal model gives about the <strong>34th</strong> percentile for z = −0.40, while the manual lists <strong>38th</strong>. Real test norms aren’t perfectly normal — when they differ, <strong>trust the manual’s table</strong> over the idealized math.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.9 WRITE IT IN A REPORT ===================== -->
+<section class="lesson" id="s-report" aria-labelledby="rep-h">
+  <div class="container">
+    <span class="kicker">4.8 · Interpret &amp; communicate</span>
+    <h2 id="rep-h">Write it in a clinical report</h2>
+    <p class="lead">Numbers are only useful if you can explain them to families and other professionals. Build a clear, defensible sentence by dragging Johnny’s values into the report. Then compare good vs. risky phrasing.</p>
+    <div class="widget">
+      <span class="wlabel">Build the sentence · drag</span>
+      <div class="numtray" id="repTray">
+        <button class="numchip" data-val="94" type="button"><span class="v">94</span><span class="k">SS</span></button>
+        <button class="numchip" data-val="38" type="button"><span class="v">38</span><span class="k">%ile</span></button>
+        <button class="numchip" data-val="84" type="button"><span class="v">84</span><span class="k">CI low</span></button>
+        <button class="numchip" data-val="104" type="button"><span class="v">104</span><span class="k">CI high</span></button>
+        <button class="numchip" data-val="115" type="button"><span class="v">115</span><span class="k">distractor</span></button>
+      </div>
+      <p class="cloze" id="repCloze">On the SPELT-P2, Johnny earned a standard score of
+        <span class="cz" data-slot="ss" data-expect="94" role="button" tabindex="0" aria-label="standard score"></span>
+        (<span class="cz" data-slot="pct" data-expect="38" role="button" tabindex="0" aria-label="percentile"></span>th percentile),
+        placing his expressive language within the <strong>average range</strong> for his age on this manual. The 90% confidence interval
+        (<span class="cz" data-slot="lo" data-expect="84" role="button" tabindex="0" aria-label="lower bound"></span>–<span class="cz" data-slot="hi" data-expect="104" role="button" tabindex="0" aria-label="upper bound"></span>)
+        indicates his score estimate is best interpreted as a band rather than a single exact point.</p>
+      <div class="fxbtns"><button class="btn sm" id="repCheck" type="button">Check the report</button><button class="btn ghost sm" id="repReset" type="button">Reset</button></div>
+      <div class="feedback" id="repFb"></div>
+    </div>
+    <div class="callout c-slp"><h4>✓ Say this</h4><p>“Johnny’s score is within the average range for his age. Scores are estimates, so we report the confidence interval rather than treating one number as exact.”</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.14 AGE EQUIVALENTS ===================== -->
+<section class="lesson" id="s-ae" aria-labelledby="ae-h">
+  <div class="container">
+    <span class="kicker">4.9 · The intuitive score</span>
+    <h2 id="ae-h">Age equivalents (AE)</h2>
+    <p class="lead">An <strong>age-equivalent (AE)</strong> answers a different — and easily misunderstood — question. It compares a child’s raw score <strong>to the average performance of different age groups</strong>, telling you which age group’s <em>typical</em> raw score matches the child’s, rather than comparing the child to peers of their own exact age.</p>
+    <div class="grid g2">
+      <div>
+        <div class="muted-mono">SPELT-P2 manual · Age Equivalency Ranges</div>
+        <table class="gtab" style="margin-top:6px;max-width:380px" aria-label="SPELT-P2 age equivalency ranges by raw score">
+          <thead><tr><th>Raw score</th><th>Age-equivalent range</th></tr></thead>
+          <tbody>
+            <tr><td>0–18</td><td>below 3-0</td></tr>
+            <tr><td>19–21</td><td>3-0 through 3-5</td></tr>
+            <tr class="hl"><td>22–24</td><td>3-6 through 3-11</td></tr>
+            <tr><td>25–27</td><td>4-0 through 4-5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="muted-mono">Johnny again — read plainly</div>
+        <p style="margin:.4em 0 0">Johnny (<strong>4;1</strong>), raw 22 → <strong>AE = 3;6–3;11</strong>. His raw score matches the average raw-score range for children around 3;6–3;11. <strong>This does not mean Johnny “functions like” a younger child.</strong></p>
+        <p style="margin:.5em 0 0">That same score is a <strong>standard score of 94 (38th percentile)</strong> — within the average range for his own age on this manual. The two just answer different questions: <em>“which age band had a similar average raw score?”</em> vs. <em>“how does he compare with his own-age peers?”</em></p>
+      </div>
+    </div>
+    <div class="grid g2">
+      <div class="callout c-slp"><h4>When AE helps</h4><p>AE can feel concrete, but it is easy to misinterpret. Use it only as a carefully framed <strong>supplement</strong>, alongside the standard score and percentile — never as the lead score.</p></div>
+      <div class="callout c-reminder"><h4>Just keep in mind</h4><p>AE intervals aren’t equal, and because raw scores climb steeply with age, a small score gap can look like a bigger age gap. Do not use AE for diagnosis, eligibility, or placement decisions; pair it with the standard score and percentile rather than leaning on it alone — more on that in the misuse cases below.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.15 NORM vs CRITERION ===================== -->
+<section class="lesson" id="s-norm" aria-labelledby="norm-h">
+  <div class="container">
+    <span class="kicker">4.10 · One more distinction</span>
+    <h2 id="norm-h">Norm-referenced vs. criterion-referenced</h2>
+    <p class="lead">Everything so far has been <strong>norm-referenced</strong> — comparing a child to a sample of peers. There’s a second, equally useful approach that compares the child to a fixed <strong>standard of mastery</strong> instead.</p>
+    <div class="tablewrap">
+      <table class="data" aria-label="Norm-referenced versus criterion-referenced comparison">
+        <thead><tr><th></th><th>Norm-referenced</th><th>Criterion-referenced</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Compared to…</th><td>a normative sample of <strong>peers</strong></td><td>a fixed <strong>criterion / mastery level</strong></td></tr>
+          <tr><th scope="row">Question it answers</th><td>“Where does this child stand <em>relative to peers?</em>”</td><td>“Has this child <em>mastered this skill?</em>”</td></tr>
+          <tr><th scope="row">Typical scores</th><td>standard score, percentile, z-score</td><td>% correct, pass / fail, mastery level</td></tr>
+          <tr><th scope="row">Often useful for…</th><td>describing performance relative to peers; one piece of eligibility or diagnostic evidence</td><td>identifying specific skills, planning treatment, and monitoring progress</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout c-mistake"><h4>Don’t confuse the rulers</h4><p><strong>90% correct</strong> (criterion-referenced — how much of a skill the child has) is <strong>not</strong> the <strong>90th percentile</strong> (norm-referenced — better than 90% of peers). Same digits, completely different meaning.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 3.16 MISUSE CASES ===================== -->
+<section class="lesson" id="s-misuse" aria-labelledby="mis-h">
+  <div class="container">
+    <span class="kicker">4.11 · Learn from real mistakes</span>
+    <h2 id="mis-h">How standardized scores get misused</h2>
+    <p class="lead">Four classic errors. Step through them one case at a time — each with what happened, what went wrong, and what to do instead.</p>
+    <div class="widget">
+      <span class="wlabel">Case file</span>
+      <div class="casebar" id="caseTabs" role="tablist" aria-label="Misuse cases"></div>
+      <div id="casePanel" role="tabpanel" aria-live="polite"></div>
+      <div class="casenav">
+        <button class="btn ghost sm" id="casePrev" type="button">‹ Previous</button>
+        <span class="casecount" id="caseCount"></span>
+        <button class="btn sm" id="caseNext" type="button">Next case ›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.11 WRAP ===================== -->
+<section class="lesson" id="s-wrap" aria-labelledby="wrap-h">
+  <div class="container">
+    <span class="kicker">Wrap-up · the whole lesson</span>
+    <h2 id="wrap-h">Three ideas to keep</h2>
+    <div class="grid g3">
+      <div class="card"><div class="muted-mono">Reliability &amp; validity</div><h3 style="margin:.3em 0 .2em">Consistent ≠ correct</h3><p>A test can be perfectly reliable and still measure the wrong thing. Always ask the validity question: what interpretation and use are supported?</p></div>
+      <div class="card"><div class="muted-mono">Diagnostic accuracy</div><h3 style="margin:.3em 0 .2em">Catch vs. clear</h3><p>Sensitivity catches true cases; specificity clears true negatives; the cut-off trades them. In AI/NLP, sensitivity is recall; precision asks how many flagged cases were truly positive.</p></div>
+      <div class="card"><div class="muted-mono">Standardized scores</div><h3 style="margin:.3em 0 .2em">A score is a band</h3><p>SS and z use the mean and SD; percentiles show position in the norm distribution. Report a confidence interval; never let one number diagnose.</p></div>
+    </div>
+    <div class="callout c-key" style="margin-top:16px"><h4>The whole lesson in a sentence</h4><p>Trust the number — but only after you know <strong>what kind of number it is.</strong></p></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site">
+  <div class="container">
+    <h4>About this lesson</h4>
+    <p class="refs">An interactive lesson on reliability &amp; validity, diagnostic accuracy, and standardized scores. Built for graduate Speech-Language Pathology students. Client scenarios and diagnostic-count examples are illustrative teaching examples, not real client data; manual norm-table values are identified in context.</p>
+    <p class="ack" style="margin-top:18px">Dr. Mengyang Qiu · Saint Elizabeth University · SLP 680</p>
+    <p class="ack" style="margin-top:4px">This webpage was created through vibe coding with Claude Opus 4.8 and ChatGPT 5.5 Pro.</p>
+  </div>
+</footer>
+
+  </div><!-- /.content -->
+</div><!-- /.app -->
+<a href="#top" class="backtop btn sm" id="backtop" aria-label="Back to top">↑ Top</a>
+
+<script>
+(function(){
+'use strict';
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function h(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild;}
+
+/* ---- math ---- */
+function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
+  var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+function normCDF(z){return 0.5*(1+erf(z/Math.SQRT2));}
+function rawPDF(s,m,sd){return Math.exp(-Math.pow(s-m,2)/(2*sd*sd))/(sd*Math.sqrt(2*Math.PI));}
+function ordinal(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+function areaPath(fn,a,b,base,sx,step){var d="M "+sx(a).toFixed(1)+" "+base.toFixed(1);
+  for(var s=a;s<=b+1e-9;s+=step){d+=" L "+sx(s).toFixed(1)+" "+fn(s).toFixed(1);}
+  d+=" L "+sx(b).toFixed(1)+" "+base.toFixed(1)+" Z";return d;}
+function npdf(x){return Math.exp(-x*x/2)/Math.sqrt(2*Math.PI);}
+function fmtNum(v){return (typeof v==='number'&&v<0)?('−'+Math.abs(v)):(''+v);}
+
+/* ---------- multiple-choice engine (from course style) ---------- */
+function mcq(containerId, items, scoreId){
+  const wrap=document.getElementById(containerId); if(!wrap)return;
+  const total=items.length; let idx=0, score=0, answered=false;
+  function dots(){let s='';for(let k=0;k<total;k++){s+='<span class="qd'+(k<idx?' done':'')+(k===idx?' cur':'')+'"></span>';}return s;}
+  function render(advance){
+    wrap.innerHTML='';
+    if(idx>=total){
+      const pct=Math.round(score/total*100);
+      const msg=pct===100?'Perfect — you’ve got this.':pct>=50?'Strong work — review any you missed.':'Worth another run-through; you’ll get there.';
+      const done=h('<div class="quizcard quizdone"><div class="qsmall">Your score</div><div class="qbig">'+score+' / '+total+'</div><p class="muted">'+msg+'</p><button class="btn sm" type="button">↺ Try again</button></div>');
+      done.querySelector('button').addEventListener('click',()=>{idx=0;score=0;render(true);});
+      wrap.appendChild(done); if(advance)done.querySelector('button').focus(); return;
+    }
+    answered=false; const it=items[idx];
+    const card=h('<div class="quizcard" role="group" aria-label="Question '+(idx+1)+' of '+total+'"><div class="quizhead"><span class="qprog">Question '+(idx+1)+' of '+total+'</span><span class="qdots" aria-hidden="true">'+dots()+'</span></div><p class="quizq" tabindex="-1">'+it.q+'</p><div class="opts"></div><div class="feedback" role="status"></div></div>');
+    const od=card.querySelector('.opts'), fb=card.querySelector('.feedback');
+    it.options.forEach((op,oi)=>{
+      const b=h('<button class="opt" type="button"><span class="mk">'+String.fromCharCode(65+oi)+'</span> '+op.t+'</button>');
+      b.addEventListener('click',()=>{
+        if(answered)return; answered=true;
+        if(op.ok){b.classList.add('correct'); score++;}
+        else{b.classList.add('wrong'); od.querySelectorAll('.opt').forEach((x,xi)=>{if(it.options[xi].ok)x.classList.add('correct');});}
+        od.querySelectorAll('.opt').forEach(x=>{x.disabled=true;});
+        fb.className='feedback '+(op.ok?'ok':'no')+' show';
+        fb.innerHTML='<div class="verdict">'+(op.ok?'Correct.':'Not quite.')+'</div><p>'+op.why+'</p><button class="btn sm next" type="button">'+(idx+1<total?'Next question →':'See results →')+'</button>';
+        const nx=fb.querySelector('.next'); nx.addEventListener('click',()=>{idx++;render(true);}); nx.focus();
+      });
+      od.appendChild(b);
+    });
+    wrap.appendChild(card);
+    if(advance){const q=card.querySelector('.quizq'); if(q)q.focus();}
+  }
+  render(false);
+}
+
+/* ---------- reusable drag-into-slot exercise (mouse + touch + keyboard) ---------- */
+function makeDropExercise(o){
+  const root=document.getElementById(o.root); const tray=document.getElementById(o.trayId);
+  if(!root||!tray)return;
+  const slotSel=o.slotSel||'.fslot';
+  const slots=$$(slotSel,root);
+  const blanks=$$('.fblank',root);
+  let sel=null; const place={};
+  const groups=o.groups||[]; const groupSlots=new Set(); groups.forEach(g=>g.slots.forEach(k=>groupSlots.add(k)));
+  function slotEl(k){return slots.find(x=>x.dataset.slot===k);}
+  function chips(){return $$('.numchip',tray);}
+  function getExpect(s){const k=s.dataset.slot; if(o.expect&&o.expect[k]!=null)return o.expect[k]; return parseFloat(s.dataset.expect);}
+  function clearHot(){slots.forEach(s=>s.classList.remove('drop-hot'));}
+  function slotAt(x,y){const el=document.elementFromPoint(x,y);return el&&el.closest?el.closest(slotSel):null;}
+  function renderSlot(s){const k=s.dataset.slot; if(place[k]!=null){s.textContent=fmtNum(place[k]);s.classList.add('filled');}else{s.textContent='';s.classList.remove('filled');} s.classList.remove('good','bad');}
+  function setSlot(k,v){place[k]=v;const s=slots.find(x=>x.dataset.slot===k);if(s)renderSlot(s);}
+  function clearSlot(k){delete place[k];const s=slots.find(x=>x.dataset.slot===k);if(s)renderSlot(s);}
+  function updateSel(){chips().forEach(c=>c.classList.toggle('sel',c.dataset.val===sel));}
+  function attachDrag(elm){
+    elm.addEventListener('pointerdown',ev=>{
+      if(ev.pointerType==='mouse'&&ev.button!==0)return;
+      const sx=ev.clientX,sy=ev.clientY;let active=false,clone=null;elm._dragged=false;
+      try{elm.setPointerCapture(ev.pointerId);}catch(e){}
+      const move=e=>{const dx=e.clientX-sx,dy=e.clientY-sy;
+        if(!active&&Math.hypot(dx,dy)>6){active=true;elm._dragged=true;
+          clone=elm.cloneNode(true);clone.className='numchip dragclone';
+          clone.style.cssText='position:fixed;pointer-events:none;z-index:9999;margin:0;width:'+elm.offsetWidth+'px';
+          document.body.appendChild(clone);}
+        if(active){clone.style.left=(e.clientX-clone.offsetWidth/2)+'px';clone.style.top=(e.clientY-24)+'px';
+          const sl=slotAt(e.clientX,e.clientY);clearHot();if(sl)sl.classList.add('drop-hot');}};
+      const up=e=>{elm.removeEventListener('pointermove',move);elm.removeEventListener('pointerup',up);elm.removeEventListener('pointercancel',up);
+        try{elm.releasePointerCapture(ev.pointerId);}catch(e){}
+        if(active){const sl=slotAt(e.clientX,e.clientY);if(clone)clone.remove();clearHot();
+          if(sl)setSlot(sl.dataset.slot,parseFloat(elm.dataset.val));
+          setTimeout(()=>{elm._dragged=false;},0);}};
+      elm.addEventListener('pointermove',move);elm.addEventListener('pointerup',up);elm.addEventListener('pointercancel',up);
+    });
+  }
+  chips().forEach(c=>{
+    attachDrag(c);
+    c.addEventListener('click',()=>{if(c._dragged)return;sel=(sel===c.dataset.val?null:c.dataset.val);updateSel();});
+  });
+  slots.forEach(s=>{
+    s.addEventListener('click',()=>{const k=s.dataset.slot;
+      if(sel!=null){setSlot(k,parseFloat(sel));sel=null;updateSel();}
+      else if(place[k]!=null){clearSlot(k);}});
+    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();s.click();}});
+  });
+  document.getElementById(o.checkId).addEventListener('click',()=>{
+    const fb=document.getElementById(o.fbId); let unfilled=0,wrong=0;
+    if(o.revealRoles)tray.classList.add('revealed');
+    slots.forEach(s=>{const k=s.dataset.slot;
+      if(groupSlots.has(k))return;
+      const exp=getExpect(s);
+      if(place[k]==null){unfilled++;s.classList.remove('good','bad');}
+      else if(place[k]===exp){s.classList.add('good');s.classList.remove('bad');}
+      else{s.classList.add('bad');s.classList.remove('good');wrong++;}});
+    groups.forEach(g=>{const vals=g.slots.map(k=>place[k]);
+      if(vals.some(v=>v==null)){vals.forEach(v=>{if(v==null)unfilled++;});g.slots.forEach(k=>{const e=slotEl(k);if(e)e.classList.remove('good','bad');});return;}
+      const a=vals.slice().sort((x,y)=>x-y),b=g.values.slice().sort((x,y)=>x-y);
+      const ok=a.length===b.length&&a.every((v,i)=>v===b[i]);
+      g.slots.forEach(k=>{const e=slotEl(k);if(e){e.classList.toggle('good',ok);e.classList.toggle('bad',!ok);}});
+      if(!ok)wrong++;});
+    blanks.forEach(b=>{const exp=parseFloat(b.dataset.expect),val=b.value.trim();
+      if(val===''){unfilled++;b.classList.remove('good','bad');}
+      else if(parseFloat(val)===exp){b.classList.add('good');b.classList.remove('bad');}
+      else{b.classList.add('bad');b.classList.remove('good');wrong++;}});
+    if(unfilled){fb.className='feedback no show';fb.innerHTML='<strong>Fill every box first</strong> — '+unfilled+' still empty.';return;}
+    if(wrong){fb.className='feedback no show';fb.innerHTML='<div class="verdict">'+wrong+' to fix.</div><p>'+(o.hint||'')+'</p>';return;}
+    if(o.results){for(const id in o.results){const el=document.getElementById(id);if(el){el.textContent=o.results[id];el.classList.add('ok');}}}
+    fb.className='feedback ok show';fb.innerHTML='<div class="verdict">Correct!</div><p>'+(o.win||'')+'</p>';
+  });
+  document.getElementById(o.resetId).addEventListener('click',()=>{
+    for(const k in place)delete place[k];slots.forEach(renderSlot);
+    if(o.revealRoles)tray.classList.remove('revealed');
+    blanks.forEach(b=>{b.value='';b.classList.remove('good','bad');});
+    if(o.results){for(const id in o.results){const el=document.getElementById(id);if(el){el.textContent='?';el.classList.remove('ok');}}}
+    sel=null;updateSel();document.getElementById(o.fbId).className='feedback';
+  });
+  slots.forEach(renderSlot);
+}
+function addChips(trayId,list){const t=document.getElementById(trayId);if(!t)return;
+  list.forEach(it=>{const b=h('<button class="numchip" type="button" data-val="'+it.val+'" aria-label="'+it.key+' equals '+it.val+', drag into a slot"><span class="v">'+it.val+'</span><span class="k">'+it.key+'</span></button>');t.appendChild(b);});}
+
+/* ===================== content interactions ===================== */
+function initInteractions(){
+  /* ---- flip cards (reliability / validity types) ---- */
+  const REL=[['Inter-rater','Different scorers agree on the same children. For continuous scores, look for ICC or a similar agreement coefficient; for categorical decisions, look for kappa or percent agreement.'],
+    ['Intra-rater','The same scorer agrees with themselves when re-scoring.'],
+    ['Test–retest','Same test, same people, two time points — scores hold steady.'],
+    ['Internal consistency','The two halves of the test agree (split-half / odd–even).']];
+  const VAL=[['Face','It simply <em>looks</em> like it tests the thing.'],
+    ['Content','Experts agree the items cover the domain (e.g., the PPVT).'],
+    ['Criterion','It agrees with a reference standard now (concurrent) or predicts later (predictive).'],
+    ['Construct','It captures the theoretical trait it targets (e.g., narrative ability).']];
+  function flip(t,d){return '<button class="flipcard" aria-pressed="false" type="button"><span class="flip-inner"><span class="flip-face flip-front"><span class="t">'+t+'</span><span class="flip-hint">Tap to flip</span></span><span class="flip-face flip-back"><span class="d">'+d+'</span></span></span></button>';}
+  const rc=$('#relCards'), vc=$('#valCards');
+  if(rc)REL.forEach(x=>rc.appendChild(h(flip(x[0],x[1]))));
+  if(vc)VAL.forEach(x=>vc.appendChild(h(flip(x[0],x[1]))));
+
+  /* 3.1 measures of center — flip cards */
+  const CEN=[
+    ['Mode','<strong>Most frequent value.</strong> The score that appears most often. Works for every data type — and it’s the only option for nominal categories. <em>e.g., the most common diagnosis on a caseload.</em>'],
+    ['Median','<strong>Middle of the ordered scores</strong> — half fall below, half above. It resists outliers, so it’s the honest choice for skewed data.'],
+    ['Mean','<strong>The everyday average:</strong> add the scores and divide by how many. Best for symmetric interval/ratio data — but a single outlier can pull it.']];
+  const cenEl=$('#centerCards'); if(cenEl)CEN.forEach(x=>cenEl.appendChild(h(flip(x[0],x[1]))));
+
+  /* 3.3 figure flip cards — front = job, back = a mini demo chart */
+  function figFlip(name,use,demo){return '<button class="flipcard figflip" aria-pressed="false" type="button"><span class="flip-inner"><span class="flip-face flip-front"><span class="t">'+name+'</span><span class="use">'+use+'</span><span class="flip-hint">Tap for an example</span></span><span class="flip-face flip-back"><span class="d"><svg class="figdemo" viewBox="0 0 180 120" aria-hidden="true">'+demo+'</svg></span></span></span></button>';}
+  function dPie(){var s='',cx=90,cy=58,r=42,a=-Math.PI/2,fr=[0.45,0.3,0.25],col=['#16639f','#2f7077','#cdd6e0'];fr.forEach(function(f,i){var a2=a+f*2*Math.PI,x1=cx+r*Math.cos(a),y1=cy+r*Math.sin(a),x2=cx+r*Math.cos(a2),y2=cy+r*Math.sin(a2),lg=f>0.5?1:0;s+='<path d="M '+cx+' '+cy+' L '+x1.toFixed(1)+' '+y1.toFixed(1)+' A '+r+' '+r+' 0 '+lg+' 1 '+x2.toFixed(1)+' '+y2.toFixed(1)+' Z" fill="'+col[i]+'" stroke="#fff" stroke-width="1.6"/>';a=a2;});return s;}
+  function dBar(){var s='<line x1="22" y1="100" x2="166" y2="100" stroke="#b9ad94"/>',hs=[34,58,44,72],x=30;hs.forEach(function(hh){s+='<rect x="'+x+'" y="'+(100-hh)+'" width="24" height="'+hh+'" fill="#16639f" rx="2"/>';x+=34;});return s;}
+  function dLine(){var pts=[[24,86],[54,70],[84,76],[114,46],[152,30]],s='<line x1="20" y1="100" x2="166" y2="100" stroke="#b9ad94"/><polyline points="'+pts.map(function(p){return p.join(',');}).join(' ')+'" fill="none" stroke="#16639f" stroke-width="2.5"/>';pts.forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#0B2D4D"/>';});return s;}
+  function dScatter(){var pts=[[34,82],[50,70],[58,88],[74,64],[88,72],[96,52],[112,58],[124,40],[138,48],[152,34]],s='<line x1="22" y1="100" x2="166" y2="100" stroke="#b9ad94"/><line x1="26" y1="20" x2="26" y2="100" stroke="#b9ad94"/>';pts.forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="rgba(22,99,159,.7)" stroke="#0B2D4D" stroke-width="1"/>';});return s;}
+  function dHist(){var s='<line x1="20" y1="100" x2="166" y2="100" stroke="#b9ad94"/>',hs=[14,30,52,66,50,28,14],x=30;hs.forEach(function(hh){s+='<rect x="'+x+'" y="'+(100-hh)+'" width="19" height="'+hh+'" fill="#16639f" stroke="#fff" stroke-width="1"/>';x+=19;});return s;}
+  const FIG=[['Pie chart','parts of a whole',dPie()],['Bar / column','compare categories',dBar()],['Line graph','trend over time',dLine()],['Scatterplot','relationship of two variables',dScatter()],['Histogram','shape of one variable',dHist()]];
+  const figEl=$('#figCards'); if(figEl)FIG.forEach(x=>figEl.appendChild(h(figFlip(x[0],x[1],x[2]))));
+
+  $$('.flipcard').forEach(c=>c.addEventListener('click',()=>c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true')));
+
+  /* ---- Mandarin demo: card stepper (test-retest → inter-rater → predict → verdict) ---- */
+  (function(){
+    const cards=$$('#mStepper .mcard'); if(!cards.length)return;
+    const dotsEl=$('#mDots'),prev=$('#mPrev'),next=$('#mNext'),count=$('#mCount');
+    let idx=0;
+    cards.forEach(()=>dotsEl.insertAdjacentHTML('beforeend','<span class="d"></span>'));
+    const dots=$$('#mDots .d');
+    function show(){
+      cards.forEach((c,i)=>c.classList.toggle('on',i===idx));
+      dots.forEach((d,i)=>{d.classList.toggle('cur',i===idx);d.classList.toggle('done',i<idx);});
+      count.textContent='Step '+(idx+1)+' of '+cards.length;
+      prev.disabled=idx===0; next.disabled=idx===cards.length-1;
+    }
+    prev.addEventListener('click',()=>{if(idx>0){idx--;show();}});
+    next.addEventListener('click',()=>{if(idx<cards.length-1){idx++;show();}});
+    show();
+    const fb=$('#mPollFb');
+    $$('#mStepper .opt[data-v]').forEach(b=>b.addEventListener('click',()=>{
+      $$('#mStepper .opt[data-v]').forEach(x=>{x.classList.remove('correct','wrong');x.disabled=true;});
+      if(b.dataset.v==='no'){b.classList.add('correct');fb.className='feedback ok show';
+        fb.innerHTML='<div class="verdict">Exactly.</div><p>It’s extremely reliable — but reliable only means <em>consistent</em>, not <em>correct</em>. Click <strong>Next ›</strong> for the verdict.</p>';}
+      else{b.classList.add('wrong');$$('#mStepper .opt[data-v]').forEach(x=>{if(x.dataset.v==='no')x.classList.add('correct');});
+        fb.className='feedback no show';fb.innerHTML='<div class="verdict">Careful —</div><p>consistency isn’t the same as measuring the right thing. Click <strong>Next ›</strong> for the verdict.</p>';}
+    }));
+    const svg=$('#mScatter'); if(!svg)return;
+    const T1=[1,0,2,0,3,1,0,2,1,4], T2=[1,0,2,1,3,1,0,2,1,3];
+    const x0=44,x1=214,y0=158,y1=20,lo=-0.5,hi=4.5;
+    const sx=v=>x0+(v-lo)/(hi-lo)*(x1-x0), sy=v=>y0-(v-lo)/(hi-lo)*(y0-y1);
+    let s='';
+    s+='<line x1="'+sx(lo).toFixed(1)+'" y1="'+sy(lo).toFixed(1)+'" x2="'+sx(hi).toFixed(1)+'" y2="'+sy(hi).toFixed(1)+'" stroke="#cbb89a" stroke-width="1.5" stroke-dasharray="4 3"/>';
+    s+='<line class="axis" x1="'+x0+'" y1="'+y0+'" x2="'+x1+'" y2="'+y0+'"/><line class="axis" x1="'+x0+'" y1="'+y0+'" x2="'+x0+'" y2="'+y1+'"/>';
+    for(let t=0;t<=4;t++){s+='<text class="glab" x="'+sx(t).toFixed(1)+'" y="'+(y0+14)+'" text-anchor="middle">'+t+'</text>';s+='<text class="glab" x="'+(x0-9)+'" y="'+(sy(t)+4).toFixed(1)+'" text-anchor="end">'+t+'</text>';}
+    s+='<text class="glab" x="'+((x0+x1)/2).toFixed(0)+'" y="'+(y0+30)+'" text-anchor="middle">Time 1 score</text>';
+    s+='<text class="glab" x="13" y="'+((y0+y1)/2).toFixed(0)+'" text-anchor="middle" transform="rotate(-90 13 '+((y0+y1)/2).toFixed(0)+')">Time 2 score</text>';
+    for(let i=0;i<T1.length;i++){const jx=Math.sin(i*12.9)*3,jy=Math.cos(i*7.7)*3;
+      s+='<circle cx="'+(sx(T1[i])+jx).toFixed(1)+'" cy="'+(sy(T2[i])+jy).toFixed(1)+'" r="4.6" fill="rgba(22,99,159,.62)" stroke="#0B2D4D" stroke-width="1"/>';}
+    svg.innerHTML=s;
+  })();
+
+  /* ---- reliability/validity quiz ---- */
+  mcq('rvQuiz',[
+    {q:'An articulation test gives nearly identical scores when the same child is tested twice, one week apart. This demonstrates…',options:[
+      {t:'Construct validity',ok:false,why:'Construct validity is about evidence for the intended score interpretation. This item is about getting the same score again over time.'},
+      {t:'Test–retest reliability',ok:true,why:'Same test, same child, two time points, consistent scores — that is test–retest reliability. It says nothing about validity.'},
+      {t:'Sensitivity',ok:false,why:'Sensitivity is a diagnostic-accuracy idea (catching true cases), not consistency over time.'}]},
+    {q:'A vocabulary test in a language the test-taker doesn’t speak yields a consistent score of ~0, and two raters agree. Is it a good test of their clinical skill?',options:[
+      {t:'Yes — it’s highly reliable',ok:false,why:'Reliable, yes — but it supports the wrong interpretation. Reliability without validity is useless here.'},
+      {t:'No — it’s reliable but not valid',ok:true,why:'Exactly the Mandarin-test lesson: consistent, but consistently measuring the wrong thing.'},
+      {t:'No — it’s unreliable',ok:false,why:'It’s actually very reliable (consistent). The problem is unsupported interpretation, not consistency.'}]}
+  ],'rvScore');
+
+  /* ---- 2x2 worked calc (highlight + step) ---- */
+  (function(){
+    const tp=$('#c_tp'),fp=$('#c_fp'),fn=$('#c_fn'),tn=$('#c_tn');
+    if(!tp)return;
+    const calc=$('#ssCalc'),interp=$('#ssInterp'),bS=$('#ssSens'),bP=$('#ssSpec'),bC=$('#ssClear');
+    const cells=[tp,fp,fn,tn];
+    function clearHL(){cells.forEach(c=>c.classList.remove('lit','dim'));}
+    function lit(on,off){clearHL();on.forEach(c=>c.classList.add('lit'));off.forEach(c=>c.classList.add('dim'));}
+    function line(name,a,b,col){return '<p style="font-size:1.15rem;font-family:var(--disp);color:var(--navy);line-height:1.5">'+name+' = '
+      +'<span class="frac2" style="vertical-align:middle"><span class="nu">'+a.l+'</span><span class="de">'+a.l+' + '+b.l+'</span></span> = '
+      +'<span class="frac2" style="vertical-align:middle"><span class="nu">'+a.v+'</span><span class="de">'+a.v+' + '+b.v+'</span></span> = '
+      +'<span class="frac2" style="vertical-align:middle"><span class="nu">'+a.v+'</span><span class="de">'+(a.v+b.v)+'</span></span> = '
+      +'<span class="fres" style="background:'+col+'">'+Math.round(a.v/(a.v+b.v)*100)+'%</span></p>';}
+    function showSens(){lit([tp,fn],[fp,tn]);
+      calc.innerHTML='<div class="muted-mono" style="color:var(--coral)">Sensitivity · the “Has LI” column</div>'+line('Sensitivity',{l:'TP',v:82},{l:'FN',v:18},'#0B2D4D');
+      interp.className='feedback no show';interp.innerHTML='<div class="verdict">82% — fair / acceptable</div><p>Catches <strong>82 of every 100</strong> children who truly have LI, but <strong>misses 18</strong> (false negatives).</p>';
+      bS.classList.add('amber');bP.classList.remove('amber');}
+    function showSpec(){lit([tn,fp],[tp,fn]);
+      calc.innerHTML='<div class="muted-mono" style="color:var(--teal)">Specificity · the “Typical” column</div>'+line('Specificity',{l:'TN',v:70},{l:'FP',v:30},'#c0573f');
+      interp.className='feedback no show';interp.innerHTML='<div class="verdict">70% — below the usual standard</div><p>Correctly clears only <strong>70 of 100</strong> typical children — <strong>30 false alarms.</strong> This test would <strong>over-refer</strong> typical kids.</p>';}
+    function clearAll(){clearHL();bS.classList.remove('amber');calc.innerHTML='<p class="muted">Pick <strong>Sensitivity</strong> or <strong>Specificity</strong> above.</p>';interp.className='feedback';interp.innerHTML='';}
+    bS.addEventListener('click',showSens);bP.addEventListener('click',showSpec);bC.addEventListener('click',clearAll);
+  })();
+
+  /* ---- 2.2 build sensitivity & specificity (drag from the 2x2 table) ---- */
+  makeDropExercise({root:'ssbFx',trayId:'ssbTray',checkId:'ssbCheck',resetId:'ssbReset',fbId:'ssbFb',
+    expect:{sn_n:90,sp_n:80},
+    groups:[{slots:['sn_d1','sn_d2'],values:[90,10]},{slots:['sp_d1','sp_d2'],values:[80,20]}],
+    results:{snRes:'90%',spRes:'80%'},
+    win:'Sensitivity 90% (good) and specificity 80% (fair) — this test catches 90 of 100 true LI and correctly clears 80 of 100 typical children.',
+    hint:'Sensitivity uses the “Has LI” column (TP on top; TP + FN on the bottom). Specificity uses the “Typical” column (TN on top; TN + FP on the bottom).'});
+
+  /* ---- 2.3 cut-off dot plot (LI & TD children across scores) ---- */
+  (function(){
+    const range=$('#cutRange'),svg=$('#cutChart'); if(!range||!svg)return;
+    const LI=[1,2,2,3,3,4,4,5,6,7], TD=[4,5,6,6,7,7,8,8,9,10];
+    const x0=52,x1=584,baseY=120,r=11;
+    const sxs=s=>x0+(s-1)/9*(x1-x0);
+    const oS=$('#cutSens'),oP=$('#cutSpec'),oSN=$('#cutSensN'),oPN=$('#cutSpecN');
+    function smiley(cx,cy,rr,color,square){var g='';
+      if(square)g+='<rect x="'+(cx-rr).toFixed(1)+'" y="'+(cy-rr).toFixed(1)+'" width="'+(2*rr)+'" height="'+(2*rr)+'" rx="'+(rr*0.42).toFixed(1)+'" fill="'+color+'" stroke="#fff" stroke-width="1.2"/>';
+      else g+='<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="'+rr+'" fill="'+color+'" stroke="#fff" stroke-width="1.2"/>';
+      g+='<circle cx="'+(cx-rr*0.34).toFixed(1)+'" cy="'+(cy-rr*0.18).toFixed(1)+'" r="'+(rr*0.13).toFixed(1)+'" fill="#fff"/>';
+      g+='<circle cx="'+(cx+rr*0.34).toFixed(1)+'" cy="'+(cy-rr*0.18).toFixed(1)+'" r="'+(rr*0.13).toFixed(1)+'" fill="#fff"/>';
+      g+='<path d="M '+(cx-rr*0.42).toFixed(1)+' '+(cy+rr*0.16).toFixed(1)+' Q '+cx.toFixed(1)+' '+(cy+rr*0.62).toFixed(1)+' '+(cx+rr*0.42).toFixed(1)+' '+(cy+rr*0.16).toFixed(1)+'" stroke="#fff" stroke-width="'+(rr*0.14).toFixed(2)+'" fill="none" stroke-linecap="round"/>';
+      return g;}
+    const byScore={};
+    LI.forEach(s=>{(byScore[s]=byScore[s]||[]).push('LI');});
+    TD.forEach(s=>{(byScore[s]=byScore[s]||[]).push('TD');});
+    Object.keys(byScore).forEach(k=>byScore[k].sort());
+    function render(){
+      const c=parseInt(range.value,10), cutX=sxs(c+0.5);
+      var s='';
+      s+='<rect x="'+(x0-24)+'" y="14" width="'+(cutX-(x0-24)).toFixed(1)+'" height="'+(baseY-14+6)+'" fill="#efe7d4" opacity="0.65"/>';
+      s+='<line class="axis" x1="'+(x0-24)+'" y1="'+baseY+'" x2="'+(x1+20)+'" y2="'+baseY+'"/>';
+      s+='<text class="glab" x="'+((x0+x1)/2).toFixed(0)+'" y="'+(baseY+22)+'" text-anchor="middle">screening score  (low → high)</text>';
+      for(const k in byScore){byScore[k].forEach((g,j)=>{s+=smiley(sxs(+k),baseY-22-j*24,r,g==='LI'?'#3b6fb6':'#3f9d6b',g==='TD');});}
+      s+='<line x1="'+cutX.toFixed(1)+'" y1="10" x2="'+cutX.toFixed(1)+'" y2="'+(baseY+4)+'" stroke="#0B2D4D" stroke-width="2.5" stroke-dasharray="5 4"/>';
+      s+='<text class="glab-b" x="'+cutX.toFixed(1)+'" y="8" text-anchor="middle" fill="#0B2D4D">cut-off</text>';
+      svg.innerHTML=s;
+      const liFlag=LI.filter(v=>v<=c).length, tdClear=TD.filter(v=>v>c).length;
+      oS.textContent=Math.round(liFlag/LI.length*100)+'%'; oSN.textContent=liFlag+' of 10 LI caught';
+      oP.textContent=Math.round(tdClear/TD.length*100)+'%'; oPN.textContent=tdClear+' of 10 TD cleared';
+    }
+    range.addEventListener('input',render); render();
+  })();
+
+  /* ---- 2.4 precision (drag) ---- */
+  addChips('prTray',[{val:82,key:'TP'},{val:30,key:'FP'},{val:18,key:'FN'},{val:70,key:'TN'}]);
+  makeDropExercise({root:'s-recall',trayId:'prTray',checkId:'prCheck',resetId:'prReset',fbId:'prFb',
+    expect:{pr_n:82},
+    groups:[{slots:['pr_d1','pr_d2'],values:[82,30]}],
+    results:{prRes:'≈73%'},
+    win:'Precision = 82 / (82 + 30) ≈ 73%. Note it uses FP (false alarms), not FN — that’s what makes it different from recall/sensitivity.',
+    hint:'Precision = TP / (TP + FP). The numerator is TP; the bottom adds the false positives (FP), not the false negatives.'});
+
+  /* ---- 2.5 quiz ---- */
+  mcq('ssQuiz',[
+    {q:'A test yields TP = 45, FN = 5, TN = 80, FP = 20. What is its sensitivity?',options:[
+      {t:'45 / 65 ≈ 69%',ok:false,why:'That mixes columns. Sensitivity stays within the “has-disorder” column: TP and FN.'},
+      {t:'45 / 50 = 90%',ok:true,why:'Sensitivity = TP / (TP + FN) = 45 / 50 = 90%. (80 / 100 = 80% would be the specificity.)'},
+      {t:'80 / 100 = 80%',ok:false,why:'That’s the specificity (TN / (TN + FP)), not the sensitivity.'}]},
+    {q:'A screener has high sensitivity but low specificity. In practice it will tend to…',options:[
+      {t:'Miss many true cases',ok:false,why:'High sensitivity means it catches most true cases. The weakness is elsewhere.'},
+      {t:'Over-refer typical children (many false alarms)',ok:true,why:'Low specificity = many false positives, so typical children get flagged and over-referred.'},
+      {t:'Be useless for screening',ok:false,why:'High sensitivity is exactly what you want in a screener; you just confirm positives with a fuller assessment.'}]}
+  ],'ssScore');
+
+  /* ---- 3.2 spread figure: two groups, same mean, different SD ---- */
+  (function(){
+    const svg=$('#spreadFig'); if(!svg)return;
+    const A=[47,49,50,51,53], B=[44,48,50,52,56], mean=50;
+    const lo=41,hi=59,x0=72,x1=590;
+    const sx=v=>x0+(v-lo)/(hi-lo)*(x1-x0);
+    const yA=82,yB=152;
+    let s='';
+    s+='<line x1="'+sx(mean).toFixed(1)+'" y1="38" x2="'+sx(mean).toFixed(1)+'" y2="176" stroke="#0B2D4D" stroke-width="2" stroke-dasharray="4 3"/>';
+    s+='<text class="glab" x="'+sx(mean).toFixed(1)+'" y="32" text-anchor="middle" fill="#0B2D4D" font-weight="700">mean = 50</text>';
+    function row(data,y,lab,sd,color){
+      s+='<text class="glab" x="'+(x0-4)+'" y="'+(y-16)+'" text-anchor="start" fill="'+color+'" font-weight="700">'+lab+' · SD = '+sd+'</text>';
+      s+='<line class="axis" x1="'+(x0-8)+'" y1="'+y+'" x2="'+(x1+8)+'" y2="'+y+'"/>';
+      data.forEach(v=>{s+='<circle cx="'+sx(v).toFixed(1)+'" cy="'+y+'" r="7.5" fill="'+color+'" fill-opacity="0.6" stroke="#0B2D4D" stroke-width="1"/>';});
+    }
+    row(A,yA,'Group A (clustered)',2,'#16639f');
+    row(B,yB,'Group B (spread)',4,'#2f7077');
+    [44,47,50,53,56].forEach(v=>{s+='<text class="glab" x="'+sx(v).toFixed(1)+'" y="192" text-anchor="middle">'+v+'</text>';});
+    svg.innerHTML=s;
+  })();
+
+  /* ---- 3.3 position figure: quartiles on ordered scores ---- */
+  (function(){
+    const svg=$('#positionFig'); if(!svg)return;
+    const data=[2,4,5,7,8,10,12,15], q1=4.5, med=7.5, q3=11;
+    const lo=0,hi=17,x0=44,x1=588,baseY=90;
+    const sx=v=>x0+(v-lo)/(hi-lo)*(x1-x0);
+    let s='';
+    s+='<line class="axis" x1="'+(x0-6)+'" y1="'+baseY+'" x2="'+(x1+6)+'" y2="'+baseY+'"/>';
+    function quarter(a,b){s+='<text class="glab" x="'+((sx(a)+sx(b))/2).toFixed(1)+'" y="'+(baseY+38)+'" text-anchor="middle" fill="#9a917e">¼ of scores</text>';}
+    quarter(lo,q1); quarter(q1,med); quarter(med,q3); quarter(q3,hi);
+    function cut(v,lab,color){s+='<line x1="'+sx(v).toFixed(1)+'" y1="32" x2="'+sx(v).toFixed(1)+'" y2="'+(baseY+6)+'" stroke="'+color+'" stroke-width="2" stroke-dasharray="4 3"/>';
+      s+='<text class="glab" x="'+sx(v).toFixed(1)+'" y="26" text-anchor="middle" fill="'+color+'" font-weight="700">'+lab+'</text>';
+      s+='<text class="glab" x="'+sx(v).toFixed(1)+'" y="'+(baseY+22)+'" text-anchor="middle" fill="'+color+'">'+v+'</text>';}
+    cut(q1,'Q1','#2f7077'); cut(med,'median','#0B2D4D'); cut(q3,'Q3','#2f7077');
+    data.forEach(v=>{s+='<circle cx="'+sx(v).toFixed(1)+'" cy="'+baseY+'" r="7" fill="rgba(22,99,159,.6)" stroke="#0B2D4D" stroke-width="1"/>';});
+    svg.innerHTML=s;
+  })();
+
+  /* ---- 3.5 histogram -> normal curve ---- */
+  (function(){
+    const range=$('#histN'),svg=$('#histChart'),btn=$('#histOverlay'),out=$('#histOut'); if(!range||!svg)return;
+    function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+    const rnd=mulberry32(7), pool=[];
+    for(let i=0;i<2000;i++){let u=0,v=0;while(u===0)u=rnd();while(v===0)v=rnd();pool.push(50+10*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v));}
+    const lo=20,hi=80,bw=4,nb=(hi-lo)/bw, x0=46,x1=576,baseY=200,topY=26;
+    const sx=v=>x0+(v-lo)/(hi-lo)*(x1-x0);
+    function bellProp(x){return (Math.exp(-Math.pow(x-50,2)/200)/(10*Math.sqrt(2*Math.PI)))*bw;}
+    let overlay=false;
+    function render(){
+      const nn=+range.value, data=pool.slice(0,nn), bins=new Array(nb).fill(0);
+      data.forEach(v=>{if(v>=lo&&v<hi)bins[Math.min(nb-1,Math.floor((v-lo)/bw))]++;});
+      const props=bins.map(b=>b/nn);
+      const maxY=Math.max(bellProp(50),Math.max.apply(null,props))*1.12;
+      const yP=p=>baseY-(p/maxY)*(baseY-topY);
+      let s='<line class="axis" x1="'+(x0-6)+'" y1="'+baseY+'" x2="'+(x1+6)+'" y2="'+baseY+'"/>';
+      for(let i=0;i<nb;i++){const xa=sx(lo+i*bw),xb=sx(lo+(i+1)*bw);
+        s+='<rect x="'+xa.toFixed(1)+'" y="'+yP(props[i]).toFixed(1)+'" width="'+(xb-xa-1).toFixed(1)+'" height="'+(baseY-yP(props[i])).toFixed(1)+'" fill="rgba(20,93,160,.30)" stroke="#16639f" stroke-width="1"/>';}
+      [20,35,50,65,80].forEach(v=>{s+='<text class="glab" x="'+sx(v).toFixed(1)+'" y="'+(baseY+16)+'" text-anchor="middle">'+v+'</text>';});
+      s+='<text class="glab" x="'+((x0+x1)/2)+'" y="'+(baseY+30)+'" text-anchor="middle">language score</text>';
+      if(overlay){let d='';for(let x=lo;x<=hi+0.01;x+=1)d+=(x===lo?'M':'L')+sx(x).toFixed(1)+' '+yP(bellProp(x)).toFixed(1)+' ';
+        s+='<path d="'+d+'" fill="none" stroke="#0B2D4D" stroke-width="2.5"/>';}
+      svg.innerHTML=s; out.textContent='n = '+nn+' children measured';
+    }
+    range.addEventListener('input',render);
+    btn.addEventListener('click',()=>{overlay=!overlay;btn.setAttribute('aria-pressed',overlay);btn.textContent=overlay?'Hide the curve':'Overlay the smooth curve';render();});
+    render();
+  })();
+
+  /* ---- 3.8 normal curve ---- */
+  (function(){
+    const curve=$('#ndCurve'); if(!curve)return;
+    const meanX=320,sc=82,base=245,scaleH=451;
+    function zx(z){return meanX+z*sc;} function zy(z){return base-scaleH*npdf(z);}
+    let d="M "+zx(-3.5).toFixed(1)+" "+zy(-3.5).toFixed(1);
+    for(let z=-3.5;z<=3.5+1e-9;z+=0.05)d+=" L "+zx(z).toFixed(1)+" "+zy(z).toFixed(1);
+    curve.setAttribute('d',d);
+    $('#ndFill1').setAttribute('d',areaPath(zy,-1,1,base,zx,0.05));
+    $('#ndFill2').setAttribute('d',areaPath(zy,-2,-1,base,zx,0.05)+' '+areaPath(zy,1,2,base,zx,0.05));
+    const grid=$('#ndGrid'),rowZ=$('#ndRowZ'),rowSS=$('#ndRowSS'),rowPct=$('#ndRowPct');
+    const SS=[55,70,85,100,115,130,145],PCT=['0.1','2','16','50','84','98','99.9'];
+    for(let i=-3;i<=3;i++){const x=zx(i);
+      grid.insertAdjacentHTML('beforeend','<line x1="'+x+'" y1="'+base+'" x2="'+x+'" y2="'+zy(i).toFixed(1)+'" stroke="#cdbf9f" stroke-width="1" stroke-dasharray="2 3"/>');
+      rowZ.insertAdjacentHTML('beforeend','<text class="glab" x="'+x+'" y="263" text-anchor="middle" fill="#0B2D4D" font-weight="700">'+(i>0?'+':'')+i+'</text>');
+      rowSS.insertAdjacentHTML('beforeend','<text class="glab" x="'+x+'" y="281" text-anchor="middle" fill="#16639f">'+SS[i+3]+'</text>');
+      rowPct.insertAdjacentHTML('beforeend','<text class="glab" x="'+x+'" y="297" text-anchor="middle" fill="#c0573f">'+PCT[i+3]+'</text>');}
+    rowZ.insertAdjacentHTML('beforeend','<text class="glab" x="'+zx(-3.5)+'" y="263" text-anchor="start" fill="#5d6675" font-style="italic">z</text>');
+    rowSS.insertAdjacentHTML('beforeend','<text class="glab" x="'+zx(-3.5)+'" y="281" text-anchor="start" fill="#5d6675" font-style="italic">SS</text>');
+    rowPct.insertAdjacentHTML('beforeend','<text class="glab" x="'+zx(-3.5)+'" y="297" text-anchor="start" fill="#5d6675" font-style="italic">%ile</text>');
+    const tS=$('#ndToggleSS'),tP=$('#ndTogglePct');
+    function tog(btn,row,on,off){const v=row.style.opacity!=='1';row.style.opacity=v?'1':'0';btn.setAttribute('aria-pressed',v);btn.textContent=v?off:on;}
+    tS.addEventListener('click',()=>tog(tS,rowSS,'Show standard scores','Hide standard scores'));
+    tP.addEventListener('click',()=>tog(tP,rowPct,'Show percentiles','Hide percentiles'));
+  })();
+
+  /* ---- 3.3 z step reveals ---- */
+  function stepReveal(btnId,blockId){const b=$('#'+btnId),blk=$('#'+blockId);if(b&&blk)b.addEventListener('click',()=>{blk.classList.add('show');b.style.display='none';});}
+  stepReveal('zStep1','zR1'); stepReveal('zStep2','zR2'); stepReveal('semStep','semR');
+
+  /* ---- 3.4 z / SS slider calculator ---- */
+  (function(){
+    const range=$('#zRange'); if(!range)return;
+    const ssOut=$('#zSSout'),zZ=$('#zZ'),zPct=$('#zPct'),zDesc=$('#zDesc'),curve=$('#zCurve'),fill=$('#zFill'),mark=$('#zMark');
+    const meanX=180,sc=40,base=116,scaleH=200;
+    function zx(z){return clamp(meanX+z*sc,20,340);} function zy(z){return base-scaleH*npdf(z);}
+    let d="M "+zx(-3.3).toFixed(1)+" "+zy(-3.3).toFixed(1);
+    for(let z=-3.3;z<=3.3+1e-9;z+=0.05)d+=" L "+zx(z).toFixed(1)+" "+zy(z).toFixed(1);
+    curve.setAttribute('d',d);
+    function desc(z){if(z>=2)return['well above average','var(--teal)'];if(z>=1)return['above average','var(--teal)'];
+      if(z>-1)return['average range','var(--navy)'];if(z>-2)return['below average','var(--coral)'];return['well below average','var(--coral)'];}
+    function render(){const ss=parseInt(range.value,10),z=(ss-100)/15,p=normCDF(z)*100;
+      ssOut.textContent=ss; zZ.textContent=(z>=0?'+':'')+z.toFixed(1);
+      zPct.textContent=p<1?'<1st':(p>99?'>99th':ordinal(Math.round(p)));
+      const dd=desc(z);zDesc.textContent=dd[0];zDesc.style.color=dd[1];
+      fill.setAttribute('d',areaPath(zy,-3.3,z,base,zx,0.05));const mx=zx(z);mark.setAttribute('x1',mx);mark.setAttribute('x2',mx);}
+    range.addEventListener('input',render); render();
+  })();
+
+  /* ---- 3.5 conversion exercises ---- */
+  makeDropExercise({root:'cvaFx',trayId:'cvaTray',checkId:'cvaCheck',resetId:'cvaReset',fbId:'cvaFb',revealRoles:true,
+    results:{cvaRes:'−1.0'},win:'z = (85 − 100) / 15 = −1.0 — one SD below the mean (about the 16th percentile).',
+    hint:'The top of the fraction is score − mean; the bottom is the SD. The 70 and 50 chips are distractors.'});
+  makeDropExercise({root:'cvbFx',trayId:'cvbTray',checkId:'cvbCheck',resetId:'cvbReset',fbId:'cvbFb',revealRoles:true,
+    results:{cvbRes:'130'},win:'SS = 100 + 2 × 15 = 130. A z of +2 is a standard score of 130 (top ~2%).',
+    hint:'SS = mean + z × SD. Drop the mean, then the z, then the SD. The −2 and 30 chips are distractors.'});
+  makeDropExercise({root:'cvcFx',trayId:'cvcTray',checkId:'cvcCheck',resetId:'cvcReset',fbId:'cvcFb',revealRoles:true,
+    results:{cvcRes:'−0.40'},win:'From the table, raw 22 → SS 94. Then z = (94 − 100) / 15 = −0.40 — just below the mean and within the average range for this manual.',
+    hint:'First read the SS for raw 22 from the table (94) for the top box. The 91 and 97 chips are distractors.'});
+
+  /* ---- 3.6 percentile predict ---- */
+  (function(){
+    const fb=$('#pctFb'); if(!fb)return;
+    $$('#pctPredict .opt').forEach(b=>b.addEventListener('click',()=>{
+      $$('#pctPredict .opt').forEach(x=>{x.classList.remove('correct','wrong');x.disabled=true;});
+      if(b.dataset.pred==='b'){b.classList.add('correct');fb.className='feedback ok show';fb.innerHTML='<div class="verdict">Right — about the 84th percentile.</div><p>z = +1 puts 50% (below the mean) + 34% (the first SD above) ≈ <strong>84%</strong> below the child. So the child scores higher than ~84% of peers.</p>';}
+      else{b.classList.add('wrong');$$('#pctPredict .opt').forEach(x=>{if(x.dataset.pred==='b')x.classList.add('correct');});fb.className='feedback no show';fb.innerHTML='<div class="verdict">Not quite — it’s about the 84th.</div><p>50% sit below the mean, and the first SD above adds another ~34%, so z = +1 ≈ the 84th percentile.</p>';}
+    }));
+  })();
+
+  /* ---- 3.9 report cloze ---- */
+  addChips&&0; // chips already in HTML
+  makeDropExercise({root:'repCloze',trayId:'repTray',checkId:'repCheck',resetId:'repReset',fbId:'repFb',slotSel:'.cz',
+    win:'That’s a clear, defensible sentence: the standard score, percentile, and confidence interval together — and no misleading age-equivalent.',
+    hint:'Use SS = 94, percentile = 38, and the 90% confidence interval 84–104. The 115 chip is a distractor.'});
+
+  /* ---- 3.10 misuse case stepper ---- */
+  (function(){
+    const tabsEl=$('#caseTabs'),panel=$('#casePanel'),prev=$('#casePrev'),next=$('#caseNext'),count=$('#caseCount');
+    if(!panel)return;
+    const CASES=[
+      {t:'Age-equivalent',
+        s:'A report summarizes a 4-year-old only as “age-equivalent = 3 years 6 months,” and the family hears “your child functions like a 3-year-old.”',
+        w:'Age-equivalents are not equal-interval and can exaggerate small raw-score differences. A child can look “delayed” by AE wording yet have an average-range standard score for same-age peers.',
+        d:'Lead with the standard score, percentile, and confidence interval; use AE only as a carefully framed supplement, and never say a child “functions like” a younger age.'},
+      {t:'Comparing scores',
+        s:'A clinician reports comprehension (SS 92) is “much weaker” than production (SS 100) and plans therapy around the 8-point gap.',
+        w:'An 8-point difference can easily be measurement noise. Without each score’s confidence interval, the “gap” may not be real — and across different tests, norming samples may not even be comparable.',
+        d:'Compare the confidence intervals, not the point scores; only compare across tests when the norming samples and metrics line up.'},
+      {t:'Items → therapy',
+        s:'A child missed the items “under” and “behind,” so the therapy plan targets exactly those two prepositions.',
+        w:'Test items sample only a tiny slice of language, and individual errors don’t define the deficit. Teaching to the test items doesn’t build the underlying skill.',
+        d:'Use language sample analysis and criterion-referenced measures to find functional, generalizable targets.'},
+      {t:'Documenting change',
+        s:'To “prove progress,” the same standardized test is re-administered after six weeks of therapy.',
+        w:'The same norm-referenced test can under- or over-estimate change (practice effects, plus it’s insensitive to small real gains). A higher score may not mean real improvement.',
+        d:'Document change with criterion-referenced measures, language samples, or single-case designs; reserve norm-referenced tests for infrequent status checks.'}
+    ];
+    let idx=0;
+    CASES.forEach((c,i)=>{const t=h('<button class="casetab" role="tab" type="button" aria-selected="false"><span class="num">'+(i+1)+'</span>'+c.t+'</button>');t.addEventListener('click',()=>{idx=i;render();});tabsEl.appendChild(t);});
+    const tabs=$$('.casetab',tabsEl);
+    function render(){const c=CASES[idx];
+      panel.innerHTML='<div class="callout" style="background:#fff;border-color:var(--line)"><h4 style="color:var(--navy)">The scenario</h4><p>'+c.s+'</p></div>'
+        +'<div class="callout c-mistake"><h4>What went wrong</h4><p>'+c.w+'</p></div>'
+        +'<div class="callout c-slp"><h4>What to do instead</h4><p>'+c.d+'</p></div>';
+      tabs.forEach((t,i)=>t.setAttribute('aria-selected',i===idx?'true':'false'));
+      count.textContent='Case '+(idx+1)+' of '+CASES.length;
+      prev.disabled=idx===0; next.disabled=idx===CASES.length-1;}
+    prev.addEventListener('click',()=>{if(idx>0){idx--;render();}});
+    next.addEventListener('click',()=>{if(idx<CASES.length-1){idx++;render();}});
+    render();
+  })();
+}
+
+/* ===================== navigation / chrome ===================== */
+function initNav(){
+  const toggle=$('#navToggle'),sb=$('#sidebar'),bd=$('#sbBackdrop');
+  function closeSB(){if(sb)sb.classList.remove('open');if(bd)bd.classList.remove('show');if(toggle)toggle.setAttribute('aria-expanded','false');}
+  function openSB(){if(sb)sb.classList.add('open');if(bd)bd.classList.add('show');if(toggle)toggle.setAttribute('aria-expanded','true');}
+  if(toggle&&sb)toggle.addEventListener('click',()=>{sb.classList.contains('open')?closeSB():openSB();});
+  if(bd)bd.addEventListener('click',closeSB);
+  $$('#menu a').forEach(a=>a.addEventListener('click',closeSB));
+  const prog=$('#progress'),backtop=$('#backtop');
+  function onScroll(){const el=document.documentElement,sc=el.scrollTop||document.body.scrollTop,max=el.scrollHeight-el.clientHeight;
+    if(prog)prog.style.width=(max>0?sc/max*100:0)+'%';if(backtop)backtop.classList.toggle('show',sc>700);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const links={};$$('#menu a').forEach(a=>{links[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+      Object.values(links).forEach(l=>l.classList.remove('active'));
+      const l=links[e.target.id];if(l)l.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+    $$('main section[id]').forEach(s=>io.observe(s));}
+}
+function initReveal(){
+  if(!('IntersectionObserver' in window))return;
+  const targets=$$('main section.lesson .container');
+  targets.forEach(t=>t.classList.add('reveal'));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.06});
+  targets.forEach(t=>io.observe(t));
+}
+
+function ready(fn){if(document.readyState!=='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+ready(function(){ try{initInteractions();}catch(e){console.error('interactions',e);} initNav(); initReveal(); });
+})();
+
+</script>
+</body>
+</html>
