@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibe Researching &amp; Vibe Coding for SLP Students (SLP 680)</title>
+<meta name="description" content="A self-paced, beginner-friendly interactive lesson for graduate Speech-Language Pathology students on vibe researching and vibe coding: how to direct AI agents responsibly while keeping human judgment, verification, ethics, and accountability in the loop. All demos use simulated teaching data.">
+<!--
+  Vibe Researching & Vibe Coding for SLP 680.
+  Vibe Researching content is adapted from Feng, Y., & Liu, Y. (2026). A visionary look at vibe researching. arXiv:2604.00945.
+  Vibe Coding content is grounded in vibe_coding.md (Karpathy-inspired guidelines) and the project CLAUDE.md.
+  All demo tools use SIMULATED teaching data only, not real client, student, or patient data.
+  Demos are teaching prototypes, NOT validated clinical tools.
+-->
+<!-- Uses the reader's system fonts (Apple SF, Windows Segoe UI, Android Roboto). No web fonts loaded. -->
+<style>
+  :root{
+    --deep-navy:#08203a; --navy:#0B2D4D; --blue-navy:#16639f; --muted-blue:#2E6F9E;
+    --light-blue:#EAF4FB;
+    --paper:#F6F1E6; --paper-2:#EFE7D6; --line:#E2D9C5;
+    --white:#FFFFFF; --ink:#1b2a3a; --muted:#5d6675;
+    --amber:#dc9329; --teal:#2f7077; --coral:#c0573f;
+    --warn:#FBEEDB; --warn-border:#ECD2A0;
+    --success:#E9F4EE; --success-border:#2f7d57;
+    --focus:#dc9329;
+    --shadow:0 12px 30px rgba(20,40,70,.05);
+    --shadow-l:0 1px 2px rgba(7,26,47,.06),0 10px 26px rgba(7,26,47,.10);
+    --radius:14px; --maxw:920px; --nav-h:60px;
+    --disp:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+    --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Cascadia Code","Segoe UI Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+    font-size:18px;line-height:1.7;-webkit-text-size-adjust:100%;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.028;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3,h4{font-family:var(--disp);line-height:1.16;color:var(--navy);font-weight:600}
+  h2{font-size:clamp(1.7rem,1.1rem + 2.4vw,2.5rem);margin:0 0 .35em;letter-spacing:-.015em}
+  h3{font-size:clamp(1.25rem,1rem + 1vw,1.6rem);margin:1.4em 0 .4em}
+  h4{font-size:1.12rem;margin:1.1em 0 .35em}
+  p{margin:.6em 0}
+  a{color:var(--blue-navy)}
+  a:hover{color:var(--navy)}
+  strong{color:var(--navy)}
+  em{color:inherit}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,46px)}
+
+  /* skip link + focus */
+  .skip{position:absolute;left:-999px;top:0;background:var(--deep-navy);color:#fff;
+    padding:10px 16px;border-radius:0 0 10px 0;z-index:500}
+  .skip:focus{left:0}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+  /* progress bar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--amber);z-index:400;transition:width .12s linear}
+
+  /* app shell: sidebar + content */
+  .app{display:flex;align-items:flex-start}
+  .sidebar{position:sticky;top:0;height:100vh;width:270px;flex:none;overflow-y:auto;z-index:160;
+    background:linear-gradient(180deg,#08203a,#0B2D4D 55%,#0e3a63);color:#cfe0f1;
+    padding:30px 20px 48px;border-right:1px solid rgba(255,255,255,.06)}
+  .sidebar .brand{display:block;text-decoration:none;margin-bottom:8px}
+  .sidebar .brand .crs{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+  .sidebar .brand .ttl{display:block;font-family:var(--disp);font-weight:600;font-size:1.45rem;line-height:1.05;color:#fff}
+  .sidebar .brand .sub{display:block;font-size:.82rem;color:#9fbad6;margin-top:9px;line-height:1.45}
+  .sidebar nav.menu{margin-top:20px}
+  .sidebar nav.menu ul{list-style:none;margin:0;padding:0}
+  .sidebar nav.menu li{margin:0}
+  .sidebar nav.menu .grp{color:#7FA8CE;font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;
+    padding:13px 10px 3px;font-weight:700;font-family:var(--mono)}
+  .sidebar nav.menu a{display:block;color:#bcd2e8;text-decoration:none;font-size:.85rem;font-weight:500;
+    padding:6px 11px;border-radius:8px;border-left:2px solid transparent;white-space:normal;line-height:1.3}
+  .sidebar nav.menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .sidebar nav.menu a.active{background:rgba(220,147,41,.18);border-left-color:var(--amber);color:#fff}
+  .content{flex:1;min-width:0}
+
+  /* mobile top bar */
+  .topbar{display:none}
+  .nav-toggle{display:none}
+  .sb-backdrop{display:none}
+  @media(max-width:980px){
+    .app{display:block}
+    .topbar{display:flex;position:sticky;top:0;z-index:200;align-items:center;justify-content:space-between;
+      background:var(--deep-navy);color:#fff;padding:10px 16px;gap:12px}
+    .topbar .tb-brand{font-family:var(--disp);font-weight:600;font-size:1.06rem;color:#fff;text-decoration:none;line-height:1}
+    .topbar .tb-brand small{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--amber);margin-top:2px}
+    .nav-toggle{display:inline-flex;align-items:center;background:var(--blue-navy);color:#fff;border:0;border-radius:9px;
+      padding:9px 14px;font-weight:600;font-size:.92rem;cursor:pointer;min-height:42px}
+    .sidebar{position:fixed;top:0;left:0;bottom:0;height:100vh;width:min(84vw,310px);transform:translateX(-100%);
+      transition:transform .25s ease;box-shadow:0 0 50px rgba(0,0,0,.45)}
+    .sidebar.open{transform:none}
+    .sb-backdrop{display:block;position:fixed;inset:0;background:rgba(7,18,33,.55);z-index:155;opacity:0;
+      pointer-events:none;transition:opacity .25s}
+    .sb-backdrop.show{opacity:1;pointer-events:auto}
+  }
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#08203a,#0B2D4D 52%,#103a61);
+    color:#e9f2fb;padding:clamp(60px,12vh,124px) 0 clamp(50px,8vh,92px)}
+  .hero::after{content:"";position:absolute;right:-6%;bottom:-14%;width:min(56vw,580px);height:min(56vw,580px);
+    background:radial-gradient(circle at 50% 50%,rgba(220,147,41,.20),transparent 62%);pointer-events:none}
+  .hero .container{position:relative;z-index:1}
+  .hero .eyebrow{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--amber);margin:0 0 18px;animation:rise .7s .05s both}
+  .hero h1{font-family:var(--disp);color:#fff;font-weight:600;font-size:clamp(2.5rem,1.4rem + 5.4vw,4.6rem);
+    line-height:1.0;letter-spacing:-.025em;max-width:18ch;margin:0 0 .35em;animation:rise .8s .16s both}
+  .hero h1 .acc{color:var(--amber);font-style:italic;font-weight:400}
+  .hero .lede{color:#cfe0f1;font-size:clamp(1.06rem,1rem + .55vw,1.3rem);max-width:62ch;animation:rise .8s .3s both}
+  .hero .lede strong,.hero strong{color:#ffd49a;font-weight:600}
+  .hero .muted{color:#a9c4de !important}
+  .hero .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;animation:rise .8s .44s both}
+  .hero p.fineprint{animation:rise .8s .54s both}
+  .hero .tag.sim{background:rgba(220,147,41,.20);color:#ffd79f;border:1px solid rgba(220,147,41,.45)}
+  @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue-navy);color:#fff;border:0;
+    border-radius:28px;padding:12px 20px;font-size:1rem;font-weight:650;cursor:pointer;text-decoration:none;
+    min-height:46px;font-family:var(--body);transition:background .15s,transform .05s}
+  .btn:hover{background:#1168b6;color:#fff}
+  .btn:active{transform:translateY(1px)}
+  .btn.sm{padding:8px 15px;min-height:40px;font-size:.92rem}
+  .btn.sec{background:var(--muted-blue)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .hero .btn{background:var(--amber);color:#08203a;font-weight:700}
+  .hero .btn:hover{background:#e9a23f;color:#08203a}
+  .hero .btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .hero .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* sections */
+  main{display:block}
+  section.lesson{padding:clamp(42px,6vw,78px) 0;border-bottom:1px solid var(--line)}
+  .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);
+    display:flex;align-items:center;gap:12px;margin:0 0 16px}
+  .kicker::before{content:"";width:30px;height:1px;background:var(--coral);flex:none}
+  .lead{font-size:1.12rem;color:#33414f;max-width:70ch}
+
+  /* statband */
+  .statband{background:var(--deep-navy);color:var(--paper);text-align:center;padding:clamp(58px,9vw,104px) 0}
+  .statband .big{font-family:var(--disp);font-weight:600;font-size:clamp(2.1rem,1.4rem + 4.6vw,4rem);line-height:1.07;
+    color:#fff;letter-spacing:-.02em;max-width:22ch;margin:0 auto}
+  .statband .big .accent{color:var(--amber);font-style:italic}
+  .statband .cap{max-width:600px;margin:22px auto 0;color:#bcd0e4;font-size:1.06rem}
+  .statband strong{color:#fff}
+
+  /* part header */
+  .part-head{background:linear-gradient(150deg,#0B2D4D,#0e3a63);border:0}
+  .part-head .pill{display:inline-block;background:var(--amber);color:#08203a;font-family:var(--mono);font-weight:700;
+    border-radius:999px;padding:5px 14px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+  .part-head h2{color:#fff}
+  .part-head .lead{color:#cfe0f1}
+
+  /* cards & layout */
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:clamp(16px,2.4vw,24px);box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .center{text-align:center}
+  .muted{color:var(--muted)}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.05em;
+    padding:3px 9px;border-radius:6px;background:#E2ECF6;color:var(--navy);text-transform:uppercase}
+  .tag.sim{background:#efe5cf;color:#8a5a16}
+  .tag.proto{background:#f4e2dd;color:#9a3f2c}
+
+  /* callouts */
+  .callout{border-radius:12px;padding:15px 17px 15px 48px;position:relative;margin:18px 0;
+    border:1px solid var(--line);background:#fff}
+  .callout .ic{position:absolute;left:14px;top:15px;width:22px;height:22px;font-size:1.05rem;line-height:22px;text-align:center}
+  .callout h4{margin:.1em 0 .3em;font-size:.92rem;text-transform:uppercase;letter-spacing:.5px;font-family:var(--body);font-weight:700}
+  .callout p:last-child{margin-bottom:0}
+  .c-key{background:#eaf3fb;border-color:#cde0f1}
+  .c-key h4{color:var(--navy)}
+  .c-slp{background:#e9f4ee;border-color:#c3dfce}
+  .c-slp h4{color:#1E7A50}
+  .c-mistake{background:#fbeedb;border-color:#ecd2a0}
+  .c-mistake h4{color:#9a6b1b}
+  .c-try{background:#f8ebe1;border-color:#e9cab0}
+  .c-try h4{color:#9A571B}
+  .c-reminder{background:#eef0f8;border-color:#d2d6ee}
+  .c-reminder h4{color:#3B3F9E}
+  .c-privacy{background:#f4e7ea;border-color:#e3c2c9}
+  .c-privacy h4{color:#9a2f43}
+
+  /* code / prompt blocks */
+  pre{margin:14px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+  pre.prompt{background:#0B2D4D;border:1px solid #0e3a63;padding:14px 16px}
+  pre.prompt code{display:block;color:#e8f1fa;font-family:var(--mono);font-size:.84rem;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+  pre .lbl{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+  code.inline{background:#efe7d4;color:#7a4f12;padding:2px 6px;border-radius:6px;font-family:var(--mono);font-size:.86em;white-space:nowrap}
+  kbd{background:#efe7d4;border:1px solid #d8c9a8;border-bottom-width:2px;border-radius:5px;padding:1px 6px;font-size:.8em;font-family:var(--mono);color:#33414f}
+
+  /* tables */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0;-webkit-overflow-scrolling:touch;background:#fff}
+  table.data{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem;background:#fff}
+  table.data caption{text-align:left;padding:11px 13px;color:var(--muted);font-size:.82rem;caption-side:bottom;font-family:var(--mono);letter-spacing:.02em}
+  table.data th,table.data td{padding:10px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  table.data thead th{background:var(--navy);color:#fff;font-weight:600;font-family:var(--body)}
+  table.data tbody tr:nth-child(even){background:#F4F8FC}
+  table.data .rowh{font-weight:650;color:var(--navy);background:#eef4fb}
+  table.data .hi{background:#fbf1dc;color:#7a4f12;font-weight:600}
+  table.data .hu{color:var(--coral);font-weight:600}
+
+  /* figures */
+  figure.fig{margin:20px 0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 16px 8px;box-shadow:var(--shadow)}
+  figure.fig .fig-title{font-family:var(--body);font-weight:700;color:var(--navy);font-size:1.02rem;margin:2px 2px 10px}
+  figure.fig figcaption{color:var(--muted);font-size:.84rem;padding:10px 4px 6px;font-family:var(--mono);letter-spacing:.01em}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  /* widgets */
+  .widget{background:linear-gradient(180deg,#fff,#fbf6ec);border:1.5px solid #e6ddca;border-radius:14px;
+    padding:clamp(16px,2.4vw,24px);margin:18px 0;box-shadow:var(--shadow)}
+  .wlabel{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:600;color:#8a5a16;
+    background:#f5ecd9;border:1px solid #e7d3ac;border-radius:999px;padding:4px 12px;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:10px;
+    padding:13px 15px;margin:9px 0;font-size:1rem;cursor:pointer;color:var(--ink);font-family:var(--body);
+    transition:border-color .12s,background .12s;min-height:46px}
+  .opt:hover{border-color:var(--blue-navy);background:#f4f0e6}
+  .opt.correct{border-color:#2f7d57;background:#e9f4ee}
+  .opt.wrong{border-color:#c0573f;background:#f9e9e4}
+  .opt .mk{font-weight:800;margin-right:6px;color:var(--muted-blue)}
+  .opt:disabled{opacity:1;cursor:default}
+  .feedback{margin-top:12px;padding:12px 14px;border-radius:11px;font-size:.96rem;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:#e9f4ee;border:1px solid #2f7d57}
+  .feedback.no{background:#fbeedb;border:1px solid var(--warn-border)}
+  .feedback.info{background:#eaf3fb;border:1px solid #cde0f1}
+  .verdict{font-family:var(--disp);font-weight:600;font-size:1.06rem;margin-bottom:4px}
+  .feedback.ok .verdict{color:#1E7A50}
+  .feedback.no .verdict{color:#b23b2f}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+  .chip{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;font-weight:600;
+    cursor:pointer;font-size:.95rem;min-height:42px;font-family:var(--body);color:var(--ink)}
+  .chip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:11px;overflow:hidden;flex-wrap:wrap}
+  .seg button{background:#fff;border:0;padding:9px 15px;font-weight:650;cursor:pointer;color:var(--navy);min-height:42px;font-family:var(--body)}
+  .seg button[aria-pressed=true]{background:var(--blue-navy);color:#fff}
+  .seg button + button{border-left:1px solid var(--line)}
+  .readout{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy);background:#eef4fb;
+    border-radius:9px;padding:4px 10px;border:1px solid #cde0f1}
+  .checklist label{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+  .checklist label:last-child{border-bottom:0}
+  .checklist input{margin-top:5px;width:20px;height:20px;accent-color:var(--blue-navy);flex:none}
+  .checklist .done-txt{color:var(--muted);text-decoration:line-through}
+  .scorebar{height:12px;background:#E2ECF6;border-radius:999px;overflow:hidden;margin:12px 0 4px}
+  .scorebar>span{display:block;height:100%;background:linear-gradient(90deg,#2f7d57,#16639f);width:0%;transition:width .3s}
+
+  /* paginated quiz */
+  .quizcard{background:#fff;border:1px solid var(--line);border-radius:13px;padding:clamp(16px,2.5vw,24px);box-shadow:var(--shadow)}
+  .quizhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .qprog{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+  .qdots{display:flex;gap:6px}
+  .qd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+  .qd.done{background:var(--muted-blue)}
+  .qd.cur{background:var(--navy);transform:scale(1.25)}
+  .quizq{font-family:var(--body);font-weight:650;color:var(--navy);font-size:1.07rem;margin:0 0 12px;outline:none}
+  .btn.next{margin-top:12px}
+  .quizdone{text-align:center}
+  .qsmall{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-blue);font-weight:700}
+  .qbig{font-family:var(--disp);font-weight:600;font-size:clamp(2.4rem,1.6rem + 3vw,3.4rem);color:var(--navy);line-height:1.05;margin:4px 0 6px}
+
+  /* sorter */
+  .bins{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px}
+  .bin{flex:1 1 200px;border:1.5px dashed #B9CDE0;border-radius:12px;padding:12px;min-height:96px;background:#fff;
+    transition:background .15s,border-color .15s,transform .15s}
+  .bin h5{margin:0 0 6px;color:var(--navy);font-size:.95rem;font-family:var(--body)}
+  .bin .binhint{font-size:.76rem;color:var(--muted);margin:0 0 4px}
+  .bin.drop-hot{border-color:var(--blue-navy);background:#eaf2fb;border-style:solid;transform:translateY(-2px);box-shadow:0 10px 26px rgba(8,32,58,.12)}
+  .bin .slot{min-height:30px;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .token{display:inline-block;background:#eef4fb;border:1.5px solid #cde0f1;border-radius:10px;padding:8px 12px;
+    margin:5px 6px 0 0;font-size:.92rem;cursor:pointer;color:var(--navy);font-weight:600;font-family:var(--body)}
+  .chips .token{cursor:grab;touch-action:none}
+  .token.placed{opacity:.92;background:#fff;cursor:pointer}
+  .token.sel{outline:3px solid var(--focus);outline-offset:2px}
+  .token.ghost{opacity:.3}
+  .token.dragging{cursor:grabbing;box-shadow:0 14px 34px rgba(8,32,58,.30);transform:scale(1.05);border-color:var(--blue-navy);background:#fff}
+
+  /* details accordion */
+  details.acc{margin:14px 0;border:1px solid var(--line);border-radius:12px;background:#fbf6ec;overflow:hidden}
+  details.acc>summary{cursor:pointer;list-style:none;padding:13px 16px;color:var(--navy);font-weight:650;display:flex;align-items:center;gap:10px}
+  details.acc>summary::-webkit-details-marker{display:none}
+  details.acc>summary::before{content:"+";display:inline-flex;width:22px;height:22px;border-radius:50%;
+    background:var(--blue-navy);color:#fff;align-items:center;justify-content:center;font-weight:800;flex:none}
+  details.acc[open]>summary::before{content:"\2212"}
+  details.acc .body{padding:0 16px 14px}
+
+  /* result statement */
+  .result{background:linear-gradient(160deg,#0B2D4D,#0e3a64);color:#EAF4FB;border-radius:13px;padding:16px 18px;margin:16px 0;box-shadow:var(--shadow)}
+  .result h4{color:#fff;margin:.1em 0 .5em;font-size:.78rem;text-transform:uppercase;letter-spacing:.6px;font-family:var(--body)}
+  .result .stmt{font-size:1.04rem;line-height:1.62}
+  .result strong{color:#fff}
+
+  /* flip cards */
+  #termGrid{perspective:1500px}
+  .flipcard{background:none;border:0;padding:0;margin:0;cursor:pointer;display:block;width:100%;min-height:188px;
+    font-family:inherit;-webkit-tap-highlight-color:transparent}
+  .flipcard .flip-inner{position:relative;display:block;width:100%;height:188px;
+    transition:transform .6s cubic-bezier(.2,.75,.2,1);transform-style:preserve-3d}
+  .flipcard[aria-pressed=true] .flip-inner{transform:rotateY(180deg)}
+  .flipcard .flip-face{position:absolute;inset:0;display:flex;flex-direction:column;text-align:left;border-radius:13px;
+    padding:18px;border:1px solid var(--line);overflow:auto;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  .flipcard .flip-front{background:#fff;box-shadow:var(--shadow)}
+  .flipcard .flip-front::before{content:"Term";font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+  .flipcard .flip-back{background:linear-gradient(155deg,#0B2D4D,#0e3a63);border-color:#0e3a63;transform:rotateY(180deg)}
+  .flipcard .flip-back::before{content:"Meaning";font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+  .flipcard .t{font-family:var(--disp);font-weight:600;font-size:1.28rem;color:var(--navy);line-height:1.08}
+  .flipcard .flip-hint{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted-blue);margin-top:auto;padding-top:12px}
+  .flipcard .d{display:block;color:#dbe7f5;font-size:.92rem;line-height:1.5;margin:0}
+  .flipcard .d em{color:#ffd49a;font-style:normal;font-weight:600}
+  .flipcard:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:13px}
+
+  /* role icon chips (human / AI / verify) */
+  .role{display:inline-flex;align-items:center;gap:7px;font-weight:650;font-size:.9rem}
+  .role .ri{width:24px;height:24px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;
+    font-size:.8rem;font-weight:800;flex:none;color:#fff}
+  .role.human .ri{background:var(--blue-navy)}
+  .role.ai .ri{background:var(--teal)}
+  .role.verify .ri{background:var(--coral)}
+
+  /* spectrum (Figure 1) */
+  .spectrum{margin:6px 0 4px}
+  .spec-track{display:flex;gap:8px;position:relative}
+  .spec-stage{flex:1 1 0;background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:11px 10px;
+    cursor:pointer;text-align:center;font-family:var(--body);color:var(--navy);transition:border-color .15s,background .15s,transform .1s}
+  .spec-stage:hover{border-color:var(--blue-navy);background:#f4f0e6}
+  .spec-stage[aria-pressed=true]{background:linear-gradient(160deg,#0B2D4D,#0e3a63);color:#fff;border-color:#0e3a63;transform:translateY(-2px)}
+  .spec-stage .sn{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--muted-blue);margin-bottom:5px}
+  .spec-stage[aria-pressed=true] .sn{color:var(--amber)}
+  .spec-stage .st{display:block;font-weight:650;font-size:.92rem;line-height:1.18}
+  .spec-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .spec-scale .arrow{flex:1;height:1px;background:linear-gradient(90deg,var(--blue-navy),var(--coral));margin:8px 12px 0;border-radius:2px}
+  .spec-detail{margin-top:14px}
+  @media(max-width:720px){
+    .spec-track{flex-direction:column}
+    .spec-stage{text-align:left;display:flex;align-items:baseline;gap:10px}
+    .spec-stage .sn{margin-bottom:0}
+    .spec-scale{display:none}
+  }
+
+  /* loop stepper (instruct->redirect) */
+  .loop{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}
+  .loop-step{flex:1 1 150px;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;
+    cursor:pointer;color:var(--navy);font-family:var(--body);text-align:left;transition:border-color .15s,background .15s}
+  .loop-step:hover{border-color:var(--blue-navy);background:#f4f0e6}
+  .loop-step[aria-pressed=true]{background:var(--blue-navy);color:#fff;border-color:var(--blue-navy)}
+  .loop-step .ls-n{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--muted-blue)}
+  .loop-step[aria-pressed=true] .ls-n{color:#ffd79f}
+  .loop-step .ls-t{display:block;font-weight:700;font-size:.98rem;margin-top:2px}
+
+  /* five-phase workflow (Figure 2) */
+  .phases{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}
+  .phase{flex:1 1 150px;border-radius:12px;padding:14px;border:1.5px solid;position:relative}
+  .phase.hum{background:#eaf3fb;border-color:#bcd9f1}
+  .phase.aiex{background:#e7f1ee;border-color:#bcdccf}
+  .phase .pwho{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+  .phase.hum .pwho{background:var(--blue-navy);color:#fff}
+  .phase.aiex .pwho{background:var(--teal);color:#fff}
+  .phase .pn{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+  .phase .pt{font-family:var(--disp);font-weight:600;color:var(--navy);font-size:1.1rem;margin:2px 0 4px}
+  .phase .pd{font-size:.85rem;color:#33414f;margin:0}
+  .phase-key{display:flex;flex-wrap:wrap;gap:16px;margin-top:6px;font-size:.84rem}
+  .phase-key span{display:inline-flex;align-items:center;gap:7px}
+  .phase-key .sw{width:16px;height:16px;border-radius:5px;border:1.5px solid}
+  .phase-key .sw.hum{background:#eaf3fb;border-color:#bcd9f1}
+  .phase-key .sw.aiex{background:#e7f1ee;border-color:#bcdccf}
+
+  /* impact balance (Figure 3) */
+  .balance{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.balance{grid-template-columns:1fr}}
+  .bcol{border-radius:12px;padding:16px;border:1px solid}
+  .bcol.pos{background:#e9f4ee;border-color:#c3dfce}
+  .bcol.neg{background:#f7ece1;border-color:#e7cfb4}
+  .bcol h4{font-family:var(--body);font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .bcol.pos h4{color:#1E7A50}
+  .bcol.neg h4{color:#9a6b1b}
+  .bcol ul{list-style:none;margin:0;padding:0}
+  .bcol li{padding:7px 0 7px 26px;position:relative;font-size:.95rem;border-bottom:1px solid rgba(0,0,0,.05)}
+  .bcol li:last-child{border-bottom:0}
+  .bcol.pos li::before{content:"+";position:absolute;left:4px;top:7px;color:#2f7d57;font-weight:800}
+  .bcol.neg li::before{content:"\2013";position:absolute;left:6px;top:7px;color:#c0573f;font-weight:800}
+
+  /* folder anatomy */
+  .folder{font-family:var(--mono);font-size:.86rem;background:#0B2D4D;color:#dbe7f5;border-radius:12px;padding:16px 18px;line-height:1.85;overflow-x:auto}
+  .folder .fdir{color:var(--amber)}
+  .folder .ffile{color:#9fd0f2}
+  .folder .fnote{color:#8FB7DA}
+
+  /* demo tool generic */
+  .demo-tool{margin:14px 0}
+  .demo-meta{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:6px 0 4px;font-size:.92rem}
+  .demo-meta dt{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);padding-top:3px}
+  .demo-meta dd{margin:0}
+  .protostrip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#f4e2dd;border:1px solid #e3c2c9;
+    border-radius:10px;padding:9px 13px;margin:10px 0;font-size:.86rem;color:#7a2f22}
+  .protostrip strong{color:#7a2f22}
+
+  /* articulation pair */
+  .pairstage{display:flex;gap:14px;flex-wrap:wrap;align-items:stretch;margin:12px 0}
+  .pairword{flex:1 1 160px;background:#fff;border:2px solid var(--line);border-radius:13px;padding:18px;text-align:center}
+  .pairword .pw{font-family:var(--disp);font-weight:600;font-size:1.9rem;color:var(--navy)}
+  .pairword .ph{font-family:var(--mono);color:var(--muted-blue);font-size:.95rem;margin-top:4px;min-height:1.3em}
+  .pairword .ph.hidden{visibility:hidden}
+  .pairword.target{border-color:var(--amber);box-shadow:0 0 0 3px rgba(220,147,41,.16)}
+  .pairword .badge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#8a5a16;background:#f5ecd9;border-radius:6px;padding:2px 8px;visibility:hidden}
+  .pairword.target .badge{visibility:visible}
+  .contrastnote{text-align:center;font-size:.9rem;color:var(--muted);margin:2px 0}
+  .counter{font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy)}
+  .pairword.choice{cursor:pointer;font-family:inherit;width:auto;flex:1 1 150px}
+  .pairword.choice:hover{border-color:var(--blue-navy);background:#f4f0e6}
+  .pairword.choice.correct{border-color:#2f7d57;background:#e9f4ee}
+  .pairword.choice.wrong{border-color:#c0573f;background:#f9e9e4}
+  .pairword.choice[disabled]{cursor:default}
+  .ipa-slots{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;min-height:58px}
+  .ipa-slot{min-width:52px;min-height:54px;border:1.5px dashed #B9CDE0;border-radius:11px;display:flex;
+    align-items:center;justify-content:center;font-family:var(--mono);font-size:1.35rem;color:var(--navy);
+    background:#fff;cursor:pointer;padding:4px 10px;transition:background .15s,border-color .15s}
+  .ipa-slot.filled{border-style:solid;border-color:var(--blue-navy);background:#eef4fb}
+  .ipa-slot.drop-hot{border-color:var(--blue-navy);background:#eaf2fb;border-style:solid;transform:translateY(-2px)}
+  .ipa-slot.ok{border-style:solid;border-color:#2f7d57;background:#e9f4ee}
+  .ipa-slot.bad{border-style:solid;border-color:#c0573f;background:#f9e9e4}
+  .ipa-pool .token{font-family:var(--mono);font-size:1.1rem}
+
+  /* language sample analyzer */
+  .lsa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:12px 0}
+  .lsa-stat{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px;text-align:center}
+  .lsa-stat .v{font-family:var(--disp);font-weight:600;font-size:1.7rem;color:var(--navy);font-variant-numeric:tabular-nums}
+  .lsa-stat .k{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  textarea.lsa-in{width:100%;min-height:96px;border:1.5px solid var(--line);border-radius:11px;padding:12px;
+    font-family:var(--body);font-size:1rem;color:var(--ink);background:#fff;resize:vertical}
+
+  /* back-to-top */
+  .backtop{position:fixed;right:18px;bottom:18px;z-index:90;opacity:0;pointer-events:none;transition:opacity .2s;
+    border-radius:28px;background:var(--navy);color:#fff;border:0;padding:11px 16px;font-weight:650;cursor:pointer;box-shadow:var(--shadow-l)}
+  .backtop.show{opacity:1;pointer-events:auto}
+
+  /* footer */
+  footer.site{background:var(--deep-navy);color:#C7D8E8;padding:44px 0 60px}
+  footer.site a{color:#9FD0F2}
+  footer.site h4{color:#fff;font-family:var(--disp)}
+  footer.site strong{color:#fff}
+  .refs{font-size:.9rem;color:#A9C2D8;padding-left:18px}
+  .refs li{margin:8px 0}
+  .ack{margin-top:22px;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:#86a0bb}
+  .ack a{color:#bcd9f2}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+    .reveal{opacity:1 !important;transform:none !important}
+    .flipcard .flip-inner{transition:none !important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lesson content</a>
+<div class="progress" id="progress" role="presentation"></div>
+
+<header class="topbar">
+  <a class="tb-brand" href="#top">Vibe Research &amp; Code<small>SLP 680</small></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sidebar">&#9776; Contents</button>
+</header>
+<div class="sb-backdrop" id="sbBackdrop"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Lesson navigation">
+    <a class="brand" href="#top">
+      <span class="crs">SLP 680 &middot; Research Methods</span>
+      <span class="ttl">Vibe Researching &amp; Vibe Coding</span>
+      <span class="sub">Directing AI agents responsibly: a beginner&rsquo;s guide</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Lesson sections">
+      <ul id="menuList">
+        <li class="grp">Orientation</li>
+        <li><a href="#sec-why">1 &middot; Why this matters for SLP</a></li>
+        <li class="grp">Part 1 &middot; Vibe Researching</li>
+        <li><a href="#sec-vr-def">2.1 &middot; What it is</a></li>
+        <li><a href="#sec-vr-spectrum">2.2 &middot; The collaboration spectrum</a></li>
+        <li><a href="#sec-vr-labor">2.3 &middot; Division of labor</a></li>
+        <li><a href="#sec-vr-auto">2.4 &middot; Vibe vs. auto research</a></li>
+        <li><a href="#sec-vr-loop">2.5 &middot; The human&ndash;agent loop</a></li>
+        <li><a href="#sec-vr-tech">2.6 &middot; Enabling techniques</a></li>
+        <li><a href="#sec-vr-risk">2.7 &middot; Risks &amp; responsible use</a></li>
+        <li><a href="#sec-vr-impact">2.8 &middot; Impacts &amp; future</a></li>
+        <li class="grp">Part 2 &middot; Vibe Coding</li>
+        <li><a href="#sec-vc-def">3.1 &middot; What it is</a></li>
+        <li><a href="#sec-vc-principles">3.2 &middot; The four principles</a></li>
+        <li><a href="#sec-vc-files">3.3 &middot; Instruction files</a></li>
+        <li><a href="#sec-vc-prompt">3.4 &middot; Vague &rarr; verifiable</a></li>
+        <li class="grp">Part 3 &middot; SLP Demos</li>
+        <li><a href="#sec-demos">4 &middot; Try three prototypes</a></li>
+        <li class="grp">Wrap-up</li>
+        <li><a href="#sec-responsible">5 &middot; Responsible-use checklist</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="content">
+
+<main id="main" tabindex="-1">
+<span id="top"></span>
+<!-- ============================ HERO ============================ -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="container">
+    <span class="eyebrow">SLP 680 &middot; Research Methods</span>
+    <h1 id="hero-h">Human judgment, <span class="acc">AI execution</span>.</h1>
+    <p class="lede">A plain-language tour of two AI-assisted workflows you can actually use in graduate
+      study and clinical training: <strong>vibe researching</strong> (directing AI agents through a literature
+      review or analysis) and <strong>vibe coding</strong> (describing a tool in words and letting an agent build it).
+      The throughline: AI can carry the mechanical load, but <strong>you</strong> keep the judgment, the verification,
+      the ethics, and the accountability.</p>
+    <p class="fineprint" style="margin-top:22px"><span class="tag sim">Simulated data</span>
+      <span class="muted" style="font-size:.9rem">&nbsp;Every demo below uses invented teaching data. Nothing here is real client, student, or patient data, and no demo is a validated clinical tool.</span></p>
+  </div>
+</section>
+
+<!-- ===================== IDEA BAND ===================== -->
+<section class="statband" aria-label="Big idea">
+  <div class="container">
+    <p class="big">You can delegate the <span class="accent">work</span>.<br>You cannot delegate the <span class="accent">responsibility</span>.</p>
+    <p class="cap">That one sentence is the whole lesson. AI agents can search, draft, compute, and build, but if your name is on the assignment, the poster, the paper, or the therapy material, you answer for every claim in it.</p>
+  </div>
+</section>
+
+<!-- ===================== ORIENTATION: WHY THIS MATTERS ===================== -->
+<section id="sec-why" class="lesson" aria-labelledby="why-h">
+  <div class="container">
+    <p class="kicker">Orientation</p>
+    <h2 id="why-h">Why this matters for SLP</h2>
+    <p class="lead">You do not need to become a programmer to benefit from these tools, and you should not
+      hand your clinical reasoning to a machine. The useful middle path is learning to <strong>direct</strong> AI
+      well and <strong>check</strong> it rigorously. Here is where that shows up in real SLP work.</p>
+
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card">
+        <span class="tag">Research &amp; coursework</span>
+        <h4 style="margin-top:10px">Evidence you can trust</h4>
+        <p class="muted" style="font-size:.95rem">Finding intervention literature for aphasia, articulation, fluency,
+          voice, language, literacy, or AAC, then verifying every source instead of trusting a summary.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Teaching &amp; learning</span>
+        <h4 style="margin-top:10px">Interactive activities</h4>
+        <p class="muted" style="font-size:.95rem">Prototyping a practice activity, a visualized progress-monitoring
+          chart, or a de-identified practice dataset to use in a class or lab, tested before any learner sees it.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Clinical prototyping</span>
+        <h4 style="margin-top:10px">Therapy-material drafts</h4>
+        <p class="muted" style="font-size:.95rem">Sketching a therapy-material prototype to react to and refine, clearly labeled as a draft, never mistaken for a validated tool.</p>
+      </div>
+    </div>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">&#9733;</span>
+      <h4>The core idea</h4>
+      <p>Vibe researching and vibe coding are <strong>not about turning off your brain</strong>. They shift some
+      mechanical work to AI agents while keeping human judgment, clinical reasoning, verification, and ethical
+      responsibility firmly in the loop. The skill you are building is <em>direction and verification</em>, not coding.</p>
+    </div>
+
+    <h3>What AI can help with, and what stays human</h3>
+    <p>Throughout this lesson you will see this split again and again. A quick first look:</p>
+    <div class="grid g2">
+      <div class="card" style="border-top:3px solid var(--teal)">
+        <p class="role ai" style="margin:0 0 8px"><span class="ri" aria-hidden="true">AI</span> AI agents can assist with</p>
+        <p class="muted" style="font-size:.96rem;margin:0">Searching and organizing literature, drafting tables and
+          summaries, writing and running code, cleaning and graphing de-identified data, and producing first drafts
+          of text, quickly and tirelessly.</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--blue-navy)">
+        <p class="role human" style="margin:0 0 8px"><span class="ri" aria-hidden="true">H</span> Humans must still own</p>
+        <p class="muted" style="font-size:.96rem;margin:0">Choosing the question, judging relevance, interpreting
+          clinical meaning, verifying sources and numbers, protecting privacy, deciding what is good enough, and being
+          accountable for the final product.</p>
+      </div>
+    </div>
+
+    <div class="callout c-reminder"><span class="ic" aria-hidden="true">&#9888;</span>
+      <h4>A caution before we start</h4>
+      <p>These workflows are useful for learning, prototyping, and research support. They are <strong>not</strong>
+      shortcuts around clinical judgment, evidence-based practice, or data-privacy requirements. Keep that in mind
+      as the tools get more impressive.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 1 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 1 introduction">
+  <div class="container">
+    <span class="pill">Part 1 of 3 &middot; Vibe Researching</span>
+    <h2>Vibe Researching: human vision, AI execution</h2>
+    <p class="lead">Adapted for SLP students from a 2026 paper that maps this practice carefully.
+      We will define it, place it among other ways of doing research, walk the human&ndash;agent loop, and
+      take an honest look at the risks, because the risks are exactly why your judgment matters more, not less.</p>
+  </div>
+</section>
+
+<!-- ===================== 2.1 DEFINITION ===================== -->
+<section id="sec-vr-def" class="lesson" aria-labelledby="vrdef-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrdef-h">2.1&nbsp;&nbsp;What vibe researching actually is</h2>
+    <p class="lead">A beginner-friendly definition, then the five ideas that separate it from &ldquo;just using ChatGPT.&rdquo;</p>
+
+    <div class="result">
+      <h4>Working definition</h4>
+      <p class="stmt"><strong>Vibe researching</strong> is a way of doing research where a human sets the question,
+      direction, standards, and final interpretation, while AI agents help with labor-intensive tasks: searching
+      literature, organizing sources, writing code, cleaning data, generating figures, or drafting text. The human is
+      still responsible for deciding what matters, checking whether outputs are correct, and standing behind every claim.</p>
+    </div>
+
+    <h3>A 30-second preview of the vocabulary</h3>
+    <p class="muted">Tap any card to flip it; tap again to flip back. You will meet each term properly in context, nothing to memorize now.</p>
+    <div class="grid g3" id="termGrid" style="margin-top:10px">
+      <button class="flipcard" aria-pressed="false" aria-label="Vibe researching: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Vibe researching</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">Human sets direction and judges quality; AI agents do the heavy lifting. <em>You steer; the agent rows.</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Vibe coding: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Vibe coding</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">Describe the software you want in plain language; a coding agent writes it; you test and refine. <em>Not &ldquo;accept everything.&rdquo;</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Agent: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Agent</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">An AI that can take actions (search, run code, read files), not just chat. <em>A literature agent can pull and summarize papers.</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Claude Cowork: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Claude Cowork</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">The coding agent used for this lesson, accessible to people with little coding background, working in web, code, data, and documents.</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="RAG: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">RAG</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">Retrieval-augmented generation: the agent <em>looks up real sources</em> before answering, instead of relying on memory. Reduces (but does not erase) made-up facts.</span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Verification: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Verification</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">Checking that an output is actually correct: sources real, numbers right, claims supported. <em>If you cannot verify it, do not present it as fact.</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Hallucination: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Hallucination</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">When an AI produces confident, plausible content that is wrong, like a citation that does not exist. <em>The single biggest research risk.</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Success criteria: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Success criteria</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">A clear description of what &ldquo;done and correct&rdquo; looks like, so you (and the agent) can check the result. <em>&ldquo;Works on mobile and keyboard&rdquo; beats &ldquo;make it good.&rdquo;</em></span></span>
+        </span>
+      </button>
+      <button class="flipcard" aria-pressed="false" aria-label="Prototype: flip for the meaning">
+        <span class="flip-inner">
+          <span class="flip-face flip-front"><span class="t">Prototype</span><span class="flip-hint">Tap to flip &#8635;</span></span>
+          <span class="flip-face flip-back"><span class="d">An early, unvalidated draft of a tool, useful for learning and reacting to, <em>not</em> evidence-based clinical software.</span></span>
+        </span>
+      </button>
+    </div>
+
+    <h3>It is more than &ldquo;using ChatGPT&rdquo;</h3>
+    <p>A single question and a single answer is not vibe researching. Vibe researching is a <strong>workflow</strong>:
+      repeated cycles of asking, reviewing, redirecting, and verifying. Compare:</p>
+    <div class="grid g2">
+      <div class="callout c-mistake" style="padding-left:17px"><h4>One-shot prompting</h4>
+        <p style="margin:0">&ldquo;Tell me about aphasia treatment.&rdquo; You get a generic paragraph with no way to check it.</p></div>
+      <div class="callout c-slp" style="padding-left:17px"><h4>Vibe researching</h4>
+        <p style="margin:0">Ask the agent to search recent intervention studies, organize them by population and outcome
+          measure, flag missing evidence, and build a table, which <strong>you then check against the original papers.</strong></p></div>
+    </div>
+
+    <h3>The five ideas that define it</h3>
+    <div class="grid g2" style="margin-top:8px">
+      <div class="card"><h4 style="margin-top:0">1 &middot; Human as creative director</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">You choose the questions, judge what findings matter, and make
+          the strategic calls. An agent can summarize childhood-apraxia studies, but you decide whether the populations
+          and outcome measures are truly comparable.</p></div>
+      <div class="card"><h4 style="margin-top:0">2 &middot; Natural language is the interface</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">You start with structured requests, not code: &ldquo;Find recent
+          telepractice-for-aphasia studies; organize by participants, intervention, outcomes, and limitations; do not invent citations.&rdquo;</p></div>
+      <div class="card"><h4 style="margin-top:0">3 &middot; Delegation <em>with</em> oversight</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">Agents can draft, organize, compute, and build. You must check.
+          This is where research parts ways with throwaway code: you cannot publish a paper you have not actually read.</p></div>
+      <div class="card"><h4 style="margin-top:0">4 &middot; Iterative refinement</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">The work improves in loops. Too broad &rarr; narrow to adolescents
+          who stutter &rarr; keep only empirical intervention studies &rarr; separate group designs from single-case. Each cycle tightens the focus.</p></div>
+      <div class="card" style="grid-column:1/-1"><h4 style="margin-top:0">5 &middot; Human accountability</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">At the end of the day, your name goes on the work and you answer
+          for every claim. AI agents are instruments, not co-authors. You must be able to defend every conclusion.</p></div>
+    </div>
+
+    <div class="callout c-slp"><span class="ic" aria-hidden="true">&#10070;</span>
+      <h4>SLP example &middot; refinement in action</h4>
+      <p>Prompt 1: &ldquo;Find papers on fluency intervention.&rdquo; &rarr; <em>too broad.</em> Prompt 2: &ldquo;Focus on
+      adolescents who stutter and school-age outcomes.&rdquo; &rarr; <em>some are not intervention studies.</em> Prompt 3:
+      &ldquo;Keep only empirical intervention studies; separate group designs from single-case.&rdquo; &rarr; now the table
+      is worth inspecting against the original papers.</p>
+    </div>
+
+    <div class="result"><h4>Remember</h4>
+      <p class="stmt">You can delegate the searching, the drafting, and the formatting. You cannot delegate the
+      reading, the judging, or the responsibility. <strong>You can delegate work; you cannot delegate responsibility.</strong></p></div>
+  </div>
+</section>
+
+<!-- ===================== 2.2 SPECTRUM (Figure 1) ===================== -->
+<section id="sec-vr-spectrum" class="lesson" aria-labelledby="vrspec-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrspec-h">2.2&nbsp;&nbsp;Where it sits: the collaboration spectrum</h2>
+    <p class="lead">Research with AI is not all-or-nothing. It runs along a spectrum from fully human to fully
+      automatic. Vibe researching sits in a specific spot, and knowing where helps you use it well.</p>
+
+    <figure class="fig">
+      <div class="fig-title">Figure 1 &middot; The spectrum of human&ndash;AI collaboration in research</div>
+      <div class="widget" style="margin:6px 0 0;background:#fff;border-color:var(--line)">
+        <span class="wlabel">Interactive &middot; tap a stage</span>
+        <div class="spectrum">
+          <div class="spec-track" id="specTrack" role="tablist" aria-label="Research collaboration stages">
+            <button class="spec-stage" role="tab" data-idx="0" aria-pressed="false"><span class="sn">01</span><span class="st">Traditional research</span></button>
+            <button class="spec-stage" role="tab" data-idx="1" aria-pressed="false"><span class="sn">02</span><span class="st">Tool-assisted</span></button>
+            <button class="spec-stage" role="tab" data-idx="2" aria-pressed="false"><span class="sn">03</span><span class="st">AI for Science</span></button>
+            <button class="spec-stage" role="tab" data-idx="3" aria-pressed="true"><span class="sn">04</span><span class="st">Vibe researching</span></button>
+            <button class="spec-stage" role="tab" data-idx="4" aria-pressed="false"><span class="sn">05</span><span class="st">Auto research</span></button>
+          </div>
+          <div class="spec-scale" aria-hidden="true"><span>Full human control</span><span class="arrow"></span><span>Full AI autonomy</span></div>
+        </div>
+        <div class="spec-detail feedback info show" id="specDetail" role="status" aria-live="polite"></div>
+      </div>
+      <figcaption>Adapted from Feng and Liu (2026), Figure 1. From left to right, AI involvement increases while
+        human control decreases.</figcaption>
+    </figure>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">&#9733;</span>
+      <h4>The key distinction</h4>
+      <p><strong>AI for Science</strong> uses an AI model for one computation (for example, predicting a protein
+      structure) but leaves the research <em>process</em> unchanged. <strong>Vibe researching</strong> changes the
+      process itself: agents help across literature, implementation, analysis, and drafting. <strong>Auto
+      research</strong> tries to remove the human entirely. For student learning and responsible training, the
+      human-in-charge middle is usually the right place to be.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== 2.3 DIVISION OF LABOR (Table 1) ===================== -->
+<section id="sec-vr-labor" class="lesson" aria-labelledby="vrlabor-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrlabor-h">2.3&nbsp;&nbsp;Who does what: the division of labor</h2>
+    <p class="lead">Across these paradigms, the same research tasks get assigned differently. Two rows never move
+      in vibe researching, no matter how much you delegate: <strong>quality control</strong> and <strong>accountability</strong>.</p>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Adapted from Feng and Liu (2026), Table 1. &ldquo;AI (human-guided/reviewed/directed/edited)&rdquo; means the agent executes but a human stays in charge.</caption>
+        <thead>
+          <tr><th scope="col">Research task</th><th scope="col">Traditional</th><th scope="col">Tool-assisted</th><th scope="col">AI for Science</th><th scope="col">Vibe researching</th><th scope="col">Auto research</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">Idea generation</th><td>Human</td><td>Human</td><td>Human</td><td class="hi">Human</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Literature review</th><td>Human</td><td>Semi-auto</td><td>Human</td><td class="hi">AI (human-guided)</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Experiment design</th><td>Human</td><td>Human</td><td>Human</td><td class="hi">Human + AI</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Domain computation</th><td>Human</td><td>Human + tools</td><td>AI model</td><td class="hi">AI agent + tools</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Implementation</th><td>Human</td><td>Human + tools</td><td>Human</td><td class="hi">AI (human-reviewed)</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Data analysis</th><td>Human</td><td>Human + tools</td><td>Human + AI</td><td class="hi">AI (human-directed)</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Writing</th><td>Human</td><td>Human</td><td>Human</td><td class="hi">AI (human-edited)</td><td>AI</td></tr>
+          <tr><th scope="row" class="rowh">Quality control</th><td>Human</td><td>Human</td><td>Human</td><td class="hi"><strong>Human</strong></td><td class="hu">AI (or none)</td></tr>
+          <tr><th scope="row" class="rowh">Accountability</th><td>Human</td><td>Human</td><td>Human</td><td class="hi"><strong>Human</strong></td><td class="hu">Unclear</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.92rem">Notice the last two rows: even when agents do the literature review,
+      implementation, analysis, and drafting, a human still owns quality control and accountability. In auto research,
+      those become &ldquo;AI or none&rdquo; and &ldquo;unclear&rdquo;, which is exactly the problem.</p>
+
+    <div class="widget">
+      <span class="wlabel">Activity &middot; who should own this task?</span>
+      <h3 style="margin-top:6px">Sort each task</h3>
+      <p class="muted" style="font-size:.95rem">Tap a card to select it, then tap a category (or drag it). Decide
+        whether a human must own it, an AI may assist with human review, or it should never go to AI alone.</p>
+      <div class="chips" id="respTokens" aria-label="Tasks to sort"></div>
+      <div class="bins" id="respBins"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn sm" id="respCheck" type="button">Check my answers</button>
+        <button class="btn sm sec" id="respReset" type="button">Reset</button>
+      </div>
+      <div class="feedback" id="respFb" role="status"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.4 VIBE VS AUTO (Table 2) ===================== -->
+<section id="sec-vr-auto" class="lesson" aria-labelledby="vrauto-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrauto-h">2.4&nbsp;&nbsp;Vibe researching vs. auto research</h2>
+    <p class="lead">Both use the same underlying AI techniques. The difference is not technological: it is
+      <strong>who orchestrates the process</strong>.</p>
+
+    <div class="result"><h4>The one-liner</h4>
+      <p class="stmt">In vibe researching, <strong>the human is the meta-agent</strong>. You observe each step,
+        decide whether to proceed or back up, and adjust direction in real time. Auto research hands that role to a
+        pipeline or a controller agent.</p></div>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Adapted from Feng and Liu (2026), Table 2.</caption>
+        <thead>
+          <tr><th scope="col">Aspect</th><th scope="col">Vibe researching</th><th scope="col">Auto research</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">Orchestration</th><td class="hi">Human decides what to do next</td><td>Meta-agent or fixed pipeline controls the flow</td></tr>
+          <tr><th scope="row" class="rowh">Goal specification</th><td class="hi">Open-ended; evolves through conversation</td><td>Defined upfront as a structured input</td></tr>
+          <tr><th scope="row" class="rowh">Error recovery</th><td class="hi">Agent self-checks + human redirects</td><td>Agent self-corrects or fails silently</td></tr>
+          <tr><th scope="row" class="rowh">Quality control</th><td class="hi">Human checkpoints, aided by agent verification</td><td>Automated evaluation (e.g., simulated review)</td></tr>
+          <tr><th scope="row" class="rowh">Scope of autonomy</th><td class="hi">Per-task; human grants and revokes</td><td>End-to-end; runs to completion</td></tr>
+          <tr><th scope="row" class="rowh">Adaptability</th><td class="hi">High; you can pivot at any moment</td><td>Low; the pipeline structure is fixed</td></tr>
+          <tr><th scope="row" class="rowh">Reproducibility</th><td class="hi">Requires logging the interaction</td><td>Deterministic pipeline is inherently reproducible</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout c-slp"><span class="ic" aria-hidden="true">&#10070;</span>
+      <h4>Why the slower path is often the safer one</h4>
+      <p>Keeping the human in the loop is less efficient in wall-clock time: you are the bottleneck. But it is
+        far more robust to the errors that compound silently in automated pipelines: a flawed setup nobody noticed, a
+        misframed question, a subtle statistical mistake a &ldquo;simulated reviewer&rdquo; misses. For SLP training,
+        that reliability is worth the slowdown.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.5 THE LOOP + Figure 2 ===================== -->
+<section id="sec-vr-loop" class="lesson" aria-labelledby="vrloop-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrloop-h">2.5&nbsp;&nbsp;The human&ndash;agent loop</h2>
+    <p class="lead">At its core, vibe researching is a five-step loop you repeat, sometimes dozens of times in
+      an hour. You think; the agent acts; you decide what happens next.</p>
+
+    <div class="widget">
+      <span class="wlabel">Interactive &middot; step through the loop</span>
+      <h3 style="margin-top:6px">Instruct &rarr; Execute &rarr; Present &rarr; Evaluate &rarr; Redirect</h3>
+      <p class="muted" style="font-size:.95rem">Tap each step to see what it means and an SLP example
+        (topic: an adolescent-fluency intervention literature search).</p>
+      <div class="loop" id="loopSteps" role="tablist" aria-label="The five loop steps"></div>
+      <div class="feedback info show" id="loopDetail" role="status" aria-live="polite" style="margin-top:14px"></div>
+      <p class="muted" style="font-size:.88rem;margin-top:10px">The loop is deliberately lopsided: you spend most of
+        your effort on <strong>Instruct, Evaluate, and Redirect</strong> (the thinking), while the agent carries
+        <strong>Execute and Present</strong> (the doing).</p>
+    </div>
+
+    <h3>Zooming out: the five-phase workflow</h3>
+    <p>Those quick loops organize into a larger arc. Notice which phases are <strong>human-led</strong> and which are
+      <strong>AI-executed with human oversight</strong>: the entry and exit of every phase stays with you.</p>
+    <figure class="fig">
+      <div class="fig-title">Figure 2 &middot; A typical five-phase vibe researching workflow</div>
+      <div class="phases" role="list">
+        <div class="phase hum" role="listitem"><span class="pwho"><span aria-hidden="true">&#9632;</span> Human-led</span><div class="pn">Phase 1</div><div class="pt">Ideation</div><p class="pd">You pick the research question.</p></div>
+        <div class="phase aiex" role="listitem"><span class="pwho"><span aria-hidden="true">&#9650;</span> AI-executed</span><div class="pn">Phase 2</div><div class="pt">Exploration</div><p class="pd">Agents survey the literature and map the landscape.</p></div>
+        <div class="phase aiex" role="listitem"><span class="pwho"><span aria-hidden="true">&#9650;</span> AI-executed</span><div class="pn">Phase 3</div><div class="pt">Experimentation</div><p class="pd">Agents implement and run analyses under your direction.</p></div>
+        <div class="phase aiex" role="listitem"><span class="pwho"><span aria-hidden="true">&#9650;</span> AI-executed</span><div class="pn">Phase 4</div><div class="pt">Synthesis</div><p class="pd">Agents compile findings into draft text, tables, and figures.</p></div>
+        <div class="phase hum" role="listitem"><span class="pwho"><span aria-hidden="true">&#9632;</span> Human-led</span><div class="pn">Phase 5</div><div class="pt">Refinement</div><p class="pd">You take ownership of the final output, verifying every claim.</p></div>
+      </div>
+      <div class="phase-key" aria-hidden="true">
+        <span><span class="sw hum"></span> Human-led (you control direction)</span>
+        <span><span class="sw aiex"></span> AI-executed (with your oversight)</span>
+      </div>
+      <figcaption>Adapted from Feng and Liu (2026), Figure 2. Real projects loop back often (dashed feedback arrows in
+        the original); the constant is that the human controls the entry and exit of each phase.</figcaption>
+    </figure>
+  </div>
+</section>
+<!-- ===================== 2.6 ENABLING TECHNIQUES (Table 3) ===================== -->
+<section id="sec-vr-tech" class="lesson" aria-labelledby="vrtech-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrtech-h">2.6&nbsp;&nbsp;What makes it work: enabling techniques</h2>
+    <p class="lead">You do not need to build any of this, but knowing the moving parts helps you ask for the
+      right thing and spot when something is off. Each technique, in plain language, with an SLP example.</p>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Adapted from Feng and Liu (2026), Table 3. Jargon translated for SLP readers.</caption>
+        <thead>
+          <tr><th scope="col">Technique</th><th scope="col">What it means</th><th scope="col">SLP example</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">Multi-agent systems</th><td>Different AI agents take different roles instead of one agent doing everything.</td><td>One agent searches aphasia literature while another builds the summary table.</td></tr>
+          <tr><th scope="row" class="rowh">Memory mechanisms</th><td>Project files and logs help the agent remember decisions across days or weeks.</td><td>The agent remembers this lesson should reuse the same navy classroom style.</td></tr>
+          <tr><th scope="row" class="rowh">Tool use &amp; skills</th><td>The agent can search, run code, process files, and reuse procedures, not just talk.</td><td>The agent builds a progress-monitoring graph from a simulated dataset.</td></tr>
+          <tr><th scope="row" class="rowh">Planning &amp; decomposition</th><td>The agent breaks one big request into an ordered list of smaller steps.</td><td>Plan the full lesson outline before writing any code.</td></tr>
+          <tr><th scope="row" class="rowh">RAG (source retrieval)</th><td>The agent looks up real sources before answering instead of guessing from memory.</td><td>It retrieves and lists papers so you can verify each one actually exists.</td></tr>
+          <tr><th scope="row" class="rowh">Self-reflection</th><td>The agent checks its own work and flags where it is unsure.</td><td>It notes &ldquo;this citation needs verification&rdquo; rather than stating it as fact.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="acc">
+      <summary>Optional detail &middot; what a multi-agent SLP setup might look like</summary>
+      <div class="body">
+        <p class="muted" style="font-size:.95rem">A natural division of labor: a <strong>literature agent</strong>
+        searches databases and produces structured summaries; a <strong>coding agent</strong> builds an interactive
+        articulation activity; an <strong>analysis agent</strong> graphs de-identified progress data; a
+        <strong>writing agent</strong> drafts a plain-language summary. In every case, the human verifies all sources,
+        data handling, and interpretation. The point of multiple agents is focus, not autonomy: you still decide
+        when to call each one and whether its output is acceptable.</p>
+      </div>
+    </details>
+
+    <div class="callout c-key"><span class="ic" aria-hidden="true">&#9733;</span>
+      <h4>One principle ties these together</h4>
+      <p>A vibe-researching agent should <strong>never be trusted to just &ldquo;know&rdquo; something</strong>: it
+        should be equipped to look it up, run it, and check it. That shifts the failure mode from confident fabrication
+        toward retrieval and reasoning errors, which are easier (though not easy) to catch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2.7 RISKS ===================== -->
+<section id="sec-vr-risk" class="lesson" aria-labelledby="vrrisk-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrrisk-h">2.7&nbsp;&nbsp;Risks, limitations, and responsible use</h2>
+    <p class="lead">The paper names seven technical limitations. For each, here is the concrete SLP danger and a
+      one-line rule to protect yourself. These are not reasons to avoid AI: they are reasons your judgment matters.</p>
+
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><span class="tag proto">Risk 1</span><h4 style="margin-top:8px">Hallucination &amp; lack of rigor</h4>
+        <p class="muted" style="font-size:.94rem">Agents can invent citations, misstate findings, and build plausible
+          but wrong arguments. A fabricated reference can slip into a literature review unnoticed.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: check original sources before trusting any summary.</p></div>
+      <div class="card"><span class="tag proto">Risk 2</span><h4 style="margin-top:8px">Context loss</h4>
+        <p class="muted" style="font-size:.94rem">An agent&rsquo;s working memory is finite. On long projects it forgets
+          earlier constraints and can contradict its own earlier outputs.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: keep project instructions and decisions in files.</p></div>
+      <div class="card"><span class="tag proto">Risk 3</span><h4 style="margin-top:8px">Infrastructure not built for agents</h4>
+        <p class="muted" style="font-size:.94rem">Paywalled articles, missing APIs, broken links, and awkward file
+          access mean an agent often cannot do what you could do in a browser in minutes.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: expect friction; document what worked.</p></div>
+      <div class="card"><span class="tag proto">Risk 4</span><h4 style="margin-top:8px">Limited multimodal understanding</h4>
+        <p class="muted" style="font-size:.94rem">Agents can accept images or audio in some tools, but that is not the
+          same as clinical understanding of speech, language, voice, or swallowing.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: don&rsquo;t rely on AI alone for client-specific interpretation.</p></div>
+      <div class="card"><span class="tag proto">Risk 5</span><h4 style="margin-top:8px">Verification asymmetry</h4>
+        <p class="muted" style="font-size:.94rem">The tasks most worth delegating are the hardest to check. Auditing a
+          script or a stats analysis can take as much expertise as writing it.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: if you cannot verify it, do not present it as fact.</p></div>
+      <div class="card"><span class="tag proto">Risk 6</span><h4 style="margin-top:8px">Brittleness on novel tasks</h4>
+        <p class="muted" style="font-size:.94rem">Agents are strongest on familiar patterns and weakest on genuinely
+          new problems: they default to safe, conventional answers.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: treat unusual clinical/research questions with extra caution.</p></div>
+      <div class="card" style="grid-column:1/-1;border-left:3px solid var(--coral)"><span class="tag proto">Risk 7</span><h4 style="margin-top:8px">Data privacy &amp; intellectual property</h4>
+        <p class="muted" style="font-size:.94rem">Cloud-based agents may process your input outside your device.
+          Unpublished ideas, preliminary results, and especially identifiable client data can be exposed.</p>
+        <p class="role verify" style="font-size:.9rem;margin:6px 0 0"><span class="ri" aria-hidden="true">&#10003;</span> Rule: do not upload identifiable clinical or student data unless explicitly permitted by policy, consent, and privacy rules.</p></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Activity &middot; match the practice</span>
+      <h3 style="margin-top:6px">Which practice best addresses each risk?</h3>
+      <p class="muted" style="font-size:.95rem">One question at a time. Pick the best protective practice, then read why.</p>
+      <div id="riskItems"></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Predict, then reveal</span>
+      <h3 style="margin-top:6px">Spot the real problem</h3>
+      <p>A student asks an AI agent to summarize 12 papers on AAC interventions, then pastes the summary straight into
+        a literature review <em>without reading the papers</em>. What is the main problem?</p>
+      <button class="opt" data-pred="used-ai" type="button"><span class="mk">A</span> They used AI at all.</button>
+      <button class="opt" data-pred="accountability" type="button"><span class="mk">B</span> No source verification and a loss of human accountability.</button>
+      <button class="opt" data-pred="short" type="button"><span class="mk">C</span> The summary was probably too short.</button>
+      <div class="feedback" id="predFb" role="status"></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Self-check &middot; responsible use</span>
+      <h3 style="margin-top:6px">Before you stand behind AI-assisted research</h3>
+      <p class="muted" style="font-size:.95rem">Check each box you can honestly say yes to. Nothing is saved: this is a private gut-check. The bar fills as you go.</p>
+      <div class="checklist" id="respChecklist">
+        <label><input type="checkbox"> <span>I checked the original sources.</span></label>
+        <label><input type="checkbox"> <span>I know what the AI agent actually did.</span></label>
+        <label><input type="checkbox"> <span>I can explain the workflow to someone else.</span></label>
+        <label><input type="checkbox"> <span>I did not use identifiable client or student data.</span></label>
+        <label><input type="checkbox"> <span>I documented my prompts, the outputs, and my edits.</span></label>
+        <label><input type="checkbox"> <span>I verified the numbers, citations, and claims.</span></label>
+        <label><input type="checkbox"> <span>I am comfortable being accountable for the final product.</span></label>
+      </div>
+      <div class="scorebar" aria-hidden="true"><span id="respCheckBar"></span></div>
+      <p class="muted" style="font-size:.9rem;margin:4px 0 0" id="respCheckMsg" role="status">0 of 7 checked.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== 2.8 IMPACTS (Figure 3 + Table 4) ===================== -->
+<section id="sec-vr-impact" class="lesson" aria-labelledby="vrimpact-h">
+  <div class="container">
+    <p class="kicker">Part 1 &middot; Vibe Researching</p>
+    <h2 id="vrimpact-h">2.8&nbsp;&nbsp;Impacts, trade-offs, and the road ahead</h2>
+    <p class="lead">Vibe researching changes how science gets done, and the changes cut both ways. An honest
+      view holds the benefits and the costs in the same hand.</p>
+
+    <figure class="fig">
+      <div class="fig-title">Figure 3 &middot; Positive and negative impacts of vibe researching</div>
+      <div class="balance">
+        <div class="bcol pos">
+          <h4><span aria-hidden="true">&#9650;</span> Positive impacts</h4>
+          <ul>
+            <li><strong>Doing more with less</strong>: smaller labs and individuals can survey, prototype, and draft at a pace that used to need a team.</li>
+            <li><strong>Faster iteration</strong>: literature surveys and data wrangling compress from weeks to days.</li>
+            <li><strong>Expanding research coverage</strong>: side hypotheses worth &ldquo;a look&rdquo; can actually get looked at.</li>
+            <li><strong>Crossing disciplinary boundaries</strong>: agents act as translators into unfamiliar fields.</li>
+            <li><strong>Reducing cognitive load</strong>: less grind on formatting and reimplementation, more time to think.</li>
+            <li><strong>Surfacing hidden connections</strong>: scanning vast literatures can flag links a single-domain reader would miss.</li>
+          </ul>
+        </div>
+        <div class="bcol neg">
+          <h4><span aria-hidden="true">&#9660;</span> Negative impacts</h4>
+          <ul>
+            <li><strong>Convergent thinking</strong>: similar models can push everyone toward the same framings and well-known methods.</li>
+            <li><strong>Credit &amp; disclosure</strong>: norms for how much AI use to declare are unsettled.</li>
+            <li><strong>Flooding the literature</strong>: cheaper papers can mean more technically-correct-but-unexciting work.</li>
+            <li><strong>Polished mediocrity</strong>: fluent formatting can decouple how good work looks from how good it is.</li>
+            <li><strong>Erosion of public trust</strong>: if readers doubt the humans understand their own papers, trust frays.</li>
+            <li><strong>Devaluation of expertise</strong>: deep skill can become invisible when output looks similar.</li>
+            <li><strong>Erosion of training</strong>: skipping the formative struggle weakens the judgment good delegation depends on.</li>
+          </ul>
+        </div>
+      </div>
+      <figcaption>Adapted from Feng and Liu (2026), Figure 3. Presented as a balance, not a verdict: the same
+        low friction that makes the practice powerful is what makes it risky.</figcaption>
+    </figure>
+
+    <div class="result"><h4>Student takeaway</h4>
+      <p class="stmt">AI can make weak work look polished. That is exactly why <strong>source-checking, clinical
+        reasoning, and human accountability matter more, not less.</strong></p></div>
+
+    <h3>From risk to responsibility: what to do now</h3>
+    <p>For every limitation, researchers are pursuing a future fix, but you do not have to wait. Each row below
+      pairs the problem with the direction the field is heading and a concrete habit you can adopt today.</p>
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Adapted from Feng and Liu (2026), Table 4. &ldquo;What you should do now&rdquo; column added for SLP students.</caption>
+        <thead>
+          <tr><th scope="col">Problem</th><th scope="col">Future direction (the field)</th><th scope="col">What you should do now</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">Hallucination</th><td>More reliable generation (retrieval + fact-checking, calibrated uncertainty)</td><td class="hi">Check every citation and number against the source yourself.</td></tr>
+          <tr><th scope="row" class="rowh">Context-window limits</th><td>Persistent project memory across sessions</td><td class="hi">Keep decisions in instruction files; re-state context each session.</td></tr>
+          <tr><th scope="row" class="rowh">Infrastructure gap</th><td>Agent-native infrastructure (open APIs, standard tool protocols)</td><td class="hi">Expect friction; record what worked and what didn&rsquo;t.</td></tr>
+          <tr><th scope="row" class="rowh">Multimodal limits</th><td>Domain-specific vision and embodied/lab-automation agents</td><td class="hi">Don&rsquo;t trust AI for clinical audio/visual judgment.</td></tr>
+          <tr><th scope="row" class="rowh">Verification asymmetry</th><td>Verification tooling (citation checks, statistical sanity checks)</td><td class="hi">Budget real time to verify; never skim a result you&rsquo;ll stand behind.</td></tr>
+          <tr><th scope="row" class="rowh">Brittleness on novelty</th><td>Novelty-aware agents that escalate when uncertain</td><td class="hi">Supervise unusual questions closely; expect to do more of the work.</td></tr>
+          <tr><th scope="row" class="rowh">Data privacy</th><td>Privacy-preserving architectures (on-device, stronger open models)</td><td class="hi">Never upload identifiable data without explicit permission.</td></tr>
+          <tr><th scope="row" class="rowh">Convergence, flooding, polish</th><td>Community norms &amp; standardized AI-use disclosure</td><td class="hi">Disclose your AI use; judge substance over polish.</td></tr>
+          <tr><th scope="row" class="rowh">Erosion of training</th><td>Research-education reform (fundamentals first, then delegation)</td><td class="hi">Learn the fundamentals the hard way before you delegate them.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout c-reminder" style="margin-top:22px"><span class="ic" aria-hidden="true">&#128218;</span>
+      <h4>Reference for this section</h4>
+      <p style="margin:0">Feng, Y., &amp; Liu, Y. (2026). <em>A visionary look at vibe researching.</em> arXiv.
+        <a href="https://arxiv.org/abs/2604.00945" target="_blank" rel="noopener">https://arxiv.org/abs/2604.00945</a></p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 2 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 2 introduction">
+  <div class="container">
+    <span class="pill">Part 2 of 3 &middot; Vibe Coding</span>
+    <h2>Vibe Coding with Claude Cowork: from idea to working prototype</h2>
+    <p class="lead">The same logic as vibe researching, pointed at software: you describe what you want in plain
+      language, an agent builds it, and you test and refine. You will not write every line: you will learn to
+      direct, review, and verify a small, useful tool.</p>
+  </div>
+</section>
+
+<!-- ===================== 3.1 WHAT VIBE CODING IS ===================== -->
+<section id="sec-vc-def" class="lesson" aria-labelledby="vcdef-h">
+  <div class="container">
+    <p class="kicker">Part 2 &middot; Vibe Coding</p>
+    <h2 id="vcdef-h">3.1&nbsp;&nbsp;What vibe coding is (and is not)</h2>
+
+    <div class="result"><h4>Working definition</h4>
+      <p class="stmt"><strong>Vibe coding</strong> is a workflow where you describe what you want the software to do
+        in plain language, the coding agent writes or edits the code, and you repeatedly test, review, and refine the
+        result. The &ldquo;vibe&rdquo; is not guesswork; it is a guided loop: give context, define the goal,
+        review the result, and keep improving until the outcome matches your <strong>success criteria</strong>.</p></div>
+
+    <div class="callout c-mistake"><span class="ic" aria-hidden="true">&#9888;</span>
+      <h4>The most important caution</h4>
+      <p>Vibe coding is <strong>not &ldquo;accept everything.&rdquo;</strong> The original idea included an
+        &ldquo;Accept All&rdquo; habit meant for throwaway prototypes. For anything you will use with learners or
+        clients, it is a cycle of <strong>specifying, reviewing, testing, and revising</strong>: the same
+        delegation-with-oversight you saw in vibe researching.</p>
+    </div>
+
+    <h3>Why Claude Cowork for this lesson</h3>
+    <div class="grid g2">
+      <div class="card"><h4 style="margin-top:0">Built for non-coders</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">You can begin with natural-language directions: no
+          terminal, Git, or JavaScript knowledge required to get started. The barrier to entry is a sentence.</p></div>
+      <div class="card"><h4 style="margin-top:0">Works across the project</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">It can work with web pages, JavaScript, Python, data files,
+          Markdown instructions, and whole project folders, like the one that produced this page.</p></div>
+      <div class="card"><h4 style="margin-top:0">Still needs you</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">It needs direction, constraints, and review. It does not
+          guarantee correctness: you provide the goals and the verification.</p></div>
+      <div class="card"><h4 style="margin-top:0">Honest about limits</h4>
+        <p class="muted" style="font-size:.95rem;margin:0">A working prototype is a draft, not validated clinical
+          software. The same risks from Part 1 (hallucination, privacy, verification) apply here too.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3.2 FOUR PRINCIPLES ===================== -->
+<section id="sec-vc-principles" class="lesson" aria-labelledby="vcprin-h">
+  <div class="container">
+    <p class="kicker">Part 2 &middot; Vibe Coding</p>
+    <h2 id="vcprin-h">3.2&nbsp;&nbsp;The four principles</h2>
+    <p class="lead">These four rules come from widely shared observations about where coding agents go wrong. They are
+      not just engineering taste: they protect non-coders from confusing, bloated, or unreliable output.</p>
+
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card" style="border-top:3px solid var(--blue-navy)">
+        <span class="tag">Principle 1</span><h4 style="margin-top:8px">Think before coding</h4>
+        <p style="font-size:.95rem;margin:.3em 0">Before changing code, the agent should pause, state assumptions,
+          name what is ambiguous, and ask questions, instead of guessing silently and running with it.</p>
+        <p class="muted" style="font-size:.9rem;margin:0"><strong>Fixes:</strong> wrong assumptions, hidden confusion, missing trade-offs.</p>
+        <div class="callout c-slp" style="margin:12px 0 0;padding-left:17px"><h4>SLP example</h4>
+          <p style="margin:0;font-size:.92rem">Instead of &ldquo;make a language activity,&rdquo; the agent asks:
+            &ldquo;Child language, adult aphasia, or AAC examples?&rdquo; before building anything.</p></div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--teal)">
+        <span class="tag">Principle 2</span><h4 style="margin-top:8px">Simplicity first</h4>
+        <p style="font-size:.95rem;margin:.3em 0">The first version should be the smallest useful one: no
+          speculative features, no abstractions for single-use code. If 200 lines could be 50, rewrite it.</p>
+        <p class="muted" style="font-size:.9rem;margin:0"><strong>Fixes:</strong> overcomplication, bloated abstractions.</p>
+        <div class="callout c-slp" style="margin:12px 0 0;padding-left:17px"><h4>SLP example</h4>
+          <p style="margin:0;font-size:.92rem">Skip accounts, logins, databases, and dashboards. Start with a
+            single-page interactive demo that runs in the browser.</p></div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--amber)">
+        <span class="tag">Principle 3</span><h4 style="margin-top:8px">Surgical changes</h4>
+        <p style="font-size:.95rem;margin:.3em 0">When editing an existing project, change only what the task
+          requires. Don&rsquo;t refactor unrelated parts, rename things, or &ldquo;improve&rdquo; nearby code. Match the existing style.</p>
+        <p class="muted" style="font-size:.9rem;margin:0"><strong>Fixes:</strong> stray edits, touching code you shouldn&rsquo;t.</p>
+        <div class="callout c-slp" style="margin:12px 0 0;padding-left:17px"><h4>SLP example</h4>
+          <p style="margin:0;font-size:.92rem">If the task is &ldquo;fix the quiz feedback wording,&rdquo; the agent
+            should not redesign the page or rename classes.</p></div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--coral)">
+        <span class="tag">Principle 4</span><h4 style="margin-top:8px">Goal-driven execution</h4>
+        <p style="font-size:.95rem;margin:.3em 0">A strong request describes what success looks like and how to check
+          it. Clear success criteria let the agent loop on its own; vague ones (&ldquo;make it work&rdquo;) force constant clarification.</p>
+        <p class="muted" style="font-size:.9rem;margin:0"><strong>Fixes:</strong> aimless effort, endless back-and-forth.</p>
+        <div class="callout c-slp" style="margin:12px 0 0;padding-left:17px"><h4>SLP example</h4>
+          <p style="margin:0;font-size:.92rem">&ldquo;Make a flip-card activity with 8 cards; students reveal
+            definitions by click or Enter; verify it works on mobile and keyboard.&rdquo;</p></div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Activity &middot; which principle would prevent this?</span>
+      <h3 style="margin-top:6px">Diagnose the messy behavior</h3>
+      <p class="muted" style="font-size:.95rem">Four things a coding agent did wrong. For each, pick the principle
+        that would have prevented it.</p>
+      <div id="prinItems"></div>
+    </div>
+  </div>
+</section>
+<!-- ===================== 3.3 INSTRUCTION FILES ===================== -->
+<section id="sec-vc-files" class="lesson" aria-labelledby="vcfiles-h">
+  <div class="container">
+    <p class="kicker">Part 2 &middot; Vibe Coding</p>
+    <h2 id="vcfiles-h">3.3&nbsp;&nbsp;Good vibe coding starts <em>before</em> code</h2>
+    <p class="lead">The single biggest upgrade to your results is not a better prompt: it is giving the agent
+      the right <strong>project memory and constraints</strong> up front, in plain Markdown files.</p>
+
+    <div class="tablewrap">
+      <table class="data">
+        <caption>The instruction files in this very project folder, and what each one tells the agent.</caption>
+        <thead><tr><th scope="col">File</th><th scope="col">What it tells the agent</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" class="rowh">README.md</th><td>What the project is and who it is for.</td></tr>
+          <tr><th scope="row" class="rowh">SPEC.md</th><td>What content and features to build, and what <em>not</em> to build.</td></tr>
+          <tr><th scope="row" class="rowh">STYLE.md</th><td>How the page should look and feel.</td></tr>
+          <tr><th scope="row" class="rowh">CONTENT_SOURCES.md</th><td>Which sources to read and how to use them.</td></tr>
+          <tr><th scope="row" class="rowh">INTERACTIONS.md</th><td>What kinds of interactive activities to include.</td></tr>
+          <tr><th scope="row" class="rowh">DEMOS.md</th><td>How to propose and implement SLP demo tools.</td></tr>
+          <tr><th scope="row" class="rowh hi">CLAUDE.md</th><td class="hi">How the agent should <em>behave</em> while working: its rules, limits, and quality gates.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>A workflow you can copy</h3>
+    <p class="muted" style="font-size:.95rem">Tap each step for a sample prompt and the common mistake it avoids.</p>
+    <div class="widget">
+      <span class="wlabel">Interactive &middot; the vibe-coding workflow</span>
+      <div class="loop" id="wfSteps" role="tablist" aria-label="Vibe coding workflow steps"></div>
+      <div class="feedback info show" id="wfDetail" role="status" aria-live="polite" style="margin-top:14px"></div>
+    </div>
+  </div>
+</section>
+<!-- ===================== 3.4 PROMPT MAKEOVER ===================== -->
+<section id="sec-vc-prompt" class="lesson" aria-labelledby="vcprompt-h">
+  <div class="container">
+    <p class="kicker">Part 2 &middot; Vibe Coding</p>
+    <h2 id="vcprompt-h">3.4&nbsp;&nbsp;From vague to verifiable</h2>
+    <p class="lead">A vague request gets a generic result. A well-framed one gets useful work on the first try. The
+      fix is rarely &ldquo;more words&rdquo;; it is the <em>right</em> words: who, what, with what data, and how you&rsquo;ll know it worked.</p>
+
+    <div class="widget">
+      <span class="wlabel">Activity &middot; prompt makeover</span>
+      <h3 style="margin-top:6px">Improve this weak prompt</h3>
+      <pre class="prompt"><span class="lbl">Weak prompt</span><code>Build me an SLP app.</code></pre>
+      <p class="muted" style="font-size:.95rem">Tap the improvements you would add. Watch the prompt take shape, then reveal a strong rewrite.</p>
+      <div class="chips" id="pmChips" role="group" aria-label="Prompt improvements">
+        <button class="chip" type="button" data-imp="Audience: graduate SLP students with little coding background">Audience</button>
+        <button class="chip" type="button" data-imp="Population / context: aphasia naming treatment">Population / context</button>
+        <button class="chip" type="button" data-imp="Specific task: click-to-reveal cueing-hierarchy practice">Specific task</button>
+        <button class="chip" type="button" data-imp="Data / media: simulated examples only (no real client data)">Data available</button>
+        <button class="chip" type="button" data-imp="Privacy boundary: no uploads, no identifiable data">Privacy boundary</button>
+        <button class="chip" type="button" data-imp="Final format: one standalone browser page">Final format</button>
+        <button class="chip" type="button" data-imp="Success criteria: 6 items, progress counter, works on mobile + keyboard">Success criteria</button>
+        <button class="chip" type="button" data-imp="Process: propose the interaction flow before coding">Plan before coding</button>
+        <button class="chip" type="button" data-imp="Constraint: keep it simple, no logins, databases, or extra libraries">Don&rsquo;t overcomplicate</button>
+      </div>
+      <div class="feedback info show" id="pmBuild" role="status" aria-live="polite">
+        <strong>Your prompt so far:</strong> <span id="pmList">Build me an SLP app. <em class="muted">(tap improvements above)</em></span>
+      </div>
+      <div style="margin-top:12px"><button class="btn sm" id="pmReveal" type="button">Reveal a strong rewrite &rarr;</button></div>
+      <div id="pmStrongWrap" style="display:none;margin-top:12px">
+        <pre class="prompt"><span class="lbl">Strong prompt</span><code>Create a single-page, browser-based teaching demo for graduate SLP students learning about cueing hierarchies in aphasia naming treatment. Use simulated examples only. Include 6 practice items, click-to-reveal cues, a progress counter, and a short debrief. Before coding, propose the interaction flow and ask what image or word stimuli I want to use.</code></pre>
+        <p class="muted" style="font-size:.9rem">Notice: it names the audience, the population, the exact task, the data
+          policy, the format, the success criteria, and asks for a plan first: all four principles, in one paragraph.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="callout c-mistake" style="padding-left:17px"><h4>What not to do</h4>
+        <p style="margin:.2em 0 0;font-size:.95rem">Don&rsquo;t upload identifiable client videos, audio, reports, or
+          transcripts. Don&rsquo;t accept every change without testing. Don&rsquo;t assume a clinical tool is validated.
+          Don&rsquo;t let the agent rewrite unrelated parts. Don&rsquo;t use AI-generated citations without checking them.
+          Don&rsquo;t confuse a working prototype with evidence-based clinical software.</p></div>
+      <div class="callout c-slp" style="padding-left:17px"><h4>What to do</h4>
+        <p style="margin:.2em 0 0;font-size:.95rem">Start with a clear purpose. Tell the agent the audience. Give
+          examples. Define success criteria. Ask questions before coding. Keep the first version small. Test it
+          yourself. Save instructions in project files. Document what the agent changed.</p></div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-top:18px"><span class="ic" aria-hidden="true">&#128279;</span>
+      <h4>Reference for this section</h4>
+      <p style="margin:0">The coding-agent workflow here is inspired by the Karpathy-style Claude guidelines collected
+        in the instructor-provided repository:
+        <a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">github.com/multica-ai/andrej-karpathy-skills</a></p>
+    </div>
+  </div>
+</section>
+<!-- ===================== PART 3 HEADER ===================== -->
+<section class="lesson part-head" aria-label="Part 3 introduction">
+  <div class="container">
+    <span class="pill">Part 3 of 3 &middot; SLP Demos</span>
+    <h2>Three teaching prototypes, vibe-coded</h2>
+    <p class="lead">Each demo below is a small, working tool built with the workflow you just learned. Try them, then read how each one was requested, what had to be checked, and where its limits are.</p>
+  </div>
+</section>
+
+<section id="sec-demos" class="lesson" aria-labelledby="demos-h">
+  <div class="container">
+    <p class="kicker">Part 3 &middot; SLP Demos</p>
+    <h2 id="demos-h">4&nbsp;&nbsp;Try the demos</h2>
+    <p class="lead">These run entirely in your browser on simulated data: nothing is uploaded or saved. They
+      illustrate the vibe-coding workflow in familiar SLP territory.</p>
+
+    <div class="protostrip"><span aria-hidden="true">&#9888;</span>
+      <span><strong>Teaching prototypes only.</strong> None of these is a validated clinical tool. They use invented
+        data and are meant for learning the workflow, not for assessment, diagnosis, or treatment decisions.</span></div>
+
+    <!-- DEMO 1: Listen, identify & transcribe (audio) -->
+    <h3 style="margin-top:30px">Demo 1 &middot; Listen, identify &amp; transcribe</h3>
+    <dl class="demo-meta">
+      <dt>Teaches</dt><dd>Auditory discrimination of minimal pairs, and accurate IPA transcription of a spoken word, two skills at the heart of articulation and phonology training.</dd>
+      <dt>Asked for</dt><dd>&ldquo;Two audio-based tasks: (A) play a word and let students pick which minimal-pair member they heard, then reveal the answer; (B) play a word and have students build its IPA transcription by dragging phoneme tiles, with a few distractors. Simulated word list; no real client data.&rdquo;</dd>
+      <dt>Resources</dt><dd>Short pronunciation recordings (one per word) plus a built-in word/IPA list.</dd>
+      <dt>Human checked</dt><dd>That each recording matches its word, the IPA is correct for the intended dialect, and the distractor tiles are plausible but wrong.</dd>
+    </dl>
+    <div class="widget demo-tool">
+      <span class="wlabel">Live demo &middot; simulated data + audio</span>
+      <div class="seg" role="tablist" aria-label="Choose a task" id="d1Tabs" style="margin:4px 0 14px">
+        <button role="tab" type="button" data-task="A" aria-pressed="true">Task A &middot; Listen &amp; identify</button>
+        <button role="tab" type="button" data-task="B" aria-pressed="false">Task B &middot; Listen &amp; transcribe</button>
+      </div>
+
+      <div id="d1TaskA">
+        <p class="muted" style="font-size:.95rem">Play the word, then tap the word you heard. The two choices differ by a single sound.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0">
+          <button class="btn sm" id="aPlay" type="button"><span aria-hidden="true">&#128266;</span> Play word</button>
+          <span class="readout" id="aContrast">Contrast: &hellip;</span>
+          <span class="readout" style="margin-left:auto">Score: <span class="counter" id="aScore">0</span> / <span class="counter" id="aSeen">0</span></span>
+        </div>
+        <div class="pairstage" id="aChoices" aria-label="Word choices"></div>
+        <div class="feedback" id="aFb" role="status"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn sm sec" id="aNext" type="button">Next word &rarr;</button>
+          <button class="btn sm sec" id="aReset" type="button">Reset</button>
+        </div>
+      </div>
+
+      <div id="d1TaskB" style="display:none">
+        <p class="muted" style="font-size:.95rem">Play the word, then build its IPA transcription: tap a phoneme tile, then tap a slot (or drag a tile onto it). Some tiles are distractors. Tap a filled slot to clear it.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0">
+          <button class="btn sm" id="bPlay" type="button"><span aria-hidden="true">&#128266;</span> Play word</button>
+          <span class="readout" id="bWord">Word: &hellip;</span>
+          <span class="readout" style="margin-left:auto">Correct: <span class="counter" id="bScore">0</span> / <span class="counter" id="bSeen">0</span></span>
+        </div>
+        <div class="ipa-slots" id="bSlots" aria-label="Transcription slots"></div>
+        <div class="chips ipa-pool" id="bPool" aria-label="Phoneme tiles"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn sm" id="bCheck" type="button">Check transcription</button>
+          <button class="btn sm sec" id="bNext" type="button">Next word &rarr;</button>
+          <button class="btn sm sec" id="bClear" type="button">Clear slots</button>
+        </div>
+        <div class="feedback" id="bFb" role="status"></div>
+      </div>
+    </div>
+
+    <!-- DEMO 2: Language sample analysis -->
+    <h3 style="margin-top:34px">Demo 2 &middot; Language sample analysis teaching toy</h3>
+    <dl class="demo-meta">
+      <dt>Teaches</dt><dd>How a simple tool can compute beginner-friendly measures from a transcript, and where those numbers stop being meaningful.</dd>
+      <dt>Asked for</dt><dd>&ldquo;Let me paste a short simulated transcript and return total words, unique words, type&ndash;token ratio, utterance count, and a rough words-per-utterance figure. Show the limitations clearly.&rdquo;</dd>
+      <dt>Resources</dt><dd>A simulated child language sample, typed directly into the page. No transcripts from real clients.</dd>
+      <dt>Human checked</dt><dd>That the math is right, the wording says &ldquo;words, not morphemes,&rdquo; and the tool is labeled as not a validated analysis system.</dd>
+    </dl>
+    <div class="widget demo-tool">
+      <span class="wlabel">Live demo &middot; simulated data</span>
+      <label for="lsaIn" style="font-weight:650;color:var(--navy);display:block;margin-bottom:6px">Paste or edit a short language sample</label>
+      <textarea class="lsa-in" id="lsaIn" aria-label="Language sample text"></textarea>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <button class="btn sm" id="lsaRun" type="button">Analyze</button>
+        <button class="btn sm sec" id="lsaSample" type="button">Load sample</button>
+        <button class="btn sm sec" id="lsaClear" type="button">Clear</button>
+      </div>
+      <div class="lsa-grid" id="lsaOut" aria-live="polite">
+        <div class="lsa-stat"><div class="v" id="lsaTokens">&ndash;</div><div class="k">Total words</div></div>
+        <div class="lsa-stat"><div class="v" id="lsaTypes">&ndash;</div><div class="k">Unique words</div></div>
+        <div class="lsa-stat"><div class="v" id="lsaTTR">&ndash;</div><div class="k">Type&ndash;token ratio</div></div>
+        <div class="lsa-stat"><div class="v" id="lsaUtt">&ndash;</div><div class="k">Utterances</div></div>
+        <div class="lsa-stat"><div class="v" id="lsaMLU">&ndash;</div><div class="k">Words / utterance</div></div>
+      </div>
+      <div class="callout c-mistake" style="margin:12px 0 0;padding-left:17px"><h4>Read the fine print</h4>
+        <p style="margin:0;font-size:.92rem">This counts <strong>words, not morphemes</strong>. Real MLU uses
+          morphemes and strict transcription conventions (CHAT/SALT), excludes false starts, and depends on a
+          representative sample. Treat these numbers as a teaching illustration only.</p></div>
+    </div>
+
+    <!-- DEMO 3: AAC core vs fringe -->
+    <h3 style="margin-top:34px">Demo 3 &middot; AAC core vs. fringe vocabulary sorter</h3>
+    <dl class="demo-meta">
+      <dt>Teaches</dt><dd>The difference between <strong>core</strong> vocabulary (a small set of high-frequency words reusable across many contexts) and <strong>fringe</strong> vocabulary (topic-specific words).</dd>
+      <dt>Asked for</dt><dd>&ldquo;A sorting activity: drag or tap word cards into core vs. fringe, then check answers with brief explanations. Reuse the existing sorter so it works by mouse, touch, and keyboard.&rdquo;</dd>
+      <dt>Resources</dt><dd>A short invented word list. No client-specific vocabulary or device data.</dd>
+      <dt>Human checked</dt><dd>That the example sort is defensible and the wording does not imply a generic list replaces individualized assessment.</dd>
+    </dl>
+    <div class="widget demo-tool">
+      <span class="wlabel">Live demo &middot; simulated data</span>
+      <h4 style="margin-top:4px">Sort each word into core or fringe</h4>
+      <p class="muted" style="font-size:.95rem">Tap a card to select it, then tap a category (or drag it).</p>
+      <div class="chips" id="aacTokens" aria-label="Words to sort"></div>
+      <div class="bins" id="aacBins"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn sm" id="aacCheck" type="button">Check my answers</button>
+        <button class="btn sm sec" id="aacReset" type="button">Reset</button>
+      </div>
+      <div class="feedback" id="aacFb" role="status"></div>
+      <div class="callout c-slp" style="margin:12px 0 0;padding-left:17px"><h4>Why this matters</h4>
+        <p style="margin:0;font-size:.92rem">Core words give the fastest communicative mileage on an AAC display, so
+          they often get prime real estate; fringe words are added around a learner&rsquo;s specific interests and routines.</p></div>
+    </div>
+
+    <div class="callout c-reminder" style="margin-top:26px"><span class="ic" aria-hidden="true">&#128161;</span>
+      <h4>What to notice about all three</h4>
+      <p style="margin:0">Each is small, runs locally, uses only simulated data, and is clearly labeled as a prototype.
+        That is not a limitation of the workflow. It <em>is</em> the workflow: build the minimum useful version,
+        keep the human checking it, and never dress a draft up as a validated clinical tool.</p>
+    </div>
+  </div>
+</section>
+<!-- ===================== 5. RESPONSIBLE USE & TAKEAWAYS ===================== -->
+<section id="sec-responsible" class="lesson" aria-labelledby="resp-h">
+  <div class="container">
+    <p class="kicker">Wrap-up</p>
+    <h2 id="resp-h">5&nbsp;&nbsp;Responsible use &amp; takeaways</h2>
+    <p class="lead">Whether you are vibe researching a literature review or vibe coding a practice tool, the same seven
+      habits keep you (and the people you serve) safe. Use this as your pre-flight check.</p>
+
+    <div class="grid g2">
+      <div class="callout c-mistake" style="padding-left:17px"><h4>Bad prompt</h4>
+        <pre class="prompt" style="margin:.4em 0 0"><code>Make me a therapy website.</code></pre>
+        <p class="muted" style="font-size:.9rem;margin:.5em 0 0">No audience, no task, no data policy, no success
+          criteria. You will get something generic and spend more time fixing it than it saved.</p></div>
+      <div class="callout c-slp" style="padding-left:17px"><h4>Good prompt</h4>
+        <pre class="prompt" style="margin:.4em 0 0"><code>Single-page /r/ minimal-pair practice for grad SLP students. Reuse the navy classroom style. 10 items, a progress counter, instructions, and a reset. Simulated data only. Propose the flow and success criteria before coding.</code></pre>
+        <p class="muted" style="font-size:.9rem;margin:.5em 0 0">Audience, task, style, scope, data policy, and a
+          plan-first request, verifiable from the start.</p></div>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Final self-check</span>
+      <h3 style="margin-top:6px">Before you submit, publish, or share</h3>
+      <p class="muted" style="font-size:.95rem">Check each habit you actually followed. Private and unsaved, the bar fills as you go.</p>
+      <div class="checklist" id="finalChecklist">
+        <label><input type="checkbox"> <span>I can explain what the agent did, in my own words.</span></label>
+        <label><input type="checkbox"> <span>I checked the sources against the originals.</span></label>
+        <label><input type="checkbox"> <span>I tested the tool or output myself.</span></label>
+        <label><input type="checkbox"> <span>I used only simulated, de-identified, or approved data.</span></label>
+        <label><input type="checkbox"> <span>I documented my prompts and the changes made.</span></label>
+        <label><input type="checkbox"> <span>I know the tool is a prototype unless formally validated.</span></label>
+        <label><input type="checkbox"> <span>I remain responsible for the final product.</span></label>
+      </div>
+      <div class="scorebar" aria-hidden="true"><span id="finalCheckBar"></span></div>
+      <p class="muted" style="font-size:.9rem;margin:4px 0 0" id="finalCheckMsg" role="status">0 of 7 checked.</p>
+    </div>
+
+    <div class="widget">
+      <span class="wlabel">Quiz &middot; put it together</span>
+      <h3 style="margin-top:6px">Integration check</h3>
+      <p class="muted" style="font-size:.95rem">Five scenarios spanning both halves of the lesson. One at a time, with feedback.</p>
+      <div id="finalItems"></div>
+    </div>
+
+    <div class="result"><h4>The whole lesson in one breath</h4>
+      <p class="stmt">Vibe researching and vibe coding let you hand the <strong>mechanical</strong> work to AI agents
+        while you keep the <strong>judgment</strong>. They reduce friction, which is exactly why they are risky:
+        it becomes easy to produce polished work before you have done enough thinking. So check your sources, test your
+        tools, protect your data, and stand behind what carries your name. The risk is not that AI replaces clinicians;
+        it is that we use AI carelessly and call the result good work. <strong>Don&rsquo;t.</strong></p></div>
+  </div>
+</section>
+</main>
+  </div><!-- /.content -->
+</div><!-- /.app -->
+
+<button class="backtop" id="backtop" type="button" aria-label="Back to top">&uarr; Top</button>
+
+<footer class="site" aria-labelledby="footer-h">
+  <div class="container">
+    <h4 id="footer-h">About this lesson</h4>
+    <p class="refs" style="list-style:none;padding-left:0;max-width:72ch">A self-paced lesson for SLP 680: Research
+      Methods on directing AI agents responsibly. Source ideas were adapted for teaching and should not be treated as
+      exhaustive technical documentation. The three demos are teaching prototypes built on simulated data. They are
+      <strong>not</strong> validated clinical tools and must not be used for assessment, diagnosis, or treatment
+      decisions. All activities run locally in your browser. Nothing you type or click is sent anywhere or saved.</p>
+
+    <p class="ack" style="margin-top:28px">Dr. Mengyang Qiu &middot; Saint Elizabeth University &middot; SLP 680</p>
+    <p class="ack" style="margin-top:6px">This webpage was created through vibe coding with Claude Opus 4.8 and ChatGPT 5.5 Pro.</p>
+  </div>
+</footer>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function h(html){var t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ---------- paginated multiple-choice engine ---------- */
+function mcq(containerId, items){
+  var wrap=document.getElementById(containerId); if(!wrap)return;
+  var total=items.length, idx=0, score=0, answered=false;
+  function dots(){var s='';for(var k=0;k<total;k++){s+='<span class="qd'+(k<idx?' done':'')+(k===idx?' cur':'')+'"></span>';}return s;}
+  function render(advance){
+    wrap.innerHTML='';
+    if(idx>=total){
+      var pct=Math.round(score/total*100);
+      var msg=pct===100?'Perfect. You have got this.':pct>=70?'Strong work. Review any you missed.':pct>=40?'Good start. Another pass will lock it in.':'Worth another run-through; you will get there.';
+      var done=h('<div class="quizcard quizdone"><div class="qsmall">Your score</div><div class="qbig">'+score+' / '+total+'</div><p class="muted">'+msg+'</p><button class="btn sm" type="button">&#8635; Try again</button></div>');
+      done.querySelector('button').addEventListener('click',function(){idx=0;score=0;render(true);});
+      wrap.appendChild(done); if(advance)done.querySelector('button').focus(); return;
+    }
+    answered=false; var it=items[idx];
+    var card=h('<div class="quizcard" role="group" aria-label="Question '+(idx+1)+' of '+total+'"><div class="quizhead"><span class="qprog">Question '+(idx+1)+' of '+total+'</span><span class="qdots" aria-hidden="true">'+dots()+'</span></div><p class="quizq" tabindex="-1">'+it.q+'</p><div class="opts"></div><div class="feedback" role="status"></div></div>');
+    var od=card.querySelector('.opts'), fb=card.querySelector('.feedback');
+    it.options.forEach(function(op,oi){
+      var b=h('<button class="opt" type="button"><span class="mk">'+String.fromCharCode(65+oi)+'</span> '+op.t+'</button>');
+      b.addEventListener('click',function(){
+        if(answered)return; answered=true;
+        if(op.ok){b.classList.add('correct'); score++;}
+        else{b.classList.add('wrong'); od.querySelectorAll('.opt').forEach(function(x,xi){if(it.options[xi].ok)x.classList.add('correct');});}
+        od.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        fb.className='feedback '+(op.ok?'ok':'no')+' show';
+        fb.innerHTML='<div class="verdict">'+(op.ok?'Correct.':'Not quite.')+'</div><p>'+op.why+'</p><button class="btn sm next" type="button">'+(idx+1<total?'Next question &rarr;':'See results &rarr;')+'</button>';
+        var nx=fb.querySelector('.next'); nx.addEventListener('click',function(){idx++;render(true);}); nx.focus();
+      });
+      od.appendChild(b);
+    });
+    wrap.appendChild(card);
+    if(advance){var q=card.querySelector('.quizq'); if(q)q.focus();}
+  }
+  render(false);
+}
+
+/* ---------- sorter: drag (mouse+touch) with click/keyboard fallback ---------- */
+function makeSorter(o){
+  var tok=document.getElementById(o.tokensId), bins=document.getElementById(o.binsId);
+  if(!tok)return; var sel=null, placement={};
+  function updateSel(){tok.querySelectorAll('.token').forEach(function(b){b.classList.toggle('sel',b.dataset.id===sel);});}
+  function place(id,bn){placement[id]=bn;sel=null;render();}
+  function clearHot(){bins.querySelectorAll('.bin').forEach(function(b){b.classList.remove('drop-hot');});}
+  function binAt(x,y){var el=document.elementFromPoint(x,y);return el&&el.closest?el.closest('.bin'):null;}
+  function attachDrag(elm,id){
+    elm.addEventListener('pointerdown',function(ev){
+      if(ev.pointerType==='mouse'&&ev.button!==0)return;
+      var sx=ev.clientX, sy=ev.clientY, active=false, clone=null; elm._dragged=false;
+      try{elm.setPointerCapture(ev.pointerId);}catch(e){}
+      function move(e){
+        var dx=e.clientX-sx, dy=e.clientY-sy;
+        if(!active && Math.hypot(dx,dy)>6){active=true; elm._dragged=true; elm.classList.add('ghost');
+          clone=elm.cloneNode(true); clone.className='token dragging';
+          clone.style.cssText='position:fixed;pointer-events:none;z-index:9999;margin:0;width:'+elm.offsetWidth+'px';
+          document.body.appendChild(clone);}
+        if(active){clone.style.left=(e.clientX-clone.offsetWidth/2)+'px'; clone.style.top=(e.clientY-20)+'px';
+          var b=binAt(e.clientX,e.clientY); clearHot(); if(b)b.classList.add('drop-hot');}
+      }
+      function up(e){
+        elm.removeEventListener('pointermove',move); elm.removeEventListener('pointerup',up); elm.removeEventListener('pointercancel',up);
+        try{elm.releasePointerCapture(ev.pointerId);}catch(e2){}
+        if(active){var b=binAt(e.clientX,e.clientY); if(clone)clone.remove(); clearHot();
+          if(b){place(elm.dataset.id,b.dataset.bin);} else {elm.classList.remove('ghost');}
+          setTimeout(function(){elm._dragged=false;},0);}
+      }
+      elm.addEventListener('pointermove',move); elm.addEventListener('pointerup',up); elm.addEventListener('pointercancel',up);
+    });
+  }
+  function render(){
+    tok.innerHTML='';
+    o.items.forEach(function(it){ if(placement[it.id])return;
+      var b=h('<button class="token" data-id="'+it.id+'" aria-label="'+esc(it.t)+': drag to a category, or tap to select">'+it.t+'</button>');
+      b.addEventListener('click',function(){ if(b._dragged)return; sel=(sel===b.dataset.id?null:b.dataset.id); updateSel(); });
+      attachDrag(b,it.id);
+      tok.appendChild(b);});
+    bins.innerHTML='';
+    o.bins.forEach(function(bn){
+      var bin=h('<div class="bin" role="button" tabindex="0" data-bin="'+esc(bn)+'" aria-label="'+esc(bn)+': drop a card here, or place the selected one"><h5>'+bn+'</h5><div class="slot"></div></div>');
+      var doPlace=function(){if(sel!=null)place(sel,bn);};
+      bin.addEventListener('click',doPlace);
+      bin.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();doPlace();}});
+      var slot=bin.querySelector('.slot');
+      o.items.forEach(function(it){ if(placement[it.id]===bn){
+        var chip=h('<span class="token placed" title="Click to remove" role="button" tabindex="0" aria-label="'+esc(it.t)+' in '+esc(bn)+', click to remove">'+it.t+'</span>');
+        var rm=function(){delete placement[it.id];render();};
+        chip.addEventListener('click',rm);
+        chip.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();rm();}});
+        slot.appendChild(chip);}});
+      bins.appendChild(bin);});
+    updateSel();
+  }
+  document.getElementById(o.checkId).addEventListener('click',function(){
+    var ok=0,unplaced=0,tot=o.items.length;
+    o.items.forEach(function(it){ if(!placement[it.id])unplaced++; else if(placement[it.id]===it.answer)ok++;});
+    var fb=document.getElementById(o.fbId);
+    fb.className='feedback '+(ok===tot&&!unplaced?'ok':'no')+' show';
+    fb.innerHTML=unplaced?('Place all cards first, '+unplaced+' to go.'):(ok===tot?('<strong>All correct!</strong> '+(o.win||'')):('<strong>'+ok+' / '+tot+' correct.</strong> '+(o.hint||'')));
+  });
+  document.getElementById(o.resetId).addEventListener('click',function(){placement={};sel=null;render();document.getElementById(o.fbId).className='feedback';});
+  render();
+}
+
+/* ---------- generic step-reveal (spectrum / loop / workflow) ---------- */
+function wireSteps(btns, detailEl, renderFn){
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      detailEl.innerHTML=renderFn(parseInt(b.dataset.idx,10));
+    });
+  });
+}
+
+/* ===================== DATA ===================== */
+var SPECTRUM=[
+  {human:'Reads, designs, computes, analyzes, and writes, all by hand.',ai:'None; no computational help.',verify:'Everything is already yours to defend.'},
+  {human:'Directs the work and interprets results; uses software as aids.',ai:'Specialized tools: statistics packages, reference managers.',verify:'Tool settings and outputs: did you run the right analysis?'},
+  {human:'Designs the study, interprets results, and writes; the process is unchanged.',ai:'A domain model solves ONE technical step (e.g., predicting a protein structure).',verify:'Whether the model output actually fits your research question.'},
+  {human:'Sets the question, judges relevance, evaluates outputs, stays accountable.',ai:'Executes the process: literature, implementation, analysis, drafting.',verify:'Sources, code, numbers, and claims: this is the whole job.'},
+  {human:'May review only at the very end, if at all.',ai:'Runs the full pipeline (ideation through writing), largely on its own.',verify:'Hard: errors compound silently; quality control may be automated or absent.'}
+];
+function specRender(i){var s=SPECTRUM[i];
+  return '<p style="margin:.1em 0 .5em"><span class="role human"><span class="ri" aria-hidden="true">H</span> Who guides</span> &nbsp;'+s.human+'</p>'+
+    '<p style="margin:.4em 0"><span class="role ai"><span class="ri" aria-hidden="true">AI</span> Who executes</span> &nbsp;'+s.ai+'</p>'+
+    '<p style="margin:.4em 0 0"><span class="role verify"><span class="ri" aria-hidden="true">&#10003;</span> Human verifies</span> &nbsp;'+s.verify+'</p>';
+}
+var LOOP=[
+  {t:'Instruct',what:'Give the agent context and a clear goal.',slp:'&ldquo;Search recent intervention studies on adolescent fluency; organize by design and outcome measure.&rdquo;'},
+  {t:'Execute',what:'The agent plans and acts: searching, writing, coding, or organizing.',slp:'It queries databases and compiles a candidate list of studies.'},
+  {t:'Present',what:'The agent returns a draft, table, code, or summary.',slp:'A table of studies with participants, intervention type, and outcomes.'},
+  {t:'Evaluate',what:'You check the output for accuracy and relevance.',slp:'Are these real papers? Are they actually intervention studies? Summarized correctly?'},
+  {t:'Redirect',what:'You revise the goal, request changes, or accept and move on.',slp:'&ldquo;Keep only school-age outcomes; separate group designs from single-case.&rdquo;'}
+];
+function loopRender(i){var s=LOOP[i];
+  return '<strong>'+(i+1)+' &middot; '+s.t+'.</strong> '+s.what+'<br><span class="muted" style="font-size:.92rem"><strong style="color:var(--coral)">SLP example:</strong> '+s.slp+'</span>';
+}
+var WORKFLOW=[
+  {t:'Create instruction files',prompt:'(in files) Audience: grad SLP students. One standalone page. Reuse the navy style. No real data.',mistake:'Skipping this and hoping one long prompt carries everything.'},
+  {t:'Ask the agent to read them',prompt:'&ldquo;Read README.md, SPEC.md, STYLE.md, and CLAUDE.md. Don&rsquo;t write code yet.&rdquo;',mistake:'Assuming the agent already knows your project&rsquo;s constraints.'},
+  {t:'Ask for a plan',prompt:'&ldquo;Propose the section outline, interactions, and any questions for me.&rdquo;',mistake:'Letting it build first and explain later.'},
+  {t:'Approve a small first version',prompt:'&ldquo;Build just the first section so I can react before you continue.&rdquo;',mistake:'Approving a giant first draft you cannot fully review.'},
+  {t:'Test manually',prompt:'&ldquo;List what I should test, then I&rsquo;ll try buttons, mobile, and keyboard navigation.&rdquo;',mistake:'Trusting it works because it looks finished.'},
+  {t:'Ask for surgical edits',prompt:'&ldquo;Only fix the quiz wording in section 3. Don&rsquo;t touch anything else.&rdquo;',mistake:'&ldquo;Improve the whole thing&rdquo;, inviting unrelated rewrites.'},
+  {t:'Document final changes',prompt:'&ldquo;Summarize exactly what changed and how you checked it.&rdquo;',mistake:'Finishing with no record of what the agent did.'}
+];
+function wfRender(i){var s=WORKFLOW[i];
+  return '<strong>Step '+(i+1)+' &middot; '+s.t+'.</strong><br><span style="font-size:.93rem"><strong style="color:var(--blue-navy)">Sample prompt:</strong> <em>'+s.prompt+'</em></span><br><span class="muted" style="font-size:.9rem"><strong style="color:var(--coral)">Common mistake:</strong> '+s.mistake+'</span>';
+}
+
+var RISK_Q=[
+  {q:'An agent hands you a tidy reference list for your aphasia review.',options:[
+    {t:'Check each citation against the original source.',ok:true,why:'Hallucinated citations look perfectly real: verification is the only defense.'},
+    {t:'Trust it; the list looks complete.',ok:false,why:'Plausible is not the same as real. Agents can invent citations wholesale.'},
+    {t:'Just confirm there are enough of them.',ok:false,why:'Quantity says nothing about whether each source exists or fits.'}]},
+  {q:'A multi-week project, and the agent forgot a decision you made early on.',options:[
+    {t:'Keep decisions in project instruction files.',ok:true,why:'Finite memory causes context loss; durable files are the fix.'},
+    {t:'Start the whole project over.',ok:false,why:'Wasteful: the issue is memory, not the work so far.'},
+    {t:'Hope it remembers next session.',ok:false,why:'Hope is not a memory mechanism.'}]},
+  {q:'An AI draft reads beautifully but says very little.',options:[
+    {t:'Evaluate substance, not polish.',ok:true,why:'Fluent formatting can hide thin content: judge the ideas.'},
+    {t:'Submit it; it is well written.',ok:false,why:'Polished mediocrity is exactly the trap to avoid.'},
+    {t:'Add more formatting and figures.',ok:false,why:'More polish on thin content makes the problem worse.'}]},
+  {q:'You want to analyze a client&rsquo;s therapy recordings with an online agent.',options:[
+    {t:'Use simulated or de-identified data and follow privacy policy.',ok:true,why:'Identifiable client data should not go to cloud agents without explicit permission.'},
+    {t:'Upload them; it is faster.',ok:false,why:'Speed never justifies a privacy violation.'},
+    {t:'Email them to yourself first.',ok:false,why:'That does not de-identify anything or address consent.'}]},
+  {q:'The agent produced a 200-line analysis script you plan to rely on.',options:[
+    {t:'Build in checkpoints and verify before trusting results.',ok:true,why:'Verification asymmetry: checking takes real effort, but it is the job.'},
+    {t:'Run it and report whatever it outputs.',ok:false,why:'Output that runs is not output that is correct.'},
+    {t:'Assume it is right if there are no errors.',ok:false,why:'Silent logic errors do not raise errors.'}]}
+];
+var PRIN_Q=[
+  {q:'Asked for a &ldquo;language activity,&rdquo; the agent assumed child language and built everything around it without asking.',options:[
+    {t:'Think Before Coding',ok:true,why:'It made a silent assumption instead of asking: child, adult aphasia, or AAC?'},
+    {t:'Simplicity First',ok:false,why:'The build was not bloated: it was aimed at the wrong target.'},
+    {t:'Surgical Changes',ok:false,why:'Nothing unrelated was edited; the issue was the unchecked assumption.'},
+    {t:'Goal-Driven Execution',ok:false,why:'Closer, but the core failure is not asking before assuming.'}]},
+  {q:'You asked for a simple practice page; it added logins, a database, and a dashboard.',options:[
+    {t:'Simplicity First',ok:true,why:'Speculative features well beyond the minimum useful version.'},
+    {t:'Think Before Coding',ok:false,why:'It is not an assumption problem; it is over-engineering.'},
+    {t:'Surgical Changes',ok:false,why:'That is about editing unrelated code, not adding extras.'},
+    {t:'Goal-Driven Execution',ok:false,why:'The goal may have been clear; the response was just bloated.'}]},
+  {q:'You asked it to fix the quiz wording; it also restyled the page and renamed classes.',options:[
+    {t:'Surgical Changes',ok:true,why:'It touched code unrelated to the task, the definition of a non-surgical edit.'},
+    {t:'Simplicity First',ok:false,why:'The problem is scope of edits, not complexity.'},
+    {t:'Think Before Coding',ok:false,why:'It understood the task; it just overreached.'},
+    {t:'Goal-Driven Execution',ok:false,why:'The goal was clear and small; it strayed from it.'}]},
+  {q:'You said &ldquo;make it good&rdquo; and spent five rounds clarifying what &ldquo;good&rdquo; meant.',options:[
+    {t:'Goal-Driven Execution',ok:true,why:'No success criteria, so the agent could not loop toward a target.'},
+    {t:'Think Before Coding',ok:false,why:'It did ask, because you gave it nothing concrete to aim at.'},
+    {t:'Simplicity First',ok:false,why:'Complexity was not the issue; the target was undefined.'},
+    {t:'Surgical Changes',ok:false,why:'No unrelated edits here, just a missing definition of done.'}]}
+];
+var FINAL_Q=[
+  {q:'An agent returns a table of 10 aphasia studies with citations. Best next step?',options:[
+    {t:'Check each citation against the original paper.',ok:true,why:'Verify before you trust: citations can be fabricated.'},
+    {t:'Paste it straight into your review.',ok:false,why:'That skips verification and your accountability.'},
+    {t:'Ask the agent for 10 more.',ok:false,why:'More unverified sources is not progress.'}]},
+  {q:'You asked for a small practice page; the agent shipped logins and a database. Which principle was skipped?',options:[
+    {t:'Simplicity First',ok:true,why:'The first version should be the smallest useful one.'},
+    {t:'Surgical Changes',ok:false,why:'That principle is about editing unrelated code.'},
+    {t:'Think Before Coding',ok:false,why:'The miss here is over-engineering, not a bad assumption.'}]},
+  {q:'A classmate says &ldquo;the AI validated my therapy app.&rdquo; Best response?',options:[
+    {t:'A working prototype is not validated until it is formally evaluated.',ok:true,why:'Functioning is not the same as evidence-based; validation is a separate process.'},
+    {t:'Great, start using it with clients.',ok:false,why:'Unvalidated prototypes should not drive clinical decisions.'},
+    {t:'If it runs without errors, it is valid.',ok:false,why:'Running and being clinically valid are unrelated.'}]},
+  {q:'You want an online agent to analyze a client&rsquo;s recorded session. The issue?',options:[
+    {t:'Privacy: don&rsquo;t upload identifiable client data without permission.',ok:true,why:'Cloud agents may process data off-device; identifiable data needs explicit permission.'},
+    {t:'Nothing: recordings are always fine to upload.',ok:false,why:'Identifiable recordings are exactly what privacy rules protect.'},
+    {t:'Only the file size matters.',ok:false,why:'The concern is identifiability and consent, not size.'}]},
+  {q:'Which best captures vibe researching?',options:[
+    {t:'The human sets direction and verifies; agents do the labor.',ok:true,why:'Human-in-charge, AI-in-the-loop: direction and accountability stay with you.'},
+    {t:'An AI system runs the entire research pipeline alone.',ok:false,why:'That is auto research, which removes the human.'},
+    {t:'Using a chatbot once to answer a question.',ok:false,why:'That is one-shot prompting, not an oversight workflow.'}]}
+];
+
+/* ---------- demo 1: listen, identify & transcribe (audio) ---------- */
+var AUDIO_BASE='audio/';   /* host MP3s in an "audio/" folder next to this file (e.g., on GitHub Pages) */
+var IPA={rake:'/reɪk/',wake:'/weɪk/',ship:'/ʃɪp/',sip:'/sɪp/',key:'/ki/',tea:'/ti/',thin:'/θɪn/',fin:'/fɪn/',shock:'/ʃɑk/',sock:'/sɑk/',cap:'/kæp/',tap:'/tæp/'};
+function playWord(word,notice){
+  try{var a=new Audio(AUDIO_BASE+word+'.mp3'); var pr=a.play();
+    if(pr&&pr.catch)pr.catch(function(){ if(notice){notice.className='feedback no show'; notice.innerHTML='<strong>No audio yet.</strong> Add <code class="inline">'+AUDIO_BASE+word+'.mp3</code> to hear it: the task still works without sound.'; } });
+  }catch(e){ if(notice){notice.className='feedback no show'; notice.textContent='Audio is not available in this browser.'; } }
+}
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+/* Task A: listen & identify */
+var D1A=[
+  {pair:['rake','wake'],heard:'rake',contrast:'/r/ vs /w/'},
+  {pair:['ship','sip'],heard:'ship',contrast:'/ʃ/ vs /s/'},
+  {pair:['key','tea'],heard:'tea',contrast:'/k/ vs /t/'},
+  {pair:['thin','fin'],heard:'thin',contrast:'/θ/ vs /f/'},
+  {pair:['shock','sock'],heard:'sock',contrast:'/ʃ/ vs /s/'},
+  {pair:['cap','tap'],heard:'tap',contrast:'/k/ vs /t/'}
+];
+var aIdx=0,aScore=0,aSeen=0,aAnswered=false;
+function aRender(){
+  var it=D1A[aIdx]; aAnswered=false;
+  var ct=document.getElementById('aContrast'); if(ct)ct.textContent='Contrast: '+it.contrast;
+  var box=document.getElementById('aChoices'); if(!box)return; box.innerHTML='';
+  shuffle([0,1]).forEach(function(k){var w=it.pair[k];
+    var b=h('<button class="pairword choice" data-w="'+w+'"><div class="pw">'+w+'</div><div class="ph hidden">'+IPA[w]+'</div></button>');
+    b.addEventListener('click',function(){
+      if(aAnswered)return; aAnswered=true; aSeen++;
+      var correct=(w===it.heard);
+      box.querySelectorAll('.choice').forEach(function(x){x.disabled=true; x.querySelector('.ph').classList.remove('hidden');
+        if(x.dataset.w===it.heard)x.classList.add('correct');});
+      if(!correct)b.classList.add('wrong');
+      if(correct)aScore++;
+      document.getElementById('aScore').textContent=aScore; document.getElementById('aSeen').textContent=aSeen;
+      var fb=document.getElementById('aFb'); fb.className='feedback '+(correct?'ok':'no')+' show';
+      fb.innerHTML='<div class="verdict">'+(correct?'Correct.':'Not quite.')+'</div><p>You heard <strong>'+it.heard+'</strong> '+IPA[it.heard]+'. The pair contrasts '+it.contrast+'.</p>';
+    });
+    box.appendChild(b);
+  });
+}
+
+/* Task B: listen & transcribe to IPA (build with phoneme tiles + distractors) */
+var D1B=[
+  {word:'ship',ipa:['ʃ','ɪ','p'],distractors:['s','iː','b']},
+  {word:'rake',ipa:['r','eɪ','k'],distractors:['w','æ','g']},
+  {word:'thin',ipa:['θ','ɪ','n'],distractors:['f','iː','m']},
+  {word:'key',ipa:['k','i'],distractors:['t','ɪ','iː']},
+  {word:'shock',ipa:['ʃ','ɑ','k'],distractors:['s','ʌ','g']},
+  {word:'tap',ipa:['t','æ','p'],distractors:['k','ɛ','b']}
+];
+var bIdx=0,bScore=0,bChecked=0,bCheckedThis=false,bTiles=[],bPlaced=[],bSel=null;
+function bTileById(id){for(var i=0;i<bTiles.length;i++)if(bTiles[i].id===id)return bTiles[i];return null;}
+function slotAt(x,y){var el=document.elementFromPoint(x,y);return el&&el.closest?el.closest('.ipa-slot'):null;}
+function bClearHot(){var ss=document.querySelectorAll('#bSlots .ipa-slot');for(var i=0;i<ss.length;i++)ss[i].classList.remove('drop-hot');}
+function attachTileDrag(elm,id){
+  elm.addEventListener('pointerdown',function(ev){
+    if(ev.pointerType==='mouse'&&ev.button!==0)return;
+    var sx=ev.clientX,sy=ev.clientY,active=false,clone=null; elm._dragged=false;
+    try{elm.setPointerCapture(ev.pointerId);}catch(e){}
+    function move(e){var dx=e.clientX-sx,dy=e.clientY-sy;
+      if(!active&&Math.hypot(dx,dy)>6){active=true;elm._dragged=true;elm.classList.add('ghost');
+        clone=elm.cloneNode(true);clone.className='token ipa-tile dragging';
+        clone.style.cssText='position:fixed;pointer-events:none;z-index:9999;margin:0';document.body.appendChild(clone);}
+      if(active){clone.style.left=(e.clientX-clone.offsetWidth/2)+'px';clone.style.top=(e.clientY-20)+'px';
+        var sH=slotAt(e.clientX,e.clientY);bClearHot();if(sH&&!sH.classList.contains('filled'))sH.classList.add('drop-hot');}
+    }
+    function up(e){elm.removeEventListener('pointermove',move);elm.removeEventListener('pointerup',up);elm.removeEventListener('pointercancel',up);
+      try{elm.releasePointerCapture(ev.pointerId);}catch(e2){}
+      if(active){var sU=slotAt(e.clientX,e.clientY);if(clone)clone.remove();bClearHot();
+        if(sU&&!sU.classList.contains('filled')){var si=parseInt(sU.dataset.slot,10);var old=bPlaced.indexOf(id);if(old>=0)bPlaced[old]=null;bPlaced[si]=id;bSel=null;bRender();}
+        else{elm.classList.remove('ghost');}
+        setTimeout(function(){elm._dragged=false;},0);}
+    }
+    elm.addEventListener('pointermove',move);elm.addEventListener('pointerup',up);elm.addEventListener('pointercancel',up);
+  });
+}
+function bBuild(){
+  var it=D1B[bIdx]; bCheckedThis=false; bSel=null;
+  bTiles=shuffle(it.ipa.concat(it.distractors)).map(function(sym,i){return {id:'t'+i,sym:sym};});
+  bPlaced=it.ipa.map(function(){return null;});
+  var wl=document.getElementById('bWord'); if(wl)wl.textContent='Word: '+it.word;
+  bRender();
+}
+function bRender(){
+  var slots=document.getElementById('bSlots'),pool=document.getElementById('bPool'); if(!slots||!pool)return;
+  slots.innerHTML='';
+  bPlaced.forEach(function(tid,i){
+    var sym=tid?bTileById(tid).sym:'';
+    var slot=h('<div class="ipa-slot'+(tid?' filled':'')+'" role="button" tabindex="0" data-slot="'+i+'" aria-label="Slot '+(i+1)+(tid?(', holds '+sym+', tap to clear'):' empty, place selected tile')+'">'+sym+'</div>');
+    (function(idx){
+      function act(){ if(bPlaced[idx]){bPlaced[idx]=null;bRender();} else if(bSel!=null){bPlaced[idx]=bSel;bSel=null;bRender();} }
+      slot.addEventListener('click',act);
+      slot.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+    })(i);
+    slots.appendChild(slot);
+  });
+  pool.innerHTML='';
+  bTiles.forEach(function(t){ if(bPlaced.indexOf(t.id)>=0)return;
+    var b=h('<button class="token ipa-tile'+(bSel===t.id?' sel':'')+'" data-id="'+t.id+'" aria-label="Phoneme '+t.sym+', tap to select then tap a slot, or drag">'+t.sym+'</button>');
+    b.addEventListener('click',function(){ if(b._dragged)return; bSel=(bSel===t.id?null:t.id); bRender(); });
+    attachTileDrag(b,t.id);
+    pool.appendChild(b);
+  });
+}
+function bCheck(){
+  for(var i=0;i<bPlaced.length;i++){ if(!bPlaced[i]){var f0=document.getElementById('bFb');f0.className='feedback no show';f0.textContent='Fill all '+bPlaced.length+' slots first.';return;} }
+  var it=D1B[bIdx],nright=0,slotEls=document.querySelectorAll('#bSlots .ipa-slot');
+  for(var j=0;j<bPlaced.length;j++){var good=bTileById(bPlaced[j]).sym===it.ipa[j];slotEls[j].classList.add(good?'ok':'bad');if(good)nright++;}
+  var ok=nright===bPlaced.length;
+  if(!bCheckedThis){bChecked++;bCheckedThis=true;if(ok)bScore++;}
+  document.getElementById('bScore').textContent=bScore; document.getElementById('bSeen').textContent=bChecked;
+  var fb=document.getElementById('bFb'); fb.className='feedback '+(ok?'ok':'no')+' show';
+  fb.innerHTML=ok?('<div class="verdict">Correct.</div><p><strong>'+it.word+'</strong> = '+IPA[it.word]+'. Nicely transcribed.</p>')
+    :('<div class="verdict">'+nright+' of '+bPlaced.length+' right.</div><p>Tap a highlighted slot to clear it, listen again, and check each phoneme in order.</p>');
+}
+
+/* ---------- demo 2: language sample analysis ---------- */
+var LSA_SAMPLE='I goed to the park. The dog runned fast. I saw two bird in the tree. We eated ice cream. Mommy say it was time to go home. I want to play more.';
+function lsaAnalyze(){
+  var t=document.getElementById('lsaIn').value||'';
+  var utt=t.split(/[.!?]+/).map(function(s){return s.trim();}).filter(Boolean);
+  var toks=t.toLowerCase().replace(/[^a-z'\s]/g,' ').split(/\s+/).filter(Boolean);
+  var types={},nT=0; toks.forEach(function(w){if(!types[w]){types[w]=1;nT++;}});
+  var ttr=toks.length?(nT/toks.length):0, mlu=utt.length?(toks.length/utt.length):0;
+  document.getElementById('lsaTokens').textContent=toks.length;
+  document.getElementById('lsaTypes').textContent=nT;
+  document.getElementById('lsaTTR').textContent=toks.length?ttr.toFixed(2):'–';
+  document.getElementById('lsaUtt').textContent=utt.length;
+  document.getElementById('lsaMLU').textContent=utt.length?mlu.toFixed(1):'–';
+}
+
+/* ===================== wire interactions ===================== */
+function initInteractions(){
+  /* flip cards */
+  $$('.flipcard').forEach(function(c){c.addEventListener('click',function(){
+    c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');});});
+
+  /* spectrum (Figure 1) */
+  var specBtns=$$('#specTrack .spec-stage'), specDetail=$('#specDetail');
+  if(specDetail){wireSteps(specBtns,specDetail,specRender); specDetail.innerHTML=specRender(3);}
+
+  /* responsibility sorter */
+  makeSorter({tokensId:'respTokens',binsId:'respBins',checkId:'respCheck',resetId:'respReset',fbId:'respFb',
+    items:[{id:1,t:'Choose the clinical/research question',answer:'Human owns'},
+      {id:2,t:'Judge if findings apply to a client',answer:'Human owns'},
+      {id:3,t:'Decide a tool is clinically valid',answer:'Human owns'},
+      {id:4,t:'Search for candidate papers',answer:'AI assists, human reviews'},
+      {id:5,t:'Draft a first summary table',answer:'AI assists, human reviews'},
+      {id:6,t:'Upload identifiable client recordings',answer:'Never to AI alone'},
+      {id:7,t:'Send unpublished data to an unknown tool',answer:'Never to AI alone'}],
+    bins:['Human owns','AI assists, human reviews','Never to AI alone'],
+    win:'Direction, interpretation, and accountability stay human; agents assist with execution under review.',
+    hint:'Tips: choosing questions and judging clinical relevance are human-owned; searching and drafting can be AI-assisted with review; identifiable data and unpublished work should never go to AI alone.'});
+
+  /* loop stepper */
+  var loopWrap=$('#loopSteps');
+  if(loopWrap){LOOP.forEach(function(s,i){
+    var b=h('<button class="loop-step" type="button" data-idx="'+i+'" aria-pressed="'+(i===0?'true':'false')+'"><span class="ls-n">Step '+(i+1)+'</span><span class="ls-t">'+s.t+'</span></button>');
+    loopWrap.appendChild(b);});
+    var lb=$$('#loopSteps .loop-step'); wireSteps(lb,$('#loopDetail'),loopRender); $('#loopDetail').innerHTML=loopRender(0);}
+
+  /* enabling-techniques: nothing dynamic */
+
+  /* risk match quiz */
+  mcq('riskItems',RISK_Q);
+
+  /* predict-then-reveal */
+  $$('#sec-vr-risk [data-pred]').forEach(function(b){b.addEventListener('click',function(){
+    $$('#sec-vr-risk [data-pred]').forEach(function(x){x.classList.remove('correct','wrong');});
+    var fb=$('#predFb');
+    if(b.dataset.pred==='accountability'){b.classList.add('correct');fb.className='feedback ok show';
+      fb.innerHTML='<div class="verdict">Right.</div><p>The problem is not that the student used AI. It is the lack of <strong>source verification</strong> and the loss of <strong>human accountability</strong>: pasting an unread summary into their own work.</p>';}
+    else{b.classList.add('wrong');fb.className='feedback no show';
+      fb.innerHTML='<div class="verdict">Not the main issue.</div><p>Using AI is not the problem, and length is beside the point. The real failure is presenting work the student never verified or read, a loss of accountability.</p>';
+      $$('#sec-vr-risk [data-pred]').forEach(function(x){if(x.dataset.pred==='accountability')x.classList.add('correct');});}
+  });});
+
+  /* checklists */
+  wireChecklist('respChecklist','respCheckBar','respCheckMsg');
+  wireChecklist('finalChecklist','finalCheckBar','finalCheckMsg');
+
+  /* principle quiz */
+  mcq('prinItems',PRIN_Q);
+
+  /* workflow stepper */
+  var wfWrap=$('#wfSteps');
+  if(wfWrap){WORKFLOW.forEach(function(s,i){
+    var b=h('<button class="loop-step" type="button" data-idx="'+i+'" aria-pressed="'+(i===0?'true':'false')+'"><span class="ls-n">Step '+(i+1)+'</span><span class="ls-t">'+s.t+'</span></button>');
+    wfWrap.appendChild(b);});
+    var wb=$$('#wfSteps .loop-step'); wireSteps(wb,$('#wfDetail'),wfRender); $('#wfDetail').innerHTML=wfRender(0);}
+
+  /* prompt makeover */
+  var pmSel=[];
+  function pmUpdate(){
+    var list=$('#pmList');
+    if(!pmSel.length){list.innerHTML='Build me an SLP app. <em class="muted">(tap improvements above)</em>';return;}
+    list.innerHTML='Build me an SLP app. &nbsp;<span class="muted">Plus:</span> '+pmSel.map(function(s){return '<strong>'+s+'</strong>';}).join('; ')+'.';
+  }
+  $$('#pmChips .chip').forEach(function(c){c.addEventListener('click',function(){
+    var on=c.getAttribute('aria-pressed')==='true';
+    c.setAttribute('aria-pressed',on?'false':'true');
+    var v=c.dataset.imp;
+    if(on){pmSel=pmSel.filter(function(x){return x!==v;});}else{pmSel.push(v);}
+    pmUpdate();});});
+  pmUpdate();
+  var pmReveal=$('#pmReveal');
+  if(pmReveal)pmReveal.addEventListener('click',function(){
+    var w=$('#pmStrongWrap'); var open=w.style.display!=='none';
+    w.style.display=open?'none':'block'; pmReveal.innerHTML=open?'Reveal a strong rewrite &rarr;':'Hide the rewrite';});
+
+  /* DEMO 1: listen / identify / transcribe */
+  var d1A=document.getElementById('d1TaskA'), d1B=document.getElementById('d1TaskB');
+  $$('#d1Tabs button').forEach(function(t){t.addEventListener('click',function(){
+    $$('#d1Tabs button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+    t.setAttribute('aria-pressed','true');
+    var isA=t.dataset.task==='A'; if(d1A)d1A.style.display=isA?'':'none'; if(d1B)d1B.style.display=isA?'none':'';
+  });});
+  aRender();
+  var aP=$('#aPlay'); if(aP)aP.addEventListener('click',function(){playWord(D1A[aIdx].heard,document.getElementById('aFb'));});
+  var aN=$('#aNext'); if(aN)aN.addEventListener('click',function(){aIdx=(aIdx+1)%D1A.length;var fb=document.getElementById('aFb');fb.className='feedback';aRender();});
+  var aRs=$('#aReset'); if(aRs)aRs.addEventListener('click',function(){aIdx=0;aScore=0;aSeen=0;document.getElementById('aScore').textContent='0';document.getElementById('aSeen').textContent='0';var fb=document.getElementById('aFb');fb.className='feedback';aRender();});
+  bBuild();
+  var bP=$('#bPlay'); if(bP)bP.addEventListener('click',function(){playWord(D1B[bIdx].word,document.getElementById('bFb'));});
+  var bC=$('#bCheck'); if(bC)bC.addEventListener('click',bCheck);
+  var bN=$('#bNext'); if(bN)bN.addEventListener('click',function(){bIdx=(bIdx+1)%D1B.length;var fb=document.getElementById('bFb');fb.className='feedback';bBuild();});
+  var bCl=$('#bClear'); if(bCl)bCl.addEventListener('click',function(){for(var i=0;i<bPlaced.length;i++)bPlaced[i]=null;bSel=null;var fb=document.getElementById('bFb');fb.className='feedback';bRender();});
+
+  /* DEMO 2: language sample */
+  var lin=$('#lsaIn'); if(lin){lin.value=LSA_SAMPLE; lsaAnalyze();}
+  var lr=$('#lsaRun'); if(lr)lr.addEventListener('click',lsaAnalyze);
+  var ls=$('#lsaSample'); if(ls)ls.addEventListener('click',function(){$('#lsaIn').value=LSA_SAMPLE;lsaAnalyze();});
+  var lc=$('#lsaClear'); if(lc)lc.addEventListener('click',function(){$('#lsaIn').value='';
+    ['lsaTokens','lsaTypes','lsaTTR','lsaUtt','lsaMLU'].forEach(function(id){document.getElementById(id).textContent='–';});});
+
+  /* DEMO 3: AAC core vs fringe */
+  makeSorter({tokensId:'aacTokens',binsId:'aacBins',checkId:'aacCheck',resetId:'aacReset',fbId:'aacFb',
+    items:[{id:1,t:'want',answer:'Core vocabulary'},{id:2,t:'more',answer:'Core vocabulary'},
+      {id:3,t:'stop',answer:'Core vocabulary'},{id:4,t:'help',answer:'Core vocabulary'},
+      {id:5,t:'pizza',answer:'Fringe vocabulary'},{id:6,t:'dinosaur',answer:'Fringe vocabulary'},
+      {id:7,t:'scissors',answer:'Fringe vocabulary'},{id:8,t:'bandage',answer:'Fringe vocabulary'}],
+    bins:['Core vocabulary','Fringe vocabulary'],
+    win:'Core words are few, high-frequency, and reusable everywhere; fringe words are topic-specific.',
+    hint:'Hint: words you use across many activities (want, more, stop, help) are core; specific nouns tied to one topic (pizza, dinosaur, scissors, bandage) are fringe.'});
+
+  /* final quiz */
+  mcq('finalItems',FINAL_Q);
+}
+
+function wireChecklist(listId,barId,msgId){
+  var boxes=$$('#'+listId+' input'); if(!boxes.length)return;
+  var bar=document.getElementById(barId), msg=document.getElementById(msgId), tot=boxes.length;
+  function upd(){var n=0; boxes.forEach(function(b){if(b.checked)n++;
+      var span=b.parentElement.querySelector('span'); if(span)span.classList.toggle('done-txt',b.checked);});
+    if(bar)bar.style.width=Math.round(n/tot*100)+'%';
+    if(msg)msg.textContent=n+' of '+tot+' checked.'+(n===tot?'. You are ready to stand behind this.':'');
+  }
+  boxes.forEach(function(b){b.addEventListener('change',upd);}); upd();
+}
+
+/* ===================== navigation / chrome ===================== */
+function initNav(){
+  var toggle=$('#navToggle'), sb=$('#sidebar'), bd=$('#sbBackdrop');
+  function closeSB(){if(sb)sb.classList.remove('open');if(bd)bd.classList.remove('show');if(toggle)toggle.setAttribute('aria-expanded','false');}
+  function openSB(){if(sb)sb.classList.add('open');if(bd)bd.classList.add('show');if(toggle)toggle.setAttribute('aria-expanded','true');}
+  if(toggle&&sb)toggle.addEventListener('click',function(){sb.classList.contains('open')?closeSB():openSB();});
+  if(bd)bd.addEventListener('click',closeSB);
+  $$('#menu a').forEach(function(a){a.addEventListener('click',closeSB);});
+  var prog=$('#progress'), backtop=$('#backtop');
+  function onScroll(){var el=document.documentElement,sc=el.scrollTop||document.body.scrollTop,max=el.scrollHeight-el.clientHeight;
+    if(prog)prog.style.width=(max>0?sc/max*100:0)+'%';if(backtop)backtop.classList.toggle('show',sc>700);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  if(backtop)backtop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var links={};$$('#menu a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      Object.keys(links).forEach(function(k){links[k].classList.remove('active');});
+      var l=links[e.target.id];if(l)l.classList.add('active');}});},{rootMargin:'-45% 0px -50% 0px'});
+    $$('main section[id]').forEach(function(s){io.observe(s);});}
+}
+
+/* ===================== scroll reveal ===================== */
+function initReveal(){
+  if(!('IntersectionObserver' in window))return;
+  var targets=$$('main section.lesson .container, .statband .container');
+  targets.forEach(function(t){t.classList.add('reveal');});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.06});
+  targets.forEach(function(t){io.observe(t);});
+}
+
+/* ===================== boot ===================== */
+function ready(fn){if(document.readyState!=='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+var __booted=false;
+ready(function(){ if(__booted)return; __booted=true; try{initInteractions();}catch(e){console.error('interactions',e);} initNav(); initReveal(); });
+})();
+</script>
+</body>
+</html>
