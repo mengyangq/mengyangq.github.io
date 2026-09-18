@@ -6,6 +6,7 @@ permalink: /publication/manes-etal-2026-paired
 excerpt: "This study evaluated a paired-comparison method for detecting longitudinal speech change in Parkinson's disease (PD) across three perceptual constructs (intelligibility, listener effort, and severity) relative to a cross-sectional method for detecting speech changes in the same cohort."
 date: 2026-09-08
 venue: 'American Journal of Speech-Language Pathology'
+paperurl: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC13576687/pdf/AJSLP-35-2243.pdf'
 citation: "Manes, J. L., Rohl, A. H., <strong>Qiu, M.</strong>, Stipancic, K. L., Corcos, D. M., Patterson, C. G., Greenlee, J. D. W., &amp; Tjaden, K. (2026). Paired-comparison versus cross-sectional approaches for assessing longitudinal speech change in Parkinson's disease following deep brain stimulation of the subthalamic nucleus. <em>American Journal of Speech-Language Pathology</em>, <em>35</em>(5), 2243-2261. <a href='https://doi.org/10.1044/2026_AJSLP-26-00092'>https://doi.org/10.1044/2026_AJSLP-26-00092</a>"
 ---
 Purpose:
