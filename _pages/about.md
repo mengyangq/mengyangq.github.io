@@ -37,7 +37,7 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 | Date | News |
 | :--- | :--- |
 | **Oct 2026** | My forthcoming book with Jungyeul Park, [*Chinese Grammatical Error Correction, Annotation, and Evaluation*](https://link.springer.com/book/9783032459879), is now listed by Springer, with publication scheduled for 2027. |
-| **May 2026** | Co-authored paper accepted for publication in *American Journal of Speech-Language Pathology*: "Paired comparison vs. cross-sectional approaches for assessing longitudinal speech change in Parkinson’s disease following STN-DBS". |
+| **May 2026** | Co-authored paper accepted for publication in *American Journal of Speech-Language Pathology*: "[Paired comparison vs. cross-sectional approaches for assessing longitudinal speech change in Parkinson’s disease following STN-DBS](https://doi.org/10.1044/2026_AJSLP-26-00092)". |
 |  | Poster presented at *CMCL 2026*: "[Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task](https://mengyang.dev/publication/qiu-etal-2026-llm)". |
 | **Apr 2026** | Co-authored paper accepted for publication in *Electronics*: "[Bias in Large Language Models: Origin, Evaluation, and Mitigation](https://doi.org/10.3390/electronics15091824)". |
 |  | Paper accepted at *ICAIE 2026*: "Automated Writing Evaluation with Corrective Feedback". |
