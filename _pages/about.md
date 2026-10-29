@@ -26,7 +26,7 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 
 <style>
 .news-scroll {
-  height: 400px;
+  height: 350px;
   overflow-y: auto;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
