@@ -25,7 +25,18 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 # News
 
 <style>
-.news-scroll { height: 350px; overflow-y: auto; }
+.news-scroll {
+  height: 400px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.news-scroll.is-scrolling { scrollbar-color: #888 transparent; }
+.news-scroll::-webkit-scrollbar { width: 6px; }
+.news-scroll::-webkit-scrollbar-track { background: transparent; }
+.news-scroll::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; }
+.news-scroll.is-scrolling::-webkit-scrollbar-thumb { background: #888; }
 .news-scroll table { display: table; width: 100%; margin: 0; font-size: inherit; border: 0; }
 .news-scroll thead { display: none; }
 .news-scroll td { border: 0; padding: 0.5rem; vertical-align: top; }
@@ -47,3 +58,17 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 | **Jan 2026** | Joined the Department of Speech-Language Pathology at Saint Elizabeth University as Assistant Professor. |
 
 </div>
+
+<script>
+document.querySelectorAll('.news-scroll').forEach(function (box) {
+  let hideTimer;
+  box.addEventListener('scroll', function () {
+    box.classList.add('is-scrolling');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
+      box.classList.remove('is-scrolling');
+    }, 1000);
+  }, { passive: true });
+});
+</script>
+
