@@ -48,13 +48,13 @@ Dr. Qiu’s research on natural language processing for educational and clinical
 | Date | News |
 | :--- | :--- |
 | **Oct 2026** | My forthcoming book with Jungyeul Park, [*Chinese Grammatical Error Correction: A Methodological Guide to Datasets, Taxonomy, Evaluation, and Systems*](https://link.springer.com/book/9783032459879), is now listed by Springer, with publication scheduled for 2027. |
-| **May 2026** | Co-authored paper accepted for publication in *American Journal of Speech-Language Pathology*: "[Paired comparison vs. cross-sectional approaches for assessing longitudinal speech change in Parkinson’s disease following STN-DBS](https://doi.org/10.1044/2026_AJSLP-26-00092)". |
-|  | Poster presented at *CMCL 2026*: "[Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task](https://mengyang.dev/publication/qiu-etal-2026-llm)". |
-| **Apr 2026** | Co-authored paper accepted for publication in *Electronics*: "[Bias in Large Language Models: Origin, Evaluation, and Mitigation](https://doi.org/10.3390/electronics15091824)". |
-|  | Paper accepted at *ICAIE 2026*: "[Automated Writing Evaluation with Corrective Feedback](https://doi.org/10.1109/ICAIE70080.2026.11751221)". |
-|  | Presented at the *2026 NJSHA Convention*: "[How Is AI Being Used Across Communication Disorders? A Review of the Research](https://mengyang.dev/presentations/sun_etal_2026_how)". |
-| **Mar 2026** | Paper accepted at *CMCL 2026*: "Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task". |
-|  | Abstract accepted for poster presentation at the *55th Clinical Aphasiology Conference*: "Bridging Disciplines in AI for Aphasia Research: A Network Analysis of Publication Abstracts Across CS and Non-CS Venues". |
+| **May 2026** | Co-authored paper accepted for publication in *American Journal of Speech-Language Pathology*: [Paired-Comparison Versus Cross-Sectional Approaches for Assessing Longitudinal Speech Change in Parkinson's Disease Following Deep Brain Stimulation of the Subthalamic Nucleus](https://doi.org/10.1044/2026_AJSLP-26-00092). |
+|  | Poster presented at *CMCL 2026*: [Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task](https://mengyang.dev/publication/qiu-etal-2026-llm). |
+| **Apr 2026** | Co-authored paper accepted for publication in *Electronics*: [Bias in Large Language Models: Origin, Evaluation, and Mitigation](https://doi.org/10.3390/electronics15091824). |
+|  | Paper accepted at *ICAIE 2026*: [Automated Writing Evaluation with Corrective Feedback](https://doi.org/10.1109/ICAIE70080.2026.11751221). |
+|  | Presented at the *2026 NJSHA Convention*: [How Is AI Being Used Across Communication Disorders? A Review of the Research](https://mengyang.dev/presentations/sun_etal_2026_how). |
+| **Mar 2026** | Paper accepted at *CMCL 2026*: Can LLMs Simulate Human Behavioral Variability? A Case Study in the Phonemic Fluency Task. |
+|  | Abstract accepted for poster presentation at the *55th Clinical Aphasiology Conference*: Bridging Disciplines in AI for Aphasia Research: A Network Analysis of Publication Abstracts Across CS and Non-CS Venues. |
 | **Jan 2026** | Joined the Department of Speech-Language Pathology at Saint Elizabeth University as Assistant Professor. |
 
 </div>
