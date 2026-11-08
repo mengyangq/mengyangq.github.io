@@ -5,7 +5,7 @@ category: nlp
 permalink: /publication/qiu-etal-2026-automated
 excerpt: 'In this paper, we present an integrated system that combines neural AWE and GEC to deliver both an objective essay score and corrective feedback to a learner in one go.'
 date: 2026-05-15
-venue: '2026 International Conference on Artificial Intelligence and Education'
+venue: 'Proceedings of the 2026 International Conference on Artificial Intelligence and Education'
 paperurl: 'https://mengyang.dev/files/qiu-etal-2026-automated.pdf'
 citation: '<strong>Qiu, M.</strong>, Wang, I. X., Nguyen, T. M., Huang, Z., Gu, Y., Gao, Q., Li, Z., Liu, S., & Park, J. (2026). Automated writing evaluation with corrective feedback. <em>2026 International Conference on Artificial Intelligence and Education (ICAIE)</em>, 142-146. <a href="https://doi.org/10.1109/ICAIE70080.2026.11751221">https://doi.org/10.1109/ICAIE70080.2026.11751221</a>'
 ---
